@@ -178,8 +178,7 @@ module.exports = function (grunt) {
                 maxBuffer: 3500,
                 options: {
 //                    compilation_level: 'ADVANCED_OPTIMIZATIONS',
-                    language_in: 'ECMASCRIPT5_STRICT',
-                    maxBuffer: 3500
+                    language_in: 'ECMASCRIPT5_STRICT'
                 }
             },
             partnerinit: {
@@ -476,7 +475,7 @@ module.exports = function (grunt) {
     require('./grunt-custom-tasks.js')(grunt);
 
     //************************************* init stuff - set default values, etc. **************************************
-    grunt.config.set('translationsJsonUrl', grunt.option('translations-url') || 'http://web.betconstruct.int/translations/app/get_language/');
+    grunt.config.set('translationsJsonUrl', grunt.option('translations-url') || 'https://raw.githubusercontent.com/BetConstruct/spring-front-end/master/languages');
     grunt.config.set('configUrlPath', grunt.option('config-url-path') || '');
     grunt.config.set('skin', grunt.option('skin') || 'vbet.com');
     grunt.config.set('skinConfig', grunt.option('skin-config') || grunt.config.get('skin'));

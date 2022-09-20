@@ -178,7 +178,8 @@ module.exports = function (grunt) {
                 maxBuffer: 3500,
                 options: {
 //                    compilation_level: 'ADVANCED_OPTIMIZATIONS',
-                    language_in: 'ECMASCRIPT5_STRICT'
+                    language_in: 'ECMASCRIPT5_STRICT',
+                    maxBuffer: 3500
                 }
             },
             partnerinit: {

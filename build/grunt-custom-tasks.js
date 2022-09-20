@@ -48,11 +48,11 @@ module.exports = function (grunt) {
             if (lang[0] === '@') {
                 return;
             }
-            var url = grunt.config.get('translationsJsonUrl') + grunt.config.get('skinConfig') + '/languages/' + lang + '.json';
+            var url = grunt.config.get('translationsJsonUrl') + '/' + lang + '.json';
             files.push({url: url, dest: 'languages_tmp'});
             console.log(url);
         });
-        var noTransUrl = grunt.config.get('translationsJsonUrl') + grunt.config.get('skinConfig') + '/languages/notrans.json';
+        var noTransUrl = grunt.config.get('translationsJsonUrl') + '/notrans.json';
         files.push({url: noTransUrl, dest: 'languages_tmp'});
         console.log(noTransUrl);
         grunt.config.set('downloadfile', {files: files});

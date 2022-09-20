@@ -530,8 +530,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test',                         ['gitinfo',  'processhtml', 'no-cdn-libs', 'replace:noCdnLibs', 'copy']);
     grunt.registerTask('dev',                          ['gitinfo', 'load-additional-modules', 'create-conf', 'load-css-filelist', 'ngtemplates', 'load-translations', 'replace:removeContextAttr', 'replace:changeAppVersion', 'closure-compiler', 'cssmin', 'processhtml', 'replace:xDomainFrameUrl', 'replace:htmlPlaceholders',  'no-cdn-libs', 'replace:noCdnLibs', 'copy', 'clean:build-temp']);
-    //grunt.registerTask('load-translations',            ['shell:generateSkinTranslationSeparate']); //old way, from .po
-    grunt.registerTask('load-translations',            ['clean:languages-temp', 'load-language-filelist', 'downloadfile']);  // new way, from translation tool
+    grunt.registerTask('load-translations',            ['shell:generateSkinTranslationSeparate']); //old way, from .po
+    //grunt.registerTask('load-translations',            ['clean:languages-temp', 'load-language-filelist', 'downloadfile']);  // new way, from translation tool
     grunt.registerTask('debug',                        ['gitinfo', 'load-additional-modules', 'create-conf', 'load-css-filelist', 'ngtemplates', 'load-translations', 'closure-compiler', 'cssmin', 'processhtml', 'replace:xDomainFrameUrl', 'replace:htmlPlaceholders', 'no-cdn-libs', 'replace:noCdnLibs', 'copy:main']);
 //    grunt.registerTask('default-inline-templates',     ['closure-compiler', 'processhtml', 'strip', 'inline_angular_templates', 'copy', 'clean:build-temp']);
     grunt.registerTask('create-css',                   ['gitinfo', 'load-additional-modules', 'load-css-filelist', 'cssmin', 'processhtml', 'replace:xDomainFrameUrl', 'replace:htmlPlaceholders', 'no-cdn-libs', 'replace:noCdnLibs', 'copy:main', 'clean:build-temp']);

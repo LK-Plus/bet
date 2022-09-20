@@ -1,0 +1,36 @@
+<div class="big-game-background">
+    <div class="big-game-contain" class-on-scroll="scrolled,notscrolled"
+         ng-style="{background: 'no-repeat 50% 0'}">
+        <div class="casual-game">
+            <div class="casino-game-contain">
+                <div class="flash-game-contain">
+                    <div class="big-game-control" ng-show="frameUrl && !loadingUserData">
+                        <div class="icon-delete"><a title="{{ 'close'|translate }}" ng-click="closeGame('closeButton');$event.stopPropagation();">Close</a></div>
+                        <div class="icon-delete popup" ng-if="!$root.conf.ukLicense"><a
+                                title="{{ 'Open In Pop-Up Window'|translate }}"
+                                ng-click="frameControll('popup'); closeGame('popupButton');">popUp</a></div>
+                        <div ng-if="(!!hasIframeJackpot[gameInfo.id] || env.authorized && gameInfo.game.id && hasTournaments && hasIframeTournamentInfo[gameInfo.id])" class="icon-delete closed-iframe-info">
+                            <a trans ng-click="iframeTab[gameInfo.id].show = !iframeTab[gameInfo.id].show"></a>
+                        </div>
+                        <div class="icon-delete refresh"><a title="{{ 'Refresh'|translate }}" ng-click="frameControll('refresh');">refresh</a></div>
+                    </div>
+                    <ng-include ng-show="iframeTab[gameInfo.id].show && (!!hasIframeJackpot[gameInfo.id] || env.authorized && gameInfo.game.id && hasTournaments && hasIframeTournamentInfo[gameInfo.id])" src="'optional_modules/casino/templates/tournament/iframe-info.html'|fixPath"></ng-include>
+
+                    <iframe
+                            ng-class="{'iframe-tournament-sidebar-padding':(iframeTab[gameInfo.id].show) && iframeTab[gameInfo.id].show && (!!hasIframeJackpot[gameInfo.id] || env.authorized && gameInfo.game.id && hasTournaments && hasIframeTournamentInfo[gameInfo.id])}"
+                            has-sidebar="{{(iframeTab[gameInfo.id].show) &&  !!(env.authorized && gameInfo.game.id && hasTournaments && hasIframeTournamentInfo[gameInfo.id])}}"
+                            ng-if="frameUrl && !loadingUserData"
+                            frame-control
+                            allowfullscreen="true"
+                            number-of-window="1"
+                            initial-width="{{game.width}}"
+                            initial-height="{{game.height}}"
+                            aspect-ratio="{{game.ratio}}"
+                            ng-src="{{frameUrl}}"></iframe>
+
+                    <vbet-loader ng-show="loadingUserData"></vbet-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

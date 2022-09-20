@@ -1,0 +1,27 @@
+<div>
+    <div class="sc-add" ng-if="!loadingProcess">
+        <ul ng-repeat="wallet in wallets track by wallet.Id" class="sc-add-table">
+            <li class="sc-add-section">
+                <!--<i class="card-icon"></i>-->
+                <img ng-src="{{wallet.image}}">
+            </li>
+            <li class="sc-add-info">
+                <p ng-bind="wallet.WalletId"></p>
+               <!-- <span trans>Main card</span>-->
+            </li>
+            <li class="sc-deposit">
+                <button ng-click="goToPayment(wallet.paymentID)" trans>Deposit</button>
+            </li>
+            <li class="sc-remove">
+                <span ng-click="removeWallet(wallet.Id)" trans>Remove</span>
+            </li>
+        </ul>
+        <p ng-if="!wallets || !wallets.length" trans>There is no saved wallets</p>
+    </div>
+    <vbet-loader ng-if="loadingProcess"></vbet-loader>
+    <!--<div ng-show="!loadingProces" class="promotions-balance-j" ng-class="{'no-banners-balance': !balanceTopBanners.length}" ng-controller="cmsPagesCtrl" ng-init="gePageBanners('balance','withdraw-banner-' + $root.env.lang);">
+        <div>
+            <vbet-big-slider class="big-slider-casino-directive" ng-if="balanceTopBanners" images="balanceTopBanners" link-click-handler="openCBannerLink" slider-template="true"></vbet-big-slider>
+        </div>
+    </div>-->
+</div>

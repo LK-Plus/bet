@@ -1,0 +1,23 @@
+<div class="betSettingsContainer-j" 
+     ng-class="{'active': shared.showBetSettings}"
+     ng-show="betSlip.mode === 'betting' && !betSlip.superbet.selector && !counterOffer.enabled">
+    <i ng-click="shared.showBetSettings=!shared.showBetSettings;"></i>
+    <div class="betslipOptions-j">
+        <div>
+            <p trans>Betting options</p>
+            <span trans>Automatically accept price changes</span>
+            <label>
+                <input type="radio" ng-model="shared.acceptPriceChanges" value="0" ng-disabled="shared.isBetsInProgress || shared.betInProgress" ng-click="shared.showBetSettings=!shared.showBetSettings">
+                <span trans>Always ask</span>
+            </label>
+            <label>
+                <input type="radio" ng-model="shared.acceptPriceChanges" value="1" ng-disabled="shared.isBetsInProgress || shared.betInProgress" ng-click="shared.showBetSettings=!shared.showBetSettings">
+                <span trans>Accept Higher odds</span>
+            </label>
+            <label>
+                <input type="radio" ng-model="shared.acceptPriceChanges" value="2" ng-disabled="shared.isBetsInProgress || shared.betInProgress" ng-click="shared.showBetSettings=!shared.showBetSettings">
+                <span trans>Accept Any odds</span>
+            </label>
+        </div>
+    </div>
+</div>

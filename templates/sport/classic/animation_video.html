@@ -1,0 +1,70 @@
+
+    <div class="element-monitor sport-title">
+        <ul class="field-switcher">
+            <li ng-show="$root.conf.videoEnabled && (openGame.video_id || openGame.video_data) && !pinnedGames[openGame.id] && (!enlargedGame || openGame.id !== enlargedGame.id)"
+                ng-class="{'selected': openGame.activeFieldType==='video' && !playerRemoved}"><a ng-click="openGame.activeFieldType='video'; playerRemoved = false;" class="icon-ic_video_collection_24px"></a></li>
+            <li ng-show="openGame.has_animation" ng-class="{'selected': openGame.activeFieldType==='field' || playerRemoved }"><a class="playing-field" ng-click="openGame.activeFieldType='field'"></a></li>
+        </ul>
+        <div class="video-animation-toggle" ng-click="toggleVideoAndAnimationBox()"></div>
+        <div class="animation-sound-switch" ng-show="openGame.activeFieldType==='field'" ng-if="openGame.activeFieldType!=='video'">
+            <span class="video-mute icon-ic_volume_up_24px" ng-click="env.sound = 0;" ng-show="env.sound > 0" title="Sound" trans="attr-only"></span>
+            <span class="video-unmute icon-ic_volume_off_24px" ng-click="env.sound = 0.75;" ng-show="env.sound === 0" title="Sound" trans="attr-only"></span>
+            <div class="sound-volume">
+                <div>
+                    <rzslider rz-slider-model="env.sound" rz-slider-floor="0"
+                              rz-slider-ceil="1"
+                              rz-slider-step="0.01"
+                              rz-slider-precision="1" rz-slider-always-show-bar="true">
+                    </rzslider>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div ng-if="openGame.activeFieldType === 'video' && !hideVideoAndAnimationBox && $root.conf.videoEnabled && !enlargedGame"
+         class="game-video">
+        <div class="game-video-container">
+            <p ng-if="!env.authorized && !$root.conf.integrationMode && !openGame.is_guest" trans
+               ng-click="broadcast('openLoginForm');$event.stopPropagation();" class="login-link">You need to be logged in to be able to play video.</p>
+            <p ng-if="!env.authorized && $root.conf.integrationMode && !openGame.is_guest" trans class="login-link">You need to be logged in to be able to play video.</p>
+
+            <p ng-if="!openGame.is_guest && env.authorized && $root.profile.totalBalance === 0 && !openGame.allow_zero_balance" trans ng-click="!$root.conf.disableDepositPage && broadcast('toggleSliderTab', 'deposit');$event.stopPropagation();">You need to have non-zero balance to be able to play video.</p>
+
+            <i ng-if="!$root.conf.video.autoPlay && openGame.video_data === undefined && (openGame.is_guest || (env.authorized && $root.profile.totalBalance !== 0 || openGame.allow_zero_balance]))" ng-click="broadcast('game.restoreVideo', openGame.id)" class="video-play-button"></i>
+
+            <div ng-if="!playerRemoved && openGame.video_data && (openGame.is_guest || (env.authorized && $root.profile.totalBalance > 0 || openGame.allow_zero_balance]))"  class="video-player-container">
+                <div class="video-player-control" ng-show="videoIsLoaded">
+                    <span ng-click="togglePause();" ng-show="!paused" class="video-pause">Pause</span>
+                    <span ng-click="togglePause();" ng-show="paused" class="video-play">Play</span>
+                </div>
+                <div class="video-player-control volume-control" ng-show="videoIsLoaded">
+                    <span ng-click="env.sound = 0;" ng-show="env.sound > 0"
+                          class="video-mute icon-ic_volume_off_24px">Mute</span>
+                    <span ng-click="env.sound = 0.75;" ng-show="env.sound === 0"
+                          class="video-unmute icon-ic_volume_up_24px">UnMute</span>
+                    <div class="sound-volume">
+                        <div>
+                            <rzslider rz-slider-model="env.sound" rz-slider-floor="0"
+                                      rz-slider-ceil="1"
+                                      rz-slider-step="0.01"
+                                      rz-slider-precision="1" rz-slider-always-show-bar="true">
+                            </rzslider>
+                        </div>
+                    </div>
+                </div>
+                <hls-player ng-if="$root.conf.video.providersThatSupportHls[openGame.tv_type] && openGame.video_data" provider-id="{{openGame.tv_type}}" stream-url="{{openGame.video_data}}"></hls-player>
+
+                <flashplayer ng-if="!$root.conf.video.providersThatSupportHls[openGame.tv_type] && openGame.video_data" id="gamevideo{{openGame.id}}"
+                             stream-url="{{openGame.video_data}}" provider-id="{{openGame.tv_type}}"
+                             initially-muted="{{ env.sound }}"></flashplayer>
+            </div>
+        </div>
+        <div class="fav-monitor" style="top:10px; background: white;" ng-show="openGame.video_data">
+            <a ng-show="!$root.conf.detachedVideoSizes[openGame.tv_type] && env.authorized && openGame.video_data" ng-click="openGame.activeFieldType='field'; detachVideo('fullScreen');" class="detach-fullscreen"><span
+                    class="detach-btn" trans>Detach</span></a>
+            <a ng-show="openGame.tv_type !== $root.conf.defaultStreaming.tvType && openGame.video_data" ng-click="openGame.activeFieldType='field'; detachVideo('dragable');"><span class="detach-btn" trans>Detach</span></a>
+        </div>
+    </div>
+
+    <div ng-include="::'templates/sport/classic/animations.html'"></div>
+

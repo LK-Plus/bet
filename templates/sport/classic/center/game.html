@@ -1,0 +1,58 @@
+<span class="close-multiv-j" ng-click="removeGameFromList(game.id)" ng-show="!openGameLoading"></span>
+<div class="markets-group-wrap-v3" ng-show="openGame.markets && openGame.sport.alias !== 'HorseRacing' && openGame.sport.alias !== 'SISGreyhound'">
+    <div class="switchers-markets">
+        <i class="column-view-j" ng-click="toggleMarketDivision(false)" ng-class="{'active': !marketsInOneColumn.enabled}"></i>
+        <i class="list-view-j" ng-click="toggleMarketDivision(true)" ng-class="{'active': marketsInOneColumn.enabled}"></i>
+    </div>
+    <ul ng-class="{'show-dropdown': marketGroupFilterExpanded, 'has-dropdown': openGame.availableMarketGroups.length > (($root.env.live ? 5 : 3) + 1)}">
+        <li class="more-j" ng-click="marketGroupFilterExpanded = !marketGroupFilterExpanded" hide-on-click state-flag-var="marketGroupFilterExpanded"><span>+ {{ openGame.availableMarketGroups.length - (($root.env.live ? 5 : 3) + 1) }}</span></li>
+        <li ng-repeat="group in openGame.availableMarketGroups track by group.id"
+            ng-class="{active: openGame.selectedMarketGroupId === group.id,
+            'favorte-markets-group-j': $first, 'animate-star-odd' : $first && group.count % 2 == 1, 'animate-star-even': $first && group.count % 2 == 0,
+            'has-market': $first && group.count > 0,
+            'to-dropdown': $index > ($root.env.live ? 5 : 3), 'column-3':  ($root.env.live ? 5 : 3) == 3}"
+            ng-click="selectMarketGroup(group.id)" data-count="{{ group.count }}">
+            <span trans="attr-only"><i>{{ group.name|translate }}</i> <i ng-show="group.count !== undefined">({{ group.count }})</i></span></li>
+    </ul>
+</div>
+
+<div class="right-left-events-wrapper" ng-class="{'one-column-view': marketsInOneColumn.enabled}" ng-if="openGame.sport.alias !== 'HorseRacing' && openGame.sport.alias !== 'SISGreyhound'" >
+    <!--Start Of  Markets-->
+    <div class="live-events-column-v3" ng-repeat="marketPack in selectedMarketsGroups track by $index">
+        <div class="market-ciew-v3"
+             ng-repeat=" market in marketPack track by market.id">
+            <div class="market-title-v3"
+                 ng-click="toggleGroupedMarket(market.fullType); !expandedMarkets[openGame.id][market.fullType] ? marketsStatisticsState[market.id] = false : void()"
+                 ng-class="{'closed': !expandedMarkets[openGame.id][market.fullType]}" data-title="{{market.name}}">
+                <ul class="market-icons-t-r" ng-click="$event.stopPropagation()">
+                    <li class="statistics-icon-market" ng-class="{'active': marketsStatisticsState[market.id]}" ng-click="marketsStatisticsState[market.id] = !marketsStatisticsState[market.id]"  ng-if="market.showStatsIcon"></li>
+                    <li class="ew-icon-market-v3" ng-if="market.eachWayTerms" title="{{market.eachWayTerms}}">
+                        <div ng-show="market.extra_info.EachWayPlace > 1">
+                            <span class="ew-total-view-v3">ew</span>
+                            <span>{{market.eachWayTerms}}</span>
+                            <span ng-show="market.extra_info.EachWayPlace <= 1" trans>Win Only</span>
+                        </div>
+                    </li>
+                    <li class="link-icon-market-v3" title="Events from different groups can be combined in combined bets" trans="attr-only" ng-if="!conf.hideExpressIds" ng-bind="market.express_id"></li>
+                    <li class="cashout-icon-market-v3" title="Cash-out available" trans ng-if="market.cashout"></li>
+                    <li class="favorite-icon-market-v3" ng-class="{'remove': openGame.sport.favouriteMarketsTypes[market.fullType] === 1 }" ng-click="addToFavouriteMarkets(market)"></li>
+                </ul>
+            </div>
+
+            <market-stats class="market-stats" market-type="market.type" open-game="openGame"
+                          open-statistics="openStatistics" ng-if="marketsStatisticsState[market.id]"></market-stats>
+
+            <div ng-if="expandedMarkets[openGame.id][market.fullType]"  class="l-b column-{{market.col_count || 1}}" ng-class="{'default': market.col_count > 5}">
+                <div class="single-events-b-v3" ng-repeat="event in market.events track by event.id" ng-click="bet(event, market, openGame);" title="{{event.name}} {{ displayBase(event, market)}}" ng-class="{'pointer-events-none': event.is_empty, 'active': isEventInBetSlip(event), 'blocked': ((event.price | oddConvert:'decimal') == 1 || openGame.is_blocked) }">
+                    <i ng-if="$root.conf.boostedBets.enabled && $root.boostedBetsEventIds && $root.boostedBetsEventIds[event.id]" title="{{'Boosted odd'|translate}}" class="boosted"></i>
+                    <div class="max-bet-tooltip-v3" onmouseover="displayEventLimit(event)" onmouseleave="cancelDisplayEventLimit(event)" data-id="{{event.id}}" ng-class="{'maxbet-enabled': $root.env.authorized && $root.conf.displayEventsMaxBet}">
+                    </div>
+                    <b class="p-v {{event.price_change == null? '' : ({true: 'up-', false: 'down'}[event.price_change > 0] + (event.price_change % 2)) }}" ng-show="(event.price | oddConvert:'decimal') != 1 && !openGame.is_blocked">{{event.price|oddConvert:$root.env.oddFormat:null:market.display_key}}</b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Of Markets-->
+</div>
+
+<ng-include src="::'templates/sport/classic/racing/responsibilityInfo.html'|fixPath"></ng-include>

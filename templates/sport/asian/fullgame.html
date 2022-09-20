@@ -1,0 +1,93 @@
+<!--More tamplate-->
+<!--enlarged video-->
+<div  ng-if="$root.conf.videoEnabled && pinnedGameType === 'fullScreen' && !$root.conf.detachedVideoSizes[openGame.tv_type]">
+    <div ng-if="enlargedGame && enlargedGame.video_data" class="game-video game-video-detached game-video-fullscreen">
+        <div class="game-video-container detached-game-container" id="detached-game-container-{{enlargedGame.id}}">
+
+            <video-player ng-if="!$root.conf.video.providersThatSupportHls[openGame.tv_type]"
+                    player-id="gamevideo{{enlargedGame.id}}full"
+                    stream-url="{{enlargedGame.video_data}}"
+                    provider-id="{{enlargedGame.tv_type}}"
+                    initially-muted="{{ env.sound }}">
+            </video-player>
+            <hls-player
+                    ng-if="$root.conf.video.providersThatSupportHls[openGame.tv_type]"
+                    provider-id="{{enlargedGame.tv_type}}"
+                    stream-url="{{enlargedGame.video_data}}">
+            </hls-player>
+            <!--<flashplayer id="gamevideo{{enlargedGame.id}}full" stream-url="{{enlargedGame.video_data}}" provider-id="{{enlargedGame.tv_type}}"  initially-muted="{{ env.sound }}"></flashplayer>-->
+            <div class="video-player-control">
+                <div class="detached-info">
+                    {{(enlargedGame.info.current_leg === undefined ?(enlargedGame.info.current_game_state|convertSetName:enlargedGame.sport.alias):(enlargedGame.info.current_game_state|convertSetNameWithLeg:enlargedGame.info))|translate}}
+                    {{ enlargedGame.info.current_game_state? ' ' + ('Score:'|translate) + ' '
+                    :''}}{{enlargedGame.info.score1}} {{enlargedGame.info.score2 ? '&ndash; ' +
+                    enlargedGame.info.score2 : ''}}
+                    {{enlargedGame.stats.passes.team1_value && enlargedGame.sport.alias === 'Tennis'? '&#40;' +
+                    enlargedGame.stats.passes.team1_value:''}} {{ enlargedGame.stats.passes.team2_value &&
+                    enlargedGame.sport.alias === 'Tennis'? '&#58; '+ enlargedGame.stats.passes.team2_value + '&#41;':
+                    '' }}
+                    {{enlargedGame.stats[enlargedGame.info.current_game_state] && enlargedGame.sport.alias !==
+                    'Tennis'? '&#40;' + enlargedGame.stats[enlargedGame.info.current_game_state].team1_value +
+                    ' &ndash; ':''}}
+                    {{enlargedGame.stats[enlargedGame.info.current_game_state] && enlargedGame.sport.alias !==
+                    'Tennis' ? enlargedGame.stats[enlargedGame.info.current_game_state].team2_value + '&#41;'
+                    :''}}
+                </div>
+            </div>
+            <a ng-click="attachPinnedVideo(enlargedGame, 'fullScreen'); $parent.mute = undefined; $parent.paused = undefined;"></a>
+        </div>
+    </div>
+</div>
+<!--enlarged video END-->
+<!--live game -->
+<live-game-scores show-stats-block="showStatsBlock" ng-if="openGame" open-game="openGame" enlarged-game="enlargedGame"></live-game-scores>
+<div class="prematch-game-title" ng-if="openGame.type !== 1">
+    <p class="ellipsis-text">
+        <span ng-bind="openGame.competition.name"></span>
+        <span ng-bind="openGame.team1_name"></span>
+        <span ng-bind="(openGame.team2_name ? '-' + openGame.team2_name : '')"></span>
+    </p>
+    <div ng-show="openGame.is_neutral_venue" class="game-is-neutral"></div>
+    <div class="asian-icon-Bet-Builder" ng-if="$root.conf.betBuilderSports[openGame.sport.alias] && openGame.type !== 1" ng-click="openBetBuilder(openGame);$event.stopPropagation();"></div>
+</div>
+<div class="markets-group-wrap-v3" ng-show="openGame.availableMarketGroups.length > 2">
+    <ul ng-class="{'show-dropdown': marketGroupFilterExpanded, 'has-dropdown': openGame.availableMarketGroups.length > 5 }">
+        <li class="more-j" ng-click="marketGroupFilterExpanded = !marketGroupFilterExpanded" hide-on-click state-flag-var="marketGroupFilterExpanded"><span>+ {{ openGame.availableMarketGroups.length - 5 }}</span></li>
+        <li ng-repeat="group in openGame.availableMarketGroups track by group.id"
+            data-count="{{ group.count }}"
+            ng-class="{active: openGame.selectedMarketGroupId === group.id, 'to-dropdown': $index > 5,  'favorte-markets-group-j': $first, 'animate-star-odd' : $first && group.count % 2 == 1, 'animate-star-even': $first && group.count % 2 == 0, 'has-market': $first && group.count > 0}"
+            ng-click="selectMarketsGroup(group.id)">
+            <span><i><b>{{ group.name|translate }}</b></i><i ng-show="group.count !== undefined">({{ group.count }})</i></span></li>
+    </ul>
+</div>
+
+
+<div ng-repeat="market in selectedMarketsGroup track by market.id" ng-class="{'closed' : market.collapsed}" class="game-list-compitishion">
+    <div class="name-chempionship-asia more-c"  ng-click="market.collapsed = !market.collapsed">
+        <h3 ng-bind="market.name"></h3>
+        <i class="cashout-icon-market-v3" title="Cash-out available" trans ng-if="market.cashout"></i>
+        <span class="ew-total-view-v3" ng-if="market.eachWayTerms" title="{{market.eachWayTerms}}">ew</span>
+        <i class="statistics-icon-market" ng-class="{'active': marketsStatisticsState[market.id]}" ng-click="marketsStatisticsState[market.id] = !marketsStatisticsState[market.id]; $event.stopPropagation()"  ng-if="market.showStatsIcon"></i>
+        <i class="favorite-icon-market-v3" ng-class="{'remove': openGame.sport.favouriteMarketsTypes[market.fullType] === 1 }" ng-click="$event.stopPropagation();addToFavouriteMarkets(market)"></i>
+    </div>
+    <market-stats class="market-stats" market-type="market.type" open-game="openGame"
+                  open-statistics="openStatistics" ng-if="marketsStatisticsState[market.id]"></market-stats>
+    <div class="many-columns-b cols-{{market.col_count}}" ng-class="{'default': market.col_count > 5}" ng-show="!market.collapsed">
+        <div class="asian-market-wrap-j asian-market-overflow-j {{event.price_change == null? '' : ({true: 'up-', false: 'down'}[event.price_change > 0] + (event.price_change % 2)) }}"
+             ng-repeat="event in market.events track by event.id"
+             ng-class="{'empty': event.is_empty, 'locked': (event.price | oddConvert:'decimal') == 1 || openGame.is_blocked,'active': isEventInBetSlip(event)}"
+             ng-click="bet(event, market, openGame);">
+            <i ng-if="$root.conf.boostedBets.enabled && $root.boostedBetsEventIds && $root.boostedBetsEventIds[event.id]" title="{{'Boosted odd'|translate}}" class="boosted"></i>
+            <div class="asian-market-j">
+                <div class="asian-market-cell-j">
+                    <div class="asian-market-rub-j" ng-bind="event.name + ' ' + (event.base|handicapBaseFormat: true:false:($root.conf.asian.hideHandicapSignsInOverview && market.display_key === 'HANDICAP'):market.home_score:market.away_score:event.type_1)"></div>
+                </div>
+                <div class="asian-market-cell-j odd-container-j" ng-bind="event.price|oddConvert:env.oddFormat:null:market.display_key"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<p class="game-finished-v3" ng-show="openGameFinished" trans>This Game is already finished or unavailable</p>
+<!--More tamplate end-->

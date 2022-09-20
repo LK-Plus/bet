@@ -1,0 +1,77 @@
+<div class="classic-view-row-v3 results-view-b" ng-controller="ResultsV2Controller as resV2Ctrl" ng-init="setTitle('Results')">
+    <div class="classic-view-column-v3 {{leftMenuClosed ? 'left-menu-closed-v3' : ''}}">
+    <ng-include class="left-column-v3" src="::'templates/results/classicLeftMenu.html'|fixPath"></ng-include>
+
+        <div class="center-column-v3">
+            <div class="games-view-wrapper-v3">
+
+                <div class="results-games-view-container-n">
+                    <div class="mini-wrapper-r-g-list">
+                        <div ng-show="requestData.gamesCount === 0" class="r-competition-title-view">
+                            <p trans>Please select filters</p>
+                        </div>
+                        <div class="r-competition-title-view closed-results-all-games" ng-show="requestData.gamesCount" >
+                            <span class="closed-all-games-v3" ng-click="clearAllResultGames();" ></span>
+                            <p trans ng-click="clearAllResultGames();">Clear All</p>
+                        </div>
+                        <div class="r-single-competition-view" ng-repeat="(competitionId, gamesGroup) in games track by competitionId" ng-if="gamesGroup.length">
+                            <div class="r-competition-title-view" ng-class="{active: !competitionClosed[competitionId]}" ng-click="competitionClosed[competitionId] = !competitionClosed[competitionId]">
+                                <div class="remove-c-r-icon" ng-click="closeCompetition(competitionId)"></div>
+                                <div class="competition-logo-r"><stats-logo competition-id="competitionId" size="32"></stats-logo></div>
+                                <p>{{competitionInfo[competitionId].Name}}</p>
+                                <div class="open-r-c-view"></div>
+                            </div>
+                            <div class="all-result-list-view-n">
+                                <div class="r-c-games-date-list" ng-repeat="gameDate in gamesGroup track by $index" ng-show="!competitionClosed[competitionId]">
+                                    <div class="time-period-view-r">
+                                        <div class="date-r-group-title" ng-class="{active:!gameDate.closed}" ng-click="gameDate.closed = !gameDate.closed">
+                                            <p>{{gameDate.date}}</p>
+                                        </div>
+                                        <div class="r-c-games-view-list-box" ng-show="!gameDate.closed">
+                                            <div class="result-single-game-view-b r-live-game" ng-class="{active:game.game_id === openGameDetails.game_id}" ng-repeat="game in gameDate.games track by game.game_id" ng-click="getResultDetails(game)">
+                                                <ul>
+                                                    <li class="r-date-view">
+                                                        <span>{{game.date|formatDate:'hour':null:$root.env.timeFormat}}</span>
+                                                    </li>
+                                                    <li class="game-info-r-view" ng-class="{'one-team-name-t': !game.team2_name}">
+                                                        <div class="r-team-name-score-logo">
+                                                            <ul>
+                                                                <li class="team-name-b-r left-r">
+                                                                    <p title="{{game.team1_name}}">{{game.team1_name}}</p>
+                                                                    <div class="team-logo-r"><stats-logo team-id="game.team1_id"></stats-logo></div>
+                                                                </li>
+                                                                <li class="score-view-column-r" ng-show="game.scoresShort">
+                                                                    <span>{{game.scoresShort}}</span>
+                                                                </li>
+                                                                <li class="team-name-b-r right-r" ng-show="game.team2_name">
+                                                                    <p title="{{game.team2_name}}">{{game.team2_name}}</p>
+                                                                    <div class="team-logo-r"><stats-logo team-id="game.team2_id"></stats-logo></div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="match-key" ng-if="game.game_info.Type === 1" pre-match-key hash="game.game_info.Hash" key="game.game_info.HashKey"></div>
+                                                <div class="arrow-r-game-view"></div>
+                                                <div class="result-score-info" ng-if="game.scoresSecondPart" ng-bind="game.scoresSecondPart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <vbet-loader ng-if="loading"></vbet-loader>
+                    </div>
+                </div>
+                <vbet-loader ng-if="additionalDetailsAreLoading"></vbet-loader>
+                <div class="results-markets-list-n" ng-show="openGameDetails">
+                    <div class="results-markets-view-container-n">
+                        <ng-include src="::'templates/results/classicGameInfo.html'|fixPath"></ng-include>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

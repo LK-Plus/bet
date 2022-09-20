@@ -1,0 +1,70 @@
+<div class="new-default-popup-j" ng-escape="env.showSlider=false; env.sliderContent='';">
+    <div class="all-history-lightbox-contain">
+        <div class="all-history-lightbox-content">
+            <div class="all-main-tabs-b">
+                <ul>
+                    <li ng-class="{'active': env.sliderContent === 'settings'}" ng-click="env.sliderContent = 'settings'" ng-if="env.authorized && !partnerConfig.profileNotAvailable">
+                        <i class="profile-icon-tab-b"></i>
+                        <p>
+                            <i trans>My Profile</i>
+                            <span class="id-view-tab">ID: {{profile.unique_id}}</span>
+                            <i class="profile-id-copy" ng-class="{'profile-id-copied':copyIdState}" ng-click="$event.stopPropagation(); !copyIdState && copyIdToClipboard(); " title="{{(copyIdState ? 'Copied successful' :'Copy')|translate}}"></i>
+                        </p>
+                    </li>
+                    <li ng-class="{'active': ['deposit', 'withdraw', 'balanceHistory', 'casinoBalanceHistory', 'cashier', 'myWallets', 'buddytransfer','depositRequest'].indexOf(env.sliderContent) !== -1}" ng-if="conf.enableMixedView && conf.enableMixedViewBalance"
+                        ng-click="env.sliderContent !== 'withdraw' && env.sliderContent !== 'deposit' && env.sliderContent !== 'balanceHistory' ? env.sliderContent = conf.balanceDefaultPage:''">
+                        <i class="balance-icon-tab-b"></i>
+                        <p>
+                            <i trans>Balance</i>
+                            <span class="balance-view-tab">{{(!$root.currentPage.isInCasino || profile.casino_balance === null ? profile.calculatedBalance : profile.casino_balance)|number:conf.balanceFractionSize}} {{profile.currency_name|currency}}</span>
+                        </p>
+                    </li>
+                    <li ng-class="{'active': (env.sliderContent === 'recentBets'|| env.sliderContent === 'casinoBetHistory')}"
+                        ng-click="env.sliderContent = 'recentBets'"  ng-if="env.authorized && conf.betHistoryEnabled && $root.calculatedConfigs.sportEnabled">
+                        <i class="my-bets-icon-tab-b"></i>
+                        <h4 trans>My bets</h4>
+                    </li>
+                    <li ng-class="{'active': env.sliderContent === 'loyaltyPoints'}"
+                        ng-click="env.sliderContent = 'loyaltyPoints'"
+                        ng-if="conf.enableLoyaltyPoints && env.authorized">
+                        <i class="balance-icon-tab-b"></i>
+                        <h4 trans>Loyalty Points</h4>
+                    </li>
+                    <li ng-class="{'active': env.sliderContent === 'promotionalBonuses'}"
+                        ng-click="env.sliderContent = 'promotionalBonuses'"
+                        ng-if="conf.promotionalBonuses.enable && env.authorized && ($root.profile.is_bonus_allowed !== false) && (!conf.hideBonusSectionIfNoBonus || (conf.hideBonusSectionIfNoBonus && $root.allBonusesCount.sportsbook + $root.allBonusesCount.casino + $root.allBonusesCount.freeSpins> 0))">
+                        <i class="bonuses-icon-tab-b"></i>
+                        <h4 trans>Bonuses</h4>
+                    </li>
+                    <li ng-class="{'active': env.sliderContent === 'tickets'}"
+                        ng-click="env.sliderContent = 'tickets'"
+                        ng-if="conf.enableTickets && env.authorized">
+                        <i class="cms-jcon-ticket"></i>
+                        <h4 trans>Tickets</h4>
+                    </li>
+                    <li ng-class="{'active': env.sliderContent === 'casinoCashBackCashOut'}"
+                        ng-click="env.sliderContent = 'casinoCashBackCashOut'"
+                        ng-if="conf.enableCasinoCashBackCashOut && env.authorized">
+                        <i class="balance-cashback-out"></i>
+                        <h4 trans>CashBackCashOut</h4>
+                    </li>
+                    <li ng-class="{'active': (env.sliderContent === 'profits')}"
+                        ng-click="env.sliderContent = 'profits'"
+                        ng-if="env.authorized && conf.showProfitLossTab">
+                        <i class="profits-icon-tab"></i>
+                        <h4 trans>Profits</h4>
+                    </li>
+                </ul>
+                <div ng-show="!isPopup" ng-click="env.sliderContent=''; env.showSlider=false;" class="my-bets-closed-icon-b"></div>
+            </div>
+            <ng-include class="float-width mixed-view-holder" src="::'templates/livebox/mixedBetHistory.html'|fixPath" ng-if="env.sliderContent === 'recentBets' || env.sliderContent === 'casinoBetHistory'"></ng-include>
+            <ng-include class="float-width mixed-view-holder" src="::'templates/livebox/mixedBalance.html'|fixPath" ng-if="['deposit', 'withdraw', 'balanceHistory', 'casinoBalanceHistory', 'cashier', 'myWallets', 'buddytransfer','depositRequest'].indexOf(env.sliderContent) !== -1"></ng-include>
+            <ng-include class="float-width mixed-view-holder" src="::'templates/livebox/mixedUserProfile.html'|fixPath" ng-if="env.sliderContent === 'settings'"></ng-include>
+            <ng-include class="float-width mixed-view-holder" src="::'templates/livebox/promotionalBonuses/main.html'|fixPath" ng-if="env.sliderContent === 'promotionalBonuses'"></ng-include>
+            <ng-include class="float-width mixed-view-holder" src="::'templates/livebox/loyaltyPoints.html'|fixPath" ng-if="env.sliderContent === 'loyaltyPoints'"></ng-include>
+            <ng-include class="float-width mixed-view-holder" src="::'templates/livebox/mixedTickets.html'|fixPath" ng-if="env.sliderContent === 'tickets'"></ng-include>
+            <ng-include class="float-width mixed-view-holder" src="::'templates/livebox/cashBackCashOut.html'|fixPath" ng-if="env.sliderContent === 'casinoCashBackCashOut'"></ng-include>
+            <ng-include class="float-width mixed-view-holder" src="::'templates/livebox/profitLoss.html'|fixPath" ng-if="env.sliderContent === 'profits'"></ng-include>
+        </div>
+    </div>
+</div>

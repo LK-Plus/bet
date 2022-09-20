@@ -1,0 +1,43 @@
+<div class="a-game-list-compition" ng-repeat="competitions in centerData.competitions track by $index" ng-if="competitions">
+    <div class="asian-outright-template"
+         ng-repeat="competition in competitions|limitTo:$root.conf.asian.competitionsPerPage:(selectedPage*$root.conf.asian.competitionsPerPage) track by $index"
+         ng-class="{'active': !collapedCompetitions[competition.id]}"
+    >
+        <div class="outright-game-t" ng-click="toggleCompetition(competition.id)">
+            <h3>
+                <span class="flag-view-v3 flag-icon flag-{{competition.games[0].region.alias| removeUselessSymbolsByRegexp: '[,\' ]+': 'g': 'true'}}"></span>
+                {{competition.games[0].region.name}}
+            </h3>
+            <span><i class="cyber-competition" ng-if="(selectedMenuType.active === LEFT_MENU.LIVE) && competition.info && competition.info.Cyber"></i>{{competition.name}}</span>
+        </div>
+        <div class="game-events-block"
+             ng-if="!collapedCompetitions[competition.id]"
+             ng-repeat-start="game in competition.games track by game.id"
+             ng-click="toggleGame(competition.id, game.id)"
+             ng-class="{'active': !collapsedGames[competition.id] || !collapsedGames[competition.id][game.id]  }"
+        >
+            <h6>{{game.start_ts|formatDate:($root.conf.layoutTimeFormat.asian || 'D/MM')}} {{game.start_ts|formatDate:'hour':null:$root.env.timeFormat}}</h6>
+            <span>{{game.team1_name}}</span>
+        </div>
+        <div ng-repeat-end="" ng-if="!collapedCompetitions[competition.id] && (!collapsedGames[competition.id] || !collapsedGames[competition.id][game.id])" >
+            <div class="outright-results-a" ng-repeat="market in game.markets['OUTRIGHT'] track by market.id">
+                <div class="game-outright-t">
+                    <p ng-bind="market.name"></p>
+                </div>
+               <div class="market-out">
+                        <div class="single-market-item-s" ng-repeat="event in market.events track by event.id" ng-click="bet(event, market, game)">
+                            <div class="market-price-out {{event.price_change == null? '' : ({true: 'up-', false: 'down'}[event.price_change > 0] + (event.price_change % 2)) }}"
+                             ng-class="{'locked': (event.price | oddConvert:'decimal') == 1 || game.is_blocked, 'active': isEventInBetSlip(event)}">
+                                <p class="ev-name-t">{{event.name}}</p>
+                                <div class="price-holder">
+                                    <i ng-if="$root.conf.boostedBets.enabled && $root.boostedBetsEventIds && $root.boostedBetsEventIds[event.id]" title="{{'Boosted odd'|translate}}" class="boosted"></i>
+                                    <div class="odd-container-j" ng-bind="event.price|oddConvert:env.oddFormat:null:'OUTRIGHT'"></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

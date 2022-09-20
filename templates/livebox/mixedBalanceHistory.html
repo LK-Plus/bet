@@ -1,0 +1,73 @@
+<div class="mixed-history-table no-padding" ng-init="initMixedBalanceHistory($root.conf.enableCasinoBalanceHistory);">
+    <table>
+        <thead>
+            <tr>
+                <th class="date-id" trans>Date and ID</th>
+                <th ng-if="balanceHistoryParams.loadedProductType === 'Casino'" trans>Category</th>
+                <th class="auto-cell">
+                    <div class="cell-inner" trans>Type</div>
+                </th>
+                <th class="hh-cell" trans>Amount</th>
+                <th class="hh-cell" trans ng-bind="(balanceHistoryFilter === 'all' ? 'Final Balance' : 'Payment Method')|translate"></th>
+            </tr>
+        </thead>
+        <tbody ng-if="balanceHistoryFilter !== 'net'" ng-repeat="balance in balanceHistory">
+            <tr>
+                <td class="date-id">
+                    <span>{{balance.Created|formatDate:(conf.layoutTimeFormat[conf.sportsLayout] || 'noLocaleTranslate'):null:$root.env.timeFormat}} {{conf.layoutTimeFormat[conf.sportsLayout] ? (balance.Created|formatDate:'hour':null:$root.env.timeFormat) : ''}}</span>
+                    <span ng-show="balance.DocumentId"><br/> ID: <a>{{balance.DocumentId}}</a></span>
+                    <span ng-show="balance.TransactionId"><br/> ID: <a>{{balance.TransactionId}}</a></span>
+                </td>
+                <td class="casino-hist" ng-if="balanceHistoryParams.loadedProductType === 'Casino'" ng-bind="(balance.Product || '')|translate"></td>
+                <td class="auto-cell">
+                    <ul class="cell-inner mixed-bet-history-flex">
+                        <li class="ellipsis-text">
+                            <span ng-if="balance.ProductCategoryId === 2">{{ balance.Game }}</span>
+                            <span>{{ balance.DocumentTypeName }}</span>
+                            <span ng-show="balance.BuddyId || balance.BuddyLogin">: ({{balance.BuddyId}} : {{balance.BuddyLogin}})</span>
+                        </li>
+                    </ul>
+                </td>
+                <td class="hh-cell">
+                    <div ng-show="balance.Amount">
+                        <span class="second-color" ng-show="balance.Amount > 0">+</span>
+                        <span class="second-color">{{balance.Amount|number:conf.balanceFractionSize}}</span> {{currency_name|currency}}
+                    </div>
+                </td>
+                <td class="hh-cell">
+                    <span class="second-color">{{balance.Balance|number:conf.balanceFractionSize}}</span> {{currency_name|currency}}
+                </td>
+            </tr>
+        </tbody>
+        <tbody ng-if="balanceHistoryFilter === 'net'" ng-repeat="balance in netDepositHistory">
+            <tr>
+                <td class="date-id">
+                    <span>{{::balance.Date|formatDate:(conf.layoutTimeFormat[conf.sportsLayout] || 'noLocaleTranslate'):null:$root.env.timeFormat}}</span>
+                    <span ng-show="balance.DocumentId"><br/> ID: <a>{{::balance.DocumentId}}</a></span>
+                </td>
+                <td class="auto-cell">
+                    <ul class="cell-inner mixed-bet-history-flex">
+                        <li class="ellipsis-text" ng-bind="balance.TypeName"></li>
+                    </ul>
+                </td>
+                <td class="hh-cell">
+                    <div ng-show="balance.InAmount">
+                        <span class="second-color">+{{::balance.InAmount|number:conf.balanceFractionSize}}</span> {{currency_name|currency}}
+                    </div>
+                    <div ng-show="balance.OutAmount">
+                        <span class="second-color">-{{::balance.OutAmount|number:conf.balanceFractionSize}}</span> {{currency_name|currency}}
+                    </div>
+                </td>
+                <td class="hh-cell">
+                    <span class="second-color" ng-bind="balance.PaymentMethod"></span>
+                </td>
+            </tr>
+        </tbody>
+        <tbody ng-if="(balanceHistoryFilter === 'net' && netDepositHistory.length === 0) || (balanceHistoryFilter === 'all' && balanceHistory.length === 0)">
+            <tr>
+                <td colspan="9" class="second-color center-text" trans>There are no data for the selected time period.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="load-more-j" ng-show="balanceHistoryIsMoreItemsAvailable() && balanceHistoryFilter !== 'net'"><p take-parent-scroll="true" ng-click="balanceHistoryLoadMoreInfo(); "><span trans>Load more</span></p></div>

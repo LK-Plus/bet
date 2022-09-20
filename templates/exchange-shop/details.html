@@ -1,0 +1,55 @@
+<div class="new-default-popup-j eshop-item">
+    <div class="pp-table-j">
+        <div class="table-row-j">
+            <div class="table-cell-j">
+                <div class="eshop-item-wrapper">
+                    <span class="close-j" ng-click="shop.details=null"></span>
+                    <div class="eshop-item-left-info">
+                        <div class="eshop-item-header" trans>Item Details</div>
+                        <div class="eshop-item-content">
+                            <div class="eshop-slider-wrapper">
+                                <div class="eshop-slider-active-image" style="background-image: url({{shop.details.images[shop.sliderIndex].image|url}});"></div>
+                                <ul ng-show="shop.details.images.length > 1">
+                                    <li><button class="prev-j" ng-click="shop.sliderIndex = shop.sliderIndex - 1;shop.sliderIndex = (shop.sliderIndex < 0 ? shop.details.images.length - 1 : shop.sliderIndex)"></button></li>
+                                    <li><div class="eshop-slider-previw">{{shop.sliderIndex + 1}} / {{shop.details.images.length}}</div></li>
+                                    <li><button class="next-j" ng-click="shop.sliderIndex = shop.sliderIndex + 1;shop.sliderIndex = (shop.sliderIndex > shop.details.images.length - 1 ? 0 : shop.sliderIndex)"></button></li>
+                                </ul>
+                            </div>
+                            <h3>{{shop.details.name}}</h3>
+                        </div>
+                        <div class="eshop-item-footer">
+                            <div class="eshop-item-price-row">
+                                <p trans>Price</p>
+                                <strong>{{shop.details.price}} {{'Pts.'|translate}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eshop-item-right-info">
+                        <div class="eshop-item-header" ng-bind="'Additional information'| translate">
+                        </div>
+                        <div class="eshop-item-content" >
+                            <div class="eshop-item-primary-description">
+                                <h6><p>{{shop.details.name}}</p></h6>
+                                <h5>{{shop.details.price|number}} {{'Pts.'|translate}}</h5>
+
+                            </div>
+
+                            <div class="eshop-item-description">
+                                <div class="eshop-item-description-scroll">
+                                    <p ng-show="shop.details.price>profile.loyalty_point" class="not-enough-founds"><span trans>Not enough bonus balance.</span></p>
+                                    <p ng-bind-html="shop.details.description|html"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eshop-item-footer">
+                            <div class="eshop-popup-buttons" ng-show="env.authorized && shop.details.price<=profile.loyalty_point">
+                                <button ng-click="shopBack()" ng-disabled="shop.order.transactionInProgress" ng-bind="::'Cancel'| translate"></button>
+                                <button ng-click="shopConfirm()" ng-disabled="shop.order.transactionInProgress || shop.details.price>profile.loyalty_point" ng-bind="::'Get It'|translate"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

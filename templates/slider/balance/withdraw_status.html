@@ -1,0 +1,27 @@
+<div class="table-status" ng-init="loadWithdrawStatuses()">
+    <table ng-show="withdrawListLoaded">
+        <tr>
+            <th><p trans>Payment Method</p></th>
+            <th><p trans>Date</p></th>
+            <th><p trans>Time</p></th>
+            <th><p trans>Amount</p></th>
+            <th><p>ID</p></th>
+            <th><p trans>Status</p></th>
+        </tr>
+        <tr ng-repeat="history in paymentHistory | orderBy: 'date': true"  ng-show="paymentHistory.length">
+            <td>
+                <p>{{history.payment_system_name|translate}}</p>
+            </td>
+            <td><p>{{history.date|formatDate:'ll':null:$root.env.timeFormat}}</p></td>
+            <td><p>{{history.date|formatDate:'h:mm a':null:$root.env.timeFormat}}</p></td>
+            <td><p>{{history.amount}}</p></td>
+            <td><p>{{history.id}}</p></td>
+			<td ng-class="'status_' + history.status"><p>{{(withdrawStatus[history.status] || history.name)|translate}}</p>
+				<div class="cancel-btn"><button  ng-mousedown="cancelWithdrawRequest(history.id)" ng-disabled="cancelButton.disabled" trans>Cancel</button></div></td>
+        </tr>
+        <tr  ng-show="!paymentHistory.length">
+            <th colspan="6"><p trans>No Withdrawal Information</p></th>
+        </tr>
+    </table>
+	<vbet-loader ng-show="!withdrawListLoaded"></vbet-loader>
+</div>

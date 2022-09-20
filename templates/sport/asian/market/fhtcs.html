@@ -1,0 +1,124 @@
+<div class="game-list-compitishion asian-sticky-top">
+    <table class="name-ft-ht-layout">
+        <colgroup span="3"></colgroup>
+        <tr>
+            <td class="big-row"><div class="info-bl"><p><i class="icon-sport-asia" ng-class="selectedSport.alias"></i><span ng-bind="selectedSport.name"></span></p></div></td>
+            <td class="Correct-scire-title"><div class="info-bl"><p trans>Correct Score</p></div></td>
+
+            <td class="more-competition"><div class="info-bl"><p trans>More</p></div></td>
+        </tr>
+    </table>
+</div>
+<div class="asian-separator-container-b" ng-repeat="competitions in centerData.competitions track by $index">
+    <div ng-repeat="competition in competitions|limitTo:$root.conf.asian.competitionsPerPage:(selectedPage*$root.conf.asian.competitionsPerPage) track by $index" class="game-list-compitishion" ng-class="{closed: collapedCompetitions[competition.id]}">
+    <div class="name-chempionship-asia" ng-click="toggleCompetition(competition.id)">
+    <!--<div class="name-chempionship-asia">-->
+        <h3>
+            {{competition.games[0].region.name + ' - '}}<i class="cyber-competition" ng-if="(selectedMenuType.active === LEFT_MENU.LIVE) && competition.info && competition.info.Cyber"></i>{{competition.name}}
+        </h3>
+        <!--<h3>ENGLAND - PREMIER LEAGUE</h3>-->
+    </div>
+
+    <table class="match-odd1X2 correct-score"  ng-if="!collapedCompetitions[competition.id]">
+        <colgroup span="5"></colgroup>
+        <tbody ng-repeat="game in competition.games|orderBy:'start_ts' track by game.id">
+            <tr>
+                <td colspan="4">
+                    <div class="info-bl">
+                        <p class="teams-n-account-asia">
+                            <span class="name-team-asian-1x2" ng-bind="game.team1_name"></span>
+                                            <span class="account-asian-1x2" ng-show="game.type ==1">
+                                                <b ng-bind="game.info.score1"></b>
+                                                <b ng-bind="game.info.score2"></b>
+                                            </span>
+                            <span class="name-team-asian-1x2" ng-bind="game.team2_name"></span>
+                        </p>
+                        <div class="block-filter-hdp">
+                            <ul>
+                                <li ng-repeat="sequence in game.availableSequences track by $index" ng-bind=":: ('PERIOD' === sequence.subKey)? (asianMarkets.periodsBySports[game.sport.alias] + ' ' + sequence.sequence): (sequence.sequence? sequence.subKey + ' ' + sequence.sequence : sequence.subKey)|translate"
+                                    ng-class="{active: game.selectedSequence.subKey === sequence.subKey && game.selectedSequence.sequence === sequence.sequence}" ng-click="game.selectedSequence = sequence"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <div class="asian-status-icons">
+                        <div ng-show="game.is_neutral_venue" class="game-is-neutral" title="is neutral venue" trans="attr-only"></div>
+                        <div ng-show="game.type === 1 && game.hasVideo" class="has-video" trans="attr-only" title="video"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-repeat="lineEvents in game.markets[game.selectedSequence.subKey][game.selectedSequence.sequence]['CORRECT SCORE'][0].linesEvents track by $index">
+                <td class="section-1">
+                    <div class="info-bl">
+                        <span ng-show="(game.type === 1 || (game.type === 2 && $root.conf.asian.showLiveIconForUpcomingGames)) && $index === 0" class="asian-live-game" trans>live</span>
+                        <p class="time-g-asia" ng-show="game.type ==1 && $index === 0">
+                            <span ng-if="game.info.current_leg === undefined" ng-bind="game.info.current_game_state|convertSetName:game.sport.alias|translate"></span><span ng-if="game.info.current_leg !== undefined" ng-bind="game.info.current_game_state|convertSetNameWithLeg:game.info|translate"></span><span ng-bind="fixDisplayTime(game.info.current_game_time)"></span>
+                        </p>
+                        <p class="time-g-asia" ng-show="game.type !=1 && $index === 0">
+                            <span ng-bind="game.start_ts|formatDate:($root.conf.layoutTimeFormat.asian || 'D/MM')"></span> <span ng-bind="game.start_ts|formatDate:'hour':null:$root.env.timeFormat"></span>
+                        </p>
+                    </div>
+                </td>
+                <td class="factor-w asian-market-overflow-j">
+                    <div class="asian-market-wrap-j {{lineEvents.firstWin.price_change == null? '' : ({true: 'up-', false: 'down'}[lineEvents.firstWin.price_change > 0] + (lineEvents.firstWin.price_change % 2)) }}"
+                         ng-show="lineEvents.firstWin.name"
+                         ng-click="bet(lineEvents.firstWin, game.markets[game.selectedSequence.subKey][game.selectedSequence.sequence]['CORRECT SCORE'][0], game)"
+                         ng-class="{'locked': (lineEvents.firstWin.price | oddConvert:'decimal') == 1 || game.is_blocked, 'active': isEventInBetSlip(lineEvents.firstWin)}">
+                        <i ng-if="$root.conf.boostedBets.enabled && $root.boostedBetsEventIds && $root.boostedBetsEventIds[lineEvents.firstWin.id]" title="{{'Boosted odd'|translate}}" class="boosted"></i>
+                        <div class="asian-market-j">
+                            <div class="asian-market-cell-j">
+                                <div class="asian-market-rub-j" ng-bind="lineEvents.firstWin.name"></div>
+                            </div>
+                            <div class="asian-market-cell-j odd-container-j">{{lineEvents.firstWin.price|oddConvert:env.oddFormat:null:'CORRECT SCORE'}}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="factor-w asian-market-overflow-j">
+
+                    <div class="asian-market-wrap-j {{lineEvents.handicap.price_change == null? '' : ({true: 'up-', false: 'down'}[lineEvents.handicap.price_change > 0] + (lineEvents.handicap.price_change % 2)) }}"
+                         ng-show="lineEvents.handicap.name"
+                         ng-click="bet(lineEvents.handicap, game.markets[game.selectedSequence.subKey][game.selectedSequence.sequence]['CORRECT SCORE'][0], game)"
+                         ng-class="{'locked': (lineEvents.handicap.price | oddConvert:'decimal') == 1 || game.is_blocked, 'active': isEventInBetSlip(lineEvents.handicap)}">
+                        <i ng-if="$root.conf.boostedBets.enabled && $root.boostedBetsEventIds && $root.boostedBetsEventIds[lineEvents.handicap.id]" title="{{'Boosted odd'|translate}}" class="boosted"></i>
+                        <div class="asian-market-j">
+                            <div class="asian-market-cell-j">
+                                <div class="asian-market-rub-j" ng-bind="lineEvents.handicap.name"></div>
+                            </div>
+                            <div class="asian-market-cell-j odd-container-j">{{lineEvents.handicap.price|oddConvert:env.oddFormat:null:'CORRECT SCORE'}}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="factor-w asian-market-overflow-j">
+                    <div class="asian-market-wrap-j {{lineEvents.secondWin.price_change == null? '' : ({true: 'up-', false: 'down'}[lineEvents.secondWin.price_change > 0] + (lineEvents.secondWin.price_change % 2)) }}"
+                         ng-show="lineEvents.secondWin.name"
+                         ng-click="bet(lineEvents.secondWin, game.markets[game.selectedSequence.subKey][game.selectedSequence.sequence]['CORRECT SCORE'][0], game)"
+                         ng-class="{'locked': (lineEvents.handicap.price | oddConvert:'decimal') == 1 || game.is_blocked, 'active': isEventInBetSlip(lineEvents.secondWin)}">
+                        <i ng-if="$root.conf.boostedBets.enabled && $root.boostedBetsEventIds && $root.boostedBetsEventIds[lineEvents.secondWin.id]" title="{{'Boosted odd'|translate}}" class="boosted"></i>
+                        <div class="asian-market-j">
+                            <div class="asian-market-cell-j">
+                                <div class="asian-market-rub-j" ng-bind="lineEvents.secondWin.name"></div>
+                            </div>
+                            <div class="asian-market-cell-j odd-container-j">{{lineEvents.secondWin.price|oddConvert:env.oddFormat:null:'CORRECT SCORE'}}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="more-competition">
+                    <div class="asian-status-icons" ng-if="game.moreMarketsCount && $first">
+                        <div class="match-key" ng-if="game.game_info.Type === 1" pre-match-key hash="game.game_info.Hash"></div>
+                        <div class="icon-favorite" ng-click="toggleGameFavorite(game)"  ng-class="{'active': myGames.indexOf(game.id) !== -1}" title="{{'Favorite'|translate}}"></div>
+                        <div ng-show="$root.conf.enableH2HStat && game.is_stat_available" ng-click="openStatistics(game);$event.stopPropagation();"
+                             statistics-on-hover stats-game="game" stats-competition-name="{{competition.name}}" class="h2h-stats" title="{{'statistic'|translate}}"></div>
+                        <div class="cms-jcon-Bet-Builder" ng-if="$root.conf.betBuilderSports[game.sport.alias] && game.type !== 1" ng-click="openBetBuilder(game);$event.stopPropagation();"></div>
+                    </div>
+
+                    <div class="info-bl" ng-if="$first" ng-click="loadAllEvents(game.id, game.competition.id, game.region.id, game.sport.id)">
+                        <p>+{{::game.moreMarketsCount || ''}}</p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>

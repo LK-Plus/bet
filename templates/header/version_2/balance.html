@@ -1,0 +1,123 @@
+<!--balance-->
+<div class="separator-contain-nav {{headerVersion2Icons.balanceIsToggled ? 'active' : ''}}">
+    <div class="settings-icon-contain balance-box" no-animate
+        ng-class="{'bonus': profile.calculatedBonus !== 0}"
+        ng-click="headerVersion2Icons.balanceIsToggled = !headerVersion2Icons.balanceIsToggled; $event.stopPropagation()"
+		id="wallet"
+         hide-on-click state-flag-var="headerVersion2Icons.balanceIsToggled">
+        <b class="mybets-icon-box-b cms-jcon-Wallet" ng-show="env.hideBalance"></b>
+        <ul ng-show="!env.hideBalance">
+            <li>
+               <span ng-show="$root.profile.casino_balance === null || !$root.currentPage.isInCasino" class="balance-view-off">
+                    {{ $root.profile.calculatedBalance|number:$root.conf.balanceFractionSize }}
+               </span>
+                <span ng-if="$root.profile.casino_balance !== null && $root.currentPage.isInCasino || !calculatedConfigs.sportEnabled" class="balance-view-off">
+                     {{ $root.profile.casino_balance|number:$root.conf.balanceFractionSize }}
+                </span>
+                <span>{{$root.profile.currency_name|currency}}</span>
+            </li>
+            <li ng-if="$root.profile.bonus_balance !== undefined">
+                <p class="bonus-view-mini-b">
+                    <span>{{$root.profile.calculatedBonus|number:$root.conf.balanceFractionSize}}</span>
+                    <span>{{$root.profile.currency_name|currency}}</span>
+                </p>
+            </li>
+        </ul>
+        <i></i>
+    </div>
+
+    <div class="nav-open-view-contain">
+        <ul>
+            <li>
+                <div class="drop-nav-new-b">
+                      <div class="drop-items-contain-b icon-view-box">
+                          <div class="switcher-t-view-b">
+                              <p trans>Hide Balance</p>
+                              <div class="switcher-box-b" ng-click="setHideBalance(!env.hideBalance); $event.stopPropagation()" ng-class="{'on': env.hideBalance}">
+                                  <div class="sw-circle-b"></div>
+                              </div>
+                          </div>
+                          <div class="user-info-box-b" ng-if="env.hideBalance">
+                              <h4 ng-show="$root.profile.casino_balance === null || !$root.currentPage.isInCasino">
+                                  {{ $root.profile.calculatedBalance|number:$root.conf.balanceFractionSize }} {{$root.profile.currency_name|currency}}
+                              </h4>
+                              <h4 ng-if="$root.profile.casino_balance !== null && $root.currentPage.isInCasino || !calculatedConfigs.sportEnabled">
+                                  {{$root.profile.casino_balance|number:$root.conf.balanceFractionSize }} {{$root.profile.currency_name|currency}}
+                              </h4>
+                              <h5 ng-if="$root.profile.bonus_balance !== undefined">
+                                  {{$root.profile.calculatedBonus|number:$root.conf.balanceFractionSize}} {{$root.profile.currency_name|currency}}
+                              </h5>
+                          </div>
+                        <ul>
+                            <li ng-click="selectBalanceMenuItem($event, 'deposit');$event.stopPropagation();"
+                                ng-class="{'active': env.sliderContent === 'deposit'}"
+                                ng-hide="conf.disableDepositPage"
+                                prevent-fast-click="1.5">
+                                <i class="deposit-icon-b"></i>
+                                <span trans>Deposit</span>
+                            </li>
+                            <li ng-click="selectBalanceMenuItem($event, 'cashier')"
+                                ng-show="(casinoEnabled || calculatedConfigs.pokerEnabled) && conf.transferEnabled"
+                                ng-class="{'active': env.sliderContent === 'cashier'}"
+                                prevent-fast-click="1.5">
+                                <i class="cashier-icon-b"></i>
+                                <span trans>Transfer</span>
+                            </li>
+                            <li ng-click="selectBalanceMenuItem($event, 'myWallets')"
+                                ng-show="$root.conf.myWalletsEnabled"
+                                ng-class="{'active': env.sliderContent === 'myWallets'}"
+                                prevent-fast-click="1.5">
+                                <i class="cashier-icon-b"></i>
+                                <span trans>My Wallets</span>
+                            </li>
+                            <li ng-click="selectBalanceMenuItem($event, 'withdraw');$event.stopPropagation();"
+                                ng-class="{'active': env.sliderContent === 'withdraw'}"
+                                ng-hide="conf.disableWithdrawPage"
+                                prevent-fast-click="1.5">
+                                <i class="withdraw-icon-b"></i>
+                                <span trans>Withdraw</span>
+                            </li>
+                            <li ng-click="selectBalanceMenuItem($event, 'balanceHistory');$event.stopPropagation();"
+                                ng-class="{'active': env.sliderContent === 'balanceHistory'}"
+                                prevent-fast-click="1.5">
+                                <i class="history-icon-b"></i>
+                                <span>{{'History'|translate:null:'Balance History'}}</span>
+                            </li>
+
+                            <li ng-click="selectBalanceMenuItem($event, 'casinoBalanceHistory')"
+                                ng-class="{'active': env.sliderContent === 'casinoBalanceHistory'}"
+                                ng-hide="conf.enableMixedView || !conf.enableCasinoBalanceHistory"
+                                prevent-fast-click="1.5">
+                                <i class="history-icon-b"></i>
+                                <span>{{"History"|translate}} ({{"Casino"|translate}})</span>
+                            </li>
+                            <li ng-click="selectBalanceMenuItem($event, 'renew')"
+                                ng-class="{'active': env.sliderContent === 'renew'}"
+                                ng-hide="!conf.enableFreeRenew"
+                                prevent-fast-click="1.5">
+                                <i class="cms-jcon-Renew"></i>
+                                <span trans>Renew</span>
+                            </li>
+
+                            <li ng-click="selectBalanceMenuItem($event, 'buddytransfer')"
+                                ng-class="{'active': env.sliderContent === 'buddytransfer'}"
+                                ng-show="conf.buddyTransfer.enabled && !conf.enableMixedView"
+                                prevent-fast-click="1.5">
+                                <i class="buddyTransfer-icon-b"></i>
+                                <span trans>Buddy transfer</span>
+                            </li>
+                            <li ng-click="selectBalanceMenuItem($event, 'loyaltyPoints')"
+                                ng-class="{'active': env.sliderContent === 'loyaltyPoints'}"
+                                ng-show="conf.enableLoyaltyPoints"
+                                prevent-fast-click="1.5">
+                                <i class="deposit-icon-b"></i>
+                                <span trans>Loyalty Points</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--balance END-->

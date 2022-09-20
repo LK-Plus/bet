@@ -1,0 +1,41 @@
+<div ng-if="$location.search().action" ng-init="action = $location.search().action">
+    <div ng-include="::'templates/popup/help.html'|fixPath" ng-if="action == 'help'"></div>
+    <div ng-include="::'templates/slider/help.html'|fixPath" ng-if="action == 'helpPopup'"></div>
+    <div ng-include="::'templates/popup/pageprint.html'|fixPath" ng-if="action == 'pageprint'"></div>
+    <div ng-include="::'templates/popup/booking/main.html'|fixPath" ng-if="action == 'booking'"></div>
+    <div ng-include="::'templates/popup/bet-print-preview/main.html'|fixPath" ng-if="action == 'betprintpreview'"></div>
+    <div ng-include="::'templates/popup/couponprintpreview.html'|fixPath" ng-if="action == 'couponprintpreview'"></div>
+    <div ng-include="::'templates/popup/content.html'|fixPath" ng-if="action == 'content'"></div>
+    <div ng-include="::'templates/popup/gamedetails.html'|fixPath" ng-if="action == 'gamedetails'"></div>
+    <div ng-include="::'templates/popup/pokerpopup.html'|fixPath" ng-if="action == 'tournamentlist' || action == 'rakerace'"></div>
+</div>
+
+<div ng-if="$location.search().user">
+    <div ng-controller="mainHeaderCtrl" ng-init="mainHeaderInit()" ng-class="{'tablet-t': isTablet}">
+        <div ng-if="!(env.authorized && profile)" class="contein-bet-history">
+            <br /><br />
+            <center class="form-sign-in" ng-if="loginInProgress">
+                <vbet-loader></vbet-loader>
+                <br />
+                <label><b>{{'loading...'|translate|uppercase}}</b></label>
+            </center>
+
+            <center class="form-sign-in" ng-if="!loginInProgress && !env.authorized">
+                <label><b>{{'message_20002'|translate|uppercase}}</b></label>
+            </center>
+        </div>
+        <div ng-if="env.authorized && profile" ng-init="action = $location.search().user;isPopup = true">
+            <div ng-include="::'templates/popup/header.html'|fixPath" ng-if="action != 'profile'"></div>
+            <div ng-include="::'templates/slider/bethistory.html'|fixPath" ng-if="action == 'betHistory'" ng-init="env.sliderContent = 'betHistory'"></div>
+            <div ng-include="::'templates/slider/balance/balancehistory.html'|fixPath" ng-if="action == 'balanceHistory'" ng-init="env.sliderContent = 'balanceHistory'"></div>
+            <div ng-include="::'templates/slider/balance/deposit.html'|fixPath" ng-if="action == 'deposit'" ng-init="env.sliderContent = 'deposit'"></div>
+            <div ng-include="::'templates/slider/balance/withdraw.html'|fixPath" ng-if="action == 'withdraw'" ng-init="env.sliderContent = 'withdraw'"></div>
+            <div ng-include="::'templates/slider/settings.html'|fixPath" ng-if="action == 'settings'" ng-init="env.sliderContent = 'settings';"></div>
+            <div ng-include="::'templates/slider/settings.html'|fixPath" ng-if="action == 'friendReferral'" ng-init="env.sliderContent = 'settings';popupSettingsPage='friendReferral'"></div>
+            <div ng-include="::'templates/slider/settings.html'|fixPath" ng-if="action == 'changePassword'" ng-init="env.sliderContent = 'settings';popupSettingsPage='changepassword'"></div>
+            <div ng-include="::'templates/livebox/mixedView.html'|fixPath" ng-if="action == 'profile'" ng-init="env.sliderContent = 'settings'"></div>
+            <div ng-include="::'templates/slider/messages.html'|fixPath" ng-if="action == 'messages'" ng-init="env.sliderContent = 'messages';"></div>
+        </div>
+    </div>
+</div>
+

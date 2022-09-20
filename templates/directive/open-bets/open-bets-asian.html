@@ -1,0 +1,86 @@
+<div class="contain-open-bets single-open-bets" ng-if="betSlip.mode === 'openBets'">
+    <p class="info-all-bets">
+        {{::'You can view all your bets in'|translate}}
+        <span ng-click="$root.broadcast('open.history');goToTop(true);$event.stopPropagation()" trans>Bet History</span>
+    </p>
+    <div class="slider-open-bets" ng-repeat="bet in openBets.data" ng-class="{'open': bet.openEvents}"
+         ng-init="bet.openEvents = true" ng-hide="openBets.loading || $root.editBet.loading">
+        <p ng-click="bet.openEvents = !bet.openEvents">
+            <span ng-class="{'EW-bh-indicator': bet.each_way}" ng-bind="betTypes[bet.type]|translate"></span>
+            <ng-include src="::'templates/livebox/betHistoryIcons.html'|fixPath"></ng-include>
+            <span ng-if="bet.type === 3"> {{::bet.system_min_count}}/{{::bet.events.length}}</span>
+            <i class="edit-bets-icon"
+               ng-show="!betConf.fullCoverBetTypes.enabled && !bet.is_gift  && bet.cash_out && (bet.type == 2 || bet.type == 1)  && !$root.editBet.edit"
+               ng-click="$event.stopPropagation(); editBet(bet);"
+               title="{{ ('Editing functionality is available for this bet.') | translate }}">
+            </i>
+            <i class="refresh-icon cms-jcon-refresh" ng-show="$root.conf.enableBetFromBetHistory && (bet.type === 1 || bet.type == 2 || bet.type == 3 || bet.type == 4)" ng-click="$event.stopPropagation();addEvents(bet);" title="{{'Repeat Bet'|translate}}"></i>
+            <span class="gift-bet" ng-if="$root.conf.enableGiftBet && !bet.cashouts_history" ng-click="$event.stopPropagation()" title="{{bet.is_gift ? (('Gifted to'|translate) + ' ' + bet.gift_receiver_email): ('Gift'|translate)}}">
+                <i ng-click="$root.broadcast('showGiftPopup', bet)"  ng-class="{'disabled': bet.is_gift === true }"></i>
+            </span>
+        </p>
+        <div class="open-bets-time-id">
+            <p ng-bind="bet.date_time|formatDate:'noLocaleTranslate':null:$root.env.timeFormat"></p>
+            <span>ID: <b>{{::bet.id}}</b></span>
+        </div>
+        <div id="betEventsContainer-openbet"  class="bet-container" no-animate>
+            <ul ng-repeat="event in bet.events">
+                <li class="clock-status" ng-class="{'won': event.outcome == 3 , 'lost':event.outcome == 1 }">
+                    <p ng-bind="event.game_start_date|formatDate:'noLocaleTranslate':null:$root.env.timeFormat"></p>
+                    <a class="bet-event-title" ng-click="gotoBetGame(matchInfo[event.game_id].gamePointer)"><span class="chain-order" ng-if="bet.showOrder" ng-bind="event.order + ' '"></span>{{::event.game_name }}</a>
+                    <b class="open-bets-games-score" ng-bind="matchInfo[event.game_id].text_info"></b>
+                    <div class="status-icon-open-bets" title="{{(event.outcome == 3 ? 'Won' : 'Unsettled')|translate}}"></div>
+                </li>
+                <li class="open-bets-games-info" ng-show="event.is_live" ng-class="{'won': event.outcome == 3 , 'lost':event.outcome == 1 }">
+                    <b trans>Live</b>
+                </li>
+                <li ng-class="{'won': event.outcome == 3 , 'lost':event.outcome == 1 }">
+                    <p>
+                        <span>{{::event.market_name ? event.market_name : ''}}</span>
+                        <span>{{::event.eventName ? event.eventName : event.event_name}}</span>
+                    </p>
+                    <span class="betprice" ng-bind="event.k_type === 11 ? 'SP' : (event.coeficient|oddConvert:event.oddTypeMapped.full:null:'BET_HISTORY':undefined:(!{1:1, 4:1}[bet.type]))"></span>
+                    <span class="betprice" ng-bind="::event.oddTypeMapped.short|translate" title="{{::event.oddTypeMapped.full|translate}}"></span>
+                </li>
+
+            </ul>
+            <div class="bet-accept-changes-b-v3" ng-show="bet.outcome == 0 && !bet.is_gift && bet.cash_out !== undefined || bet.auto_cash_out_amount !== null">
+                <div class="button-view-contain-v3">
+                    <div class="bs-cash-out-btn" ng-mouseover="autoCashoutRule.showInfo = true; getAutoCashOutDetails(bet.id, bet.auto_cash_out_amount)" ng-mouseleave="autoCashoutRule.showInfo = false">
+                        <button class="open-bets-cashout-button"
+                                ng-class="{'rule-active': bet.auto_cash_out_amount != null}"
+                                ng-click="$root.broadcast('open.cashoutDialog', {bet: bet});$event.stopPropagation();"
+                                ng-disabled="bet.id === $root.editBet.oldBetId || !(bet.outcome == 0 && bet.cash_out !== undefined)">
+                            <span ng-bind="'Cash-out'|translate"></span>
+                            <b>{{bet.cash_out}} <span ng-show="bet.cash_out">{{::$root.profile.currency_name|currency}}</span></b>
+                        </button>
+                    </div>
+                    <div class="hover-auto-cashout-rule" ng-show="bet.auto_cash_out_amount != null && autoCashoutRule.theValueReaches">
+                        <div class="auto-cashout-rule">
+                            <h4 trans>Rule active</h4>
+                            <p>{{('If the value reaches '| translate)}}<span>{{ autoCashoutRule.theValueReaches}}</span> <b>{{ $root.profile.currency_name|currency}}</b></p>
+                            <p>{{('Cash out '| translate)}}<span ng-if="autoCashoutRule.partialAmount"><span>{{ autoCashoutRule.partialAmount}}</span> <b>{{ $root.profile.currency_name|currency}}</b></span></p>
+                        </div>
+                        <button ng-click="cancelAutoCashOutRule(bet.id)" trans>Cancel rule</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="open-bets-possible-wrapper">
+            <p class="total-poswin" ng-show="!taxOnStake.enabled">
+                <span trans>Stake:</span>
+                <span>{{::bet.remaining_stake | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{$root.profile.currency_name|currency}}</span>
+            </p>
+            <p class="total-poswin" ng-show="!taxOnStake.enabled && bet.bonus > 0">
+                <span trans>Bonus:</span>
+                <span>{{::bet.bonus | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{$root.profile.currency_name|currency}}</span>
+            </p>
+            <p class="total-poswin" ng-show="!taxOnStake.enabled ">
+                <span>{{(bet.bonus > 0? 'Final Payout:': 'Possible win:')|translate}}</span>
+                <span ng-if="bet.possible_win !== -1">{{::bet.possible_win |roundPossibleWin:$root.conf.balanceFractionSize:bet.type}} {{$root.profile.currency_name|currency}}</span>
+                <span ng-if="bet.possible_win === -1" trans>N/A</span>
+            </p>
+        </div>
+    </div>
+    <vbet-loader ng-show="openBets.loading || $root.editBet.loading"></vbet-loader>
+</div>

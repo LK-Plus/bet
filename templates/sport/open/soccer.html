@@ -1,0 +1,288 @@
+<div class="left-block-score">
+    <div class="live-game-generic live-game-soccer1" ng-class="{'no-video-flash': !(game.video_id || game.has_animation) || (isVideoDetached && !game.has_animation), 'no-video-ie8': !game.video_id || isVideoDetached}">
+        <ul>
+            <li>
+                <p>
+                    <span>
+                        {{ game.team1_name }}
+                    </span>
+                </p>
+            </li>
+            <li ng-class="{'no-score': !(game.info.score1 || game.info.score2)}">
+                <div class="soccer-score">
+                    {{ game.info.score1}}
+                </div>
+                <div class="team-coat" ng-show="game.info.extra.team1icon"><img ng-src="{{ game.info.extra.team1icon}}"></div>
+                <div class="team-form" ng-show="!game.info.extra.team1icon"><tshirt shorts="{{game.info.short1_color}}" shirt="{{game.info.shirt1_color}}"></tshirt></div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p>
+                    <span>{{ game.team2_name ?  game.team2_name: '' }}</span>
+                </p>
+            </li>
+            <li>
+                <div class="soccer-score" >
+                    {{ game.info.score2}}
+                </div>
+                <div class="team-coat" ng-show="game.info.extra.team2icon"><img ng-src="{{ game.info.extra.team2icon}}"></div>
+                <div class="team-form" ng-show="!game.info.extra.team2icon"><tshirt shorts="{{game.info.short2_color}}" shirt="{{game.info.shirt2_color}}"></tshirt></div>
+            </li>
+        </ul>
+        <div class="add-info" ng-if="!!game.info.current_game_state">
+            {{ game.info.current_game_state|convertSetName:game.sport.alias|translate }} {{ (game.info.current_game_time)[0] === '-'? ('will start in'|translate)+' '+ (game.info.current_game_time).substring(1): ((game.info.current_game_state !== 'notstarted' && game.info.current_game_state !== 'timeout' && game.info.current_game_state !== 'set5') ? game.info.current_game_time : '') }}
+        </div>
+    </div>
+    <!-- new timeline -->
+    <div class="tl-container" ng-class="{'no-video-flash': !(game.video_id || game.has_animation) || (isVideoDetached && !game.has_animation), 'no-video-ie8': !game.video_id || isVideoDetached, 'extra-time': game.info.isExtraTime}">
+        <soccertimeline show-events-on-tl-hover="true" show-only-one="true" open-game="game"></soccertimeline>
+    </div>
+
+    <!--Счет игры live game-->
+    <table class="cash-game" ng-class="{'no-video-flash': !(game.video_id || game.has_animation) || (isVideoDetached && !game.has_animation), 'no-video-ie8': !game.video_id  || isVideoDetached}">
+        <tr>
+            <th>
+                <soccer-line-up  ng-if="$root.conf.matchLineupStatistics.soccer && game.sport.alias === 'Soccer'" game-id="game.id"></soccer-line-up>
+            </th>
+            <th class="active-set"><div class="h-time" title="First time score" trans>HT</div></th>
+            <th><div class="yellow-icon" title="yellow cards" trans></div></th>
+            <th><div class="red-icon" title="red cards" trans></div></th>
+            <th><div class="angular-icon" title="corners" trans></div></th>
+            <th><div class="penalty-icon" title="penalties" trans></div></th>
+        </tr>
+
+        <tr>
+            <td class="team-1" ng-style="{'border-color': '#'+ game.info.shirt1_color}"><div><tshirt shorts="{{game.info.short1_color}}" shirt="{{game.info.shirt1_color}}"></tshirt></div> <span>{{ game.team1_name }}</span></td>
+            <td>{{ game.stats.score_set1.team1_value ? game.stats.score_set1.team1_value : 0}}</td>
+            <td>{{ game.stats.yellow_card.team1_value }}</td>
+            <td>{{ game.stats.red_card.team1_value }}</td>
+            <td>{{ game.stats.corner.team1_value }}</td>
+            <td>{{ game.stats.penalty.team1_value }}</td>
+        </tr>
+        <tr>
+            <td class="team-2" ng-style="{'border-color': '#'+ game.info.shirt2_color}"><div><tshirt shorts="{{game.info.short2_color}}" shirt="{{game.info.shirt2_color}}"></tshirt></div> <span>{{ game.team2_name }}</span></td>
+            <td>{{ game.stats.score_set1.team2_value ? game.stats.score_set1.team2_value : 0}}</td>
+            <td>{{ game.stats.yellow_card.team2_value }}</td>
+            <td>{{ game.stats.red_card.team2_value }}</td>
+            <td>{{ game.stats.corner.team2_value }}</td>
+            <td>{{ game.stats.penalty.team2_value }}</td>
+        </tr>
+    </table>
+</div>
+<div ng-show="(game.video_id && !isVideoDetached) || game.has_animation" ng-class="{'hide-animation-ie8': !game.video_id || isVideoDetached}" class="block-size-visible-b">
+    <div class="right-block-flash right-block-flash-soccer" id="game-monitor-{{ game.id }}">
+        <include-template template-path="templates/sport/open/player.html"></include-template>
+
+        <div class="multilive-visualisation" ng-class="{'statistic': $root.conf.kievAnimationSettings.statistic}" ng-if="game.activeFieldType === 'field' && $root.conf.customAnimationURL && $root.conf.sportsWithAnimations[game.sport.alias] === 'kiev'">
+            <kiev-animation team1="game.team1_name" team2="game.team2_name" id="game.id" sound="$root.env.sound>0"></kiev-animation>
+        </div>
+
+        <div class="game-control" ng-if="game.activeFieldType === 'field' && $root.conf.sportsWithAnimations[game.sport.alias] === 'sportsbook-animations'">
+            <sportsbook-animations
+                    language="$root.env.lang"
+                    sport-alias="game.sport.alias"
+                    field="game.info.field"
+                    type-id="game.last_event.type_id"
+                    side="game.last_event.side"
+                    team1-name="game.team1_name"
+                    team2-name="game.team2_name"
+                    team1-score="game.info.score1"
+                    team2-score="game.info.score2"
+                    team1-points="game.stats.passes.team1_value"
+                    team2-points="game.stats.passes.team2_value"
+            ></sportsbook-animations>
+        </div>
+
+        <!-- Animated control -->
+        <div class="game-control" ng-if="game.activeFieldType === 'field' && $root.conf.sportsWithAnimations[game.sport.alias] === 'VBET5'">
+
+
+            <div class="video-player-control" ng-show="!isVideoDetached">
+                <span class="video-mute" ng-click="toggleAnimationSound()" ng-show="env.sound > 0" title="Sound" trans="attr-only"></span>
+                <span class="video-unmute" ng-click="toggleAnimationSound()" ng-show="env.sound === 0" title="Sound" trans="attr-only"></span>
+                <div class="sound-volume">
+                    <div>
+                        <rzslider rz-slider-model="env.sound" rz-slider-floor="0" rz-slider-ceil="1" rz-slider-step="0.01" rz-slider-precision="1" rz-slider-always-show-bar="true"></rzslider>
+                    </div>
+                </div>
+            </div>
+            <!-- Field with animations -->
+            <div class="field-container tl-hide">
+                <ul class="game-team-names">
+                    <li>{{ game.team1_name }}</li>
+                    <li>{{ game.team2_name }}</li>
+                </ul>
+                <div class="field">
+                    <audio id="{{game.id}}" ng-src="{{animationSoundsMap[game.last_event.type] + '.mp3'}}" autoplay="" ng-if="!game.isAnimationMute && game.activeFieldType !='video' && animationSoundsMap[game.last_event.type] && !isVideoDetached && env.sound > 0" ng-init="changeVolume()"></audio>
+                    <audio id="{{game.id}}" ng-src="{{animationSoundsMap[game.last_event.type] + '.ogg'}}" autoplay="" ng-if="!game.isAnimationMute && game.activeFieldType !='video' && animationSoundsMap[game.last_event.type] && !isVideoDetached && env.sound > 0 && !isMp3Supported" ng-init="changeVolume()"></audio>
+
+                    <div ng-if="game.last_event.type === 'Attack'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" attack-div">
+                            <div class="attack-dir"></div>
+                        </div>
+                        <p trans title="Attack">Attack</p>
+                    </div>
+                    <div ng-if="game.last_event.type === 'BallSafe'" class="animation-container {{game.last_event.type}} " ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div>
+                            <div trans title="Ball Safe">Ball Safe</div>
+                            <div ng-bind="game['team' + game.last_event.side + '_name']"></div>
+                        </div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'Corner'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div>
+                            <div class=" ball"></div>
+                        </div>
+                        <p class="text-event" trans title="Corner">Corner</p>
+                    </div>
+                    <div ng-if="game.last_event.type === 'DangerousAttack'" class="animation-container {{game.last_event.type}} " ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" attack-div">
+                            <div class="attack-dir"></div>
+                        </div>
+                        <p trans title="Dangerous Attack">Dangerous Attack</p>
+                    </div>
+                    <div ng-if="game.last_event.type === 'ExtraTimeFirstHalf'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="Extra Time First Half">Extra Time First Half</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'ExtraTimeHalfTime'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="Extra Time Half Time">Extra Time Half Time</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'ExtraTimeSecondHalf'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="Extra Time Second Half">Extra Time Second Half</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'Finished'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="Finished">Finished</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'FirstHalf'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="First Half">First Half</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'FreeKick'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" ripple"></div>
+                        <div class="arrow"></div>
+                        <div class="ball"></div>
+                        <div class="text-event" trans title="Free Kick">Free Kick</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'Goal'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" ball-cont">
+                            <div class="ball"></div>
+                        </div>
+                        <p class="goal-text"><span trans title="Goal">Goal</span>!!!</p>
+                        <p class="team" title="{{game['team'+ game.last_event.side + '_name']}}" ng-bind="game['team'+ game.last_event.side + '_name']"></p>
+                    </div>
+                    <div ng-if="game.last_event.type === 'GoalKick'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" ripple"></div>
+                        <div class="arrow"></div>
+                        <div class="ball"></div>
+                        <div class="text-event" trans title="Goal Kick">Goal Kick</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'HalfTime'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="Half Time">Half Time</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'NotStarted'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="Not Started">Not Started</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'Offside'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" line"></div>
+                        <div class="ball"></div>
+                        <p trans title="Offside">Offside</p>
+                    </div>
+                    <div ng-if="game.last_event.type === 'Penalty'" class="animation-container {{game.last_event.type}}" ng-class="{'away': (game.last_event|rtlConvert:'side') === '1', 'home': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" arrow"></div>
+                        <div class="ball"></div>
+                        <div class="text-event" trans title="Penalty">Penalty</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'PreExtraHalf'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="Pre Extra Half">Pre Extra Half</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'RedCard'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" rotator">
+                            <div class="card"></div>
+                        </div>
+                        <div class="text-event" trans title="Red Card">Red Card</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'SecondHalf'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" text-event" trans title="Second Half">Second Half</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'Substitution'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class=" sub-cont"></div>
+                        <div class="text-event" trans title="Substitution">Substitution</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'ThrowIn'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <p trans title="Throw In">Throw In</p>
+                        <div>
+                            <div class="ball"></div>
+                        </div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'YellowCard'" class="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div class="rotator">
+                            <div class="card"></div>
+                        </div>
+                        <div class="text-event" trans title="Yellow Card">Yellow Card</div>
+                    </div>
+                    <div ng-if="game.last_event.type === 'GoalkeeperSave'" class ="animation-container {{game.last_event.type}}" ng-class="{'home': (game.last_event|rtlConvert:'side') === '1', 'away': (game.last_event|rtlConvert:'side') === '2'}">
+                        <div></div>
+                        <p trans title="Goalkeeper Save">Goalkeeper Save</p>
+                    </div>
+
+                    <div class="gate-l"></div>
+                    <div class="gate-r"></div>
+                </div>
+            </div>
+            <!-- Game statistics -->
+            <div class="statistics-toggle">
+                <ul class="game-statistics" ng-class="{hidden: hide}">
+                    <li>
+                        <div trans class="title">Dangerous Attack</div>
+                        <div class="stat-l">{{game.stats.dangerous_attack.team1_value}}</div>
+                        <div class="team-2" ng-style="{background: '#'+ game.info.shirt2_color}">
+                            <div class="team-1" ng-style="{background: '#'+ game.info.shirt1_color, width: game.stats.dangerous_attack.team1_width + '%'}"></div>
+                        </div>
+                        <div class="stat-r">{{game.stats.dangerous_attack.team2_value}}</div>
+                    </li>
+                    <li>
+                        <div trans class="title">Shot on target</div>
+                        <div class="stat-l">{{game.stats.shot_on_target.team1_value}}</div>
+                        <div class="team-2" ng-style="{background: '#'+ game.info.shirt2_color}">
+                            <div class="team-1" ng-style="{background: '#'+ game.info.shirt1_color, width: game.stats.shot_on_target.team1_width + '%'}"></div>
+                        </div>
+                        <div class="stat-r">{{game.stats.shot_on_target.team2_value}}</div>
+                    </li>
+                    <li>
+                        <div trans class="title">Shot off target</div>
+                        <div class="stat-l">{{game.stats.shot_off_target.team1_value}}</div>
+                        <div class="team-2" ng-style="{background: '#'+ game.info.shirt2_color}">
+                            <div class="team-1" ng-style="{background: '#'+ game.info.shirt1_color, width: game.stats.shot_off_target.team1_width + '%'}"></div>
+                        </div>
+                        <div class="stat-r">{{game.stats.shot_off_target.team2_value}}</div>
+                    </li>
+                    <li>
+                        <div trans class="title">Corner kick</div>
+                        <div class="stat-l">{{game.stats.corner.team1_value}}</div>
+                        <div class="team-2" ng-style="{background: '#'+ game.info.shirt2_color}">
+                            <div class="team-1" ng-style="{background: '#'+ game.info.shirt1_color, width: game.stats.corner.team1_width + '%'}"></div>
+                        </div>
+                        <div class="stat-r">{{game.stats.corner.team2_value}}</div>
+                    </li>
+                    <li>
+                        <div trans class="title">Yellow card</div>
+                        <div class="stat-l">{{ game.stats.yellow_card.team1_value }}</div>
+                        <div class="team-2" ng-style="{background: '#'+ game.info.shirt2_color}">
+                            <div class="team-1" ng-style="{background: '#'+ game.info.shirt1_color, width: game.stats.yellow_card.team1_width + '%'}"></div>
+                        </div>
+                        <div class="stat-r">{{ game.stats.yellow_card.team2_value }}</div>
+                    </li>
+                    <li>
+                        <div trans class="title">Red card</div>
+                        <div class="stat-l">{{game.stats.red_card.team1_value}}</div>
+                        <div class="team-2" ng-style="{background: '#'+ game.info.shirt2_color}">
+                            <div class="team-1" ng-style="{background: '#'+ game.info.shirt1_color, width: game.stats.red_card.team1_width + '%'}"></div>
+                        </div>
+                        <div class="stat-r">{{game.stats.red_card.team2_value}}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Animated control END -->
+    </div>
+</div>
+

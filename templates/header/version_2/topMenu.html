@@ -1,0 +1,55 @@
+<!--Menu-->
+<div class="header-bottom-row">
+    <div class="header-nav-contain" ng-show="!$root.conf.rfid.loginWIthRFID || env.authorized || $root.conf.rfid.allowAccessWithoutRfid">
+        <ul ng-class="{'menu-dropdown': $root.topMenuDropDown, 'menu-dropdown-show': subMenuItemCount > 0}" sub-menu-creator="main" ng-mouseleave="$root.topMenuDropDown=false">
+            <div class="top-menu-more" title="More" ng-mouseover="$root.topMenuDropDown=true"
+                 trans="attr-only">{{'More'|translate}}
+            </div>
+            <li ng-if="conf.enableCouponCheck">
+                <form class="coupon-form-check">
+                    <input type="text" placeholder="{{'Bet ID'|translate}}" ng-model="couponBetID">
+                    <button type="submit" ng-disabled="!couponBetID" ng-click="showCouponDetails(couponBetID)">Check</button>
+                </form>
+            </li>
+            <li ng-repeat="item in topMenu track by item.name"
+                ng-if="item.showCondition && !item.hidden"
+                ng-class="{'active': item.classObject.active,
+                          '{{::item.dynamicClass}}': true,
+                          'new-info-item': item.subDisplayName || item.specialCase === 'gamesSpecialText',
+                          'new-info-item-sup': item.supDisplayName,
+                          '{{::('nav-' + item.name.split(' ').join('-').toLowerCase())}}': $root.conf.customNavMenu
+                          }">
+                <div ng-if="!item.popup && !item.broadcast" class="top-menu-sub-a-t">
+                    <a ng-href="{{item.href}}" ng-click="item.click()" data-content="{{(item.subTitle || 'new')|translate}}"
+                       ng-show="!item.specialCase && !item.subDisplayName && !item.supDisplayName" target="{{ item.target || '_self' }}" route-reload reload="{{item.reload}}">
+                        <span ng-bind="item.displayName"></span>
+                    </a>
+                    <a ng-href="{{item.href}}"  ng-click="item.click()" class="poolbetting-menu-item" class-rotate="poolbetting,jackpot" class-rotate-intervals="5000,2000" ng-if="item.specialCase === 'poolbetting'" data-content="{{'new'|translate}}">
+                        <p class="poolbetting-title" ng-bind="item.displayName"></p>
+                    </a>
+                    <a ng-href="{{item.href}}"
+                       ng-click="item.click()"
+                       ng-if="item.subDisplayName || item.supDisplayName || item.specialCase === 'gamesSpecialText'"
+                       data-content="{{'new'|translate}}"
+                       target="{{ item.target || '_self' }}">
+                        <span ng-bind="item.displayName"></span>
+                        <span ng-if="!item.subDisplayName && !item.supDisplayName">
+                            <b>{{conf.gameMenuSpecialText|translate}}</b>
+                        </span>
+                        <span ng-if="item.subDisplayName">
+                            <b>{{item.subDisplayName|translate}}</b>
+                        </span>
+                        <span ng-if="item.supDisplayName">
+                            <b>{{item.supDisplayName|translate}}</b>
+                        </span>
+                    </a>
+                </div>
+                <div ng-if="item.popup || item.broadcast" class="top-menu-sub-a-t">
+                    <a ng-if="item.popup" ng-click="$root.topMenuDropDown=false;closeSlider(); openPopup(item.link,item.title,item.popup)" ng-bind="item.title" data-content="{{'new'|translate}}"></a>
+                    <a ng-if="item.broadcast" ng-click="$root.topMenuDropDown=false;closeSlider(); broadcast(item.broadcast)" ng-bind="item.title" data-content="{{'new'|translate}}"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--Menu END-->

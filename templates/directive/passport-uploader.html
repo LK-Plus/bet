@@ -1,0 +1,68 @@
+<div class="verify-account">
+    <div trans ng-show="showRequiredMessage">Please upload an image and select the type of your chosen method of identification.</div>
+    <div trans ng-show="notSupported">Your browser doesn't support file uploading, Please update or use Google Chrome</div>
+    <div trans ng-show="fileUploaded">Your file is successfully uploaded</div>
+    <div trans ng-show="uploadError">There was an error during file upload, please try again.</div>
+    <form method="POST" name="forms.passportImageForm" enctype='multipart/form-data' ng-hide="notSupported || loadingProgress" ng-submit="submitForm();" novalidate>
+        <ul>
+            <li>
+                <label>
+                    <p trans>Please select your type of ID</p>
+                    <div class="select-holder">
+                        <select required ng-model="accountVerificationData.selectedImageType" name="selectedImageType">
+                            <option value="" trans>Not selected</option>
+                            <option ng-repeat="type in $root.conf.imageTypes track by $index" value="{{type.id}}">{{::type.name|translate}}</option>
+                        </select>
+                    </div>
+                </label>
+            </li>
+            <li>
+                <div>
+                    <input type="file" name="passportImage" id="{{inputId}}" accept="image/*, application/pdf" class="passportUpload"/>
+                    <p trans>File location</p>
+                    <ul class="fileUpload-button">
+                        <li>
+                            <input name="imageFile" id="uploadFilePassport" trans="attr-only" placeholder="Choose File" disabled="disabled" ng-model="accountVerificationData.imageFile" required/>
+                        </li>
+                        <li>
+                            <span trans>Browse</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <button ng-disabled="disablePassportVerificationSubmitButton" type="submit" title="{{'Please upload an image and select the type of your ID'|translate}}" trans>Verify</button>
+            </li>
+        </ul>
+    </form>
+    <div class="uploads-table" ng-if="!loadingProgress && documentImages">
+        <table>
+            <tr>
+                <td class="type-cell" trans>Document type</td>
+                <td trans>Upload date</td>
+                <td trans>Document name</td>
+                <td trans>Status</td>
+            </tr>
+            <tr ng-repeat="image in documentImages track by image.Id">
+                <td class="type-cell">
+                    <div class="upload-doc-type {{::image.ImageType}}">
+                        <strong>{{::image.ImageType | translate}}</strong>
+                    </div>
+                </td>
+                <td>{{::image.CreatedDate|formatDate}}</td>
+                <td>
+                    <span>{{::image.Name}}</span>
+                    <i ng-if="$root.conf.managePassportOptions.view" class="cms-jcon-eye" ng-click="openImage(image)" title="{{'Click to open the file'|translate}}"></i>
+                    <a ng-if="$root.conf.managePassportOptions.download" download="{{image.Name}}" ng-href="{{image.Src}}" title="{{'Click to download the file'|translate}}"><i class="cms-jcon-download-arrow"></i></a>
+                </td>
+                <td>
+                    <div class="uploaded-doc-status {{{0:'new', 1:'verified',2:'rejected ',3:'waiting'}[image.Status]}}">
+                        <span ng-bind="(image.StatusName || 'Unknown')|translate"></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="document-view"></div>
+    <center><vbet-loader ng-show="loadingProgress"></vbet-loader></center>
+</div>

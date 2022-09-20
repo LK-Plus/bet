@@ -1,0 +1,54 @@
+<div class="help-landing" ng-controller="cmsPagesCtrl">
+    <div class="headerVersion_2">
+        <div class="conteiner new0 pointer-events-none" class-on-scroll="show-fix,show-normal">
+            <div class="header-wrapper">
+                <div class="header-container-b">
+                    <ul class="responsive-header-contain-j">
+                        <li class="responsive-header-item-j">
+                            <div class="logo-nav-wrapper">
+                                <a ng-href="{{::$root.conf.logo.url}}" class="pointer-events-none">
+                                    <img ng-src="{{$root.conf.logo.image ? $root.conf.logo.image : 'skins/' + $root.conf.skin + '/images/logo.png'}}" image-on-load image-width="logoWidth" class-on-scroll="ng-hide,ng-show" ng-style="{'width' : $root.conf.logo.width ? ($root.conf.logo.width + 'px') : '', 'height' : $root.conf.logo.height ? ($root.conf.logo.height + 'px') : ''}"/>
+                                    <img ng-src="{{$root.conf.logo.imageFix ? $root.conf.logo.imageFix : 'skins/' + $root.conf.skin + '/images/logo2.png'}}" class="ng-hide" class-on-scroll="ng-show,ng-hide" ng-style="{'width' : $root.conf.logo.widthFix ? ($root.conf.logo.widthFix + 'px') : '', 'height' : $root.conf.logo.heightFix ? ($root.conf.logo.heightFix + 'px') : ''}"/>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="responsive-header-item-j auto-width">
+                            <div class="header-top-row">
+                                <ul class="responsive-header-contain-j">
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="responsive-header-mainMenu-j">
+                        <li>
+                            <div class="header-bottom-row ng-scope">
+                                <div class="header-nav-contain"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="block-faq-content {{selectedTopPage.slug.toLowerCase()}} {{selectedSecondLevelPage.slug.toLowerCase()}}" ng-init="getPokerPopup('poker-' + $location.search().action); popupHelpContentLoaded = true">
+        <vbet-loader class="page-center" ng-show="!popupHelpContentLoaded"></vbet-loader>
+        <p>{{pokerPopup.title}}</p>
+        <div class="help-rules-block">
+
+            <div class="help-rules payments" >
+
+                <div class="peymants-info" ng-bind-html="pokerPopup.children[0].content|html:'p'">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

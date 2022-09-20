@@ -1,0 +1,12 @@
+<div ng-controller="cmsSportNewsCtrl" ng-init="getHomepageBanners()" ng-show="homepageBanners[$root.env.authorized].length">
+    <div class="text-banners">
+        <ul>
+            <li ng-repeat="banner in homepageBanners[$root.env.authorized]">
+                <a href="{{banner.link}}" target="{{banner.linktarget}}">
+                    <img ng-src="{{banner.imageurl}}" title="{{banner.title}}"  alt="{{banner.title}}">
+                    <p ng-bind-html="banner.title"></p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

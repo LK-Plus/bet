@@ -1,0 +1,43 @@
+<div>
+    <h3 trans>Self-Exclusion</h3>
+    <div class="settings-info-contain deposit-limit">
+        <div ng-if="!('self-exclusion-text'|translate:null:true)">
+            <p trans>We will close your account, preventing access to your online account for the time period specified (between 6 months and 5 years).</p>
+            <p trans>Your account will only be re-opened if you contact us to request it after the Self-Exclusion period has expired.</p>
+            <p trans>Please note that you will be able to decrease your self-exclusion period or revoke it completely, only after seven days from your 1st request.</p>
+            <p trans>For further details please contact our support and refer to the Terms and Conditions and Responsible Gambling pages.</p>
+        </div>
+        <div ng-if="'self-exclusion-text'|translate:null:true">
+            <p ng-bind-html="'self-exclusion-text'|translate|html:'p'">
+        </div>
+
+        <form class="registration-form" name="selfExclusionForm" ng-init="initSelfExclusion()">
+            <div class="form-text" ng-repeat="option in conf.selfExclusion.options track by $index">
+                <label>
+                    <input type="radio" name="period" ng-click="selectPeriod(option.limit)" ng-model="$parent.periodValue" value="{{ $index }}">
+                    <span ng-bind="option.name|translate"></span>
+                </label>
+            </div>
+            <div class="change-button-container password">
+                <div ng-if="$root.partnerConfig.require_password_for_self_exclusion" class="password-button">
+                    <label ng-class="{'error': selfExclusionForm.password.$dirty && selfExclusionForm.password.$error.required}">
+                        <span trans>Password</span> <span class="hint">*</span>
+                    </label>
+                    <div class="active-field">
+                        <div class="form-text" ng-class="{'error': selfExclusionForm.password.$dirty  && selfExclusionForm.password.$error.required}">
+                            <input type="password" name="password"  ng-model="selfExclusionPasswordState.value" placeholder="Current Password" autocomplete="off" required trans  numpad>
+
+                            <div class="tooltip-j" >
+                                <div ng-show="selfExclusionForm.password.$error.required" trans>This field is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cashier-button">
+                    <button disabled="disabled" ng-show="!working" ng-disabled="!periodValue || !selfExclusionForm.$valid" trans ng-click="setSelfExclusion(conf.selfExclusion.type, 'selfExclusion', selfExclusionForm.password)">Save</button>
+                    <button disabled="disabled" ng-show="working" trans>Wait...</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

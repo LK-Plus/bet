@@ -1,0 +1,69 @@
+<div ng-controller="loginCtrl">
+
+    <div class="form-contain" ng-if="env.sliderContent === 'login'  && !conf.registration.simplified" ng-include="::'templates/slider/login.html'|fixPath"></div>
+    <div class="form-contain" ng-if="env.sliderContent === 'login' && conf.registration.simplified" ng-include="::'templates/slider/login_popup.html'|fixPath"></div>
+
+    <div class="block-sign-in-form" ng-init="resetPasswordResult(true)" ng-if="env.sliderContent === 'forgotPasswordForm' && !conf.registration.simplified">
+     <div class="form-contain">
+         <h3 ng-show="!passwordResetComplete && !passwordResetFailed && !usernameOrEmailInvalid" trans>Reset password</h3>
+         <form name="resetPasswordForm" ng-submit="resetPassword()" novalidate="novalidate" ng-show="!passwordResetComplete && !passwordResetFailed && !usernameOrEmailInvalid">
+             <div class="form-sign-in">
+                 <div ng-if="!conf.passwordNewResetMode">
+                     <label trans>Username</label>
+                     <div class="form-text" ng-class="{'error': resetPasswordForm.username.$dirty && resetPasswordForm.username.$invalid}">
+                         <input name="email" type="text" placeholder="Enter your username" required ng-model="resetPasswordData.username" autocomplete="off" trans>
+                         <div class="form-error-icon"></div>
+                         <div class="form-error-text">
+                             <div class="error-icon-f"></div>
+                             <p trans ng-show="resetPasswordForm.username.$error.email">Please enter a valid username</p>
+                         </div>
+                     </div>
+                 </div>
+
+                 <label trans>Email Address</label>
+                 <div class="form-text" ng-class="{'error': resetPasswordForm.email.$dirty && resetPasswordForm.email.$invalid}">
+                     <input name="email" type="email" placeholder="Enter your email address" required ng-model="resetPasswordData.email" ng-pattern="/^[\w!.%+\-]+@[\w\-]+(?:\.[\w\-]+)+$/" trans>
+                     <div class="form-error-icon"></div>
+                     <div class="form-error-text" ng-show="resetPasswordForm.email.$error.email">
+                         <div class="error-icon-f"></div>
+                         <p trans ng-show="resetPasswordForm.email.$error.email">Please enter a valid email address</p>
+                     </div>
+                 </div>
+             </div>
+             <div class="button-sign">
+                 <ul ng-if="!conf.liveChat.isSfChat && conf.liveChat.siteId && conf.liveChat.codePlan">
+                     <li ng-click="">
+                         <a pass-click-to="{{ conf.liveChat.buttonId ? conf.liveChat.buttonId : (conf.liveChat.comm100ButtonId || 'live-chat-button1') }}"  ng-attr-iframe="{{!conf.liveChat.buttonIsDiv ? 'true' : ''}}" ng-attr-find="{{!conf.liveChat.buttonIsDiv ? 'a' : ''}}" trans>Contact Support</a>
+                     </li>
+                 </ul>
+                 <ul ng-if="conf.liveChat.isSfChat" ng-click="startSFChat()" title="Live Chat" trans="attr-only">
+                     <li><a trans>Contact Support</a></li>
+                 </ul>
+                 <input name="" type="submit" value="{{'Reset'|translate}}" ng-disabled="!resetPasswordForm.$dirty || resetPasswordForm.$invalid || sendingForgotPassword">
+             </div>
+         </form>
+         <div class="registration-ok" ng-show="passwordResetComplete">
+             <p><span trans>Password reset complete.</span><span trans>Please check your email.</span></p>
+             <button class="registration-done-btn" ng-click="resetPasswordResult()" trans>OK</button>
+         </div>
+         <div class="registration-failed" ng-show="passwordResetFailed">
+             <p><span trans>Password reset failed.</span></p>
+             <button class="registration-done-btn" ng-click="resetPasswordResult()" trans>OK</button>
+         </div>
+         <div class="registration-failed" ng-show="usernameOrEmailInvalid">
+             <p><span trans>Username or email invalid</span></p>
+             <button class="registration-done-btn" ng-click="resetPasswordResult()" trans>OK</button>
+         </div>
+
+     </div>
+ </div>
+
+    <!--- POPUP forgot password -->
+    <ng-include src="::'templates/slider/forgot_password.html'|fixPath"
+                ng-if="$root.env.sliderContent === 'forgotPasswordForm' && $root.conf.registration.simplified"></ng-include>
+    <!--- END of POPUP forgot password -->
+
+    <div class=" block-sign-in-form" ng-if="env.sliderContent === 'reset_password'" ng-include="::'templates/slider/resetpasswordform.html'|fixPath"></div>
+</div>
+<ng-include src="::'templates/slider/registration.html'|fixPath" ng-if="env.sliderContent === 'register' && !conf.registration.simplified"></ng-include>
+<ng-include src="::'templates/slider/registration_simplified.html'|fixPath" ng-if="env.sliderContent === 'register'  && conf.registration.simplified"></ng-include>

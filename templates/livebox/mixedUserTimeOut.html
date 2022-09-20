@@ -1,0 +1,71 @@
+<div>
+    <h3 trans>Time-Out</h3>
+    <div class="settings-info-contain deposit-limit">
+        <div ng-if="!('time-out-text'|translate:null:true)">
+            <p trans>If you want to take a short break from playing with us, you may do so by taking a Time-Out.</p>
+            <p trans>Once you begin your Time-Out, you will no longer be able to deposit funds or play in any of our products.</p>
+            <p trans>However, you will be able to withdraw any balance you may have.</p>
+        </div>
+        <div ng-if="'time-out-text'|translate:null:true">
+            <p ng-bind-html="'time-out-text'|translate|html:'p'">
+        </div>
+        <form name="selfExclusionForm" class="registration-form" ng-init="initUserTimout()">
+            <div class="form-text">
+                <div class="limit-section" ng-repeat="option in conf.userTimeOut.options track by $index">
+                    <label>
+                        <input type="radio" name="period" ng-click="selectPeriod(option.limit);timeoutContainsDatepicker&&(dateState.openedTo = false);"  ng-model="$parent.periodValue" value="{{ $index }}">
+                        <span ng-bind="option.name|translate"></span>
+                    </label>
+                </div>
+                <div class="mini-form-box-b" ng-if="timeoutContainsDatepicker" ng-class="{'disabled': !selfExclusionData || selfExclusionData.type !== 'custom'}">
+                    <div class="date-picker-b">
+                        <div class="picker-contain">
+                            <div class="input-group" ng-click="dateState.openedTo = !dateState.openedTo;$event.preventDefault();$event.stopPropagation();">
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="{{'To'| translate}}"
+                                       datepicker-popup="{{conf.dateFormat.datepicker}}"
+                                       min-date="minToDate"
+                                       ng-model="customTimeout.date"
+                                       is-open="dateState.openedTo"
+                                       disabled="disabled"
+                                       datepicker-options="dateOptions"
+                                       ng-required="selfExclusionData.type === 'custom'"
+                                       close-text="Close"
+                                />
+                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default date-view" ng-click="openedTo = !openedTo;$event.stopPropagation();">
+                                                        <i class="date-p"></i>
+                                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="change-button-container password">
+                <div ng-if="conf.userTimeOut.additionalTexts">
+                    <p ng-repeat="text in conf.userTimeOut.additionalTexts track by $index">{{text|translate}}</p>
+                </div>
+                <div ng-if="$root.partnerConfig.require_password_for_self_exclusion" class="password-button">
+                    <label ng-class="{'error': selfExclusionForm.password.$dirty && selfExclusionForm.password.$error.required}">
+                        <span trans>Password</span> <span class="hint">*</span>
+                    </label>
+                    <div class="active-field">
+                        <div class="form-text" ng-class="{'error': selfExclusionForm.password.$dirty  && selfExclusionForm.password.$error.required}">
+                            <input type="password" name="password"  ng-model="selfExclusionPasswordState.value" placeholder="Current Password" autocomplete="off" required trans  numpad>
+
+                            <div class="tooltip-j" >
+                                <div ng-show="selfExclusionForm.password.$error.required" trans>This field is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cashier-button">
+                    <button disabled="disabled" ng-disabled="!periodValue || !selfExclusionForm.$valid" ng-show="!working" trans ng-click="setSelfExclusion(conf.userTimeOut.type, 'userTimeOut', selfExclusionForm.password)">Save</button>
+                    <button disabled="disabled" ng-show="working" trans>Wait...</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

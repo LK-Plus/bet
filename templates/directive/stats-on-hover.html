@@ -1,0 +1,104 @@
+<div class="statistics-p">
+    <div ng-show="isLoading"> {{info.message}}</div>
+    <table ng-if="!isLoading">
+        <thead class="first-static-block-p">
+            <tr>
+                <th><p trans>H2H</p></th>
+                <th colspan="5"><p class="text-left-p">{{'Form'|translate:null:'Statistics Form'}}</p></th>
+                <th colspan="5"><p>{{'Performance'|translate:null:'Statistics Performance'}}</p></th>
+            </tr>
+            <tr class="second-level-header-p">
+                <td><p class="text-left-p" trans>TEAM</p></td>
+                <td colspan="5"><p></p></td>
+                <td><p title="{{'All Records'|translate:null:'Statistics All Records'}}">{{'All'|translate:null:'Statistics All'}}</p></td>
+                <td><p title="{{'Home'|translate:null:'Statistics Home'}}">{{'H'|translate:null:'Statistics H'}}</p></td>
+                <td><p title="{{'Away'|translate:null:'Statistics Away'}}">{{'A'|translate:null:'Statistics A'}}</p></td>
+                <td><p ng-bind="::(sportBasedStats[statsGame.sport.alias].AGPM1.abbr || statsTableTexts.AGPM1.abbr)|translate:null:'Statistics '+ (sportBasedStats[statsGame.sport.alias].AGPM1.abbr || statsTableTexts.AGPM1.abbr)" title="{{(sportBasedStats[statsGame.sport.alias].AGPM1.title || statsTableTexts.AGPM1.title)|translate:null:'Statistics '+ (sportBasedStats[statsGame.sport.alias].AGPM1.title || statsTableTexts.AGPM1.title)}}"></p></td>
+                <td><p ng-bind="::(sportBasedStats[statsGame.sport.alias].AGPM2.abbr || statsTableTexts.AGPM2.abbr)|translate:null:'Statistics '+ (sportBasedStats[statsGame.sport.alias].AGPM2.abbr || statsTableTexts.AGPM2.abbr)" title="{{(sportBasedStats[statsGame.sport.alias].AGPM2.title || statsTableTexts.AGPM2.title)|translate:null:'Statistics '+ (sportBasedStats[statsGame.sport.alias].AGPM2.title || statsTableTexts.AGPM2.title)}}"></p></td>
+            </tr>
+            <tr>
+                <td><stats-logo size="56" team-id="::statistics.team1_id"></stats-logo> <p class="name-p" ng-bind="::statistics.team1" title="{{statistics.team1}}"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team1.scores[0].score1 > statistics.H2H.team1.scores[0].score2})" ng-bind="::(statistics.H2H.team1.scores[0].score1 != undefined ? statistics.H2H.team1.scores[0].score1 + ':' + statistics.H2H.team1.scores[0].score2 : '-')"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team1.scores[1].score1 > statistics.H2H.team1.scores[1].score2})" ng-bind="::(statistics.H2H.team1.scores[1].score1 != undefined ? statistics.H2H.team1.scores[1].score1 + ':' + statistics.H2H.team1.scores[1].score2 : '-')"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team1.scores[2].score1 > statistics.H2H.team1.scores[2].score2})" ng-bind="::(statistics.H2H.team1.scores[2].score1 != undefined ? statistics.H2H.team1.scores[2].score1 + ':' + statistics.H2H.team1.scores[2].score2 : '-')"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team1.scores[3].score1 > statistics.H2H.team1.scores[3].score2})" ng-bind="::(statistics.H2H.team1.scores[3].score1 != undefined ? statistics.H2H.team1.scores[3].score1 + ':' + statistics.H2H.team1.scores[3].score2 : '-')"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team1.scores[4].score1 > statistics.H2H.team1.scores[4].score2})" ng-bind="::(statistics.H2H.team1.scores[4].score1 != undefined ? statistics.H2H.team1.scores[4].score1 + ':' + statistics.H2H.team1.scores[4].score2 : '-')"></p></td>
+
+                <td><p class="active" ng-bind="::(statistics.H2H.team1.all.persent || '-')"></p></td>
+                <td><p class="active" ng-bind="::(sportBasedStats[statsGame.sport.alias].home ? statistics.H2H.team1.Home.persent || '-' : '-')"></p></td>
+                <td><p class="active" ng-bind="::(sportBasedStats[statsGame.sport.alias].away ? statistics.H2H.team1.Away.persent || '-' : '-')"></p></td>
+                <td class="statistics-border-p"><p class="active" ng-bind="::(statistics.H2H.team1.AGPM || '-')"></p></td>
+                <td rowspan="2"><p class="active" ng-bind="::(statistics.H2H.AGPM || '-')"></p></td>
+            </tr>
+            <tr>
+                <td><stats-logo size="56" team-id="::statistics.team2_id"></stats-logo> <p class="name-p" ng-bind="::statistics.team2" title="{{statistics.team2}}"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team2.scores[0].score1 > statistics.H2H.team2.scores[0].score2})" ng-bind="::(statistics.H2H.team2.scores[0].score1 != undefined ? statistics.H2H.team2.scores[0].score1 + ':' + statistics.H2H.team2.scores[0].score2 : '-')"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team2.scores[1].score1 > statistics.H2H.team2.scores[1].score2})" ng-bind="::(statistics.H2H.team2.scores[1].score1 != undefined ? statistics.H2H.team2.scores[1].score1 + ':' + statistics.H2H.team2.scores[1].score2 : '-')"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team2.scores[2].score1 > statistics.H2H.team2.scores[2].score2})" ng-bind="::(statistics.H2H.team2.scores[2].score1 != undefined ? statistics.H2H.team2.scores[2].score1 + ':' + statistics.H2H.team2.scores[2].score2 : '-')"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team2.scores[3].score1 > statistics.H2H.team2.scores[3].score2})" ng-bind="::(statistics.H2H.team2.scores[3].score1 != undefined ? statistics.H2H.team2.scores[3].score1 + ':' + statistics.H2H.team2.scores[3].score2 : '-')"></p></td>
+                <td><p ng-class="::({'active': statistics.H2H.team2.scores[4].score1 > statistics.H2H.team2.scores[4].score2})" ng-bind="::(statistics.H2H.team2.scores[4].score1 != undefined ? statistics.H2H.team2.scores[4].score1 + ':' + statistics.H2H.team2.scores[4].score2 : '-')"></p></td>
+                <td><p class="active" ng-bind="::(statistics.H2H.team2.all.persent || '-')"></p></td>
+                <td><p class="active" ng-bind="::(sportBasedStats[statsGame.sport.alias].home ? statistics.H2H.team2.Home.persent || '-' : '-')"></p></td>
+                <td><p class="active" ng-bind="::(sportBasedStats[statsGame.sport.alias].away ? statistics.H2H.team2.Away.persent || '-' : '-')"></p></td>
+                <td class="statistics-border-p"><p class="active" ng-bind="::(statistics.H2H.team2.AGPM || '-')"></p></td>
+            </tr>
+        </thead>
+        <thead class="second-static-block-p">
+            <tr>
+                <th colspan="11"><p><stats-logo size="44" competition-id="statsGame.competition.id"></stats-logo> {{statsGame.region.name}} - {{statsCompetitionName}}</p></th>
+            </tr>
+            <tr class="second-level-header-p">
+                <td><p class="text-left-p" trans>TEAM</p></td>
+                <td><p title="{{'Position'|translate:null:'Statistics Position'}}" trans>POS</p></td>
+                <td><p title="{{'Played'|translate:null:'Statistics Played'}}" trans>PLD</p></td>
+                <td><p title="{{'Points or Percentage'|translate:null:'Statistics Points or Percentage'}}" trans>PTS</p></td>
+                <td><p></p></td>
+                <td colspan="6"><p class="text-left-p" trans>NEXT MATCH</p></td>
+            </tr>
+            <tr>
+                <td><stats-logo size="56" team-id="::statistics.team1_id"></stats-logo> <p class="name-p" ng-bind="::statistics.team1" title="{{statistics.team1}}"></p></td>
+                <td><p class="active" ng-bind="::(statistics.H2Hleague.team1.POS || statistics.H2Hleague.team1.POS == 0 ? statistics.H2Hleague.team1.POS  :  '-')"></p></td>
+                <td><p class="active" ng-bind="::(statistics.H2Hleague.team1.PLD || statistics.H2Hleague.team1.PLD == 0 ? statistics.H2Hleague.team1.PLD  :  '-')"></p></td>
+                <td><p class="active" ng-bind="::(statistics.H2Hleague.team1.PTS || statistics.H2Hleague.team1.PTS == 0 ? statistics.H2Hleague.team1.PTS  :  '-' )"></p></td>
+                <td><p></p></td>
+                <td colspan="6"><p class="statistics-date-p" ng-bind="::(statistics.H2Hleague.team1.nextMatch.date ? (statistics.H2Hleague.team1.nextMatch.date|formatDate:'unixDate') : '-')"></p></td>
+            </tr>
+            <tr>
+                <td><stats-logo size="56" team-id="::statistics.team2_id"></stats-logo> <p class="name-p" ng-bind="::statistics.team2" title="{{statistics.team2}}"></p></td>
+                <td><p class="active" ng-bind="::(statistics.H2Hleague.team2.POS || statistics.H2Hleague.team2.POS == 0 ? statistics.H2Hleague.team2.POS : '-')"></p></td>
+                <td><p class="active" ng-bind="::(statistics.H2Hleague.team2.PLD || statistics.H2Hleague.team2.PLD == 0 ? statistics.H2Hleague.team2.PLD : '-')"></p></td>
+                <td><p class="active" ng-bind="::(statistics.H2Hleague.team2.PTS || statistics.H2Hleague.team2.PTS == 0 ? statistics.H2Hleague.team2.PTS : '-')"></p></td>
+                <td><p></p></td>
+                <td colspan="6"><p class="statistics-date-p" ng-bind="::(statistics.H2Hleague.team2.nextMatch.date ? (statistics.H2Hleague.team2.nextMatch.date|formatDate:'unixDate') : '-')"></p></td>
+            </tr>
+        </thead>
+        <thead class="third-static-block-p">
+            <tr>
+                <th><p trans>LAST 5</p></th>
+                <th colspan="5"><p class="text-left-p">{{'Form'|translate:null:'Statistics Form'}}</p></th>
+                <th colspan="3"><p title="{{(sportBasedStats[statsGame.sport.alias].AGPM1.title || statsTableTexts.AGPM1.title)|translate:null:'Statistics '+(sportBasedStats[statsGame.sport.alias].AGPM1.title || statsTableTexts.AGPM1.title)}}" ng-bind="::((sportBasedStats[statsGame.sport.alias].AGPM1.abbr || statsTableTexts.AGPM1.abbr)|translate:null:'Statistics '+(sportBasedStats[statsGame.sport.alias].AGPM1.abbr || statsTableTexts.AGPM1.abbr))"></p></th>
+                <th colspan="3"><p title="{{(sportBasedStats[statsGame.sport.alias].AGPM2.title || statsTableTexts.AGPM2.title)|translate:null:'Statistics '+(sportBasedStats[statsGame.sport.alias].AGPM2.title || statsTableTexts.AGPM2.title)}}" ng-bind="::((sportBasedStats[statsGame.sport.alias].AGPM2.abbr || statsTableTexts.AGPM2.abbr)|translate:null:'Statistics '+(sportBasedStats[statsGame.sport.alias].AGPM2.abbr || statsTableTexts.AGPM2.abbr))"></p></th>
+            </tr>
+            <tr>
+                <td><stats-logo size="56" team-id="::statistics.team1_id"></stats-logo> <p class="name-p" ng-bind="statistics.team1" title="{{statistics.team1}}"></p></td>
+                <td><p title="{{statistics.playedMatches.team1.scores[0].homeTeam[0].name + ' - ' + statistics.playedMatches.team1.scores[0].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team1.scores[0].state === 'won', 'yellow': statistics.playedMatches.team1.scores[0].state === 'draw', 'red': statistics.playedMatches.team1.scores[0].state === 'lost'})" ng-bind="::(statistics.playedMatches.team1.scores[0].score1 != undefined ? statistics.playedMatches.team1.scores[0].score1 + ':' + statistics.playedMatches.team1.scores[0].score2 : '-')"></p></td>
+                <td><p title="{{statistics.playedMatches.team1.scores[1].homeTeam[0].name + ' - ' + statistics.playedMatches.team1.scores[1].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team1.scores[1].state === 'won', 'yellow': statistics.playedMatches.team1.scores[1].state === 'draw', 'red': statistics.playedMatches.team1.scores[1].state === 'lost'})" ng-bind="::(statistics.playedMatches.team1.scores[1].score1 != undefined ? statistics.playedMatches.team1.scores[1].score1 + ':' + statistics.playedMatches.team1.scores[1].score2 : '-')"></p></td>
+                <td><p title="{{statistics.playedMatches.team1.scores[2].homeTeam[0].name + ' - ' + statistics.playedMatches.team1.scores[2].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team1.scores[2].state === 'won', 'yellow': statistics.playedMatches.team1.scores[2].state === 'draw', 'red': statistics.playedMatches.team1.scores[2].state === 'lost'})" ng-bind="::(statistics.playedMatches.team1.scores[2].score1 != undefined ? statistics.playedMatches.team1.scores[2].score1 + ':' + statistics.playedMatches.team1.scores[2].score2 : '-')"></p></td>
+                <td><p title="{{statistics.playedMatches.team1.scores[3].homeTeam[0].name + ' - ' + statistics.playedMatches.team1.scores[3].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team1.scores[3].state === 'won', 'yellow': statistics.playedMatches.team1.scores[3].state === 'draw', 'red': statistics.playedMatches.team1.scores[3].state === 'lost'})" ng-bind="::(statistics.playedMatches.team1.scores[3].score1 != undefined ? statistics.playedMatches.team1.scores[3].score1 + ':' + statistics.playedMatches.team1.scores[3].score2 : '-')"></p></td>
+                <td><p title="{{statistics.playedMatches.team1.scores[4].homeTeam[0].name + ' - ' + statistics.playedMatches.team1.scores[4].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team1.scores[4].state === 'won', 'yellow': statistics.playedMatches.team1.scores[4].state === 'draw', 'red': statistics.playedMatches.team1.scores[4].state === 'lost'})" ng-bind="::(statistics.playedMatches.team1.scores[4].score1 != undefined ? statistics.playedMatches.team1.scores[4].score1 + ':' + statistics.playedMatches.team1.scores[4].score2 : '-')"></p></td>
+                <td colspan="3"><p ng-bind="::(statistics.playedMatches.team1.AGPM || '-')"></p></td>
+                <td colspan="3"><p ng-bind="::(statistics.playedMatches.team1.totalAGPM || '-')"></p></td>
+            </tr>
+            <tr>
+                <td><stats-logo size="56" team-id="::statistics.team2_id"></stats-logo> <p class="name-p" ng-bind="::statistics.team2" title="{{statistics.team2}}"></p></td>
+                <td><p title="{{statistics.playedMatches.team2.scores[0].homeTeam[0].name + ' - ' + statistics.playedMatches.team2.scores[0].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team2.scores[0].state === 'won', 'yellow': statistics.playedMatches.team2.scores[0].state === 'draw', 'red': statistics.playedMatches.team2.scores[0].state === 'lost'})" ng-bind="::(statistics.playedMatches.team2.scores[0].score1 != undefined ? statistics.playedMatches.team2.scores[0].score1 + ':' + statistics.playedMatches.team2.scores[0].score2 : '-')"></p></td>
+                <td><p title="{{statistics.playedMatches.team2.scores[1].homeTeam[0].name + ' - ' + statistics.playedMatches.team2.scores[1].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team2.scores[1].state === 'won', 'yellow': statistics.playedMatches.team2.scores[1].state === 'draw', 'red': statistics.playedMatches.team2.scores[1].state === 'lost'})" ng-bind="::(statistics.playedMatches.team2.scores[1].score1 != undefined ? statistics.playedMatches.team2.scores[1].score1 + ':' + statistics.playedMatches.team2.scores[1].score2 : '-')"></p></td>
+                <td><p title="{{statistics.playedMatches.team2.scores[2].homeTeam[0].name + ' - ' + statistics.playedMatches.team2.scores[2].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team2.scores[2].state === 'won', 'yellow': statistics.playedMatches.team2.scores[2].state === 'draw', 'red': statistics.playedMatches.team2.scores[2].state === 'lost'})" ng-bind="::(statistics.playedMatches.team2.scores[2].score1 != undefined ? statistics.playedMatches.team2.scores[2].score1 + ':' + statistics.playedMatches.team2.scores[2].score2 : '-')"></p></td>
+                <td><p title="{{statistics.playedMatches.team2.scores[3].homeTeam[0].name + ' - ' + statistics.playedMatches.team2.scores[3].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team2.scores[3].state === 'won', 'yellow': statistics.playedMatches.team2.scores[3].state === 'draw', 'red': statistics.playedMatches.team2.scores[3].state === 'lost'})" ng-bind="::(statistics.playedMatches.team2.scores[3].score1 != undefined ? statistics.playedMatches.team2.scores[3].score1 + ':' + statistics.playedMatches.team2.scores[3].score2 : '-')"></p></td>
+                <td><p title="{{statistics.playedMatches.team2.scores[4].homeTeam[0].name + ' - ' + statistics.playedMatches.team2.scores[4].awayTeam[0].name}}" ng-class="::({'green': statistics.playedMatches.team2.scores[4].state === 'won', 'yellow': statistics.playedMatches.team2.scores[4].state === 'draw', 'red': statistics.playedMatches.team2.scores[4].state === 'lost'})" ng-bind="::(statistics.playedMatches.team2.scores[4].score1 != undefined ? statistics.playedMatches.team2.scores[4].score1 + ':' + statistics.playedMatches.team2.scores[4].score2 : '-')"></p></td>
+                <td colspan="3"><p ng-bind="::(statistics.playedMatches.team2.AGPM || '-')"></p></td>
+                <td colspan="3"><p ng-bind="::(statistics.playedMatches.team2.totalAGPM || '-')"></p></td>
+            </tr>
+        </thead>
+    </table>
+</div>

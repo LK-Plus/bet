@@ -1,0 +1,40 @@
+<div ng-controller="casinoCtrl" ng-init="init(); setTitle('Casino');" watch-resize middle-screen-mode="true" class="casino-mainpage-wrapper-b">
+    <!--Casino-new hompage-->
+    <div class="float-width" ng-include="'optional_modules/casino/templates/casino-template' + (confData.version !== 1 ? '-v' + confData.version : '') + '.html'|fixPath"></div>
+
+    <div  class="new-default-popup-j jackpot-win-animation-on" ng-if="jackpotWinner.animation"> <!--add class jackpot-win-animation-on and remove class jackpot-win-animation-off-->
+        <div class="jackpot-table">
+            <div class="jackpot-trow">
+                <div class="jackpot-tcell">
+                    <div class="jackpot-twrapper">
+                        <img src="images/jackpot-pools/jackpot-win-bg.jpg" alt="">
+                        <div class="jackpot-win-popup">
+                            <div class="jackpot-win-coins-first"></div>
+                            <div class="jackpot-win-coins-second"></div>
+                            <div class="jackpot-win-coins-third"></div>
+                            <p>{{jackpotWinner.data.Name|translate}}</p>
+                            <span>{{jackpotWinner.data.Winner.Amount|number:jackpotWinner.data.CurrencyFraction}} {{jackpotWinner.data.Currency|currency}}</span>
+                            <div ng-click="jackpotWinner.cancelJackpotWinnerAnimation()" trans class="got-it">Got It</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <multiview-control ng-if="confData.main.multiViewEnabled" wide-mode="wideMode" middle-mode="middleMode" view-count="viewCount" games-info="gamesInfo"></multiview-control>
+    <div ng-include="'optional_modules/casino/templates/big-game.html'|fixPath" ng-if="gamesInfo.length" class="big-games-overflow"></div>
+
+</div>
+
+
+<style ng-controller="cmsPagesCtrl" ng-init="loadPage('casino-backgrounds-' + env.lang, 'lang')">
+    .body-wrapper.casino {
+    {{mainPage.thumbnail ? 'background-image: url('+mainPage.thumbnail+');' : ''}}
+    {{mainPage.custom_fields.size ? "background-size: " + mainPage.custom_fields.size[0] + ";" : mainPage.thumbnail ? "background-size: 100%;" : ""}}
+    {{mainPage.custom_fields.position ? 'background-position: ' + mainPage.custom_fields.position[0] : mainPage.thumbnail ? "background-position: 50% 0" : ""}};
+    {{mainPage.custom_fields.attachment ? "background-attachment:" + mainPage.custom_fields.attachment[0] + ";" : ""}}
+    {{mainPage.custom_fields.color ? "background-color: " + mainPage.custom_fields.color[0] + ";" : ""}}
+    {{mainPage.custom_fields.repeat ? "background-repeat: " + mainPage.custom_fields.repeat[0] : mainPage.thumbnail ? "background-repeat: no-repeat" : ""}};
+    }
+</style>

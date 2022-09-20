@@ -1,0 +1,60 @@
+<div ng-if="env.mixedSettingsPage==='depositlimits'" ng-init="getLimits()">
+    <!--Change Password-->
+    <h3 trans>Deposit Limits</h3>
+
+    <div class="settings-info-contain deposit-limit settings-info-contain-padding">
+        <p trans>Deposit limits allow you to limit the amount of funds you can deposit into the account. The amount can be chosen over a daily, weekly or monthly period. The deposit limit will allow you to restrict the amount of money entering your account, before betting takes place.</p>
+
+        <form name="forms.depositLimitsForm" class="registration-form">
+
+            <label><span context="Deposit limits" trans>Day</span></label>
+
+            <div class="form-text"  ng-class="{'error': forms.depositLimitsForm.max_day_deposit.$touched && forms.depositLimitsForm.max_day_deposit.$invalid}">
+                <div class="tooltip-wrapper-j">
+                    <input name="max_day_deposit" ng-model="$parent.depositLimitsData.max_day_deposit" ng-blur="forms.depositLimitsForm.max_day_deposit.$touched=true" type="text" placeholder="Enter amount" prevent-input="[^0-9]+" required trans>
+
+                    <div class="form-error-icon-j" ng-click="resetFieldError('max_day_deposit', 'depositLimits')"></div>
+                    <div class="tooltip-j">
+
+                        <div trans ng-show="forms.depositLimitsForm.max_day_deposit.$error.required">This field is required</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <label><span context="Deposit limits" trans>Week</span></label>
+
+            <div class="form-text" ng-class="{'error': forms.depositLimitsForm.max_week_deposit.$touched && forms.depositLimitsForm.max_week_deposit.$invalid}">
+                <div class="tooltip-wrapper-j">
+                    <input name="max_week_deposit" ng-model="$parent.depositLimitsData.max_week_deposit" ng-blur="forms.depositLimitsForm.max_week_deposit.$touched=true" type="text" placeholder="Enter amount" prevent-input="[^0-9]+" required trans>
+
+                    <div class="form-error-icon-j" ng-click="resetFieldError('max_week_deposit', 'depositLimits')"></div>
+                    <div class="tooltip-j">
+
+                        <div trans ng-show="forms.depositLimitsForm.max_week_deposit.$error.required">This field is required</div>
+                    </div>
+                </div>
+            </div>
+            <label><span trans context="Deposit limits">Month</span></label>
+
+            <div class="form-text" ng-class="{'error': forms.depositLimitsForm.max_month_deposit.$touched && forms.depositLimitsForm.max_month_deposit.$invalid}">
+                <div class="tooltip-wrapper-j">
+                    <input name="max_month_deposit" ng-model="$parent.depositLimitsData.max_month_deposit" ng-blur="forms.depositLimitsForm.max_month_deposit.$touched=true" type="text" placeholder="Enter amount" prevent-input="[^0-9]+" required trans>
+
+                    <div class="form-error-icon-j" ng-click="resetFieldError('max_month_deposit', 'depositLimits')"></div>
+                    <div class="tooltip-j">
+
+                        <div trans ng-show="forms.depositLimitsForm.max_month_deposit.$error.required">This field is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="change-button-container password">
+                <div class="cashier-button">
+                    <button ng-disabled="!forms.depositLimitsForm.$dirty || forms.depositLimitsForm.$invalid" ng-show="!working" trans ng-click="setDepositLimits()">Save</button>
+                    <button disabled="disabled" ng-show="working" trans>Wait...</button>
+                </div>
+            </div>
+        </form>
+        <div class="info"><span class="note-highlight" trans>deposit_limits_text</span></div>
+    </div>
+</div>

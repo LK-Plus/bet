@@ -1,0 +1,30 @@
+<div ng-controller="cmsPagesCtrl" ng-init="setTitle('Belote');" get-casino-game="547" class="size-h-container">
+    <div ng-if="!globalConfig.belote.redirectOnGame" class="float-width">
+        <div class="skillgame-landing-j" ng-show="!showNestedFrame" ng-init="loadPage('belote.mainPageSlugs', true)">
+            <vbet-loader ng-show="!pages"></vbet-loader>
+            <div ng-if="pages" class="float-width">
+                <div class="intro-section-j" ng-init="initProductBanners('belote')">
+                    <casino-game-slider product-slides="productSlides" page-name = "Belote"></casino-game-slider>
+                    <div class="slider-landing-overlay">
+                        <div class="guide">
+                            <div class="button-group-j">
+                                <a ng-click="openNestedFrame()" trans>Play now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <promo-switcher template="slider"   ng-if="!showDownloadLinks" category="belote"></promo-switcher>
+                <div class="game-torunament-section-j belote-j">
+                    <div ng-init="tounamentTable = getPageBySlug(pages,'belote-table')" ng-bind-html="tounamentTable.content"></div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="showNestedFrame && game" ng-controller="casinoSpecialGamesCtrl" ng-init="loadGame('belote');"  class="big-games-overflow" ng-include="'optional_modules/casino/templates/specialgames/skillgame.html'|fixPath"></div>
+    </div>
+    <div ng-if="globalConfig.belote.redirectOnGame && game" class="size-h-container" ng-controller="casinoSpecialGamesCtrl" ng-init="loadGame('belote')" ng-include="'optional_modules/casino/templates/specialgames/main.html'|fixPath"></div>
+</div>
+
+
+
+
+

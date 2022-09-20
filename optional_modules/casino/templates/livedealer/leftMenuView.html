@@ -1,0 +1,44 @@
+<div class="new-live-casino-j overwrite-j" ng-init="initSlidingView();" id="liveCasinoScrollable">
+    <div class="live-casino-second-new-j">
+        <div class="j-resize-950-1280">
+            <div class="j-float-100-rel live-casino-slider-second-v-j">
+                <casino-game-slider product-slides="productSlides"></casino-game-slider>
+            </div>
+
+            <div class="fixed-nav-wrapper-casino-view live-casino-lm" fixonscroll scrollable-area-id="liveCasinoScrollable" header-id="main-header-container" default-offset="370">
+                <div class="casino-left-menu-v-2">
+                    <div class="search-category-nav-contain">
+                        <div class="left-column-casino-nav" no-animate>
+                            <ul ng-show="liveGamesData.providerOptions.length > 1">
+                                <li ng-repeat="provider in liveGamesData.providerOptions track by $index"
+                                    ng-class="{'active': liveGamesData.selectedProvider === provider.id}"
+                                    ng-click="selectLiveDealerProvider(provider.id)">
+                                    {{provider.displayName|translate }}
+
+                                    <ul>
+                                        <li ng-repeat="studio in liveGamesData.devidedGames[liveGamesData.selectedProvider].studios track by $index"
+                                            ng-class="{'active': studio === liveGamesData.devidedGames[liveGamesData.selectedProvider].defaultStudio}">
+                                            <a >{{ (liveGamesData.selectedProvider + '_STUDIO_' + studio)|translate }}</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-separator-games">
+                <casino-games-list class="all-games-casino-list visible-games-count-5"
+                                   show-conditions="true"
+                                   jackpot-games="true"
+                                   games-list="liveGamesData.devidedGames[liveGamesData.selectedProvider].games"
+                                   game-show-conditions="confData.liveCasino.hiddenGamesIds.indexOf(game.id) === -1 && (!game.markets || game.markets.available.indexOf(liveGamesData.devidedGames[liveGamesData.selectedProvider].defaultStudio) !== -1)"
+                                   use-big-icons="true"
+                >
+                </casino-games-list>
+
+            </div>
+        </div>
+    </div>
+</div>

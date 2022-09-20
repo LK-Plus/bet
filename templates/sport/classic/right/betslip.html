@@ -1,0 +1,1202 @@
+<div class="betslip-wrapper-v3" ng-controller="betSlipController">
+    <span ng-hide="true">{{possibleWinValue=posWin()}}</span>
+    <div class="bet-accept-changes-b-v3" ng-if="env.authorized && (betConf.sections.enableMyGamesIcon || betConf.sections.enableMyBetsIcon)">
+        <ul>
+            <li ng-if="betConf.sections.enableMyGamesIcon" ng-click="broadcast('open.mygames');goToTop(true);$event.stopPropagation()">
+                <div class="button-view-contain-v3">
+                    <button>
+                        <span trans>My games</span>
+                        <span class="mygames-count" ng-show="myGames.length">({{myGames.length}})</span>
+                    </button>
+                </div>
+            </li>
+            <li ng-if="betConf.sections.enableMyBetsIcon" ng-click="broadcast('open.history');goToTop(true);$event.stopPropagation()">
+                <div class="button-view-contain-v3">
+                    <button trans>My bets</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="batslip-contain-fixed-v3">
+        <div class="betslip-title-v3">
+            <div class="title-separator-b-v3">
+                <div class="betslip-name-row-v3">
+                    <h3>
+                        <i trans>bet slip</i>
+                    </h3>
+                    <div class="betslip-icons-contain-v3">
+                        <ul>
+                            <li ng-if="$root.conf.enableBetPrint">
+                                <div class="icon-wrapper-b-v3 print-icon-betslip-v3"
+                                     ng-class="{'disabled': !betPrint.id, 'active': betPrint.inProgress}"
+                                     title="{{'Print last bet' | translate}}"
+                                     ng-click="printLastBet()"
+                                ></div>
+                            </li>
+                            <li ng-if="$root.conf.enableSystemCalculator || $root.conf.bettingCalculator.enabled">
+                                <div class="icon-wrapper-b-v3 calculator-icon-betslip-v3" ng-click="$root.showSystemCalculator = !$root.showSystemCalculator"></div>
+                            </li>
+                            <li ng-show="betSlip.mode === 'betting' && !betSlip.superbet.selector && !counterOffer.enabled && $root.conf.priceChangesSettingMode[$root.env.oddFormat] === undefined">
+                                <div class="icon-wrapper-b-v3 settings-icon-betslip-v3" ng-click="shared.showBetSettings=!shared.showBetSettings"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="$root.conf.betslipLicenseMessage" class="betslip-license-message" ng-bind="'betslip_license_message_text'|translate"></div>
+        <div class="settings-contain-betslip-v3" ng-class="{'active': shared.showBetSettings}">
+            <div class="all-settings-info-b-v3">
+                <!-- <div class="pin-betslip-v3">
+                        <div class="multi-view-sw-v3">
+                            <p trans="" trans>Pin betslip</p>
+                            <div class="switcher-view-b active">
+                                <div class="sw-button-v3"></div>
+                            </div>
+                        </div>
+                    </div>-->
+                <div class="price-change-settings-v3" ng-show="$root.conf.priceChangesSettingMode[$root.env.oddFormat] === undefined">
+                    <h4 trans>Automatically accept price changes</h4>
+                    <ul>
+                        <li>
+                            <label>
+                                <input type="radio" ng-model="shared.acceptPriceChanges" value="0" ng-disabled="shared.isBetsInProgress || shared.betInProgress">
+                                <span trans>Always ask</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" ng-model="shared.acceptPriceChanges" value="1" ng-disabled="shared.isBetsInProgress || shared.betInProgress">
+                                <span trans>Accept Higher odds</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" ng-model="shared.acceptPriceChanges" value="2" ng-disabled="shared.isBetsInProgress || shared.betInProgress">
+                                <span trans>Accept Any odds</span>
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="save-settings-button-v3">
+                        <button trans ng-click="shared.showBetSettings=!shared.showBetSettings">close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="open-bets-buttons" ng-click="selectBetSlipMode('auto', $event)" prevent-fast-click="0.6" ng-if="($root.conf.enableBetBooking || $root.conf.enableSuggestedBets || $root.conf.openBetsAndEditBet)">
+            <div class="bet-slip-button" ng-if="!$root.conf.enableBetBooking && ($root.conf.enableSuggestedBets || $root.conf.openBetsAndEditBet) && env.authorized && $root.profile"
+                 data-mode="betting" data-count="{{betSlip.bets.length}}"
+                 ng-class="{'active': betSlip.mode === 'betting'}" title="{{'Bet slip'|translate}}" trans >Bet slip</div>
+            <div class="bet-slip-button" ng-if="$root.conf.enableBetBooking && betConf.enabled"
+                 data-mode="betting" data-count="{{betSlip.mode !== 'booking' ? betSlip.bets.length : 0}}"
+                 ng-class="{'active': betSlip.mode === 'betting'}" title="{{'Betting'|translate}}" trans>Betting</div>
+            <div class="booking-button" ng-if='$root.conf.enableBetBooking && !quickBet.enabled' data-mode="booking"
+                 ng-class="{'active': betSlip.mode === 'booking'}"
+                 data-count="{{betSlip.mode === 'booking' ? betSlip.bets.length : 0}}" title="{{'Booking'|translate}}" trans>Booking</div>
+            <div class="open-bets-button" ng-if='$root.conf.openBetsAndEditBet && env.authorized && $root.profile' data-count="{{shared.openBets.count}}" data-mode="openBets"
+                 ng-class="{'active': betSlip.mode === 'openBets'}" title="{{'Open bets'|translate}}" trans>Open bets</div>
+            <div class="suggested-bets-button" ng-if="$root.conf.enableSuggestedBets && env.authorized && $root.profile" data-content="{{'new'|translate}}" data-mode="suggested" ng-class="{'active': betSlip.mode === 'suggested'}" title="{{'Suggested Bets'|translate}}" trans>Suggested Bets</div>
+        </div>
+        <open-bets class="float-width" ng-if="$root.conf.openBetsAndEditBet && env.authorized && $root.profile" bet-slip="betSlip" profile="$root.profile" shared-data="shared"></open-bets>
+        <suggested-bets ng-if="$root.conf.enableSuggestedBets && env.authorized && $root.profile"
+                        clear-betslip="clearBetslip"
+                        show-retains-buttons="showRetainsButtons"
+                        bet-slip="betSlip"
+                        select-bet-slip-mode="selectBetSlipMode"></suggested-bets>
+        <div class="quick-bet-wrapper-v3" ng-hide="profile.sportsbook_profile_id == 26"><!--means to disable quick bet for high risk users-->
+            <div class="separator-contain-q-v3" data-content="{{'Define stake and bet with ONE click!'|translate}}" ng-class="{'active': quickBet.enabled}" ng-show="!betSlip.bets.length && (betSlip.mode === 'betting') && !betConf.quickBet.hideQuickBet">
+                <div class="pin-betslip-v3">
+                    <div class="multi-view-sw-v3">
+                        <p trans>Quick bet</p>
+                        <div class="switcher-view-b" ng-click="!env.authorized ? openLoginForm($event) : (!betSlip.bets.length && !shared.isBetsInProgress && (quickBet.enabled = !quickBet.enabled) && !(betSlip.stake = '') && (quickBet.savedMode = isBetAccepted = false))" ng-class="{'active': quickBet.enabled}" title="{{betSlip.bets.length > 0 && ('Clear Bet Slip to activate Qiuck Bet'|translate) || (!env.authorized ? ('Please log-in to be able to use Quick bet functionality'|translate) : '')}}">
+                            <div class="sw-button-v3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="superbet-contain-view-v3" ng-class="{active: betSlip.superbet.selector}" ng-show="betSlip.superbet.possible && $root.profile.is_super_bet_available && !quickBet.enabled && (betSlip.type.value === 1 || betSlip.type.value === 2) && !$root.editBet.edit && betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested'">
+            <div class="super-bet-view-contain-v3">
+                <div class="pin-betslip-v3">
+                    <div class="multi-view-sw-v3">
+                        <p>
+                            <span trans>Superbet</span>
+                            <span ng-show="betSlip.superbet.selector" trans>On</span>
+                        </p>
+                        <div class="switcher-view-b" ng-class="{active: betSlip.superbet.selector}" ng-click="togglesSuperbetSelector();">
+                            <div class="sw-button-v3"></div>
+                        </div>
+                        <!--<div class="info-icon-superbet-v3"></div>-->
+                    </div>
+                </div>
+                <div class="text-superbet-view-v3">
+                    <p trans>SuperBet is a new offer that allows requesting a Max Bet Limit Increase for selected sporting events.</p>
+                    <div class="icon-superbet-view-v3"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--counter offer-->
+        <div class="counter-offer-wrapper-view-v3" ng-if="profile.counter_offer_min_amount != null" ng-show="betSlip.counterOfferPossible && !quickBet.enabled && betSlip.mode !== 'booking' && !$root.editBet.edit && betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested'">
+            <div class="superbet-contain-view-v3" ng-class="{active: counterOffer.enabled}">
+                <div class="super-bet-view-contain-v3">
+                    <div class="pin-betslip-v3">
+                        <div class="multi-view-sw-v3">
+                            <p data-content="{{('new')|translate}}">
+                                <span ng-show="!counterOffer.enabled" trans>Counter offer available</span>
+                                <span ng-show="counterOffer.enabled" trans>Counter offer is ON</span>
+                            </p>
+                            <div class="switcher-view-b" ng-class="{active: counterOffer.enabled}" ng-click="toggleCounterOffer();">
+                                <div class="sw-button-v3"></div>
+                            </div>
+                            <!--<div class="info-icon-superbet-v3"></div>-->
+                        </div>
+                    </div>
+                    <div class="text-superbet-view-v3">
+                        <p trans="">Counter Offer is a new option that allows suggesting preferable odds for selected sporting events.</p>
+                        <div class="icon-superbet-view-v3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--counter offer END-->
+        <!--profit boost-->
+        <div class="profit-boost-wrapper-view-v3" ng-if="$root.profile.has_free_bets && betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested' && profitBoost.list.length">
+            <div class="superbet-contain-view-v3" ng-class="{active: profitBoost.enabled}">
+                <div class="super-bet-view-contain-v3">
+                    <div class="pin-betslip-v3">
+                        <div class="multi-view-sw-v3">
+                            <p>
+                                <span ng-show="!profitBoost.enabled" trans>Profit Boost</span>
+                                <span ng-show="profitBoost.enabled" trans>Profit Boost is ON</span>
+                            </p>
+                            <div class="switcher-view-b" ng-class="{active: profitBoost.enabled, 'disabled-opacity': betSlip.eachWayMode}"  ng-click="profitBoost.enabled = !profitBoost.enabled; handleProfitBoostState()">
+                                <div class="sw-button-v3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-superbet-view-v3">
+                        <p trans class="profit-boost-p">Profit Boost, when enabled makes your potential win amount larger.</p>
+                        <div class="icon-superbet-view-v3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="choose-stake-freebet-v3">
+                <h5 trans>Choose Profit Boost</h5>
+                <ul>
+                    <li ng-repeat="item in profitBoost.list track by item.id">
+                        <label>
+                            <input ng-click="handleProfitBoostState(item)" type="radio" ng-checked="profitBoost.selected.id == item.id">
+                            <span>{{item.amount_percent}} %</span>
+                            <span class="expiration-date">({{'Exp.'|translate}} {{item.expiration_date|formatDate:'full':null:$root.env.timeFormat}})</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--profit boost-->
+        <!--freebet-->
+        <div class="freebet-wrapper-view-v3"
+             ng-if="$root.profile.has_free_bets && freeBet.list.length && betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested' && !editBet.edit">
+            <div class="superbet-contain-view-v3" ng-class="{active: freeBet.enabled}">
+                <div class="super-bet-view-contain-v3">
+                    <div class="pin-betslip-v3">
+                        <div class="multi-view-sw-v3">
+                            <p>
+                                <span ng-show="!freeBet.enabled" trans>FreeBet available</span>
+                                <span ng-show="freeBet.enabled" trans>FreeBet is ON</span>
+                            </p>
+                            <div class="switcher-view-b" ng-class="{active: freeBet.enabled}" ng-click="freeBet.enabled = !freeBet.enabled; freeBetStateChanged()">
+                                <div class="sw-button-v3"></div>
+                            </div>
+                            <!--<div class="info-icon-superbet-v3"></div>-->
+                        </div>
+                    </div>
+                    <div class="text-superbet-view-v3">
+                        <p trans>Freebet is a new offer for making free bets.</p>
+                        <div class="icon-superbet-view-v3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="choose-stake-freebet-v3">
+                <h5 trans>Choose Stake</h5>
+                <ul>
+                    <li ng-repeat="item in freeBet.list track by item.id">
+                        <label>
+                            <input ng-click="freeBetStateChanged($index)" value="{{$index}}" type="radio" ng-checked="freeBet.selected.id == item.id">
+                            <span>{{item.amount}} {{currency_name|currency}}</span>
+                            <span class="expiration-date">({{'Exp.'|translate}} {{item.expiration_date|formatDate:'full':null:$root.env.timeFormat}})</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--freebet END-->
+        <div class="betslip-info-view-b-v3" ng-show="!betSlip.bets.length && betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested' && !quickBet.enabled || quickBet.enabled">
+            <div class="betslip-text-info-v3">
+                <p>
+                    <i class="info-icon-bet-text-v3"></i>
+                    <span ng-show="!betSlip.bets.length && !quickBet.enabled" trans>To select a bet, please click on any odd.</span>
+                    <span ng-show="quickBet.enabled" trans>Click on any odd to place a bet.</span>
+
+                </p>
+            </div>
+        </div>
+        <div class="events-filter-row-b-v3"  ng-show="!quickBet.enabled && betSlip.bets.length > 0 && betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested'">
+            <div class="mini-filters-box-v3">
+                <ul>
+                    <li ng-show="!betConf.fullCoverBetTypes.enabled">
+                        <div class="time-filter-v3" ng-class="{'active': showBetTypeDropDown, 'time-filter-hide': $root.editBet.edit}"><!--active-->
+                            <p ng-show="betSlip.bets.length" ng-click="!shared.isBetsInProgress && (showBetTypeDropDown = !showBetTypeDropDown)" hide-on-click state-flag-var="showBetTypeDropDown">
+                                <span ng-bind="betSlip.type.name| capitalise | translate "></span>
+                                <i class="arrow-rotate-filter-v3"></i>
+                            </p>
+                            <div class="sub-nav-filter-time-v3">
+                                <ul>
+                                    <li ng-repeat="type in betTypes track by type.value" ng-show="type.value < 5 || betConf.enableHorseRacingBetSlip" ng-hide="$root.editBet.edit && (type.value > 2 || (type.value == 1 && betSlip.bets.length > 1))" ng-class="{'active': betSlip.type.value === type.value}">
+                                        <span ng-click="setBetSlipType(type.value)" context="bet type" title="{{type.name | capitalise | translate}}">{{type.name | capitalise | translate}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li ng-show="!betConf.fullCoverBetTypes.enabled" class="system-opt-v3">
+                        <div class="time-filter-v3" ng-class="{'active': showSysBetDropDown}" ng-show="betSlip.bets.length > 2 && betSlip.type.value === 3 && (betSlip.bets.length - betSlip.bankerBetsCount > 1)" ng-click="!shared.isBetsInProgress && (showSysBetDropDown = !showSysBetDropDown)" hide-on-click state-flag-var="showSysBetDropDown">
+                            <p>
+                                <span>
+                                    {{sysBetSelectedValue}}/{{betSlip.bets.length -  betSlip.bankerBetsCount}} ({{calcSystemOptionsCount(sysBetSelectedValue)}}
+                                    <span ng-hide="betConf.hideOptFromSystem" trans>opt.</span>)
+                                </span>
+                                <i class="arrow-rotate-filter-v3"></i>
+                            </p>
+                            <div class="sub-nav-filter-time-v3">
+                                <ul>
+                                    <li ng-repeat="sysVal in betSlip.sysValArray" ng-click="setSystemValue(sysVal)" ng-class="{'active': sysBetSelectedValue === sysVal }">
+                                        <span>
+                                            {{sysVal}}/{{betSlip.bets.length - betSlip.bankerBetsCount}} ({{calcSystemOptionsCount(sysVal)}}
+                                            <b ng-hide="betConf.hideOptFromSystem" trans>opt.</b>)
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <button ng-show="betSlip.bets.length" ng-click="clearBetslip($root.editBet && $root.editBet.edit)">
+                            <span trans ng-show="!$root.editBet.edit">Clear All</span>
+                            <span trans ng-show="$root.editBet.edit">Cancel</span>
+                            <i class="remove-icon-betslip-v3"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="betslip-all-events-list-v3" ng-if="betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested'">
+            <div class="mini-list-events-b-v3">
+                <ul>
+                    <li ng-repeat="bet in betSlip.bets track by bet.eventId" ng-show="!bet.showInSelections" ng-class="{'blocked': ((bet.blocked || (bet.price | oddConvert:'decimal') == 1) && !bet.conflicts.length && !bet.deleted), 'deleted': bet.deleted, 'conflict': ((bet.conflicts.length && betSlip.type.value !== 1) && !bet.deleted), 'changed': (bet.priceInitial && bet.price != bet.priceInitial && bet.oddType !== 'sp')}">
+                        <div class="bet-event-teams-name-v3">
+                            <div class="title-event-b-v3">
+                                <label class="sistem-checkbox-view-v3" ng-show="betSlip.type.value === 3">
+                                    <input type="checkbox" ng-model="bet.incInSysCalc" ng-checked="bet.incInSysCalc">
+                                    <b></b>
+                                </label>
+                                <div class="betslip-event-icon-view blocked-icon-b-v3" ng-if="(bet.blocked || (bet.price | oddConvert:'decimal') == 1) && !bet.conflicts.length && !bet.deleted" title="Event Locked" trans></div>
+                                <div class="betslip-event-icon-view blocked-icon-b-v3 deleted-bet-error-v3" ng-if="bet.deleted" title="This event is not available now" trans></div>
+                                <div class="betslip-event-icon-view blocked-icon-b-v3 error-icon-b-v3" ng-if="(betSlip.type.value !== 1 || betConf.fullCoverBetTypes.enabled) && bet.conflicts.length && !bet.deleted">
+                                    <ul class="conflict-content-v3" id="conflict-{{bet.eventId}}">
+                                        <li trans>This pick cannot be combined with:</li>
+                                        <li ng-repeat="conflict in bet.conflicts">
+                                            {{conflict.title}} - {{conflict.pick}}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <span ng-click="gotoBetGame(bet.gamePointer)">{{ bet.title }}</span>
+                                <b ng-bind="bet.start_ts| formatDate:'hour':null:$root.env.timeFormat"></b>
+                                <i trans="" class="asian-l-m-cashout cashout-icon-market-v3" title="Cash-out available" ng-if="bet.hasCashout && betConf.showCashoutIconInEvents"></i>
+                            </div>
+
+                            <div class="remove-icon-betslip-v3" ng-click="removeBet(bet);"></div>
+                        </div>
+                        <div class="single-event-info-view-v3">
+                            <ul>
+                                <li><p>{{bet.marketName}}</p></li>
+                                <li>
+                                    <p>
+                                        <span>
+                                            {{bet.eventType === 'P1' && bet.team1Name || bet.eventType === 'P2' && bet.team2Name || bet.pick|removeParts:[bet.marketName]}}
+                                        </span>
+                                        <span ng-show="bet.base !== undefined" ng-class="{'gone' : bet.baseInitial !== bet.base }">
+                                            ({{getDisplayBase(bet, true)| handicapBaseFormat:$root.conf.sportsLayout==='asian':false:($root.conf.asian.hideHandicapSignsInOverview && bet.displayKey === 'HANDICAP'):bet.marketHomeScore:bet.marketAwayScore:bet.eventType1}})
+                                        </span>
+                                        <span ng-show="bet.baseInitial !== bet.base">
+                                            ({{getDisplayBase(bet, false)| handicapBaseFormat:$root.conf.sportsLayout==='asian':false:($root.conf.asian.hideHandicapSignsInOverview && bet.displayKey === 'HANDICAP'):bet.marketHomeScore:bet.marketAwayScore:bet.eventType1 }})
+                                        </span>
+                                    </p>
+                                    <div class="bet-price-view-b-v3">
+                                        <span class="bet-price-v3 {{bet.price_change == null? '' : ({true: 'up-', false: 'down'}[bet.price_change > 0] + (bet.price_change % 2)) }}" ng-if="betConf.bcWillCustomConf" ng-bind="bet.oddType === 'sp' ? 'sp' : bet.price | oddConvert: $root.env.oddFormat: null: bet.displayKey"></span>
+                                        <span class="bet-price-v3" ng-if="!betConf.bcWillCustomConf && (!betConf.enableHorseRacingBetSlip || bet.spEnabled === undefined)">{{bet.oddType === 'sp' ? 'sp' : bet.price|oddConvert:$root.env.oddFormat:null:bet.displayKey }}</span>
+                                        <span class="bet-price-change-v3" ng-show="!betConf.bcWillCustomConf && (bet.priceInitial && bet.price != bet.priceInitial && bet.oddType !== 'sp')">{{ bet.priceInitial|oddConvert:$root.env.oddFormat:null:bet.displayKey }}</span>
+                                        <div class="sp-odd-selector" ng-if="betConf.enableHorseRacingBetSlip && bet.spEnabled" ng-class="{'no-bet-price': !bet.price}">
+                                            <select ng-model="bet.oddType" ng-disabled="!bet.price">
+                                                <option ng-if="bet.price" value="odd" ng-bind="bet.price|oddConvert:$root.env.oddFormat:null:bet.displayKey"></option>
+                                                <option value="sp">SP</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ng-if="betConf.enableHorseRacingBetSlip && betConf.enableEachWayBetting && bet.ewAllowed && betSlip.type.value === 1 && betSlip.bets.length > 1">
+                                    <label class="ew-box-v3" >
+                                        <input type="checkbox" ng-model="bet.eachWay">
+                                        <span class="ew-total-view-v3">EW</span>
+                                    </label>
+                                </li>
+                                <li class="stake-form-contain-v3" ng-if="profile.counter_offer_min_amount != null" ng-show="betSlip.type.value === 1 && counterOffer.enabled && betSlip.mode !== 'booking'">
+                                    <ul>
+                                        <li>
+                                            <input comma
+                                                   comma-enable={{$root.conf.enableCommaSeparateNumber}}
+                                                   comma-decimal="enable" comma-dot="{{$root.conf.enableDotInsteadComma}}"
+                                                   prevent-input="{{$root.conf.stakeAmountPreventInput}}"
+                                                   placeholder="{{'Your offer' | translate}}" maxlength="11"
+                                                   ng-model="bet.counterOffer" numpad type="text"
+                                                   maxlength="8">
+                                        </li>
+                                        <li>
+                                            <div class="stake-max-bet-v3" ng-click="bet.counterOffer = bet.maxCounterOffer">
+                                                <span class="single-bet-maxbet-view-v3">
+                                                    <b trans>Max</b>
+                                                    <b>{{ bet.maxCounterOffer = ((bet.price / (1 - $root.partnerConfig.odds_raised_percent * 0.01))|counterOfferRounding)|oddConvert:$root.env.oddFormat:null:bet.displayKey }}</b>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="stake-form-contain-v3" ng-show="betSlip.type.value === 1 && betSlip.bets.length > 1 && !$root.editBet.edit" ng-if="!freeBet.enabled">
+                            <ul>
+                                <li>
+                                    <input id="{{'single-bet-input-1-' + bet.eventId}}" comma
+                                           comma-enable={{$root.conf.enableCommaSeparateNumber}}
+                                           comma-decimal="enable" comma-dot="{{$root.conf.enableDotInsteadComma}}"
+                                           prevent-input="{{$root.conf.stakeAmountPreventInput}}"
+                                           prevent-rounding="{{$root.conf.balanceFractionSize}}"
+                                           ng-focus="(betSlip.stake == 0) && (betSlip.stake = '')"
+                                           ng-model="bet.singleStake" numpad type="text"
+                                           placeholder="{{$root.conf.betslipInputFieldCustomValue | translate}}"
+                                           maxlength="8" focus-on="bet{{bet.eventId}}"
+                                           ng-keypress="betFromKeyboard($event)"
+                                           ng-change="singleBetTypeAmountChange()">
+                                </li>
+                                <li ng-show="betSlip.mode !== 'booking'">
+                                    <div class="stake-max-bet-v3" ng-show="env.authorized && betSlip.type.value === 1 && !counterOffer.enabled">
+                                        <span class="single-bet-stake-repeat-v3"
+                                              ng-show="$first && betSlip.bets.length > 1"
+                                              ng-click="repeatSingleStake(bet.singleStake);singleBetTypeAmountChange();"
+                                              title="Repeat for all" trans><i></i></span>
+                                        <span class="single-bet-maxbet-view-v3"
+                                              title="Max"
+                                              ng-class="{'disabled-opacity': getMaxBetInProgress}"
+                                              ng-show="(betSlip.mode === 'betting') && !betConf.disableMaxBet"
+                                              ng-click="bet.singleStake = getMaxBet(bet)" trans>Max</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="booking-id-text-v3" ng-if="betSlip.mode === 'booking' && betSlip.bookingResultIds.length > 1">
+                                <span>
+                                    {{'Booking ID: ' | translate }} <span ng-bind="betSlip.bookingResultIds[$index]"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="possible-win-view-v3" ng-if="env.authorized && counterOffer.enabled && betSlip.bets.length > 1">
+                            <div class="bet-win-view-v3">
+                                <p>
+                                    <i trans>Min Offer Amount:</i>
+                                </p>
+                                <span>
+                                    <b>{{ profile.counter_offer_min_amount.toFixed(currency.rounding)|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize }} {{currency_name|currency}}</b>
+                                </span>
+                            </div>
+                        </div>
+                        <div ng-show="betSlip.type.value === 1 && betSlip.bets.length > 1 && bet.singlePosWin > 0">
+                            <div class="possible-win-view-v3" ng-if="!taxOnStake.enabled">
+                                <div class="bet-win-view-v3">
+                                    <p>
+                                        <i trans>Possible win:</i>
+                                    </p>
+                                    <span>
+                                        <b>{{bet.singlePosWin|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="display-float" ng-if="bet.tax"> <!-- tax_type: 1 - tax on profit ; 4 - tax on stack 20 - tax on profit as fictive-->
+                                <div class="bet-win-view-v3">
+                                    <div>
+                                        <p><i trans>Tax:</i></p>
+                                        <span><b>{{bet.tax|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b> <b ng-if="$root.partnerConfig && $root.partnerConfig.tax_percent">{{"({1}%)"|translate:[$root.partnerConfig.tax_percent]}}</b></span>
+                                    </div>
+                                    <div ng-if="$root.partnerConfig.tax_type===20">
+                                        <p><i trans>Winning bonus:</i></p>
+                                        <span><b>{{bet.tax|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="bet-win-view-v3">
+                                    <div>
+                                        <p><i trans>Final Payout:</i></p>
+                                        <span><b>{{(bet.singlePosWin - ({1:1, 2:1}[$root.partnerConfig.tax_type] ? bet.tax : 0))|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="display-float" ng-if="taxOnStake.enabled">
+                                <div class="bet-win-view-v3">
+                                    <div>
+                                        <p><i>{{$root.partnerConfig.tax_percent}}% tax on stake:</i></p>
+                                        <span><b>{{bet.stakeTax|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="bet-win-view-v3">
+                                    <div>
+                                        <p><i trans>Stake after tax:</i></p>
+                                        <span><b>{{bet.remainingStake | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="bet-win-view-v3">
+                                    <div>
+                                        <p><i ng-bind="bet.secondTax > 0 ? 'Possible win:' : 'Final Payout:'|translate"></i></p>
+                                        <span><b>{{bet.singlePosWin | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="bet-win-view-v3" ng-if="bet.secondTax > 0">
+                                    <div>
+                                        <p><i trans>Tax:</i></p>
+                                        <span><b>{{bet.secondTax | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="bet-win-view-v3" ng-if="bet.secondTax > 0">
+                                    <div>
+                                        <p><i trans>Final Payout:</i></p>
+                                        <span><b>{{bet.singlePosWin - bet.secondTax | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="edit-bets-contain" ng-if="$root.editBet.edit">
+                <div class="edit-bets-time-id">
+                    <p>{{$root.editBet.dateTime|formatDate:($root.conf.layoutTimeFormat[$root.conf.sportsLayout] || 'noLocaleTranslate'):null:$root.env.timeFormat}} {{$root.conf.layoutTimeFormat[$root.conf.sportsLayout]? (bet.date_time|formatDate:'hour':null:$root.env.timeFormat): ''}}</p>
+                    <span>ID: <b>{{$root.editBet.oldBetId}}</b></span>
+                </div>
+                <p trans>Add or swap selections</p>
+                <div class="add-bet-selections" ng-show="!$root.editBet.openSelectionsPart || betSlip.bets.length === 0">
+                    <p ng-show="!$root.editBet.openSelectionsPart" ng-click="addSelections(true);" trans>Add selection</p>
+                    <span ng-show="betSlip.bets.length === 0" ng-click="clearBetslip($root.editBet.edit)" trans>Cancel</span>
+                </div>
+                <div class="bets-selections-content" ng-show="$root.editBet.openSelectionsPart">
+                    <div class="all-bet-selections">
+                        <p class="clear-all-bet-selections"><span trans>New selections</span><i class="remove-icon-betslip-v3" ng-click="removeNewSelectionsFromBetSlip()"></i></p>
+                        <button ng-hide="disableAddBets.newSelections || emptyNewSelections" ng-click="addSelections()" trans>Add to bet</button>
+                    </div>
+                    <div class="mini-list-events-b-v3">
+                        <p class="empty-edit-bet-list" ng-show="emptyNewSelections" trans>Browse the site and click an event to add selections to your existing bet.</p>
+                        <ul>
+                            <li ng-repeat="bet in betSlip.bets track by bet.eventId" ng-show="bet.showInSelections" ng-class="{'blocked': ((bet.blocked || (bet.price | oddConvert:'decimal') == 1) && !bet.conflicts.length && !bet.deleted), 'deleted': bet.deleted, 'conflict': ((bet.conflicts.length && betSlip.type.value !== 1) && !bet.deleted), 'changed': (bet.priceInitial && bet.price != bet.priceInitial && bet.oddType !== 'sp')}">
+                                <div class="bet-event-teams-name-v3">
+                                    <div class="title-event-b-v3">
+                                        <label class="sistem-checkbox-view-v3" ng-show="betSlip.type.value === 3">
+                                            <input type="checkbox" ng-model="bet.incInSysCalc" ng-checked="bet.incInSysCalc">
+                                            <b></b>
+                                        </label>
+                                        <div class="betslip-event-icon-view blocked-icon-b-v3" ng-if="(bet.blocked || (bet.price | oddConvert:'decimal') == 1) && !bet.conflicts.length && !bet.deleted" title="Event Locked" trans></div>
+                                        <div class="betslip-event-icon-view blocked-icon-b-v3 deleted-bet-error-v3" ng-if="bet.deleted" title="This event is not available now" trans></div>
+                                        <div class="betslip-event-icon-view blocked-icon-b-v3 error-icon-b-v3" ng-show="(bet.conflicts.length) && !bet.deleted">
+                                            <ul class="conflict-content-v3" id="conflict-{{bet.eventId}}">
+                                                <li trans>This pick cannot be combined with:</li>
+                                                <li ng-repeat="conflict in bet.conflicts">
+                                                    {{conflict.title}} - {{conflict.pick}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <span ng-click="gotoBetGame(bet.gamePointer)">{{ bet.title }}</span>
+                                        <b ng-bind="bet.start_ts| formatDate:'hour':null:env.timeFormat"></b>
+                                    </div>
+                                    <div class="remove-icon-betslip-v3" ng-click="removeBet(bet)"></div>
+                                </div>
+                                <div class="single-event-info-view-v3">
+                                    <ul>
+                                        <li><p>{{bet.marketName}}</p></li>
+                                        <li>
+                                            <p>
+                                                <span>
+                                                    {{bet.eventType === 'P1' && bet.team1Name || bet.eventType === 'P2' && bet.team2Name || bet.pick|removeParts:[bet.marketName]}}
+                                                </span>
+                                                <span ng-show="bet.base !== undefined" ng-class="{'gone' : bet.baseInitial !== bet.base }">
+                                                    ({{getDisplayBase(bet, true)| handicapBaseFormat:$root.conf.sportsLayout==='asian':false:($root.conf.asian.hideHandicapSignsInOverview && bet.displayKey === 'HANDICAP'):bet.marketHomeScore:bet.marketAwayScore:bet.eventType1}})
+                                                </span>
+                                                <span ng-show="bet.baseInitial !== bet.base">
+                                                    ({{getDisplayBase(bet, false)| handicapBaseFormat:$root.conf.sportsLayout==='asian':false:($root.conf.asian.hideHandicapSignsInOverview && bet.displayKey === 'HANDICAP'):bet.marketHomeScore:bet.marketAwayScore:bet.eventType1}})
+                                                </span>
+                                            </p>
+                                            <div class="bet-price-view-b-v3">
+                                                <span class="bet-price-v3 {{bet.price_change == null? '' : ({true: 'up-', false: 'down'}[bet.price_change > 0] + (bet.price_change % 2)) }}" ng-if="betConf.bcWillCustomConf" ng-bind="bet.oddType === 'sp' ? 'sp' : bet.price | oddConvert: $root.env.oddFormat: null: bet.displayKey"></span>
+                                                <span class="bet-price-v3" ng-if="!betConf.bcWillCustomConf && (!betConf.enableHorseRacingBetSlip || bet.spEnabled === undefined)">{{bet.oddType === 'sp' ? 'sp' : bet.price|oddConvert:$root.env.oddFormat:null:bet.displayKey }}</span>
+                                                <span class="bet-price-change-v3" ng-show="!betConf.bcWillCustomConf && (bet.priceInitial && bet.price != bet.priceInitial && bet.oddType !== 'sp')">{{ bet.priceInitial|oddConvert:$root.env.oddFormat:null:bet.displayKey }}</span>
+                                                <div class="sp-odd-selector" ng-if="betConf.enableHorseRacingBetSlip && bet.spEnabled" ng-class="{'no-bet-price': !bet.price}">
+                                                    <select ng-model="bet.oddType" ng-disabled="!bet.price">
+                                                        <option ng-if="bet.price" value="odd" ng-bind="bet.price|oddConvert:$root.env.oddFormat:null:bet.displayKey"></option>
+                                                        <option value="sp">SP</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="stake-form-contain-v3" ng-if="profile.counter_offer_min_amount != null" ng-show="betSlip.type.value === 1 && counterOffer.enabled && betSlip.mode !== 'booking'">
+                                            <ul>
+                                                <li>
+                                                    <input comma
+                                                           comma-enable={{$root.conf.enableCommaSeparateNumber}}
+                                                           comma-decimal="enable" comma-dot="{{$root.conf.enableDotInsteadComma}}"
+                                                           prevent-input="{{$root.conf.stakeAmountPreventInput}}"
+                                                           placeholder="{{'Your offer' | translate}}" maxlength="11"
+                                                           ng-model="bet.counterOffer" numpad type="text"
+                                                           maxlength="8">
+                                                </li>
+                                                <li>
+                                                    <div class="stake-max-bet-v3" ng-click="bet.counterOffer = bet.maxCounterOffer">
+                                                <span class="single-bet-maxbet-view-v3">
+                                                    <b trans>Max</b>
+                                                    <b>{{ bet.maxCounterOffer = ((bet.price / (1 - $root.partnerConfig.odds_raised_percent * 0.01))|counterOfferRounding)|oddConvert:$root.env.oddFormat:null:bet.displayKey }}</b>
+                                                </span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div ng-show="betSlip.type.value === 1 && betSlip.bets.length > 1 && bet.singlePosWin > 0">
+                                    <div class="possible-win-view-v3">
+                                        <div class="bet-win-view-v3">
+                                            <p>
+                                                <i trans>Possible win:</i>
+                                            </p>
+                                            <span>
+                                        <b>{{bet.singlePosWin|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b>
+                                    </span>
+                                        </div>
+                                    </div>
+                                    <div class="display-float" ng-if="bet.tax"> <!-- tax_type: 1 - tax on profit ; 4 - tax on stack 20 - tax on profit as fictive-->
+                                        <div class="bet-win-view-v3">
+                                            <div>
+                                                <p><i trans>Tax:</i></p>
+                                                <span><b>{{bet.tax|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                            </div>
+                                            <div ng-if="$root.partnerConfig.tax_type===20">
+                                                <p><i trans>Winning bonus:</i></p>
+                                                <span><b>{{bet.tax|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                            </div>
+                                        </div>
+                                        <div class="bet-win-view-v3">
+                                            <div>
+                                                <p><i trans>Final Payout:</i></p>
+                                                <span><b>{{(bet.singlePosWin - ($root.partnerConfig.tax_type===1 ? bet.tax: 0))|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="any-info-betslip-contain-v3">
+                <div ng-if="betConf.fullCoverBetTypes.enabled" ng-show="betSlip.bets.length > 1" class="accumulator-multiples">
+                    <div class="accumulator-multiples-title-collapse" ng-click="fullCoverBet.expanded = !fullCoverBet.expanded" ng-class="{'active': fullCoverBet.expanded}" trans>Accumulators / Multiples</div>
+                    <div class="accumulator-multiples-data-wrapper">
+                        <div class="accumulator-multiples-table">
+                            <table>
+                                <tr>
+                                    <th colspan="3">
+                                        <p trans>Bet Type</p>
+                                    </th>
+                                    <th>
+                                        <p trans>Unit Stake</p>
+                                    </th>
+                                </tr>
+                                <tr ng-repeat="(key, type) in fullCoverBet.types track by $index" ng-hide="!fullCoverBet.expanded && type.count !== 1 || (freeBet.enabled && !type.totalCoef)">
+                                    <td>
+                                        <p ng-bind="type.name" ng-class="{'accumulator-total-coef': type.totalCoef && !betSlip.hasSpOddTypes}"></p>
+                                        <p ng-if="type.totalCoef && !betSlip.hasSpOddTypes" ng-bind="type.totalCoef"></p>
+                                    </td>
+                                    <td>
+                                        <label class="ew-box-v3" ng-if="!$first && betConf.enableEachWayBetting && betSlip.eachWayPossible">
+                                            <input type="checkbox" ng-model="type.ewMode">
+                                            <span class="ew-total-view-v3">EW</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <i title="{{(key + '_type_description') | translate}}" class="info-icon"></i>
+                                    </td>
+                                    <td>
+                                        <div class="stake-form-contain-v3">
+                                            <ul>
+                                                <li>
+                                                    <div class="accumulator-multiples-count">{{ type.count }}x</div>
+                                                </li>
+                                                <li>
+                                                    <input comma comma-enable={{$root.conf.enableCommaSeparateNumber}}
+                                                           comma-decimal="enable"
+                                                           prevent-rounding="{{$root.conf.balanceFractionSize}}"
+                                                           comma-dot="{{$root.conf.enableDotInsteadComma}}"
+                                                           prevent-input="{{$root.conf.stakeAmountPreventInput}}"
+                                                           ng-disabled="freeBet.enabled"
+                                                           ng-model="type.amount" numpad type="text"
+                                                           ng-change="fullCoverTypeAmountChange(key, type.amount)"
+                                                           placeholder="{{$root.conf.betslipInputFieldCustomValue | translate}}"
+                                                           maxlength="8">
+                                                </li>
+                                                <li>
+                                                    <div ng-show="env.authorized" class="stake-max-bet-v3">
+                                                        <span class="single-bet-maxbet-view-v3" title="Max" ng-click="getMaxBet(betSlip.bets, type)" trans>Max</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--bonus bet -->
+                <!--todo enable after staging test -->
+<!--                <div ng-if="profile.bonus_balance" class="use-account-view-v3" ng-show="!$root.editBet.edit"> -->
+<!--                        <div class="quick-bet-wrapper-v3">-->
+<!--                            <div class="separator-contain-q-v3">-->
+<!--                                <div class="pin-betslip-v3">-->
+<!--                                    <div class="multi-view-sw-v3">-->
+<!--                                        <p trans>Use Account Balance</p>-->
+<!--                                          <div class="switcher-view-b" ng-class="{active: bonusBet.disabled}" ng-click="bonusBet.disabled = !bonusBet.disabled;">-->
+<!--                                            <div class="sw-button-v3"></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    <div class="betslip-info-view-b-v3">-->
+<!--                        <div class="betslip-text-info-v3">-->
+<!--                            <p trans ng-show="bonusBet.disabled">-->
+<!--                                <i class="info-icon-bet-text-v3"></i>-->
+<!--                                <span>When switched on the real money of your account will be used, otherwise, your bonus balance will be used by default-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                         </div>-->
+<!--                </div>-->
+                <!--bonusbet END-->
+                <div class="all-events-info-stake-v3" ng-show="(betSlip.bets.length > 0 || quickBet.enabled)">
+                    <div class="booking-id-text-v3" ng-show="betSlip.mode === 'booking' && betSlip.bookingResultIds.length">
+                        <span ng-if="betSlip.bookingResultIds.length === 1">
+                            {{'Booking ID: ' | translate }} <span ng-bind="betSlip.bookingResultIds[0]"></span>
+                        </span>
+                        <i ng-show="$root.conf.bookingBetPrint.showPrintButton" ng-click="openBookingPrintPopup()"></i>
+                    </div>
+                    <div class="odds-contain-ew-v3 betslip-odds-contain-ew-v3" ng-class="{'event-block-freebet': betSlip.thereAreDeletedEvents && freeBet.enabled}" ng-show="(!betSlip.eachWayMode && !betSlip.hasSpOddTypes && betSlip.bets.length > 1 && betSlip.type.value == 2 && !quickBet.enabled || betConf.enableHorseRacingBetSlip && betConf.enableEachWayBetting && betSlip.eachWayPossible && !(betSlip.type.value === 1 && betSlip.bets.length > 1)) || $root.editBet.edit">
+                        <label class="ew-box-v3" ng-if="betConf.enableHorseRacingBetSlip && betConf.enableEachWayBetting && betSlip.eachWayPossible && !quickBet.enabled && !(betSlip.type.value === 1 && betSlip.bets.length > 1)">
+                            <input type="checkbox" ng-model="betSlip.eachWayMode" ng-change="onEachWayModeChange()">
+                            <span class="ew-total-view-v3">ew</span>
+                        </label>
+                        <div class="betslip-content-wrap" ng-show="!betSlip.eachWayMode && !betSlip.hasSpOddTypes && betSlip.bets.length > 1 && betSlip.type.value == 2 && !quickBet.enabled">
+                            <div class="betslip-bonus-block"
+                                 ng-class="{'active pointer-events-none': bonusInfo.opened}"
+                                 ng-click="bonusInfo.opened = !bonuseInfo.opened"
+                                 prevent-fast-click="3"
+                                 ng-if="betConf.enableExpressBonusInfo && betSlip.type.value === 2 && expressBonus.enabled"
+                                 ng-init="bonusInfo = {opened: false}"
+                                 state-flag-var="bonusInfo.opened" hide-on-click>
+                                <i class="betslip-max-min-icon betslip-info-i"></i>
+                                <span class="betslip-bonus-text" trans>Bonus</span>
+                            </div>
+                            <div class="betslip-max-min betslip-table-wrap" ng-if="betConf.enableExpressBonusInfo && betSlip.type.value === 2 && expressBonus.enabled" >
+                                <div class="betslip-table-scroll">
+                                    <table class="betslip-table">
+                                        <tr>
+                                            <td trans>Count</td>
+                                            <td ng-if="!expressBonus.allMinOddsEmpty" trans>Min odds</td>
+                                            <td ng-if="expressBonus.hasCurrencyMinBetStake[currency_name|| $root.conf.registration.defaultCurrency]" trans>Min bet stake</td>
+                                            <td>
+                                                {{'Bonus'|translate}} %
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat="bonusInfo in expressBonus.info track by bonusInfo.count" >
+                                            <td ng-bind="bonusInfo.count"></td>
+                                            <td ng-if="!expressBonus.allMinOddsEmpty" ng-bind="bonusInfo.minOdds|oddConvert:$root.env.oddFormat"></td>
+                                            <td ng-if="expressBonus.hasCurrencyMinBetStake[currency_name|| $root.conf.registration.defaultCurrency]">{{bonusInfo.minBetStakes[currency_name|| $root.conf.registration.defaultCurrency]|number:$root.conf.balanceFractionSize}} {{bonusInfo.minBetStakes[currency_name|| $root.conf.registration.defaultCurrency]?((currency_name|| $root.conf.registration.defaultCurrency)|currency):''}}</td>
+                                            <td ng-bind="bonusInfo.percent"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="betslip-odds-wrap">
+                                <b trans>Odds:</b>
+                                <span>{{betSlip.expOdds|oddConvert:(($root.env.oddFormat === 'hongkong' && $root.conf.specialOddFormat)? $root.conf.specialOddFormat.hongkong.default : $root.env.oddFormat):'fictional':undefined:undefined:true}}</span>
+                            </div>
+                        </div>
+                        <div class="editing-stake-wrapper" ng-show="$root.editBet.edit">
+                            <div class="editing-stake-wrapper-p" ng-bind="($root.editBet.stakeAmount ? 'Editing uses the cash out value of this bet' : 'Editing functionality is not available at the moment') | translate"></div>
+                            <div class="editing-stake-wrapper-con" ng-show="!betSlip.eachWayMode && !betSlip.hasSpOddTypes && !quickBet.enabled">
+                                <div class="editing-stake-wrapper-p" trans>New stake amount:</div>
+                                <div class="editing-stake-amount">
+                                    <div class="editing-stake-pos-rel">
+                                        <u ng-click="toggleStakeTooltip()"><b>{{$root.editBet.stakeAmount }} {{currency_name|currency}}</b></u>
+                                        <div class="increase-stake-tooltip" ng-if="$root.editBet.increaseStake.tooltip">
+                                            <div class="editing-stake-wrapper-p" trans>Increase Stake</div>
+                                            <div class="increase-stake-input">
+                                                <input comma comma-enable={{$root.conf.enableCommaSeparateNumber}}
+                                                       comma-decimal="enable" comma-dot="{{$root.conf.enableDotInsteadComma}}"
+                                                       prevent-input="{{$root.conf.stakeAmountPreventInput}}"
+                                                       prevent-rounding="{{$root.conf.balanceFractionSize}}"
+                                                       name="" numpad numpad-letters="disabled" ng-model="$root.editBet.increaseStake.amount"
+                                                       ng-model-options="{ debounce: 100 }" type="text"
+                                                       ng-keyup="$event.keyCode === 13 ? toggleStakeTooltip(true) : null"
+                                                       maxlength="11" placeholder="{{'Amount To Add'|translate}}" auto-focus />
+                                            </div>
+                                            <div class="increase-stake-footer">
+                                                <div class="editing-stake-wrapper-p">
+                                                    <span trans>New Return</span>
+                                                    <strong ng-bind="taxOnStake.enabled ? (taxOnStake.posWin - taxOnStake.secondTax) : (possibleWinTax ? finalWinTaxValue : possibleWinValue) | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize"></strong>
+                                                </div>
+                                                <div class="editing-stake-wrapper-p" ng-show="betSlip.totalStake - $root.editBet.stakeAmount > $root.profile.totalBalance">
+                                                    <span trans>Insufficient balance</span>
+                                                </div>
+                                                <div class="button-view-contain-v3">
+                                                    <button ng-click="toggleStakeTooltip(true)">
+                                                        <span ng-class="{'disabled': betSlip.totalStake - $root.editBet.stakeAmount > $root.profile.totalBalance}" trans>Ok</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <strong ng-show="$root.editBet.increaseStake.savedAmount" ng-bind="'+ ' + $root.editBet.increaseStake.savedAmount"></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stake-form-contain-v3" ng-class="{'two-fields-v3': betSlip.bets.length > 2 && betSlip.type.value === 3} " ng-show="!freeBet.selected && !$root.editBet.edit">
+                        <ul>
+                            <li ng-if="betSlip.bets.length > 2 && betSlip.type.value === 3">
+                                <div class="accumulator-system-c">{{betSlip.divisionCoefficient * (betSlip.eachWayMode ? 2 : 1)}} x</div>
+                            </li>
+                            <li ng-if="betSlip.bets.length > 2 && betSlip.type.value === 3">
+                                <input id="express-unitbet-input" numpad
+                                       prevent-input="{{$root.conf.stakeAmountPreventInput}}"
+                                       comma
+                                       comma-enable={{$root.conf.enableCommaSeparateNumber}}
+                                       comma-decimal="enable"
+                                       prevent-rounding="{{$root.conf.balanceFractionSize}}"
+                                       comma-dot="{{$root.conf.enableDotInsteadComma}}"
+                                       ng-model="betSlip.unitStake" type="text" placeholder="Unit Stake" trans
+                                       maxlength="8"
+                                       ng-if="betSlip.type.value !== 1 || quickBet.enabled || betSlip.bets.length === 1"
+                                       ng-disabled="shared.isBetsInProgress" focus-on="bet" auto-focus="{{betSlip.mode}}"
+                                       ng-keypress="betFromKeyboard($event)"
+                                       onkeyup="this.value=this.value.replace(/,/g, '.')">
+                            </li>
+                            <li class="express-bet-input-group">
+                                <p ng-if="quickBet.enabled && quickBet.savedMode" ng-bind="betSlip.stake" class="quick-bet-disabled-text"></p>
+                                <input id="express-bet-input" class="express-bet-input {{quickBet.enabled? 'quick-bet-input': ''}}" comma comma-enable={{$root.conf.enableCommaSeparateNumber}}
+                                       comma-decimal="enable" prevent-rounding="{{$root.conf.balanceFractionSize}}" comma-dot="{{$root.conf.enableDotInsteadComma}}"
+                                       prevent-input="{{$root.conf.stakeAmountPreventInput}}"
+                                       name="" numpad numpad-letters="disabled" ng-model="betSlip.stake" type="text"
+                                       placeholder="{{$root.conf.betslipInputFieldCustomValue | translate}}" maxlength="11"
+                                       ng-if="betSlip.type.value !== 3 && (betSlip.type.value !== 1  || quickBet.enabled || betSlip.bets.length === 1) && (!quickBet.enabled || !quickBet.savedMode)"
+                                       ng-disabled="(shared.isBetsInProgress || (betConf.disableStakeInSystemType && betSlip.type.value === 3))"
+                                       focus-on="bet" auto-focus="{{betSlip.mode}}" ng-keypress="!showRetainsButtons && betFromKeyboard($event)">
+                                <p class="show-on-hover" ng-if="betConf.enableExpressBonusInfo && expressBonus.enabled && betSlip.type.value === 2 && {0:1,1:1}[expressBonus.visibilityQty - betSlip.bets.length]" ng-bind="'You can get a {1}% bonus on the bet if you add 1/2 more selections with min odd {2}'|translate:[expressBonus.map[expressBonus.visibilityQty + 1].percent, (expressBonus.map[expressBonus.visibilityQty + 1].minOdds|oddConvert:$root.env.oddFormat)]"></p>
+                            </li>
+                            <li>
+                                <button ng-click="quickBet.savedMode = !quickBet.savedMode" ng-if="quickBet.enabled" class="quick-bet-btn" ng-disabled="!betSlip.stake || betSlip.stake < partnerConfig.min_bet_stakes[profile.currency_name]" ng-bind="(quickBet.savedMode? 'Edit':'Save')|translate"></button>
+                            </li>
+                            <li ng-show="(betSlip.mode === 'betting') && env.authorized && (betSlip.type.value === 2 || (betSlip.type.value === 3 && betSlip.bets.length > 2) || (betSlip.type.value === 1 && betSlip.bets.length === 1 && !counterOffer.enabled)) && !betConf.disableMaxBet && !quickBet.enabled">
+                                <div class="stake-max-bet-v3" ng-class="{'disabled-opacity': getMaxBetInProgress || (betConf.disableMaxButtonInBetProgress && shared.isBetsInProgress)}" ng-click="bet.singleStake = getMaxBet(betSlip.bets)">
+                                    <span title="Max" class="single-bet-maxbet-view-v3" trans>Max</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="possible-win-view-v3" ng-if="env.authorized && counterOffer.enabled && betSlip.bets.length === 1">
+                        <div class="bet-win-view-v3">
+                            <p>
+                                <i trans>Min Offer Amount:</i>
+                            </p>
+                            <span>
+                                <b>{{ (profile.counter_offer_min_amount).toFixed(currency.rounding)|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize }} {{currency_name|currency}}</b>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="odds-contain-ew-v3" ng-if="betSlip.maxOddsWarningAmount">
+                        <p class="bet-win-view-v3">
+                            <span class="max-odds-info-text" ng-bind="'The maximum odds of {1} has been reached'|translate:[(betSlip.maxOddsWarningAmount|oddConvert:(($root.env.oddFormat === 'hongkong' && $root.conf.specialOddFormat)? $root.conf.specialOddFormat.hongkong.default : $root.env.oddFormat):'fictional')]"></span>
+                        </p>
+                    </div>
+                    <div class="possible-win-view-v3"
+                         ng-show="(possibleWinValue > 0 || betSlip.hasSpOddTypes) && !betSlip.thereAreDeletedEvents && !betSlip.hasLockedEvents">
+                        <div class="bet-win-view-v3" ng-show="betConf.fullCoverBetTypes.enabled || betSlip.eachWayPossible || betSlip.type.value === 3">
+                            <p>
+                                <i trans>Total Stake:</i>
+                            </p>
+                            <span>
+                                <b>{{betSlip.totalStake|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b>
+                            </span>
+                        </div>
+
+                        <div ng-hide="betSlip.hasSpOddTypes || betSlip.type.value === 1 && betSlip.bets.length > 1 && !betConf.fullCoverBetTypes.enabled || possibleWinValue <= 0 || betSlip.thereAreDeletedEvents || betSlip.hasLockedEvents">
+                            <div ng-if="profitBoost.selected" class="bet-win-view-v3">
+                                <p>
+                                    <i trans>Boosted amount</i>
+                                </p>
+                                <span>
+                                    <b>{{profitBoost.selected.posBoost | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b>
+                                </span>
+                            </div>
+                            <div ng-if="profitBoost.selected" class="bet-win-view-v3">
+                                <p>
+                                    <i trans>Boosted percentage</i>
+                                </p>
+                                <span>
+                                     <b>{{profitBoost.selected.amount_percent}}%</b>
+                                </span>
+                            </div>
+
+                            <!-- tax_type: 1 - tax on profit ; 4 - tax on stack 20 - tax on profit as fictive-->
+                            <div class="bet-win-view-v3 possible-win-row"
+                                 ng-if="!taxOnStake.enabled"
+                                 ng-class="!possibleWinTax  && !(expressBonus.enabled && betSlip.expBonus > 0 && betSlip.bets.length > expressBonus.visibilityQty && betSlip.type.value === 2) ? 'total-possible-win-j' : ''">
+                                <p>
+                                    <i trans>Possible win:</i>
+                                </p>
+                                <span>
+                                    <b>{{possibleWinValue | roundPossibleWin:$root.conf.balanceFractionSize:betSlip.type.value}} {{currency_name|currency}}</b>
+                                </span>
+                            </div>
+                            <!-- tax_type: 1 - tax on profit ; 4 - tax on stack 20 - tax on profit as fictive-->
+                            <div class="display-float" ng-if="possibleWinTax && !(expressBonus.enabled && betSlip.expBonus > 0 && betSlip.bets.length > expressBonus.visibilityQty && betSlip.type.value === 2)">
+                                <div class="bet-win-view-v3 possible-win-row">
+                                    <div>
+                                        <p><i trans>Tax:</i></p>
+                                        <span><b>{{possibleWinTax | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b> <b ng-if="$root.partnerConfig && $root.partnerConfig.tax_percent">{{"({1}%)"|translate:[$root.partnerConfig.tax_percent]}}</b></span>
+                                    </div>
+                                    <div ng-if="$root.partnerConfig.tax_type===20">
+                                        <p><i trans>Winning bonus:</i></p>
+                                        <span><b>{{possibleWinTax | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="total-possible-win-j">
+                                    <p><i trans>Final Payout:</i></p>
+                                    <span><b>{{finalWinTaxValue | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                </div>
+                            </div>
+                            <div class="display-float" ng-if="taxOnStake.enabled">
+                                <div class="bet-win-view-v3 possible-win-row">
+                                    <div>
+                                        <p><i>{{'{1}% tax on stake:'|translate:[$root.partnerConfig.tax_percent]}}</i>
+                                        </p>
+                                        <span><b>{{taxOnStake.tax | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="bet-win-view-v3 possible-win-row">
+                                    <div>
+                                        <p><i trans>Stake after tax:</i></p>
+                                        <span><b>{{taxOnStake.total| bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="bet-win-view-v3 possible-win-row"
+                                     ng-if="taxOnStake.secondTax > 0 || !(expressBonus.enabled && totalPossibleWin)">
+                                    <div>
+                                        <p>
+                                            <i ng-bind="taxOnStake.secondTax > 0 ? 'Possible win:' : 'Final Payout:'|translate"></i>
+                                        </p>
+                                        <span><b>{{taxOnStake.posWin| bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="bet-win-view-v3 possible-win-row" ng-if="taxOnStake.secondTax > 0">
+                                    <div>
+                                        <p><i trans>Tax:</i></p>
+                                        <span><b>{{taxOnStake.secondTax| bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="total-possible-win-j"
+                                     ng-if="!(expressBonus.enabled && totalPossibleWin) && taxOnStake.secondTax > 0">
+                                    <p><i trans>Final Payout:</i></p>
+                                    <span><b>{{taxOnStake.posWin - taxOnStake.secondTax | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="expressBonus.enabled && !(betConf.hideIfOverMaxOdds && $root.partnerConfig && $root.partnerConfig.max_odd_for_multiple_bet && betSlip.expOdds > $root.partnerConfig.max_odd_for_multiple_bet)" ng-show="!betSlip.hasSpOddTypes && betSlip.bets.length > expressBonus.visibilityQty && betSlip.type.value === 2 && possibleWinValue > 0 && betSlip.expBonus > 0 && betSlip.expBonusPercentage > 0 ">
+                            <div class="bet-win-view-v3 acc-bonus-v3">
+                                <p>
+                                    <i><span trans>Bonus percentage</span>:</i>
+                                </p>
+                                <span>
+                                    <b>{{betSlip.expBonusPercentage}}</b>
+                                </span>
+                            </div>
+                            <div class="bet-win-view-v3 acc-bonus-v3">
+                                <p>
+                                    <i><span trans>Accumulator Bonus</span>:</i>
+                                </p>
+                                <span>
+                                    <b>{{betSlip.expBonus|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b>
+                                </span>
+                            </div>
+                            <div class="bet-win-view-v3 total-v3" ng-class="!possibleWinBonusTax ? 'total-possible-win-j' : ''"> <!-- tax_type: 1 - tax on profit ; 4 - tax on stack 20 - tax on profit as fictive-->
+                                <p>
+                                    <i trans>Total win:</i>
+                                </p>
+                                <span>
+                                <b>{{totalPossibleWin|roundPossibleWin:$root.conf.balanceFractionSize:betSlip.type.value}} {{currency_name|currency}}</b>
+                            </span>
+                            </div>
+                            <div class="display-float" ng-if="possibleWinBonusTax"> <!-- tax_type: 1 - tax on profit ; 4 - tax on stack 20 - tax on profit as fictive-->
+                                <div class="bet-win-view-v3 possible-win-row">
+                                    <div>
+                                        <p><i trans>Tax:</i></p>
+                                        <span><b>{{possibleWinBonusTax | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                    <div ng-if="$root.partnerConfig.tax_type===20">
+                                        <p><i trans>Winning bonus:</i></p>
+                                        <span><b>{{possibleWinBonusTax | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                    </div>
+                                </div>
+                                <div class="total-possible-win-j">
+                                    <p><i trans>Final Payout:</i></p>
+                                    <span><b>{{finalWinBonusTaxValue | bankersRoundAndNumberCommas:$root.conf.balanceFractionSize}} {{currency_name|currency}}</b></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="betConf.enableFavoriteStakes && betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested' && !freeBet.enabled && !$root.editBet.edit" ng-show="betSlip.bets.length" class="active-stake-buttons">
+            <ol>
+                <li ng-repeat="stake in favoriteStake.values track by $index">
+                    <input id="favorite-stake-input-{{$index}}"
+                           ng-show="favoriteStake.editMode"
+                           type="text"
+                           maxlength="11"
+                           comma
+                           prevent-rounding="{{$root.conf.balanceFractionSize}}"
+                           comma-enable="{{$root.conf.enableCommaSeparateNumber}}"
+                           comma-decimal="enable"
+                           comma-dot="{{$root.conf.enableDotInsteadComma}}"
+                           prevent-input="{{$root.conf.stakeAmountPreventInput}}"
+                           ng-model="favoriteStake.values[$index]"  />
+                    <input ng-if="!favoriteStake.editMode" type="button" ng-click="setFavoriteStake(+stake)" value="{{favoriteStake.values[$index]}}"/>
+                </li>
+
+                <li title="{{'edit'|translate}}" ng-click="editFavoriteStakes()" ng-if="!favoriteStake.editMode" class="edit-stake-button">
+                    <i></i>
+                </li>
+                <li title="{{'save'|translate}}" ng-click="saveFavoriteStakes()"  ng-if="favoriteStake.editMode" class="save-stake-button">
+                    <i></i>
+                </li>
+            </ol>
+        </div>
+        <div class="bet-notification-contain-v3" ng-show="betSlip.mode !== 'booking' && isBetAccepted && !counterOffer.enabled && $root.superbetIds.counterOffers.length === 0 && $root.superbetIds.superBets.length === 0  || betSlip.generalBetResult || quickBet.enabled && ((quickBet.status === 'accepted') || (quickBet.status === 'error'))">
+            <div class="notification-box-v3">
+                <div class="notification-icon-v3" ng-class="{'error-icon': betSlip.generalBetResult && !quickBet.enabled && !isBetOnHold || quickBet.enabled && quickBet.status === 'error', 'accept-icon': !quickBet.enabled && isBetAccepted || quickBet.enabled && (quickBet.status === 'accepted')}"></div>
+                <p ng-show="!quickBet.enabled && isBetAccepted && !isSuperbet && !counterOffer.enabled || quickBet.enabled && (quickBet.status === 'accepted')" title="Your bet is accepted." trans>Your bet is accepted.</p>
+                <p ng-show="!quickBet.enabled && isBetAccepted && isSuperbet && !counterOffer.enabled" title="Superbet is under review." trans>Superbet is under review.</p>
+                <p ng-show="!quickBet.enabled && betSlip.generalBetResult" title="{{betSlip.generalBetResult}}">{{betSlip.generalBetResult }}</p>
+                <p ng-show="!quickBet.enabled && betSlip.generalBetResult && betSlip.lastErrorCode == '2425'" title="Min stake amount."><span trans>Min Stake amount is </span> {{ $root.partnerConfig.min_bet_stakes[$root.profile.currency_name] }} {{$root.profile.currency_name}}.</p>
+                <p ng-show="quickBet.enabled && (quickBet.status === 'error') && !counterOffer.enabled" title="{{quickBet.massage|translate}}" ng-bind="quickBet.massage|translate"></p>
+                <p ng-if="!$root.conf.integrationMode && $root.profile.is_super_bet_available && betSlip.superbet.possible"
+                   ng-show="betSlip.generalBetResult && betSlip.lastErrorCode === '2200' && !betSlip.superbet.selector">
+                    <a class="underline" ng-click="togglesSuperbetSelector()" ng-show="!$root.editBet.edit" trans>Use Superbet</a>
+                </p>
+                <div class="remove-icon-betslip-v3" ng-click="(isBetAccepted = false) || (isBetOnHold = false) || (betSlip.generalBetResult = '') || (quickBet.status = '') || (quickBet.massage = '')"></div>
+            </div>
+        </div>
+        <div class="counter-offer-wrapper-view-v3" ng-show="!quickBet.enabled && $root.superbetIds.counterOffers.length > 0">
+            <div class="superbet-contain-view-v3 active waiting-for-review">
+                <div class="waiting-review-icon-v3"></div>
+                <p title="Your Counter-Offer is under review" trans>Your Counter-Offer is under review</p>
+                <span trans>Usually, it takes 5-10 minutes to be reviwed. Thanks for your patience :)</span>
+            </div>
+        </div>
+        <div class="superbet-wrapper-view-v3" ng-show="!quickBet.enabled && $root.superbetIds.superBets.length > 0">
+            <div class="superbet-contain-view-v3 active waiting-for-review">
+                <div class="waiting-review-icon-v3"></div>
+                <p title="Your Superbet is under review" trans>Your Superbet is under review</p>
+                <span trans>Usually, it takes 5-10 minutes to be reviwed. Thanks for your patience :)</span>
+            </div>
+        </div>
+        <div class="bet-notification-contain-v3" ng-if="betConf.possibleWinMessage && possibleWinValue > 0">
+            <div class="notification-box-v3">
+                <div class="notification-icon-v3 error-icon"></div>
+                <p ng-bind="::betConf.possibleWinMessage|translate"></p>
+            </div>
+        </div>
+        <div class="bet-notification-contain-v3" ng-show="quickBet.enabled && betSlip.stake === 0">
+            <div class="notification-box-v3">
+                <div class="notification-icon-v3 error-icon"></div>
+                <p title="{{'Stake Amount cannot be 0'|translate}}" trans>Stake Amount cannot be 0</p>
+            </div>
+        </div>
+        <div class="bet-notification-contain-v3" ng-show="quickBet.enabled && (quickBet.status === 'processing')">
+            <div class="notification-box-v3">
+                <div class="notification-icon-v3">
+                    <vbet-loader class="small-progress centered-j"></vbet-loader>
+                </div>
+                <p title="{{'Your bet is processing'|translate}}" trans>Your bet is processing</p>
+            </div>
+        </div>
+        <div class="bet-accept-changes-b-v3" ng-show="quickBet.enabled && !betSlip.hasEmptyStakes && betSlip.totalStake < partnerConfig.min_bet_stakes[profile.currency_name]">
+            <div class="expanded-notifications-j">
+                <ul>
+                    <li class="bet-notification-warning" ng-show="!betSlip.hasEmptyStakes && betSlip.totalStake < partnerConfig.min_bet_stakes[profile.currency_name]">
+                        <p >{{'Bet amount is less than min allowed amount'|translate}} ({{counterOffer.enabled ? ((profile.counter_offer_min_amount).toFixed(currency.rounding)|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize) : $root.partnerConfig.min_bet_stakes[$root.profile.currency_name]}} {{currency_name|currency}}).</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bet-accept-changes-b-v3" ng-show="betSlip.bets.length && !quickBet.enabled && ($root.conf.enableBetSlipButton === undefined || $root.conf.enableBetSlipButton) && betSlip.mode !== 'openBets' && betSlip.mode !== 'suggested'">
+            <div class="expanded-notifications-j"
+                 ng-show="!$root.editBet.edit && (eventReplace.visibilityProcess || (!showRetainsButtons && (betSlip.hasCounterOfferError || (betSlip.hasConflicts && betSlip.type.value !== 1) || betSlip.thereAreDeletedEvents && (betSlip.mode === 'betting') || !env.authorized && (betSlip.mode === 'betting') || !betSlip.isBettingAllowed && (betSlip.mode === 'betting') || (env.authorized && (!freeBet.enabled && betSlip.totalStake > $root.profile.totalBalance) || (betSlip.totalStake < partnerConfig.min_bet_stakes[profile.currency_name]) || (betSlip.type.value === 3 && betSlip.unitStake < partnerConfig.min_sub_bet_stakes[profile.currency_name]) || (freeBet.enabled && freeBet.selected && freeBet.selected.payoutMap[currency_name]) || (profitBoost.enabled && profitBoost.selected.maxBetMap[currency_name].MaxBetAmount )) && (betSlip.mode === 'betting') || (betSlip.bookingNotAllowed && betSlip.mode === 'booking'))))">
+                <ul>
+                    <li ng-show="!env.authorized && (betSlip.mode === 'betting')" class="guest-box"
+                        ng-class="{'no-underlines': $root.conf.integrationMode && !enableSigninRegisterLinks}">
+                        <h3 trans>To place your bet, please</h3>
+                        <h4>
+                            <span ng-click="openLoginForm($event);" class="underline" trans>sign in</span>
+                            <span ng-if="$root.conf.registration.enable" trans>or</span>
+                            <span ng-if="$root.conf.registration.enable" ng-click="openRegForm($event);" class="underline" trans>register</span>
+                            <span trans>now!</span>
+                        </h4>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="(betSlip.mode === 'betting') && (!quickBet.enabled && (betSlip.type.value !== 1 && betSlip.bets.length < 2) || (betSlip.type.value === 3 && betSlip.bets.length < 3))">
+                        <p trans>Add more events to be able to place bet</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="(betSlip.mode === 'booking') && (!quickBet.enabled && (betSlip.type.value !== 1 && betSlip.bets.length < 2) || (betSlip.type.value === 3 && betSlip.bets.length < 3))">
+                        <p trans>Add more events to be able to book a bet</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="betSlip.hasLockedEvents">
+                        <p trans>There are locked events</p>
+                    </li>
+                    <li class="bet-notification-error" ng-show="betSlip.hasConflicts && betSlip.type.value !== 1">
+                        <p trans>Incompatible events</p>
+                    </li>
+                    <li class="bet-notification-error" ng-show="betSlip.thereAreDeletedEvents">
+                        <p trans>There are deleted events</p>
+                    </li>
+                    <li class="bet-notification-error" ng-show="!freeBet.enabled && (env.authorized && betSlip.totalStake > $root.profile.totalBalance) && (betSlip.mode === 'betting')">
+                        <p>
+                            <span trans>Insufficient balance</span>
+                            <a class="underline" ng-if="!$root.conf.integrationMode && !$root.conf.disableDepositPage" ng-click="broadcast('toggleSliderTab','deposit');$event.stopPropagation();" trans>Deposit</a>
+                            <a class="underline" ng-if="$root.conf.integrationMode && !$root.conf.customDepositUrl  && !$root.conf.disableDepositPage" ng-click="openPartnerDeposit()" trans>Deposit</a>
+                            <a class="underline" ng-if="$root.conf.integrationMode && $root.conf.customDepositUrl" ng-href="{{$root.conf.customDepositUrl + $root.conf.availableLanguages[env.lang].short.toLowerCase()}}" target="{{$root.conf.customDepositUrl?'_top':''}}" trans>Deposit</a>
+                        </p>
+                    </li>
+                    <li class="bet-notification-error" ng-show="moreThanEventsMaxNumber">
+                        <p>{{"Max number of events that can be added to Betslip is {1}"|translate:[$root.conf.limitForBetslipEvents]}}</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="betSlip.type.value !== 1 && betSlip.hasSingleOnlyEvents">
+                        <p trans>Single Only Events</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="betSlip.hasCounterOfferError">
+                        <p trans>One or more of your Offers contain errors. Please review and try again.</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="eventReplace.visibilityProcess">
+                        <p trans>Attention, substitution</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="$root.editBet.edit">
+                        <p trans>Edit bet can't be completed. Stake amount is less than the minimum bet amount.</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="!betSlip.hasEmptyStakes && env.authorized && !betSlip.thereAreDeletedEvents && !betSlip.hasLockedEvents && betSlip.totalStake < partnerConfig.min_bet_stakes[profile.currency_name]">
+                        <p >{{'Bet amount is less than min allowed amount'|translate}} ({{counterOffer.enabled ? ((profile.counter_offer_min_amount).toFixed(currency.rounding)|bankersRoundAndNumberCommas:$root.conf.balanceFractionSize) : $root.partnerConfig.min_bet_stakes[$root.profile.currency_name]}} {{currency_name|currency}}).</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="!betSlip.hasEmptyStakes && env.authorized && !betSlip.thereAreDeletedEvents && !betSlip.hasLockedEvents && betSlip.totalStake >= partnerConfig.min_bet_stakes[profile.currency_name] && betSlip.unitStake < partnerConfig.min_sub_bet_stakes[profile.currency_name] && betSlip.type.value === 3">
+                        <p >{{'Minimum unit stake requirements not met'|translate}} ({{$root.partnerConfig.min_sub_bet_stakes[$root.profile.currency_name]}} {{currency_name|currency}}).</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="profitBoost.enabled && profitBoost.selected.maxBetMap[$root.profile.currency_name].MaxBetAmount">
+                        <p >{{'For selected profit boost Max Bet is'|translate}} ({{profitBoost.selected.maxBetMap[$root.profile.currency_name].MaxBetAmount}} {{currency_name|currency}}).</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="isMaxCountExceeded">
+                        <p>{{"Attention, betslip events maximum count is: {1}"|translate:[betSlip.type.value===3?maximumSelectionForSystem:partnerConfig.max_selections_in_multiple_bet]}}</p>
+                    </li>
+                    <li class="bet-notification-warning" ng-show="freeBet.selected && freeBet.selected.payoutMap[currency_name]">
+                        <p ng-bind="'For selected free bet Max Payout is {1} {2}'|translate:(freeBet.selected.payoutMap[currency_name].MaxAmount?[freeBet.selected.payoutMap[currency_name].MaxAmount, currency_name ]: [(freeBet.selected.payoutMap[currency_name].MaxPercent * freeBet.selected.amount * 0.01), currency_name])"></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="edit-bet-notifications" ng-show="$root.editBet.edit">
+                <ul>
+                    <li>
+                        <p trans>Click Add Selections to start adding new selections to your existing bet.</p>
+                    </li>
+                    <li ng-show="betSlip.totalStake - $root.editBet.stakeAmount > $root.profile.totalBalance">
+                        <p trans>Insufficient balance.</p>
+                    </li>
+                </ul>
+            </div>
+            <ul ng-show="!showRetainsButtons && !$root.editBet.edit">
+                <li>
+                    <div class="button-view-contain-v3">
+                        <div class="button-info-text-view-v3" ng-show="env.authorized && betSlip.hasEmptyStakes && !betSlip.hasFilledStake && betSlip.mode === 'betting'">
+                            <ul>
+                                <li><p class="bet-notification-warning" trans>Please enter stake amount</p></li>
+                            </ul>
+                        </div>
+                        <button type="submit" class="brand-color-2"
+                                ng-class="{'pointer-events-none' : shared.isBetsInProgress}"
+                                ng-show="betSlip.mode === 'betting' && (isTherePriceChange || betSlip.thereAreEventBaseChanges)"
+                                ng-click="acceptChangesAndPlaceBets()"
+                                ng-disabled="shared.betInProgress || (betSlip.hasConflicts && betSlip.type.value !== 1)  || !betSlip.isBettingAllowed || !env.authorized || shared.isBetsInProgress || betSlip.thereAreDeletedEvents || (env.authorized && (!freeBet.enabled && betSlip.totalStake > $root.profile.totalBalance) || (betSlip.totalStake < partnerConfig.min_bet_stakes[profile.currency_name]) || (betSlip.type.value === 3 && betSlip.unitStake < partnerConfig.min_sub_bet_stakes[profile.currency_name])) || betSlip.hasCounterOfferError || betslipRemoveBetsProcess || isAcceptAndPlaceBetStarted || (profitBoost.enabled && profitBoost.selected.maxBetMap[currency_name].MaxBetAmount && betSlip.totalStake > profitBoost.selected.maxBetMap[currency_name].MaxBetAmount)">
+                            <span ng-show="!shared.isBetsInProgress && !isAcceptAndPlaceBetStarted" trans>Accept changes and place bets!</span>
+                        </button>
+                        <button type="submit" ng-class="{'pointer-events-none' : shared.isBetsInProgress}"
+                                ng-show="betSlip.mode === 'betting' && !isTherePriceChange && !betSlip.thereAreEventBaseChanges"
+                                ng-click="acceptChangesAndPlaceBets()"
+                                ng-disabled="!betSlip.bets.length || !env.authorized || shared.betInProgress || (betSlip.hasConflicts && betSlip.type.value !== 1)  || !betSlip.isBettingAllowed || shared.isBetsInProgress || betSlip.thereAreDeletedEvents || (!freeBet.enabled && betSlip.totalStake > $root.profile.totalBalance) || (betSlip.totalStake < partnerConfig.min_bet_stakes[profile.currency_name]) || (betSlip.type.value === 3 && betSlip.unitStake < partnerConfig.min_sub_bet_stakes[profile.currency_name]) || betSlip.hasCounterOfferError || betslipRemoveBetsProcess || (profitBoost.enabled && profitBoost.selected.maxBetMap[currency_name].MaxBetAmount && betSlip.totalStake > profitBoost.selected.maxBetMap[currency_name].MaxBetAmount)">
+                            <span ng-show="!shared.isBetsInProgress" trans>Place bets!</span></button>
+                        <button type="submit" ng-show="betSlip.mode === 'booking'" ng-click="placeBookingBet()"
+                                ng-disabled="shared.betInProgress || (betSlip.hasConflicts && betSlip.type.value !== 1) ||  shared.isBetsInProgress || betSlip.thereAreDeletedEvents || betSlip.bookingNotAllowed">
+                            <span ng-show="!shared.isBetsInProgress" trans>Get bet ID</span>
+                        </button>
+                        <vbet-loader ng-show="shared.isBetsInProgress || isAcceptAndPlaceBetStarted" class="small-progress"></vbet-loader>
+                    </div>
+                </li>
+            </ul>
+            <ul ng-show="showRetainsButtons && !$root.editBet.edit">
+                <li>
+                    <div class="button-view-contain-v3">
+                        <button type="submit" ng-click="showRetainsButtons = false;" trans>Retain</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="button-view-contain-v3">
+                        <button type="submit" trans ng-click="handleContinue()">Continue</button>
+                    </div>
+                </li>
+            </ul>
+            <ul ng-show="$root.editBet.edit">
+                <li>
+                    <div class="button-view-contain-v3">
+                        <button type="submit" ng-class="{'pointer-events-none' : shared.isBetsInProgress}"
+                                ng-disabled="shared.isBetsInProgress || disableAddBets.saveChanges || betSlip.bets.length < 1 || betSlip.thereAreDeletedEvents || (betSlip.bets.length == 1 && betSlip.type.value == 2)"
+                                ng-click="acceptChangesAndPlaceBets();"><span ng-show="!shared.isBetsInProgress" trans>Save changes</span></button>
+                        <vbet-loader ng-show="shared.isBetsInProgress || isAcceptAndPlaceBetStarted" class="small-progress"></vbet-loader>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <retrieve-events ng-if="$root.conf.retrieveEvents && env.authorized"
+                         ng-show="betSlip.mode === 'booking'"
+                         clear-betslip="clearBetslip"
+                         set-bet-slip-type="setBetSlipType"
+                         bet-slip="betSlip"></retrieve-events>
+        <ng-include src="::'templates/sport/betStatus.html'|fixPath"></ng-include>
+    </div>
+</div>

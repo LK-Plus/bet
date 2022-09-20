@@ -1,0 +1,79 @@
+<div class="casino-gamer jackpots-wrapper" >
+    <div class="tab-jackpots">
+        <ul>
+            <li ng-if="hasTournaments" ng-class="{active: tab.selected === 'tournaments'}" ng-click="tab.selected='tournaments'">
+                <i class="cms-jcon-trophy"></i>
+            </li>
+            <li ng-if="hasJackpots" ng-class="{active: tab.selected === 'jackpots'}" ng-click="tab.selected='jackpots'">
+                <i ng-if="!jackpotData[jackpotWidgets.widgetIndex].Provider" class="cms-jcon-video_slots"></i>
+                <!--todo remove inline css-->     <span ng-if="jackpotData[jackpotWidgets.widgetIndex].Provider"  class="item item-{{jackpotData[jackpotWidgets.widgetIndex].Provider}}"></span>
+
+            </li>
+        </ul>
+    </div>
+    <ng-include class="float-width" ng-if="tab.selected === 'tournaments' && hasTournaments" src="::'optional_modules/casino/templates/tournament/casino-widget.html'|fixPath"></ng-include>
+    <div class="jackpots-content">
+        <div class="jackpot-coins-container" ng-if="tab.selected === 'jackpots'">
+            <div class="jackpot-coins-content" ng-class="{active: $index === jackpotWidgets.widgetIndex }" ng-repeat="jackpot in jackpotData track by $index">
+                <p ng-if="jackpot.Name">{{jackpot.Name|translate}}</p>
+                <ul ng-repeat="pool in jackpot.PoolGroup.PoolList track by $index">
+                    <li class="jackpot-coins jackpot-{{(pool.Name || (jackpot.Provider + '-pool-' +$index)).toLowerCase()}}">
+
+                        <span style="background-image: url(images/jackpot-pools/jackpot-{{(pool.Name || (jackpot.Provider + '-pool-' +$index)).toLowerCase()}}.png);"></span>
+                    </li>
+                    <li class="info-jackpots" ng-class="{'win-blink-jackpots': pool.JackPotPoolStat.LastJackPotWin.Winner}">
+                        <p>{{pool.DisplayName|translate}}</p>
+                       <div class="jackpot-widget-amount">
+                           <jackpot-counter
+                                   max-duration-speed="400"
+                                   point="jackpot.CurrencyFraction"
+                                   comma="true"
+                                   show-currency="true"
+                                   currency="{{jackpot.Currency}}"
+                                   amount="{{pool.CollectedAmount}}">
+                           </jackpot-counter>
+                       </div>
+                        <p class="red-tiger-timer" ng-if="pool.JackPotType === 'time'">{{'Must pay before'|translate}} <span countdown="{{pool.TimeStamp}}"  ng-bind="'🕒 ' + countdown.hours + ':' + countdown.minutes + ':' + countdown.seconds"></span></p>
+                    </li>
+                    <li ng-if="!hideInfo" class="total-info-winner">
+                        <ul>
+                            <li>
+                                <h2 trans>Total Winners</h2>
+                                <span>{{pool.TotalWinCount}}</span>
+                                <span>{{pool.TotalWinAmount|number:jackpot.CurrencyFraction}} <i>{{jackpot.Currency|currency}}</i></span>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <h2 trans>Min Qualifying Bet</h2>
+                                <p>{{pool.MinBetAmount|number:jackpot.CurrencyFraction}} <i>{{jackpot.Currency|currency}}</i></p>
+                            </li>
+                        </ul>
+                        <ul ng-if="pool.JackPotPoolStat.BiggestJackpotWin">
+                            <li>
+                                <h2 trans>Largest Winner</h2>
+                                <p>{{pool.JackPotPoolStat.BiggestJackpotWin.Amount|number:jackpot.CurrencyFraction}} <i>{{jackpot.Currency|currency}}</i></p>
+                                <p>{{pool.JackPotPoolStat.BiggestJackpotWin.GameName}}</p>
+                                <b><span>{{pool.JackPotPoolStat.BiggestJackpotWin.PlayerId}}</span> {{pool.JackPotPoolStat.BiggestJackpotWin.CreationDate|formatDate:'noLocaleTranslate':null:$root.env.timeFormat}}</b>
+                            </li>
+                        </ul>
+                        <ul ng-if="pool.JackPotPoolStat.LastJackPotWin">
+                            <li>
+                                <h2 trans>Last Winner</h2>
+                                <p>{{pool.JackPotPoolStat.LastJackPotWin.Amount|number:jackpot.CurrencyFraction}} <i>{{jackpot.Currency|currency}}</i></p>
+                                <p>{{pool.JackPotPoolStat.LastJackPotWin.GameName}}</p>
+                                <b><span>{{pool.JackPotPoolStat.LastJackPotWin.PlayerId}}</span> {{pool.JackPotPoolStat.LastJackPotWin.CreationDate|formatDate:'noLocaleTranslate':null:$root.env.timeFormat}}</b>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="jackpots-slider no-select-j" ng-show="tab.selected === 'jackpots' && jackpotData.length > 1">
+            <span ng-click="changeJackpotSlider(jackpotWidgets.widgetIndex - 1)"></span>
+            <span ng-click="changeJackpotSlider(jackpotWidgets.widgetIndex + 1)"></span>
+        </div>
+
+        <vbet-loader ng-if="!winners && winnersLoading"></vbet-loader>
+    </div>
+</div>

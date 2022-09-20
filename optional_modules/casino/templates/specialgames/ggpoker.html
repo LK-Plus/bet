@@ -1,0 +1,75 @@
+<div ng-controller="casinoSpecialGamesCtrl" ng-init="loadGame('ggpoker');" class="float-width">
+    <div class="skillgame-landing-j">
+       <div class="new-default-popup-j" ng-show="amountTransferModel.transferInProgress && !amountTransferModel.showTransferPopUp">
+           <vbet-loader></vbet-loader>
+       </div>
+        <div class="intro-section-j">
+            <div class="hp-slider-17">
+                <div class="hp-slide-17 active">
+                    <a href="#" class="pointer-events-none">
+                        <img src="images/backgrounds/pokerklasspubg.jpg"/>
+                        <div class="slider-landing-overlay">
+                            <div class="guide">
+                                <h2 trans>Welcome to Poker</h2>
+                                <div class="float-width">
+                                    <p class="primary-info-slide" trans>Enjoy the GG Poker...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="slider-landing-overlay">
+                    <div class="guide">
+                        <h1 trans>GG Poker</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-landing-overlay">
+                <div class="guide">
+                    <div class="button-group-j">
+                        <a ng-if="!game.downloads || (userOS!=='Windows' && userOS !== 'MacOS') || (!game.downloads.windows && userOS==='Windows') || (userOS==='MacOS' && !game.downloads.mac)" ng-click="broadcast('globalDialogs.addDialog', {type: 'error',title: 'Error',content: 'There is no downloadable client for your operating system'})" trans>Download</a>
+                        <a ng-href="{{game.downloads.windows}}" ng-if="userOS==='Windows' && game.downloads.windows" trans>Download</a>
+                        <a ng-href="{{game.downloads.mac}}" ng-if="userOS==='MacOS' && game.downloads.mac" trans>Download</a>
+                        <a ng-show="env.authorized" ng-click="amountTransfer('get_balance_gg_poker', null, null, '154000')" trans>TRANSFER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="new-default-popup-j pokerklas" ng-show="amountTransferModel.showTransferPopUp" ng-escape="amountTransferModel.showTransferPopUp = false;">
+        <div class="pp-table-j">
+            <div class="table-row-j">
+                <div class="table-cell-j">
+                    <div class="popup-wrapper-j">
+                        <div class="pu-head-j">
+                            <span trans>Transfer</span>
+                            <a class="close-j" ng-click="amountTransferModel.showTransferPopUp = false;"></a>
+                        </div>
+                        <div class="transfer-form-game-j">
+                            <vbet-loader ng-show="amountTransferModel.showTransferPopUp && amountTransferModel.transferInProgress"></vbet-loader>
+                            <div class="transfer-form-content" ng-show="!amountTransferModel.transferInProgress">
+                               <ul>
+                                   <li>
+                                       <form autocomplete="off" name="fromForm" id="fromForm" ng-submit="amountTransfer('transfer', 'GGPoker','Casino')">
+                                           <input name="amountFromGame" type="number" placeholder="ENTER" min="0.1" max="{{ amountTransferModel.gpAmount }}" autocomplete="off" ng-model="amountTransferModel.fromGameAmount" required="required" step="0.1" trans>
+                                           <button disabled="true" ng-disabled="fromForm.amountFromGame.$invalid" trans>Withdraw from game</button>
+                                       </form>
+                                   </li>
+                                   <li>
+                                       <form autocomplete="off" name="toForm" id="toForm" ng-submit="amountTransfer('transfer', 'Casino', 'GGPoker')">
+                                           <input name="amountToGame" type="number" placeholder="ENTER" min="0.1" max="{{ $root.profile.casino_balance || 1000 }}" autocomplete="off" ng-model="amountTransferModel.fromCasinoAmount" required="required" step="0.1" trans>
+                                           <button disabled="true" ng-disabled="toForm.amountToGame.$invalid" trans>Deposit to game</button>
+                                       </form>
+                                   </li>
+                               </ul>
+                               <p ng-show="amountTransferModel.gpAmount !== null"><span trans>Game Balance: </span>{{ amountTransferModel.gpAmount }}&nbsp;{{ currency_name|currency }}</p>
+                               <p class="transfer-form-error" ng-show="amountTransferModel.messageType && amountTransferModel.messageType === 'error'"><span trans>Error occured</span></p>
+                               <p class="transfer-form-success" ng-show="amountTransferModel.messageType && amountTransferModel.messageType === 'success'"><span trans>Success</span></p>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

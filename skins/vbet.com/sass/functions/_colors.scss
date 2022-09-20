@@ -1,0 +1,24 @@
+$hero-color:        #a61f67;
+$brand-color-1:     #1a7051;
+$brand-color-2:     #c29440;
+
+$skin-color: #1e2639;
+$text-color: $skin-color;
+
+$disable-brand-color-2-sc: true, #ffffff;
+
+$asian-view-custom: true;
+
+$pages-with-full-width-header-background: (".homepage", ".classic", ".blast", ".draw", ".about", ".vrcasino", ".livedealer", ".vip-promos", ".external", ".ogwil",  ".games", ".backgammon", ".belote", ".gameslanding", ".pokerklas ", ".poolbetting", ".fantasy", ".freebet", ".gameCSB1providerCSBexid152000", ".csbpoolbetting", ".first_deposit_bonus", ".first_deposit_bonus_and_20_free_spins", ".poker");
+
+@if ($skin-second==true) {
+  $white-skin: true !global;
+  $skin-color: #f3f3f5 !global;
+  $text-color: #1e2639 !global;
+  $live-casino-background: default !global;
+  $footer-background: white !global;
+  $popup-form-opacify: 0.1 !global;
+  $body-background: #E8E8EB !global;
+  $header-nav-line-background: #373e54 !global;
+  $header-first-line-background: #FFFFFF !global;
+}

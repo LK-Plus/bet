@@ -1,0 +1,46 @@
+<div ng-if="game.type === 1 && !gameFinished" class="e-sport-l-score">
+    <live-game-scores class="float-width" show-stats-block="showStatsBlock"  open-game="game" enlarged-game="enlargedGame"></live-game-scores>
+</div>
+<div class="all-markets-e-s">
+    <div class="game-mini-t-row" ng-if="game.type !== 1">
+        <ul>
+            <li>
+                <p ng-bind="game.region.name"></p>
+                <p ng-bind="game.competition.name"></p>
+            </li>
+            <li class="team-n-l-v a-right" ng-if="game.show_type !== 'OUTRIGHT'">
+                <h6 class="e-team-name-r">{{game.team1_name}} <i class="team-logo-b" ng-style="{'background-image': $root.conf.teamDefaultLogo ? 'url(images/team-logo-default.png)' : 'url({{$root.conf.teamLogosPath}}e/s/{{Math.floor(game.team1_id / 2000)}}/{{game.team1_id}}.png)'}"></i></h6>
+            </li>
+            <li class="g-vs-v" ng-if="game.show_type !== 'OUTRIGHT'" trans>vs</li>
+            <li class="team-n-l-v" ng-if="game.show_type !== 'OUTRIGHT'">
+                <h6 class="e-team-name-r"><i class="team-logo-b" ng-style="{'background-image': $root.conf.teamDefaultLogo ? 'url(images/team-logo-default.png)' : 'url({{$root.conf.teamLogosPath}}e/s/{{Math.floor(game.team2_id / 2000)}}/{{game.team2_id}}.png)'}"></i> {{game.team2_name}}</h6>
+            </li>
+            <li>
+                <p class="esports-countdown" countdown="{{game.start_ts}}" ng-bind="countdown.days +  ':' + countdown.hours + ':' + countdown.minutes + ':' + countdown.seconds"></p>
+            </li>
+            <li>
+                <p ng-bind="::game.start_ts|formatDate:'noLocaleTranslate':null:$root.env.timeFormat"></p>
+            </li>
+        </ul>
+    </div>
+    <div class="filter-markets-l" ng-show="game.markets.length">
+        <div class="markets-group-wrap-v3">
+            <div class="switchers-markets">
+                <i class="column-view-j" ng-click="toggleMarketDivision(false)" ng-class="{'active': !marketsInOneColumn.enabled}"></i>
+                <i class="list-view-j" ng-click="toggleMarketDivision(true)" ng-class="{'active': marketsInOneColumn.enabled}"></i>
+            </div>
+            <ul ng-class="{'show-dropdown': marketGroupFilterExpanded, 'has-dropdown': game.availableMarketGroups.length > (($root.env.live ? 5 : 3) + 1)}">
+                <li class="more-j" ng-click="marketGroupFilterExpanded = !marketGroupFilterExpanded" hide-on-click state-flag-var="marketGroupFilterExpanded"><span>+ {{ game.availableMarketGroups.length - (($root.env.live ? 5 : 3) + 1) }}</span></li>
+                <li ng-repeat="group in game.availableMarketGroups track by group.id"
+                    ng-class="{active: game.selectedMarketGroupId === group.id,
+                'favorte-markets-group-j': $first, 'animate-star-odd' : $first && group.count % 2 == 1, 'animate-star-even': $first && group.count % 2 == 0,
+                'has-market': $first && group.count > 0,
+                'to-dropdown': $index > ($root.env.live ? 5 : 3), 'column-3':  ($root.env.live ? 5 : 3) == 3}"
+                    ng-click="selectMarketsGroup(group.id)" data-count="{{ group.count }}">
+                    <span><i>{{ group.name|translate }}</i> <i ng-show="group.count !== undefined">({{ group.count }})</i></span></li>
+            </ul>
+        </div>
+        <ng-include src="::'templates/directive/live-game-odds.html'|fixPath"></ng-include>
+    </div>
+</div>
+<p class="game-finished-v3" ng-show="gameFinished" trans>This Game is already finished or unavailable</p>

@@ -1,0 +1,22 @@
+<div class="red-tiger-content" ng-show="jackpotData" ng-repeat="pot in jackpotData.PoolGroup.PoolList track by $index">
+    <div ng-if="pot.JackPotType === 'time'" class="red-tiger-block">
+        <img src="images/red-tiger/daily-drop.png" alt="">
+        <div class="red-tiger-bg">
+            <ul>
+                <li class="cms-jcon-{{jackpotData.Currency}}"></li>
+                <li><jackpot-counter point="jackpotData.CurrencyFraction" show-currency="false" currency="{{jackpotData.Currency}}" max-length="8" comma="true" max-duration-speed="400" amount="{{pot.CollectedAmount}}"></jackpot-counter></li>
+            </ul>
+        </div>
+        <p class="red-tiger-timer">{{'Must pay before'|translate}} <span countdown="{{pot.TimeStamp}}"  ng-bind="'🕒 ' + countdown.hours + ':' + countdown.minutes + ':' + countdown.seconds"></span></p>
+    </div>
+
+    <div ng-if="pot.JackPotType === 'progressive'" class="red-tiger-block">
+        <img src="images/red-tiger/mega-drop.png" alt="">
+        <div class="red-tiger-bg">
+            <ul>
+                <li class="cms-jcon-{{jackpotData.Currency}}"></li>
+                <li><jackpot-counter point="jackpotData.CurrencyFraction" max-length="8" show-currency="false" currency="{{jackpotData.Currency}}" comma="true" max-duration-speed="400" amount="{{pot.CollectedAmount}}"></jackpot-counter></li>
+            </ul>
+        </div>
+    </div>
+</div>

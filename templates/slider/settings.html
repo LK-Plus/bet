@@ -1,0 +1,515 @@
+<div class="bet-history" ng-if="!conf.enableMixedView && env.sliderContent === 'settings'" ng-controller="settingsCtrl" ng-init="env.mixedSettingsPage = popupSettingsPage || env.mixedSettingsPage">
+    <div class="closed-popup-form" ng-click="broadcast('slider.close')"></div>
+    <div class="general-left-block">
+        <div class="settings-nav-contain">
+            <h3 trans class="user-icon"></h3>
+            <ul>
+                <li ng-show="!conf.disableEditingPersonalInfo" ng-class="{'active': env.mixedSettingsPage==='details'}"><a ng-click="env.mixedSettingsPage='details'" trans>Personal Details</a></li>
+                <li ng-class="{'active': env.mixedSettingsPage==='changepassword'}" ng-show="!conf.disableChangePassword"><a ng-click="env.mixedSettingsPage='changepassword'" trans>Change Password</a></li>
+                <li ng-show="conf.enableAccountVerification || conf.accountVerificationMessage" ng-class="{'active': env.mixedSettingsPage==='verifyaccount'}"><a ng-click="env.mixedSettingsPage='verifyaccount'" trans>Verify Account</a></li>
+                <li ng-show="conf.userTimeOut.enabled" ng-class="{'active': env.mixedSettingsPage==='usertimeout'}"><a ng-click="env.mixedSettingsPage='usertimeout'" trans>Time-Out</a></li>
+                <li ng-show="conf.selfExclusion.enabled" ng-class="{'active': env.mixedSettingsPage==='selfexclusion'}"><a ng-click="env.mixedSettingsPage='selfexclusion'" trans>Self-Exclusion</a></li>
+                <li ng-show="conf.enableDepositLimits" ng-class="{'active': env.mixedSettingsPage==='depositlimits'}"><a ng-click="env.mixedSettingsPage='depositlimits'" trans>Deposit Limits</a></li>
+                <!--ng-show="conf.enableFriendReferralBonus && user should have referral related field" -->
+                <li ng-show="conf.friendReferral.enabled" ng-class="{'active': env.mixedSettingsPage==='friendReferral'}"><a ng-click="env.mixedSettingsPage = 'friendReferral'" trans>Friend Referral</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="right-block-history settings">
+        <div ng-show="env.mixedSettingsPage==='verifyaccount' && (conf.enableAccountVerification || conf.accountVerificationMessage)">
+
+            <!--Preferences-->
+            <h3 trans>Verify Account</h3>
+            <div class="settings-info-contain registration-form" ng-if="conf.accountVerificationMessage">
+                <div ng-bind-html="conf.accountVerificationMessage|translate:[conf.accountVerificationEmail]|html"></div>
+            </div>
+
+            <div class="settings-info-contain">
+                <passport-uploader ng-if="conf.enableAccountVerification" forms="forms"></passport-uploader>
+            </div>
+
+            <!--Preferences END-->
+
+
+        </div>
+
+        <div ng-show="env.mixedSettingsPage==='changepassword'" class="change-password-section-j">
+
+
+            <!--Change Password-->
+            <h3 trans>Change Password</h3>
+
+            <div class="settings-info-contain">
+                <form name="forms.changepasswordForm" class="registration-form">
+                    <label><span trans>Current Password</span></label>
+
+                    <div class="form-text"  ng-class="{'error': (forms.changepasswordForm.oldpassword.$dirty && forms.changepasswordForm.oldpassword.$error.required) || (forms.changepasswordForm.oldpassword.$error.incorrect && !forms.changepasswordForm.oldpassword.$dirty)}">
+                        <input name="oldpassword" id="changePasswordOld" numpad ng-model="changepasswordData.oldpassword" type="password" required trans>
+
+                        <div class="form-error-icon"></div>
+                        <div class="form-error-text">
+                            <div class="error-icon-f"></div>
+                            <p trans ng-show="forms.changepasswordForm.oldpassword.$error.required">This field is required</p>
+                            <p trans ng-show="forms.changepasswordForm.oldpassword.$pristine && forms.changepasswordForm.oldpassword.$error.incorrect">Password incorrect</p>
+                        </div>
+                    </div>
+
+                    <label><span trans>New Password</span></label>
+
+                    <div class="form-text"  ng-class="{'error': forms.changepasswordForm.password.$dirty && forms.changepasswordForm.password.$invalid}">
+                        <input name="password" id="changePasswordNew" numpad ng-model="changepasswordData.password" type="password" placeholder="{{passwordRules.placeholder}}" required ng-pattern="passwordRules['ng-pattern'] || ''" ng-minlength="passwordRules['ng-minlength'] || ''" ng-maxlength="passwordRules['ng-maxlength'] || ''">
+
+                        <div class="form-error-icon"></div>
+                        <div class="form-error-text">
+                            <div class="error-icon-f"></div>
+                            <div ng-repeat="val in passwordRules.validationMessages"
+                                 ng-show="forms.changepasswordForm.password.$error[val.name]">
+                                {{val.message|translate}}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <label><span trans>Confirm New Password</span></label>
+
+                    <div class="form-text" ng-class="{'error': forms.changepasswordForm.password2.$dirty && (forms.changepasswordForm.password2.$modelValue !== forms.changepasswordForm.password.$modelValue)}">
+                        <input name="password2" id="changePasswordNew2" numpad ng-model="changepasswordData.password2" type="password" placeholder="Confirm password" required trans ng-disabled="forms.changepasswordForm.password.$error.minlength">
+
+                        <div class="form-error-icon"></div>
+                        <div class="form-error-text">
+                            <div class="error-icon-f"></div>
+                            <p trans ng-show="changepasswordData.password2 && (changepasswordData.password2 !== changepasswordData.password)">Passwords don't match</p>
+                            <p trans ng-show="forms.changepasswordForm.password2.$error.required">This field is required</p>
+                        </div>
+                    </div>
+
+
+                    <div class="change-button-container password">
+                        <div class="cashier-button">
+                            <button ng-disabled="!forms.changepasswordForm.$dirty || forms.changepasswordForm.$invalid || (forms.changepasswordForm.password2.$modelValue !== forms.changepasswordForm.password.$modelValue)" ng-show="!working" trans ng-click="changePassword()">Save</button>
+                            <button disabled="disabled" ng-show="working" trans>Wait...</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--Change Password END-->
+
+        </div>
+        <div ng-show="env.mixedSettingsPage==='details'" ng-init="loadUserInfo()">
+            <!--Change Password-->
+            <h3 trans>Personal Details</h3>
+
+            <vbet-loader class="page-center" ng-if="loadingInfo"></vbet-loader>
+            <div class="settings-info-contain" ng-if="!loadingInfo">
+                <form name="forms.detailsForm" class="registration-form">
+                    <div class="personal-details-left">
+
+                        <ul>
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('user_id') !== -1, 'editable': personalDetails.editableFields.indexOf('user_id') !== -1}">
+                                <label><span trans>ID</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('user_id') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.user_id}}</p>
+                                </div>
+
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.user_id.$invalid}">
+                                        <input name="user_id" type="text" ng-model="details.user_id" title="{{personalDetails.disabledFields.indexOf('user_id') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" ng-required="personalDetails.requiredEditableFields.indexOf('user_id') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('user_id') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('user_id') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('user_id') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.user_id.$error.required">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('username') !== -1, 'editable': personalDetails.editableFields.indexOf('username') !== -1}">
+                                <label><span trans>Username</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('username') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.username}}</p>
+                                </div>
+
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.username.$invalid}">
+                                        <input name="username" type="text" ng-model="details.username" title="{{personalDetails.disabledFields.indexOf('username') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" ng-required="personalDetails.requiredEditableFields.indexOf('username') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('username') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('username') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('username') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.username.$error.required">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('first_name') !== -1, 'editable': personalDetails.editableFields.indexOf('first_name') !== -1}">
+                                <label><span trans>First Name</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('first_name') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.first_name}}</p>
+                                </div>
+
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.first_name.$invalid}">
+                                        <input name="first_name" type="text" ng-model="details.first_name" title="{{personalDetails.disabledFields.indexOf('first_name') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" ng-required="personalDetails.requiredEditableFields.indexOf('first_name') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('first_name') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('first_name') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('first_name') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.first_name.$error.required">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('sur_name') !== -1, 'editable': personalDetails.editableFields.indexOf('sur_name') !== -1}">
+                                <label><span trans>Last Name</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('sur_name') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.sur_name}}</p>
+                                </div>
+
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.sur_name.$invalid}">
+                                        <input name="sur_name" type="text" ng-model="details.sur_name" title="{{personalDetails.disabledFields.indexOf('sur_name') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" ng-required="personalDetails.requiredEditableFields.indexOf('sur_name') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('sur_name') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('sur_name') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('sur_name') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.sur_name.$error.required">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- -----------------------------------------------------birth_date -->
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('birth_date') !== -1, 'editable': personalDetails.editableFields.indexOf('birth_date') !== -1}">
+                                <label><span trans>Birth date</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('birth_date') !== -1">*</span></label>
+
+                                <div class="disabled-field">
+                                    <p>{{details.birth_date}}</p>
+                                </div>
+
+                                <div class="float-width b-date active-field">
+                                    <div class="select-block">
+                                        <div class="select-j">
+                                            <select name="birth_day"
+                                                    ng-options="d for d in days"
+                                                    day-selector
+                                                    month-model="birthDate.month"
+                                                    year-model="birthDate.year"
+                                                    options="days"
+                                                    ng-model="birthDate.day"
+                                                    ng-required="personalDetails.requiredEditableFields.indexOf('birth_date') !== -1"
+                                                    tmp-day="tmpDay"
+                                                    title="{{personalDetails.disabledFields.indexOf('birth_date') !== -1 ? ('This field cannot be edited.'|translate) : ''}}"
+                                                    ng-disabled="personalDetails.disabledFields.indexOf('birth_date') !== -1">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="select-block">
+                                        <div class="select-j">
+                                            <select name="birth_month"
+                                                    ng-model="birthDate.month"
+                                                    ng-required="personalDetails.requiredEditableFields.indexOf('birth_date') !== -1"
+                                                    ng-disabled="personalDetails.disabledFields.indexOf('birth_date') !== -1"
+                                                    title="{{personalDetails.disabledFields.indexOf('birth_date') !== -1 ? ('This field cannot be edited.'|translate) : ''}}">
+                                                <option ng-repeat="month in monthNames" value="{{month.val}}">{{month.name| translate}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="select-block">
+                                        <div class="select-j">
+                                            <select name="birth_year"
+                                                    ng-model="birthDate.year"
+                                                    ng-required="personalDetails.requiredEditableFields.indexOf('birth_date') !== -1"
+                                                    ng-options="y for (y,y) in birthDate.years"
+                                                    title="{{personalDetails.disabledFields.indexOf('birth_date') !== -1 ? ('This field cannot be edited.'|translate) : ''}}"
+                                                    ng-disabled="personalDetails.disabledFields.indexOf('birth_date') !== -1">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <!-- ----------------------------------------------------- gender -->
+                            <li class="gender-lbl" ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('gender') !== -1, 'editable': personalDetails.editableFields.indexOf('gender') !== -1}">
+                                <label ><span trans>Gender</span>:</label>
+                                <div class="disabled-field">
+                                    <p>{{details.viewGender}}</p>
+                                </div>
+                                <div class="active-field">
+                                    <label class="custom-radio">
+                                        <input type="radio" ng-model="details.gender" name="gender" value="M">
+                                        <span trans>Male</span>
+                                    </label>
+                                    <label class="custom-radio">
+                                        <input type="radio" ng-model="details.gender" name="gender" value="F">
+                                        <span trans>Female</span>
+                                    </label>
+                                </div>
+                            </li>
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('email') !== -1, 'editable': personalDetails.editableFields.indexOf('email') !== -1}">
+                                <label><span trans>Email</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('email') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.email}}</p>
+                                </div>
+
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.email.$invalid}">
+                                        <input name="email" type="text" ng-model="details.email" title="{{personalDetails.disabledFields.indexOf('email') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" ng-required="personalDetails.requiredEditableFields.indexOf('email') !== -1" ng-pattern="patterns.email" ng-disabled="personalDetails.disabledFields.indexOf('email') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('email') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('email') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.email.$error.required">This field is required</p>
+                                            <p trans ng-show="forms.detailsForm.email.$error.pattern">Invalid email</p>
+                                            <p trans ng-show="forms.detailsForm.email.$error.dublicate">This email already exists in our database, please enter another</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('doc_number') !== -1, 'editable': personalDetails.editableFields.indexOf('doc_number') !== -1}">
+                                <label><span trans>Passport Number</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('doc_number') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.doc_number}}</p>
+                                </div>
+
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.doc_number.$invalid}">
+                                        <input name="doc_number" type="text" ng-model="details.doc_number" title="{{personalDetails.disabledFields.indexOf('doc_number') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" ng-required="personalDetails.requiredEditableFields.indexOf('doc_number') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('doc_number') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('doc_number') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('doc_number') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.doc_number.$error.required">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+
+                    <div class="personal-details-right">
+                        <ul>
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('country_code') !== -1, 'editable': personalDetails.editableFields.indexOf('country_code') !== -1}">
+                                <label><span trans>Country</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('country_code') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.country_code}}</p>
+                                </div>
+
+                                <div class="active-field">
+                                    <div class="select-j">
+                                        <select ng-model="details.selectCountryCode" title="{{personalDetails.disabledFields.indexOf('country_code') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" name="country_code" ng-options="item as item.name for item in countryCodes track by item.key" ng-disabled="personalDetails.disabledFields.indexOf('country_code') !== -1"></select>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('city') !== -1, 'editable': personalDetails.editableFields.indexOf('city') !== -1}">
+                                <label><span trans>City</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('city') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.city}}</p>
+                                </div>
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.city.$invalid}">
+                                        <input name="city" type="text" ng-model="details.city" title="{{personalDetails.disabledFields.indexOf('city') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" ng-required="personalDetails.requiredEditableFields.indexOf('city') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('city') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('city') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('city') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.city.$error.required">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('address') !== -1, 'editable': personalDetails.editableFields.indexOf('address') !== -1}">
+                                <label><span trans>Address</span>: <span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('address') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.address}}</p>
+                                </div>
+
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.address.$invalid}">
+                                        <input name="address" title="{{personalDetails.disabledFields.indexOf('address') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" type="text" ng-model="details.address"  ng-required="personalDetails.requiredEditableFields.indexOf('address') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('address') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('address') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('address') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.address.$error.required">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('phone_number') !== -1, 'editable': personalDetails.editableFields.indexOf('phone_number') !== -1}">
+                                <label><span trans>Contact number</span>:<span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('phone_number') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.phone_number}}</p>
+                                </div>
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.phone_number.$invalid}">
+                                        <input name="phone_number"  prevent-input="[^\d]" ng-model="details.phone_number" title="{{personalDetails.disabledFields.indexOf('phone_number') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" type="text" ng-required="personalDetails.requiredEditableFields.indexOf('phone_number') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('phone_number') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('phone_number') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('phone_number') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.phone_number.$error.required" class="">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li ng-class="{'read-only': personalDetails.readOnlyFields.indexOf('bank_info') !== -1, 'editable': personalDetails.editableFields.indexOf('bank_info') !== -1}">
+                                <label><span trans>Bank verification number</span>:<span class="hint" ng-show="personalDetails.requiredEditableFields.indexOf('bank_info') !== -1">*</span></label>
+                                <div class="disabled-field">
+                                    <p>{{details.bank_info}}</p>
+                                </div>
+                                <div class="active-field">
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.bank_info.$invalid}">
+                                        <input name="bank_info" prevent-input="[^\d]" ng-model="details.bank_info" ng-if="personalDetails.bankInfoMask" title="{{personalDetails.disabledFields.indexOf('bank_info') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" type="text" ng-required="personalDetails.requiredEditableFields.indexOf('bank_info') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('bank_info') !== -1" ui-mask="{{personalDetails.bankInfoMask}}" ui-mask-placeholder="">
+                                        <input name="bank_info" prevent-input="[^\d]" ng-model="details.bank_info" ng-if="!personalDetails.bankInfoMask" title="{{personalDetails.disabledFields.indexOf('bank_info') !== -1 ? ('This field cannot be edited.'|translate) : ''}}" type="text" ng-required="personalDetails.requiredEditableFields.indexOf('bank_info') !== -1" ng-disabled="personalDetails.disabledFields.indexOf('bank_info') !== -1">
+
+                                        <div class="form-error-icon" ng-show="personalDetails.disabledFields.indexOf('bank_info') === -1"></div>
+                                        <div class="form-error-text" ng-show="personalDetails.disabledFields.indexOf('bank_info') === -1">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.bank_info.$error.$invalid" class="">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="visible-item">
+                                <label><span trans>Current Password</span>: <span class="hint">*</span></label>
+
+                                <div>
+                                    <div class="form-text" ng-class="{'error': forms.detailsForm.$dirty && forms.detailsForm.password.$untouched || forms.detailsForm.password.$touched && forms.detailsForm.password.$invalid}">
+                                        <input name="password" ng-model="details.password" type="password" required>
+
+                                        <div class="form-error-icon"></div>
+                                        <div class="form-error-text">
+                                            <div class="error-icon-f"></div>
+                                            <p trans ng-show="forms.detailsForm.password.$error.required" class="">This field is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="editable chekcbox-j" ng-show="personalDetails.editableFields.indexOf('notify_via_email') !== -1">
+                                <label><input name="" ng-model="details.notify_via_email" type="checkbox" /><span trans>Notify via e-mail</span></label>
+                            </li>
+                            <li class="editable chekcbox-j" ng-show="personalDetails.editableFields.indexOf('notify_via_sms') !== -1">
+                                <label><input name="" ng-model="details.notify_via_sms" type="checkbox" /><span trans>Notify via SMS</span></label>
+                            </li>
+
+                            <li class="editable chekcbox-j" ng-show="personalDetails.editableFields.indexOf('subscribe_to_email') !== -1">
+                                <label><input name="" ng-model="details.subscribe_to_email" type="checkbox" /><span trans>Notify via e-mail</span></label>
+                            </li>
+                            <li class="editable chekcbox-j" ng-show="personalDetails.editableFields.indexOf('subscribe_to_sms') !== -1">
+                                <label><input name="" ng-model="details.subscribe_to_sms" type="checkbox" /><span trans>Notify via SMS</span></label>
+                            </li>
+                            <li class="editable chekcbox-j" ng-show="personalDetails.editableFields.indexOf('subscribe_to_bonus') !== -1">
+                                <label><input name="" ng-model="details.subscribe_to_bonus" type="checkbox" /><span trans>Notify about Bonuses</span></label>
+                            </li>
+
+                            <li>
+                                &nbsp;
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="change-button-container password">
+                        <div class="cashier-button">
+                            <button ng-show="!working" ng-disabled="!forms.detailsForm.$dirty || forms.detailsForm.$invalid" ng-click="changeDetails()" trans>Save</button>
+                            <button disabled="disabled" ng-show="working" trans>Wait...</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--Change Password END-->
+
+        </div>
+        <div ng-if="env.mixedSettingsPage==='depositlimits'" ng-init="getLimits()">
+
+
+            <!--Change Password-->
+            <h3 trans>Deposit Limits</h3>
+
+            <div class="settings-info-contain deposit-limit">
+                <p trans>Deposit limits allow you to limit the amount of funds you can deposit into the account. The amount can be chosen over a daily, weekly or monthly period. The deposit limit will allow you to restrict the amount of money entering your account, before betting takes place.</p>
+
+                <form name="forms.depositLimitsForm" class="registration-form">
+                    <label><span trans>Amount</span></label>
+
+                    <div class="form-text"  ng-class="{'error': forms.depositLimitsForm.max_single_deposit.$touched && forms.depositLimitsForm.max_single_deposit.$invalid}">
+                        <input name="max_single_deposit" ng-model="$parent.depositLimitsData.max_single_deposit" type="text" placeholder="Enter amount" prevent-input="[^0-9]+" required trans>
+
+                        <div class="form-error-icon"></div>
+                        <div class="form-error-text">
+                            <div class="error-icon-f"></div>
+                            <p trans ng-show="forms.depositLimitsForm.max_single_deposit.$error.required">This field is required</p>
+                        </div>
+                    </div>
+
+                    <label><span context="Deposit limits" trans>Day</span></label>
+
+                    <div class="form-text"  ng-class="{'error': forms.depositLimitsForm.max_day_deposit.$touched && forms.depositLimitsForm.max_day_deposit.$invalid}">
+                        <input name="max_day_deposit" ng-model="$parent.depositLimitsData.max_day_deposit" type="text" placeholder="Enter amount" prevent-input="[^0-9]+" required trans>
+
+                        <div class="form-error-icon"></div>
+                        <div class="form-error-text">
+                            <div class="error-icon-f"></div>
+                            <p trans ng-show="forms.depositLimitsForm.max_day_deposit.$error.required">This field is required</p>
+                        </div>
+                    </div>
+
+
+                    <label><span context="Deposit limits" trans>Week</span></label>
+
+                    <div class="form-text" ng-class="{'error': forms.depositLimitsForm.max_week_deposit.$touched && forms.depositLimitsForm.max_week_deposit.$invalid}">
+                        <input name="max_week_deposit" ng-model="$parent.depositLimitsData.max_week_deposit" type="text" placeholder="Enter amount" prevent-input="[^0-9]+" required trans>
+
+                        <div class="form-error-icon"></div>
+                        <div class="form-error-text">
+                            <div class="error-icon-f"></div>
+                            <p trans ng-show="forms.depositLimitsForm.max_week_deposit.$error.required">This field is required</p>
+                        </div>
+                    </div>
+                    <label><span trans context="Deposit limits">Month</span></label>
+
+                    <div class="form-text" ng-class="{'error': forms.depositLimitsForm.max_month_deposit.$touched && forms.depositLimitsForm.max_month_deposit.$invalid}">
+                        <input name="max_month_deposit" ng-model="$parent.depositLimitsData.max_month_deposit" type="text" placeholder="Enter amount" prevent-input="[^0-9]+" required trans>
+
+                        <div class="form-error-icon"></div>
+                        <div class="form-error-text">
+                            <div class="error-icon-f"></div>
+                            <p trans ng-show="forms.depositLimitsForm.max_month_deposit.$error.required">This field is required</p>
+                        </div>
+                    </div>
+
+
+                    <div class="change-button-container password">
+                        <div class="cashier-button">
+                            <button ng-disabled="!forms.depositLimitsForm.$dirty || forms.depositLimitsForm.$invalid" ng-show="!working" trans ng-click="setDepositLimits()">Save</button>
+                            <button disabled="disabled" ng-show="working" trans>Wait...</button>
+
+                        </div>
+                    </div>
+                </form>
+                <div class="info"><span class="note-highlight" trans>Please note that you'll be able to increase your limits only after seven days from your 1st request.</span></div>
+            </div>
+
+        </div>
+
+        <ng-include ng-if="env.mixedSettingsPage==='usertimeout'" src="::'templates/slider/userTimeOut.html'|fixPath"></ng-include>
+        <ng-include ng-if="env.mixedSettingsPage==='selfexclusion'" src="::'templates/slider/selfExclusion.html'|fixPath"></ng-include>
+        <ng-include ng-if="env.mixedSettingsPage==='friendReferral'" src="::'templates/livebox/friendReferral.html'|fixPath"></ng-include>
+
+    </div>
+</div>
+

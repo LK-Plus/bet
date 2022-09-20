@@ -1,0 +1,67 @@
+<div class="page-about" ng-controller="cmsPagesCtrl" ng-init="loadPage('about-us-'+env.lang, true)">
+
+    <div class="full-screen-sections" snap-index="snapIndex" ng-if="pages">
+        <div class="section-about past" id="about" ng-init="main = getPageBySlug(pages,'main')" ng-style="main.thumbnail && {'background-image':'url({{main.thumbnail || ''}})'}">
+            <div class="section-content">
+                <i class="about-icon"></i>
+
+                <div class="title-block">
+                    <h3 >{{main.title}}</h3>
+                    <p ng-bind-html="main.content"></p>
+                </div>
+
+                <div class="short-summary">
+                    <p ng-show="main.children[0].content" ng-bind-html="main.children[0].content|html:'p'"></p>
+                    <div class="grouped-btns">
+                        <a ng-click="scrollToSelectedItem('details')" class="action-btn" trans>Tell me more</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section-details" id="details" ng-init="statistics = getPageBySlug(pages, 'statistics')"  ng-style="statistics.thumbnail && {'background-image':'url({{statistics.thumbnail || ''}})'}">
+            <div class="section-content">
+                <div class="active-title">
+                    <span>{{statistics.custom_fields.label_value[0] || '30,000'}}</span>
+                    <h3>{{statistics.title}}</h3>
+                    <p ng-bind-html="statistics.content"></p>
+                </div>
+                <ul class="service-items">
+                    <li ng-repeat="stats in statistics.children" ng-bind-html="stats.content|html:'p'" class="{{stats.slug}}"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div ng-show="conf.showMapSection" class="section-map" id="map" ng-class="{'visible-map': showMap}" ng-init="map = getPageBySlug(pages, 'map')">
+            <div class="section-content">
+                <div class="headline">
+                    <h3>{{map.title}}</h3>
+                    <p ng-bind-html="map.content"></p>
+                </div>
+                <div class="map-buttons">
+                    <button ng-show="!map.custom_fields.hide_map_button[0]" class="primary-btn" ng-click="showMap = true" trans>View on map</button>
+                    <button class="contact-btn" ng-click="scrollToSelectedItem('contact')" trans>Contact us</button>
+                </div>
+            </div>
+            <button class="hide-map-btn" ng-click="showMap=false" trans>Hide Map</button>
+            <iframe src="http://mobile10.betconstruct.com/"></iframe>
+        </div>
+
+        <div class="section-contact" id="contact" ng-init="contacts = getPageBySlug(pages, 'contact')">
+            <div class="contacs-title">
+                <h3>{{contacts.title}}</h3>
+                <p ng-bind-html="contacts.content"></p>
+            </div>
+            <div class="contact-list">
+                <ul>
+                    <li ng-repeat="childContact in contacts.children" class="{{childContact.slug}}" ng-bind-html="childContact.content|html:'p'" ng-click="openPopUp(childContact.slug)"></li>
+                </ul>
+            </div>
+
+            <iframe ng-if="conf.showOfficeView" ng-src="{{ conf.showOfficeView|url }}"></iframe>
+        </div>
+
+         
+    </div>
+</div>

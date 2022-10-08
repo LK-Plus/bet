@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('.prema-100>div:first-child>div:first-child').css('top', '15em')
     setTimeout(function () {
-        $('.prema-100>div:first-child>div:first-child').css('height', '1500px', 'overflow', 'scroll ');
+        $('.prema>div:first-child>div:first-child').css('height', '1500px', 'overflow', 'scroll ');
         $('.e-100>div:first-child>div:first-child').css('height', '250%');
         $('.virtual-100>div:first-child>div:first-child').css('height', '250%');
         $('#column2463').removeAttr("style");

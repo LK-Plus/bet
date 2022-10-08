@@ -73,7 +73,7 @@
         i.className = "myIframe-widgets21321333", a.className = "close-widgets-container", a.id = "umadivqualquer", i.setAttribute("src", "".concat(r, "/widgets/").concat(window._digisac.id)), i.frameBorder = "0", i.allow = "microphone", i.allowFullscreen = !0, window.onload = function () {
             var e = i.contentWindow,
                 t = document.getElementById("btn-webchat");
-            e.document.getElementsByTagName("head")[0].insertAdjacentHTML("beforeend", '<link rel="stylesheet" href="https://bet-files.suprema.group/digisac.css" />');
+            e.document.getElementsByTagName("body")[0].insertAdjacentHTML("beforeend", '<style> .ellipse { width: 48px !important; height: 48px !important; background-image: url(https://bet-files.suprema.group/whatsapp.png) !important; } </style>');
             window.toggleWidgets = !1, t && t.addEventListener("click", (function (t) {
                 t.preventDefault(), window.toggleWidgets ? (window.toggleWidgets = !1, e.postMessage({
                     toggle: window.toggleWidgets

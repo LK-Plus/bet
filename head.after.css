@@ -1,7 +1,3 @@
-.prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
-    position: relative;
-    top: 16em!important;
-}
 
 .categoriesVertical__wrapper,
 .contentFilter .kZdFdP,
@@ -17,10 +13,6 @@
     width: 57vw;
     margin: 0 auto;
     z-index: 5 !important;
-}
-
-.prema.module.ModuleWidgets.uc-animation.fadeIn.active {
-    top: -6em;
 }
 
 .betSlider img {
@@ -188,11 +180,6 @@ p.text-footer span {
 
 .e-100>div:first-child>div:first-child {
     height: 250% !important;
-}
-
-
-.prema>div:first-child>div:first-child {
-    height: 1500px !important;
 }
 
 
@@ -395,10 +382,6 @@ body {
     box-shadow: 0 0px 10px 3px rgb(98 255 4 / 60%);
 }
 
-.main,
-.liveDesk {
-    top: -.8em !important;
-}
 
 .contentSidebar .categoriesVertical__wrapper {
     overflow-y: scroll !important;
@@ -564,12 +547,6 @@ body {
     padding-right: 5px;
 }
 
-.img1 {
-    margin: 0 auto;
-    z-index: 2;
-}
-
-
 
 .navigatorMobile div.icon {
     margin-right: 20px !important;
@@ -682,7 +659,7 @@ span.iPCuNV {
 .promotionDesk {
     top: 15px
 }
-
+/*
 .img {
     z-index: 1 !important;
     position: relative;
@@ -696,7 +673,7 @@ span.iPCuNV {
     margin: 0 auto !important;
     top: -0.8em;
 }
-
+*/
 
 .contentFilter div:first-child {
     margin-left: initial;
@@ -704,6 +681,7 @@ span.iPCuNV {
 }
 
 @media screen and (min-width: 3000px) {
+    /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         width: 58vw !important;
         height: 30em;
@@ -717,12 +695,14 @@ span.iPCuNV {
         margin-left: 21%;
 
     }
+    */
 
     .main-rows {
         margin-top: 6em;
     }
 }
 
+/*
 @media screen and (min-width: 2850px) {
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         width: 57vw;
@@ -734,9 +714,9 @@ span.iPCuNV {
     }
 }
 
+*/
 
-
-
+/*
 @media screen and (min-width: 2450px) {
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         width: 57vw;
@@ -748,7 +728,10 @@ span.iPCuNV {
     }
 }
 
+*/
+
 @media screen and (min-width: 2120px) {
+    /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         width: 57vw;
         height: 30em !important;
@@ -756,7 +739,7 @@ span.iPCuNV {
 
     .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
         top: 19.5em;
-    }
+    }*/
 
     .footercont {
         width: 100vw;
@@ -769,6 +752,7 @@ span.iPCuNV {
         margin-top: 4.5% !important;
     }
 
+    /*
     .virtuaisDesk {
         top: 5px !important;
     }
@@ -790,6 +774,7 @@ span.iPCuNV {
     .liveDesk {
         top: 1.7em !important;
     }
+    */
 
     .mediaDesk {
         margin-top: 5.98% !important;
@@ -828,18 +813,19 @@ span.iPCuNV {
 }
 
 @media screen and (max-width: 1600px) {
+    /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         top: 3em !important;
         height: 16em !important;
         width: 56.7vw;
     }
 
-    
+    */
 
     .virtuaisDesk {
         top: 21px !important;
     }
-
+    /*
     .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
         top: 50em!important;
     }
@@ -848,6 +834,7 @@ span.iPCuNV {
     .liveDesk {
         top: 2.6em !important;
     }
+    */
 
     .contentFilter {
         height: 50px !important;
@@ -864,20 +851,24 @@ span.iPCuNV {
 }
 
 @media screen and (max-width: 1464px) {
+    /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         top: 3em !important;
         height: 16.6em !important;
         width: 56.7vw;
     }
+    */
 
     .main-rows {
         margin-top: 5.5%;
     }
 
+    /*
     .main,
     .liveDesk {
         top: 2.8em !important;
     }
+    */
 }
 
 @media screen and (max-width: 1313px) {
@@ -885,6 +876,7 @@ span.iPCuNV {
         margin-top: 6.5%;
     }
 
+    /*
     .main,
     .liveDesk {
         top: 3em !important;
@@ -899,6 +891,7 @@ span.iPCuNV {
     .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
         top: 11.7em;
     }
+    */
 }
 
 @media screen and (max-width: 1285px) {
@@ -911,13 +904,16 @@ span.iPCuNV {
         height: 53px !important;
     }
 
+    
     .mediaDesk {
         margin-top: 8.5% !important;
     }
 
+    /*
     .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
         top: 12.2em;
     }
+    */
 }
 
 @media screen and (max-width: 1158px) {
@@ -925,7 +921,9 @@ span.iPCuNV {
         margin-top: 7%;
     }
 
+    /*
     .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
         top: 9.2em;
     }
+    */
 }

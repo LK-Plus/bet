@@ -642,12 +642,6 @@ span.iPCuNV {
     color: #3e3e3e !important;
 }
 
-.sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
-    width: 57vw;
-    height: 30em !important;
-    margin-left: 21% !important
-}
-
 .categoryDisplayNone {
     display: none;
 }
@@ -695,7 +689,7 @@ span.iPCuNV {
     width: 56.85vw;
     height: 15.5em !important;
     margin: 0 auto !important;
-    top: 2.3em;
+    top: 2.2em!important;
 }
 
 

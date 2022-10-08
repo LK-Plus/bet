@@ -839,7 +839,7 @@ span.iPCuNV {
     }
 
     .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
-        top: 13.5em;
+        top: 13.5em!important;
     }
 
     .main-esportes,

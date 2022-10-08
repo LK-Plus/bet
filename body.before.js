@@ -38,7 +38,3 @@ function shrink() {
         document.querySelector(".footercont").style.visibility = "hidden";
     }
 }
-
-window._digisac = { 
-    id: "ac2d57a6-f77d-45ee-b26b-408c08afaabc"
-}

@@ -830,6 +830,10 @@ span.iPCuNV {
         width: 56.7vw;
     }
 
+    .prema.module.ModuleWidgets.uc-animation.fadeIn.active {
+        top: -2.19em;
+    }
+
     .virtuaisDesk {
         top: 21px !important;
     }

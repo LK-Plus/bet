@@ -16,11 +16,11 @@
 .uc-row.sportBookSlider {
     width: 57vw;
     margin: 0 auto;
-    z-index: 5!important;
+    z-index: 5 !important;
 }
 
 .prema-100.module.ModuleWidgets.uc-animation.fadeIn.active {
-    top: -6em;
+    top: -4em;
 }
 
 .betSlider img {
@@ -517,7 +517,7 @@ body {
     margin: initial !important;
 }
 
-.desktop .navigatorMobile .headerRow {
+.desktop .main-layout .header-and-main-rows>.header-rows .header-row-wrapper:last-child .header-row {
     height: 45px;
 }
 
@@ -583,11 +583,11 @@ body {
 
 .headerFixDesk {
     position: fixed !important;
-    height: 95px;
+    height: 60px;
     width: 100%;
     z-index: 10;
-    top: 0px !important;
-    margin-bottom: 10em !important;
+    top: 45px !important;
+    background-color: #212121 !important;
 }
 
 .loginDesk {
@@ -642,6 +642,12 @@ span.iPCuNV {
     color: #3e3e3e !important;
 }
 
+.sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+    width: 57vw;
+    height: 30em !important;
+    margin-left: 21% !important
+}
+
 .categoryDisplayNone {
     display: none;
 }
@@ -689,7 +695,7 @@ span.iPCuNV {
     width: 56.85vw;
     height: 15.5em !important;
     margin: 0 auto !important;
-    top: 2.2em!important;
+    top: -0.5em;
 }
 
 
@@ -718,7 +724,6 @@ span.iPCuNV {
     }
 }
 
-
 @media screen and (min-width: 2850px) {
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         width: 57vw;
@@ -737,11 +742,10 @@ span.iPCuNV {
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         width: 57vw;
         height: 30em !important;
-        top: -0.7em;
     }
 
     .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
-        top: 21em!important;
+        top: 21em;
     }
 }
 
@@ -811,6 +815,14 @@ span.iPCuNV {
 .loginMobile {
     margin: -1px 20px 5px 0px;
     z-index: 1;
+}
+
+.hNmifn #search-input-bart {
+    background-color: #494949 !important;
+}
+
+.headerFixNavigator {
+    MARGIN-LEFT: 20px !important;
 }
 
 @media screen and (max-width: 1600px) {

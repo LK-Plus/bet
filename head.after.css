@@ -555,6 +555,9 @@ body {
     background-color: #494949 !important;
 }
 
+.searchCasino .searchBar-wrapper:first-child div:first-child input {
+    background-color: #494949 !important;
+}
 
 .filterButton {
     padding-left: 5px;

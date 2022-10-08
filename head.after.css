@@ -290,7 +290,8 @@ p.text-footer span {
 }
 
 .mobile .ModuleNavigation .navigation {
-    display: -webkit-inline-box !important;
+    display:inline-flex !important;
+    flex-wrap: nowrap !important;
     margin: 10px 0px;
 }
 
@@ -819,7 +820,7 @@ span.iPCuNV {
     background-color: #494949 !important;
 }
 
-.headerFixNavigator {
+.desktop .headerFixNavigator {
     MARGIN-LEFT: 20px !important;
 }
 

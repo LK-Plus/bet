@@ -1,8 +1,0 @@
-{
-  "$hero-color": "#C0272C",
-  "$brand-color-1": "#C0272C",
-  "$brand-color-2": "#c4963f",
-  "$footer-height": "350px",
-  "$skin-color": "#212121",
-  "$text-color": "$skin-color"
-}

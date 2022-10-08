@@ -1,6 +1,0 @@
-build/node_modules/
-build/languages_tmp/
-build/app/
-build/conf.json
-build/templates.js
-build/package-lock.json

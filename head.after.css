@@ -395,7 +395,7 @@ body {
     box-shadow: 0 0px 10px 3px rgb(98 255 4 / 60%);
 }
 
-.main-esportes,
+.main,
 .liveDesk {
     top: -.8em !important;
 }
@@ -786,7 +786,7 @@ span.iPCuNV {
         width: 56.7vw;
     }
 
-    .main-esportes,
+    .main,
     .liveDesk {
         top: 1.7em !important;
     }
@@ -846,7 +846,7 @@ span.iPCuNV {
         top: 13.5em!important;
     }
 
-    .main-esportes,
+    .main,
     .liveDesk {
         top: 2.6em !important;
     }
@@ -876,7 +876,7 @@ span.iPCuNV {
         margin-top: 5.5%;
     }
 
-    .main-esportes,
+    .main,
     .liveDesk {
         top: 2.8em !important;
     }
@@ -887,7 +887,7 @@ span.iPCuNV {
         margin-top: 6.5%;
     }
 
-    .main-esportes,
+    .main,
     .liveDesk {
         top: 3em !important;
     }

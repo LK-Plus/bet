@@ -16,7 +16,7 @@
 .uc-row.sportBookSlider {
     width: 57vw;
     margin: 0 auto;
-    z-index: 5;
+    z-index: 5!important;
 }
 
 .prema-100.module.ModuleWidgets.uc-animation.fadeIn.active {

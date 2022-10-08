@@ -1,0 +1,918 @@
+.prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+    position: relative;
+    top: 15em !important;
+}
+
+.categoriesVertical__wrapper,
+.kZdFdP,
+.v3-select-selector {
+    background-color: #494949 !important;
+}
+
+.categoriesVertical__item__count {
+    display: none !important;
+}
+
+.uc-row.sportBookSlider {
+    width: 57vw;
+    margin: 0 auto;
+}
+
+.prema-100.module.ModuleWidgets.uc-animation.fadeIn.active {
+    top: -4em;
+}
+
+.betSlider img {
+    width: 100%;
+    height: 100%;
+}
+
+.style__EventsTitle-sc-1ww46zm-4 {
+    display: none;
+}
+
+.style__LiveEvents-sc-1ww46zm-2 {
+    display: none !important;
+}
+
+.mobile [data-widget=Events] {
+    min-height: unset !important;
+}
+
+.cRWLEv {
+    width: 90vw;
+}
+
+.mobile #navigation-3039 li.page>a:hover {
+    color: #FFFFFF !important;
+}
+
+.mobile #navigation-3039 li.page>a {
+    color: #959595 !important;
+}
+
+.mobile #navigation-3039 li.active>a {
+    color: #FFFFFF !important;
+}
+
+#column150 {
+    margin-top: -57px;
+}
+
+#column2346 {
+    margin-top: 6px;
+
+}
+
+#column2386 {
+    margin-top: -16px;
+}
+
+.headerFixMobile .ModuleWidgets .navigatorHeaderWhite .style__BurgerMenuWrapper-sc-zw0hm-0 path {
+    fill: white;
+}
+
+.article-item-info,
+.article-item-tags-container,
+.article-item-category {
+    display: none;
+}
+
+.footer100 {
+    z-index: 9;
+}
+
+.nav-footer {
+    text-decoration: none;
+    list-style: none;
+    text-align: justify;
+    line-height: 1.8em;
+}
+
+ul.nav-footer li a {
+    color: #585858;
+}
+
+ul.nav-footer li a:hover {
+    color: #13d140;
+
+}
+
+.footer {
+    background-color: #212121;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 235px;
+    -webkit-transition: height 1s, visibility 1s;
+    transition: height 1s, visibility 1s;
+}
+
+.footerbuttondown {
+    background-color: #212121;
+    color: #14b73b;
+    font-size: 10px;
+    width: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+    top: -18px;
+    border-radius: 5px;
+    border-radius: 5px;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.footerbuttonup {
+    background-color: #212121;
+    color: #14b73b;
+    font-size: 10px;
+    width: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+    top: -7px;
+    border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footercont {
+    position: absolute;
+    top: 0px;
+    opacity: 1;
+    transition: opacity 1s, visibility 2s, display 2s;
+
+}
+
+.centerbutton {
+    cursor: pointer;
+    align: center;
+    width: 100%;
+    content-align: center;
+}
+
+p.text-footer {
+    margin-top: 1.5em;
+    text-align: center;
+    color: #fff;
+}
+
+p.text-footer span {
+    color: #14b73b;
+}
+
+.footer-container {
+    margin: 0.5em 0em;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3em;
+}
+
+.footer-container h2 {
+    color: #fff;
+    font-size: 18px;
+}
+
+.footer-container figure {
+    width: 70px;
+}
+
+.footer-container figure img {
+    width: 100%;
+}
+
+.e-100>div:first-child>div:first-child {
+    height: 250% !important;
+}
+
+
+.prema-100>div:first-child>div:first-child {
+    height: 1500px !important;
+}
+
+
+.btn-none {
+    position: relative;
+    top: 2px;
+}
+
+.e-sports {
+    margin-top: calc(80px + 1vw);
+}
+
+.articlePromocoes {
+    margin-top: calc(110px + 1vw);
+}
+
+.midiaMobileBet .nextEventsBet>div:first-child {
+    min-height: initial !important;
+}
+
+.midiaMobileBet div.style__EventsWrapper-sc-1ww46zm-0>div:last-child>div:last-child {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.midiaMobileBet {
+    top: -8px;
+}
+
+.mobile .nextEventsBet .cRWLEv {
+    width: 93vw;
+}
+
+.mobile .nextEventsBet .style__LiveEvents-sc-1ww46zm-2 div:first-child {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.articlePromocoes .article-item-image {
+    position: initial !important;
+    max-width: none !important;
+    padding: unset !important;
+    border-radius: 0px !important;
+    background: var(--acc-c1-text-color) !important;
+    left: 0vw !important;
+}
+
+.llyRTC span.dwtrfN,
+.knGQoQ span.dwtrfN {
+    color: #000 !important;
+}
+
+.kiDUFn {
+    height: 80% !important;
+}
+
+.fefpAh {
+    height: 150% !important;
+
+}
+
+.desktop .article-item-image {
+    position: fixed;
+    max-width: 28vw;
+    padding: 5px;
+    border-radius: 4px;
+    background: var(--acc-c1-text-color);
+    left: 5vw;
+}
+
+
+.mobile .sandwichNavigator {
+    overflow-x: scroll !important;
+}
+
+.mobile .sandwichNavigator::-webkit-scrollbar {
+    display: none;
+}
+
+.mobile .ModuleNavigation .navigation>li {
+    width: 26vw;
+    margin-bottom: 0px !important;
+}
+
+.mobile .ModuleNavigation .navigation {
+    display: -webkit-inline-box !important;
+    margin: 10px 0px;
+}
+
+.mobile .navigation-inner .standard-view {
+    display: block !important;
+}
+
+.mobile .ModuleNavigation .navigation .nav-item {
+    color: #FFF !important;
+    width: 100% !important;
+}
+
+button.czyrAX span {
+    color: #ffe418 !important;
+}
+
+button.czyrAX span:first-child {
+    color: #fff !important;
+}
+
+.mobile .betslip-popup {
+    z-index: 11;
+    height: 93vh;
+    top: 53px;
+}
+
+.mobile .sandwichMenu span.v3-icon {
+    margin: 0px 20px;
+    display: initial !important;
+}
+
+.mobile #bottom-navigation .gSnjmI {
+    font-size: 11px;
+    text-align: center;
+}
+
+.burger-menu-drawer {
+    z-index: 11 !important;
+}
+
+.mobile #bottom-navigation {
+    display: -webkit-inline-box;
+}
+
+.mobile #bottom-navigation .eruTRg {
+    width: 25%;
+}
+
+.mobile .ModuleSlider .image {
+    max-width: fit-content !important;
+    transform: translateX(0px) !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.footer {
+    font-family: 'Poppins' !important;
+}
+
+
+.desktop .ModuleArticleSingle {
+    margin-left: calc(50% - 14vw);
+    min-width: 64%;
+    margin-top: calc(100px - 2vw);
+    padding: 10px;
+    border-radius: 4px;
+    background-color: var(--acc-c1-text-color);
+}
+
+.mobile .ModuleArticleSingle {
+    padding: 10px;
+    border-radius: 4px;
+    background-color: var(--acc-c1-text-color);
+}
+
+.articlePromocoes .article-item-container .article-item-footer,
+.articlePromocoes .article-item-container .article-item-image {
+    margin: 0px !important;
+}
+
+.articlePromocoes .article-item-container {
+    padding: 2px;
+    margin: 10px;
+    border-radius: 4px;
+    position: relative;
+    display: block;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transform-style: flat;
+    transition: all 250ms ease-out;
+}
+
+.articlePromocoes .article-item-container:hover {
+    border: 2px solid #fff;
+    box-shadow: 0 0px 10px 3px rgb(98 255 4 / 60%);
+}
+
+.main-esportes,
+.liveDesk {
+    top: -.8em !important;
+}
+
+.contentSidebar .categoriesVertical__wrapper {
+    overflow-y: scroll !important;
+    height: 82vh;
+}
+
+.x-casinoGamesByCategories__categoryName__viewAll:hover {
+    color: var(--c6_dark) !important;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+}
+
+.x-casinoGamesByCategories__categoryName__viewAll {
+    color: var(--c6) !important;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+}
+
+.x-casinoGamesByCategories__categoryName {
+    font-size: 22px !important;
+    font-weight: 400 !important;
+}
+
+.ModuleNavigation .navigation>li>a {
+    font-size: calc(28% + 1vh) !important;
+}
+
+.x-casinoGameCardDesktop,
+.x-casinoGameCardMobile {
+    border-radius: 8px;
+    background: #212121;
+}
+
+.x-casinoGamesByCategories {
+    border-radius: 4px;
+    border: 1px solid var(--c12);
+    background-color: #494949 !important;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.contentBarMobile .mainRow div:first-child {
+    overflow-x: initial;
+}
+
+.contentFilterOnly {
+    z-index: 1;
+}
+
+.loginDesk button.v3-btn-primary {
+    height: 32px !important;
+    border-radius: 4px !important;
+}
+
+.ModuleLanguageSwitcher {
+    margin-right: 10px;
+}
+
+.ModuleLanguageSwitcher .languages:only-child {
+    justify-content: center !important;
+}
+
+
+.liveDesk {
+    margin-top: 3% !important;
+}
+
+.contentSidebar .categoriesVertical__wrapper {
+    border-radius: 4px !important;
+    border: 1px solid rgb(157, 157, 157) !important;
+}
+
+.contentFilter {
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    left: 133px;
+    width: calc(1334px + 1vh);
+}
+
+.main-rows {
+    background-color: #494949 !important;
+}
+
+.iPCuNV {
+    background-color: #808080 !important;
+}
+
+.hkDGYM,
+.kUcBju,
+.profileInfo__circleButton {
+    background-color: #000 !important;
+}
+
+.x-casinoGameCardDesktop__buttons button {
+    height: 32px !important;
+
+}
+
+.x-button--fun span:hover {
+    color: #FFF !important;
+}
+
+.x-button--fun span {
+    color: #FFF !important;
+}
+
+.x-button--fun {
+    background-color: #ac3cef !important;
+}
+
+.x-button--fun:hover {
+    background-color: #8f32c8 !important;
+}
+
+.x-casinoGameCardDesktop__buttons__btnReal {
+    margin: initial !important;
+}
+
+.desktop .navigatorMobile .headerRow {
+    height: 45px;
+}
+
+.contentSidebar .categoriesVertical__wrapper {
+    margin-left: 0px !important;
+}
+
+.dWejLn {
+    height: 90px !important;
+}
+
+
+.searchCasino .searchBar-wrapper:first-child div:first-child div:first- child:hover {
+    border: 0px solid var(--c6);
+}
+
+
+.searchCasino .searchBar-wrapper:first-child div:first-child div:first-child {
+    border-radius: 0px !important;
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    border: 0px solid rgb(157, 157, 157);
+}
+
+.searchCasino .searchBar-wrapper:first-child div:first-child:hover {
+    border: 1px solid var(--c6);
+}
+
+.searchCasino .searchBar-wrapper:first-child div:first-child {
+    border-radius: 4px !important;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid rgb(157, 157, 157);
+}
+
+
+.filterButton {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.img1 {
+    margin: 0 auto;
+    z-index: 2;
+}
+
+
+
+.navigatorMobile div.icon {
+    margin-right: 20px !important;
+}
+
+.mobile .main-rows {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+#r500 {
+    height: 0px !important;
+    display: none !important;
+}
+
+.headerFixDesk {
+    position: fixed !important;
+    height: 95px;
+    width: 100%;
+    z-index: 10;
+    top: 0px !important;
+    margin-bottom: 10em !important;
+}
+
+.loginDesk {
+    margin: -1px 20px 5px 0px;
+    z-index: 4;
+}
+
+.logoHeaderDesk {
+    margin: 0px 0px 0px 20px;
+}
+
+.main-rows {
+    margin-top: 120px !important;
+}
+
+.header2 li {
+    border-bottom: 2px solid rgba(255, 100, 100, 0);
+}
+
+.header2 li.page.active {
+    border-bottom: 2px solid #13cf3f;
+}
+
+.header2 li.page.active>a:hover {
+    color: rgb(255, 255, 255) !important;
+}
+
+.bUyfBk {
+    color: #fff !important;
+    background-color: #737373 !important;
+}
+
+.dwtrfN,
+span.iPCuNV {
+    color: #ffe418 !important;
+}
+
+.footer-rows {
+    margin-top: 2em;
+}
+
+.contentSidebar div.affix-column {
+    top: 108px !important;
+}
+
+.contentSidebar div.affix {
+    top: -66px !important;
+}
+
+.kHCJcK span,
+.jujKAS span {
+    color: #3e3e3e !important;
+}
+
+.sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+    width: 57vw;
+    height: 30em !important;
+    margin-left: 21% !important
+}
+
+.categoryDisplayNone {
+    display: none;
+}
+
+.contentFilter div.row-container:first-child {
+    width: 100% !important;
+}
+
+.contentFilter div.mainRow div.column {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.header-and-main-rows {
+    min-height: 150%
+}
+
+.v3-btn-primary {
+    color: #212121 !important;
+    height: 40px !important;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.virtuaisDesk {
+    top: 13px !important;
+}
+
+.horizontalMenu__menu {
+    height: 32px !important;
+}
+
+.promotionDesk {
+    top: 15px
+}
+
+.img {
+    z-index: 1 !important;
+    position: relative;
+    top: .7em;
+}
+
+.sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+    position: absolute;
+    width: 56.85vw;
+    height: 15.5em !important;
+    margin: 0 auto !important;
+    top: -0.5em;
+}
+
+
+.contentFilter div:first-child {
+    margin-left: initial;
+    margin-right: initial;
+}
+
+@media screen and (min-width: 3000px) {
+    .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+        width: 58vw !important;
+        height: 30em;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 31em !important;
+    }
+
+    #r1530 {
+        margin-left: 21%;
+
+    }
+
+    .main-rows {
+        margin-top: 6em;
+    }
+}
+
+@media screen and (min-width: 2850px) {
+    .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+        width: 57vw;
+        height: 30em !important;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 23.5em !important;
+    }
+}
+
+
+
+
+@media screen and (min-width: 2450px) {
+    .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+        width: 57vw;
+        height: 30em !important;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 21em;
+    }
+}
+
+@media screen and (min-width: 2120px) {
+    .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+        width: 57vw;
+        height: 30em !important;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 19.5em;
+    }
+
+    .footercont {
+        width: 100vw;
+    }
+}
+
+
+@media screen and (max-width: 1800px) {
+    .main-rows {
+        margin-top: 4.5% !important;
+    }
+
+    .virtuaisDesk {
+        top: 5px !important;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 19.5em !important;
+    }
+
+    .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+        top: 2.8em !important;
+        width: 56.7vw;
+    }
+
+    .main-esportes,
+    .liveDesk {
+        top: 2.5em !important;
+    }
+
+    .mediaDesk {
+        margin-top: 5.98% !important;
+    }
+
+    .contentFilter {
+        height: 48px !important;
+    }
+
+    .r1442 ul li img {
+        width: 10px;
+    }
+}
+
+
+.contentSidebar .categoriesHorizontalMobile__container {
+    border-radius: 4px !important;
+    border: 1px solid rgb(157, 157, 157) !important;
+}
+
+.loginMobile button.v3-btn-primary {
+    height: 32px !important;
+    border-radius: 4px !important;
+}
+
+.loginMobile {
+    margin: -1px 20px 5px 0px;
+    z-index: 1;
+}
+
+@media screen and (max-width: 1600px) {
+    .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+        top: 3em !important;
+        height: 16em !important;
+        width: 56.7vw;
+    }
+
+    .virtuaisDesk {
+        top: 21px !important;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 12.7em;
+    }
+
+    .main-esportes,
+    .liveDesk {
+        top: 2.6em !important;
+    }
+
+    .contentFilter {
+        height: 50px !important;
+        z-index: 1;
+        margin-left: auto;
+        margin-right: auto;
+        left: 101px;
+        width: calc(1000px + 1vh);
+    }
+
+    .mediaDesk {
+        margin-top: 6.62% !important;
+    }
+}
+
+@media screen and (max-width: 1464px) {
+    .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+        top: 3em !important;
+        height: 16.6em !important;
+        width: 56.7vw;
+    }
+
+    .main-rows {
+        margin-top: 5.5%;
+    }
+
+    .main-esportes,
+    .liveDesk {
+        top: 2.8em !important;
+    }
+}
+
+@media screen and (max-width: 1313px) {
+    .main-rows {
+        margin-top: 6.5%;
+    }
+
+    .main-esportes,
+    .liveDesk {
+        top: 3em !important;
+    }
+
+    .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
+        top: 3.5em !important;
+        height: 16.9em !important;
+        width: 56.7vw;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 11.7em;
+    }
+}
+
+@media screen and (max-width: 1285px) {
+
+    .virtuaisDesk {
+        top: 30px !important;
+    }
+
+    .contentFilter {
+        height: 53px !important;
+    }
+
+    .mediaDesk {
+        margin-top: 8.5% !important;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 10.9em;
+    }
+}
+
+@media screen and (max-width: 1158px) {
+    .main-rows {
+        margin-top: 7%;
+    }
+
+    .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        top: 9.2em;
+    }
+}

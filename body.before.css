@@ -1,0 +1,8 @@
+.close-widgets-container iframe {
+    bottom: 50px !important;
+    top: -50px !important;
+}
+
+.open-widgets-container {
+    bottom: -50px !important;
+}

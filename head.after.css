@@ -777,6 +777,10 @@ span.iPCuNV {
         top: 14.5em!important;
     }
 
+    .prema.module.ModuleWidgets.uc-animation.fadeIn.active {
+        top: -2.3em;
+    }
+
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         top: 2.5em !important;
         width: 56.7vw;

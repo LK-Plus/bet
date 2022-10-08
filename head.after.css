@@ -1,7 +1,7 @@
 .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
     position: relative;
     top: 15.7em !important;
-    top: -5em;
+    top: -5em!important;
 }
 
 .categoriesVertical__wrapper,
@@ -690,7 +690,7 @@ span.iPCuNV {
     width: 56.85vw;
     height: 15.5em !important;
     margin: 0 auto !important;
-    top: -0.5em;
+    top: -1.3em;
 }
 
 

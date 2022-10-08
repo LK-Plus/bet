@@ -16,7 +16,7 @@
 .uc-row.sportBookSlider {
     width: 57vw;
     margin: 0 auto;
-    z-index: 5!important;
+    z-index: 5 !important;
 }
 
 .prema-100.module.ModuleWidgets.uc-animation.fadeIn.active {
@@ -815,6 +815,14 @@ span.iPCuNV {
 .loginMobile {
     margin: -1px 20px 5px 0px;
     z-index: 1;
+}
+
+.hNmifn #search-input-bart {
+    background-color: #494949 !important;
+}
+
+.headerFixNavigator {
+    MARGIN-LEFT: 20px !important;
 }
 
 @media screen and (max-width: 1600px) {

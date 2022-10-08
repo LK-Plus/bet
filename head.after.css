@@ -5,7 +5,7 @@
 }
 
 .categoriesVertical__wrapper,
-.kZdFdP,
+.contentFilter .kZdFdP,
 .v3-select-selector {
     background-color: #494949 !important;
 }
@@ -552,8 +552,12 @@ body {
     padding-bottom: 10px;
     padding-top: 10px;
     border: 1px solid rgb(157, 157, 157);
+    background-color: #494949 !important;
 }
 
+.searchCasino .searchBar-wrapper:first-child div:first-child input {
+    background-color: #494949 !important;
+}
 
 .filterButton {
     padding-left: 5px;
@@ -811,7 +815,7 @@ span.iPCuNV {
     z-index: 1;
 }
 
-.hNmifn #search-input-bart {
+.contentFilter.hNmifn #search-input-bart {
     background-color: #494949 !important;
 }
 

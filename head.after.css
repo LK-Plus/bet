@@ -517,7 +517,7 @@ body {
     margin: initial !important;
 }
 
-.desktop .navigatorMobile .headerRow {
+.desktop .main-layout .header-and-main-rows>.header-rows .header-row-wrapper:last-child .header-row {
     height: 45px;
 }
 
@@ -583,11 +583,11 @@ body {
 
 .headerFixDesk {
     position: fixed !important;
-    height: 95px;
+    height: 60px;
     width: 100%;
     z-index: 10;
-    top: 0px !important;
-    margin-bottom: 10em !important;
+    top: 45px !important;
+    background-color: #212121 !important;
 }
 
 .loginDesk {

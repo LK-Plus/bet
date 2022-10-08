@@ -1,4 +1,8 @@
 
+html {
+    overflow-x: hidden;
+}
+
 .categoriesVertical__wrapper,
 .contentFilter .kZdFdP,
 .v3-select-selector {

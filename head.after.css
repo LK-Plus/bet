@@ -20,7 +20,7 @@
 }
 
 .prema-100.module.ModuleWidgets.uc-animation.fadeIn.active {
-    top: -4em;
+    top: -6em;
 }
 
 .betSlider img {
@@ -695,7 +695,7 @@ span.iPCuNV {
     width: 56.85vw;
     height: 15.5em !important;
     margin: 0 auto !important;
-    top: -0.5em;
+    top: 2.3em;
 }
 
 
@@ -724,6 +724,7 @@ span.iPCuNV {
     }
 }
 
+
 @media screen and (min-width: 2850px) {
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         width: 57vw;
@@ -742,10 +743,11 @@ span.iPCuNV {
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
         width: 57vw;
         height: 30em !important;
+        top: -0.7em;
     }
 
     .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
-        top: 21em;
+        top: 21em!important;
     }
 }
 

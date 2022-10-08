@@ -1,6 +1,6 @@
 .prema-100>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
     position: relative;
-    top: 15em !important;
+    top: 15.7em !important;
 }
 
 .categoriesVertical__wrapper,
@@ -16,6 +16,7 @@
 .uc-row.sportBookSlider {
     width: 57vw;
     margin: 0 auto;
+    z-index: 5;
 }
 
 .prema-100.module.ModuleWidgets.uc-animation.fadeIn.active {

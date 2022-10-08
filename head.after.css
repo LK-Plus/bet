@@ -1,7 +1,6 @@
 .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
     position: relative;
-    top: 15.7em !important;
-    top: -5em!important;
+    top: 16em!important;
 }
 
 .categoriesVertical__wrapper,
@@ -21,7 +20,7 @@
 }
 
 .prema.module.ModuleWidgets.uc-animation.fadeIn.active {
-    top: -4em;
+    top: -6em;
 }
 
 .betSlider img {
@@ -694,7 +693,7 @@ span.iPCuNV {
     width: 56.85vw;
     height: 15.5em !important;
     margin: 0 auto !important;
-    top: -1.3em;
+    top: -0.8em;
 }
 
 

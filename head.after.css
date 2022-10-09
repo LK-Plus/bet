@@ -19,7 +19,7 @@ button.eWvBFy:hover{
 }
 
 */
-button.eWvBFy > div:nth-child(2) {
+div.v3-col > button.eWvBFy > div:nth-child(2) {
     
     color : #ffe418 !important;
 }

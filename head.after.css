@@ -340,10 +340,6 @@ button.czyrAX span:first-child {
     z-index: 11 !important;
 }
 
-.mobile #bottom-navigation {
-    display: -webkit-inline-box;
-}
-
 .mobile #bottom-navigation .eruTRg {
     width: 25%;
 }

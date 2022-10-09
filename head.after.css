@@ -24,6 +24,10 @@ div.v3-col > button.eWvBFy > div:nth-child(2) {
     color : #ffe418 !important;
 }
 
+button.eWvBFy span:nth-child(2) {
+    color: #ffe418 !important;
+}
+
 .categoriesVertical__wrapper,
 .contentFilter .kZdFdP,
 .v3-select-selector {
@@ -946,4 +950,3 @@ span.iPCuNV {
     }
     */
 }
-

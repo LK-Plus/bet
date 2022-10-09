@@ -951,3 +951,9 @@ span.iPCuNV {
     }
     */
 }
+
+@media only screen and (max-width:750px){
+    .cRWLEv {
+        width: 90vw!important;
+    }
+}

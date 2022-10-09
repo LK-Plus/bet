@@ -716,10 +716,10 @@ span.iPCuNV {
 .heuTDP {
     margin-top: -81px;
     position: absolute;
-    margin-left: -11px;
     width: 50px;
     text-align: center;
     color: #fff;
+    text-align: center !important;
 }
 
 .edOIQa { 

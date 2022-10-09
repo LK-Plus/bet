@@ -10,6 +10,8 @@ $(document).ready(function () {
     $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
     $('#column2463').removeAttr("style");
     $('div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
+    $('.eruTRg:eq(2) span svg').remove();
+    $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/betslip.png" width="24px" height="24px">');
 });
 document.querySelector(".footerbuttonup").onclick = function () {
     expand()

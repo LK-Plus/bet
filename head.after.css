@@ -57,10 +57,6 @@ button.eWvBFy > div:nth-child(2) {
     min-height: unset !important;
 }
 
-.cRWLEv {
-    width: 90vw;
-}
-
 .mobile #navigation-3039 li.page>a:hover {
     color: #FFFFFF !important;
 }
@@ -239,9 +235,6 @@ p.text-footer span {
     top: -8px;
 }
 
-.mobile .nextEventsBet .cRWLEv {
-    width: 93vw;
-}
 
 .mobile .nextEventsBet .style__LiveEvents-sc-1ww46zm-2 div:first-child {
     width: 100%;
@@ -954,8 +947,3 @@ span.iPCuNV {
     */
 }
 
-@media only screen and (max-width:750px){
-    div.cRWLEv {
-        width: 90vw!important;
-    }
-}

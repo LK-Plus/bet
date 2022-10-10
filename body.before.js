@@ -25,6 +25,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+function updateAnimButtons () {
+    $('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').on('click', function() {
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+    });
+}
+
 $(document).ready(function () {
     $('.prema-100>div:first-child>div:first-child').css('top', '15em');
     setTimeout(function () {
@@ -36,6 +45,7 @@ $(document).ready(function () {
             $('.eruTRg:eq(2) span svg').remove();
             $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
         }
+        updateAnimButtons();
     }, 3000);
     setTimeout(function () {
         if ($('.gSnjmI:eq(2)').html() !== 'Home') {
@@ -85,12 +95,3 @@ $(document).ready(function () {
         updateAnimButtons();
     });
 });
-
-function updateAnimButtons () {
-    $('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').on('click', function() {
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
-    });
-}

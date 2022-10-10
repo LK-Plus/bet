@@ -23,29 +23,35 @@ $(document).ready(function () {
     }, 1000);
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');
     $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
-    $('#column2463').removeAttr("style");
+    $('#column2463').removeAttr('style');
     const lang = JSON.parse(window.hrefLangRelations);
     $('.sportsPC div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
     $('.sportsMobile div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
     $('.cassinoPC div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
     $('.cassinoMobile div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
     $('.footerbuttonup').on('click', function () {
-        if (document.querySelector(".footer").style.height = "10px") {
-            document.querySelector(".footer").style.height = "235px";
-            document.querySelector(".footerbuttondown").style.visibility = "visible";
-            document.querySelector(".footerbuttonup").style.visibility = "hidden";
-            document.querySelector(".footercont").style.opacity = "1";
-            document.querySelector(".footercont").style.visibility = "visible";
+        if (document.querySelector('.footer').style.height = '10px') {
+            document.querySelector('.footer').style.height = '235px';
+            document.querySelector('.footerbuttondown').style.visibility = 'visible';
+            document.querySelector('.footerbuttonup').style.visibility = 'hidden';
+            document.querySelector('.footercont').style.opacity = '1';
+            document.querySelector('.footercont').style.visibility = 'visible';
         }
     });
     $('.footerbuttondown').on('click', function () {
-        if (document.querySelector(".footer").style.height = "235px") {
-            document.querySelector(".footer").style.height = "10px";
-            document.querySelector(".footerbuttondown").style.visibility = "hidden";
-            document.querySelector(".footerbuttonup").style.visibility = "visible";
-            document.querySelector(".footercont").style.opacity = "0";
-            document.querySelector(".footercont").style.visibility = "hidden";
+        if (document.querySelector('.footer').style.height = '235px') {
+            document.querySelector('.footer').style.height = '10px';
+            document.querySelector('.footerbuttondown').style.visibility = 'hidden';
+            document.querySelector('.footerbuttonup').style.visibility = 'visible';
+            document.querySelector('.footercont').style.opacity = '0';
+            document.querySelector('.footercont').style.visibility = 'hidden';
         }
     });
-    document.querySelector(".footer").style.height = "10px";
+    document.querySelector('.footer').style.height = '10px';
+    $('.style__RadioButton-sc-3ucvic-2,.style__MarketButton-sc-3h3jba-6').on('click', function() {
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+    });
 });

@@ -75,9 +75,9 @@ $(document).ready(function () {
     
     document.addEventListener("DOMContentLoaded", function() {
         //verificando se está na página de esportes
-        if($("r1823").length > 0){		
+        if($("#r1823").length > 0){		
             setTimeout("clickTop()",500);		
-        } else if($("r1824").length > 0){		
+        } else if($("#r1824").length > 0){		
             setTimeout("clickTop()",500);		
         }
     });

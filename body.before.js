@@ -77,11 +77,15 @@ $(document).ready(function () {
         document.querySelector('.footer').style.height = '10px';
     }
     $('.mobile .style__EventsWrapper-sc-1ww46zm-0 div div').bind("DOMSubtreeModified", function() {
-        $('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').on('click', function() {
-            $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-            $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
-            $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-            $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
-        });
+        updateAnimButtons();
     });
 });
+
+function updateAnimButtons () {
+    $('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').on('click', function() {
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+    });
+}

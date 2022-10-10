@@ -961,15 +961,10 @@ span.iPCuNV {
     .desktop .main-rows {
         margin-top: 7%;
     }
-
-    /*
-    .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
-        top: 9.2em;
-    }
-    */
 }
 
-@media screen and (max-width: 750px) {
+
+@media screen and (max-width: 780px) {
     p.text-footer {
         margin-bottom: 1.5em;
     }
@@ -1004,4 +999,5 @@ span.iPCuNV {
 #navigation-3236 {
     margin-left: 20px;
 }
+
 

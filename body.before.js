@@ -52,3 +52,17 @@ function shrink() {
         document.querySelector(".footercont").style.visibility = "hidden";
     }
 }
+
+$(window).on("load resize scroll", function(){
+    var acao;
+    var $t = $(this);
+    var ww = $t.width();
+    var scroll = $t.scrollTop();
+    
+    
+    if ( (ww <= 1024 && scroll)) {
+        $('body').removeClass('.desktop');
+        $('body').addClass('.mobile');
+    }
+
+ });

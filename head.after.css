@@ -972,7 +972,7 @@ span.iPCuNV {
 @media screen and (max-width: 780px) {
 
     p.text-footer {
-        margin-bottom: 1.5em;
+        padding: 10px 5px;
     }
     
     .footer-container {

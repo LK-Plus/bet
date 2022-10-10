@@ -867,7 +867,7 @@ span.iPCuNV {
     }
  
     #r1814 {
-        top: 1.7em;
+        top: 0.2em;
     }
 
     /*
@@ -947,12 +947,9 @@ span.iPCuNV {
 @media screen and (max-width: 1158px) {
     #r1814 {
         padding: 8px;
-        top: 4.3em;
+        top: 0.3em;
     }
 
-    .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
-        width: 105%;
-    }
     
 }
 

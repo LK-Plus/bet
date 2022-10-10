@@ -7,9 +7,9 @@ $(document).ready(function () {
         $('#column2463').removeAttr("style");
         $('.eruTRg:eq(2) span svg').remove();
         $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/betslip.png" width="24px" height="24px">');
-        $('.mobile .eruTRg').on('click', function(){
+        $('.mobile .eruTRg').on('click', function () {
             $('.close-widgets-container').addClass('hidden');
-            $('.mobile .cetaLz').on('click', function(){
+            $('.cetaLz').on('click', function () {
                 $('.close-widgets-container.hide').removeClass('hidden');
             });
         });
@@ -22,6 +22,7 @@ $(document).ready(function () {
     $('.cassinoPC div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${window.language}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
     $('.cassinoMobile div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${window.language}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
 });
+
 document.querySelector(".footerbuttonup").onclick = function () {
     expand()
 };

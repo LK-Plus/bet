@@ -54,12 +54,10 @@ function shrink() {
 }
 
 $(window).on("load resize scroll", function(){
-    var $t = $(this);
-    var ww = $t.width();
-    var scroll = $t.scrollTop();
+    var ww = $(window).width();
     
     
-    if ( (ww <= 1024 && scroll)) {
+    if ( (ww <= 1024)) {
         $('body').removeClass('.desktop');
         $('body').addClass('.mobile');
     }

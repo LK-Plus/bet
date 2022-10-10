@@ -1,7 +1,7 @@
 #bottom-navigation > div:nth-child(4) {
     background-color: #13d140;
     border-radius: 50%;
-    width: 120px;
+    width: 120px !important;
     height: 95px;
     justify-content: center;
     display: flex;

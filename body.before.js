@@ -53,13 +53,13 @@ function shrink() {
     }
 }
 
-$(window).on("load resize scroll", function(){
+$(window).on("load resize", function(){
     var ww = $(window).width();
     
     
     if ( (ww <= 1024)) {
         
-        $('body').addClass('.mobile');
+        $('body').removeClass('.mobile');
     }
 
  });

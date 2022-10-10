@@ -754,12 +754,16 @@ span.iPCuNV {
     padding-top: 48.25% !important;
 }
 
-.mobile .bottom-navigation .v3-icon {
+.mobile #bottom-navigation .v3-icon {
     margin-bottom: 10px;
 }
 
-.mobile .bottom-navigation .v3-icon>img{
-    width: 32px !important;
+.mobile #bottom-navigation .v3-icon>img{
+    width: 35px !important;
+}
+
+.mobile #bottom-navigation .gSnjmI {
+    font-size: 10px !important;
 }
 
 @media screen and (min-width: 3000px) {

@@ -736,6 +736,10 @@ span.iPCuNV {
     --container-height: none !important;
 }
 
+.statistics {
+    display: none;
+}
+
 @media screen and (min-width: 3000px) {
     /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {

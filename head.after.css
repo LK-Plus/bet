@@ -706,7 +706,7 @@ span.iPCuNV {
     padding-right: 50%;
 }
 
-.am-flexbox {
+.mobile .am-flexbox {
     width: 47%;
     float: right;
     margin-top: -47px;

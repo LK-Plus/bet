@@ -6,7 +6,7 @@ $(document).ready(function () {
         $('.virtual-100>div:first-child>div:first-child').css('height', '250%');
         $('#column2463').removeAttr("style");
         $('.eruTRg:eq(2) span svg').remove();
-        $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/betslip.png" width="24px" height="24px">');
+        $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
         $('.mobile .eruTRg').on('click', function () {
             $('.close-widgets-container').addClass('hidden');
             setTimeout(function () {

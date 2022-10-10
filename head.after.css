@@ -7,6 +7,10 @@ html {
     display: none;
 }
 
+.hidden {
+    opacity: 0;
+}
+
 /*
 div.cRWLEv {
     width: 32.59vw!important;

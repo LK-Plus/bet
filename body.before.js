@@ -13,7 +13,7 @@ $(document).ready(function () {
                 $('.mobile .cetaLz').on('click', function () {
                     $('.close-widgets-container').removeClass('hidden');
                 });
-            }, 3000);
+            }, 1000);
         });
     }, 3000);
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');

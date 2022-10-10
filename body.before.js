@@ -61,7 +61,7 @@ $(document).ready(function () {
             }, 1000);
         });
         updateAnimButtons();
-    }, 1000);
+    }, 2000);
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');
     $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
     $('#column2463').removeAttr('style');

@@ -732,6 +732,10 @@ span.iPCuNV {
     font-weight: 400;
 }
 
+.lazyLoad__wrapper .liveGame__wrapper {
+    --container-height: none !important;
+}
+
 @media screen and (min-width: 3000px) {
     /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {

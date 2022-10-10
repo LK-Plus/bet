@@ -16,6 +16,15 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",3000);
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    //verificando se está na página de esportes
+    if($("#r1823").length > 0){		
+        setTimeout("clickTop()",500);		
+    } else if($("#r1824").length > 0){		
+        setTimeout("clickTop()",500);		
+    }
+});
+
 $(document).ready(function () {
     $('.prema-100>div:first-child>div:first-child').css('top', '15em');
     setTimeout(function () {
@@ -74,13 +83,4 @@ $(document).ready(function () {
         document.querySelector('.footer').style.height = '10px';
     }
     
-    document.addEventListener("DOMContentLoaded", function() {
-        //verificando se está na página de esportes
-        if($("#r1823").length > 0){		
-            setTimeout("clickTop()",500);		
-        } else if($("#r1824").length > 0){		
-            setTimeout("clickTop()",500);		
-        }
-    });
-
 });

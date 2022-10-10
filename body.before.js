@@ -1,4 +1,13 @@
 
+function updateAnimButtons () {
+    $('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').on('click', function() {
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+    });
+}
+
 function clickTop() {
     /* Desktop */
     setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
@@ -23,16 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
     } else if($("#r1824").length > 0){		
         setTimeout("clickTop()",500);		
     }
+    updateAnimButtons();
 });
-
-function updateAnimButtons () {
-    $('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').on('click', function() {
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
-    });
-}
 
 $(document).ready(function () {
     $('.prema-100>div:first-child>div:first-child').css('top', '15em');
@@ -42,14 +43,13 @@ $(document).ready(function () {
         $('.virtual-100>div:first-child>div:first-child').css('height', '250%');
         $('#column2463').removeAttr("style");
         if ($('.gSnjmI:eq(2)').html() !== 'Home') {
-            $('.eruTRg:eq(2) span svg').remove();
+            $('.eruTRg:eq(2) span svg,.eruTRg:eq(2) span img').remove();
             $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
         }
-        updateAnimButtons();
     }, 3000);
     setTimeout(function () {
         if ($('.gSnjmI:eq(2)').html() !== 'Home') {
-            $('.eruTRg:eq(2) span svg').remove();
+            $('.eruTRg:eq(2) span svg,.eruTRg:eq(2) span img').remove();
             $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
         }
         $('.mobile .eruTRg').on('click', function () {
@@ -60,7 +60,6 @@ $(document).ready(function () {
                 });
             }, 1000);
         });
-        updateAnimButtons();
     }, 2000);
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');
     $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();

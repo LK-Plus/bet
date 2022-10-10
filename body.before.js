@@ -54,4 +54,31 @@ $(document).ready(function () {
         $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
         $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
     });
+    function clickTop() {
+        /* Desktop */
+        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
+        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1000);
+        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1500);
+        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
+        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
+        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
+    
+        /* Mobile */
+        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",500);
+        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",1000);
+        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",1500);
+        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",2000);
+        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",2500);
+        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",3000);
+    }
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        //verificando se está na página de esportes
+        if($("r1823").length > 0){		
+            setTimeout("clickTop()",500);		
+        } else if($("r1824").length > 0){		
+            setTimeout("clickTop()",500);		
+        }
+    });
+
 });

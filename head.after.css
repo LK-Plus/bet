@@ -1,3 +1,16 @@
+#bottom-navigation > div:nth-child(4) {
+    background-color: #13d140;
+    border-radius: 50%;
+    width: 120px;
+    height: 95px;
+    justify-content: center;
+    display: flex;
+}
+
+#bottom-navigation > div:nth-child(4) .clUxon {
+    color: #FFF !important;
+}
+
 .sportsList {
     background-color: #585858; 
 }

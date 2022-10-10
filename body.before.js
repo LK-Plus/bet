@@ -53,13 +53,3 @@ function shrink() {
     }
 }
 
-$(window).on("load resize", function(){
-   var ww = $(window).width(); 
-    
-    
-    if ( (ww <= 1024)) {
-        
-        $('body').removeClass('.desktop ');
-    }
-
- });

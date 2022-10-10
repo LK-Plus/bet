@@ -26,7 +26,7 @@ $(document).ready(function () {
             $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
             $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
         });
-    }, 1000);
+    }, 2000);
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');
     $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
     $('#column2463').removeAttr('style');

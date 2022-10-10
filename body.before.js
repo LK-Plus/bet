@@ -1,4 +1,21 @@
 
+function clickTop() {
+    /* Desktop */
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1000);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1500);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
+    /* Mobile */
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",500);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",1000);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",1500);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",2000);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",2500);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",3000);
+}
+
 $(document).ready(function () {
     $('.prema-100>div:first-child>div:first-child').css('top', '15em');
     setTimeout(function () {
@@ -55,22 +72,6 @@ $(document).ready(function () {
     });
     if (document.querySelector('.footer')) {
         document.querySelector('.footer').style.height = '10px';
-    }
-    function clickTop() {
-        /* Desktop */
-        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
-        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1000);
-        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1500);
-        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
-        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
-        setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
-        /* Mobile */
-        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",500);
-        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",1000);
-        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",1500);
-        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",2000);
-        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",2500);
-        setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",3000);
     }
     
     document.addEventListener("DOMContentLoaded", function() {

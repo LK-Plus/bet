@@ -54,7 +54,6 @@ function shrink() {
 }
 
 $(window).on("load resize scroll", function(){
-    var acao;
     var $t = $(this);
     var ww = $t.width();
     var scroll = $t.scrollTop();

@@ -11,7 +11,10 @@ $(document).ready(function () {
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');
     $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
     $('#column2463').removeAttr("style");
-    $('div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
+    $('.sportsPC div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=sports" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
+    $('.sportsMobile div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=msports" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
+    $('.cassinoPC div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=casino" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
+    $('.cassinoMobile div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
 });
 document.querySelector(".footerbuttonup").onclick = function () {
     expand()

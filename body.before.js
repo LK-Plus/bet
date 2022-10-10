@@ -58,7 +58,7 @@ $(window).on("load resize scroll", function(){
     
     
     if ( (ww <= 1024)) {
-        $('body').removeClass('.desktop');
+        
         $('body').addClass('.mobile');
     }
 

@@ -737,6 +737,10 @@ span.iPCuNV {
     padding: 8px;
 }
 
+.mobile .ModuleSbSelectedSportGames>div {
+    height: auto !important;
+}
+
 @media screen and (min-width: 3000px) {
     /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
@@ -750,10 +754,6 @@ span.iPCuNV {
         margin-left: 21%;
     }
     */
-
-    .desktop .main-rows {
-        margin-top: 6em;
-    }
 }
 
 /*
@@ -797,10 +797,6 @@ span.iPCuNV {
 
 
 @media screen and (max-width: 1800px) {
-    .desktop .main-rows {
-        margin-top: 4.5% !important;
-    }
-
     /*
     .virtuaisDesk {
         top: 5px !important;
@@ -904,10 +900,6 @@ span.iPCuNV {
     }
     */
 
-    .desktop .main-rows {
-        margin-top: 5.5%;
-    }
-
     #r1814 {
         padding: 8px;
         top: 2.3em;
@@ -915,10 +907,6 @@ span.iPCuNV {
 }
 
 @media screen and (max-width: 1313px) {
-    .desktop .main-rows {
-        margin-top: 6.5%;
-    }
-
     /*
     .main,
     .liveDesk {
@@ -957,10 +945,6 @@ span.iPCuNV {
 }
 
 @media screen and (max-width: 1158px) {
-    .desktop .main-rows {
-        margin-top: 7%;
-    }
-
     #r1814 {
         padding: 8px;
         top: 4.3em;

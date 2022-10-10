@@ -32,6 +32,10 @@ $(document).ready(function () {
         $('.e-100>div:first-child>div:first-child').css('height', '250%');
         $('.virtual-100>div:first-child>div:first-child').css('height', '250%');
         $('#column2463').removeAttr("style");
+        if ($('.gSnjmI:eq(2)').html() !== 'Home') {
+            $('.eruTRg:eq(2) span svg').remove();
+            $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
+        }
     }, 3000);
     setTimeout(function () {
         if ($('.gSnjmI:eq(2)').html() !== 'Home') {
@@ -46,7 +50,7 @@ $(document).ready(function () {
                 });
             }, 1000);
         });
-    }, 2000);
+    }, 1000);
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');
     $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
     $('#column2463').removeAttr('style');

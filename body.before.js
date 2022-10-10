@@ -7,8 +7,12 @@ $(document).ready(function () {
         $('#column2463').removeAttr("style");
         $('.eruTRg:eq(2) span svg').remove();
         $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/betslip.png" width="24px" height="24px">');
-        $('.eruTRg').on('click', function(){ $('.close-widgets-container').addClass('hide'); });
-        $('.cetaLz').on('click', function(){ $('.close-widgets-container.hide').removeClass('hide'); });
+        $('.mobile .eruTRg').on('click', function(){
+            $('.close-widgets-container').addClass('hide');
+            $('.mobile .cetaLz').on('click', function(){
+                $('.close-widgets-container.hide').removeClass('hide');
+            });
+        });
     }, 3000);
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');
     $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();

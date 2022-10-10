@@ -963,6 +963,7 @@ span.iPCuNV {
     }
 }
 
+<<<<<<< HEAD
 
 @media screen and (max-width: 780px) {
     p.text-footer {
@@ -1001,3 +1002,8 @@ span.iPCuNV {
 }
 
 
+=======
+#navigation-3236 {
+    margin-left: 20px;
+}
+>>>>>>> c72b693d2f9295e4b1cfb5b6b6947daf32e4b77e

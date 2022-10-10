@@ -590,7 +590,7 @@ body {
     margin: 0px 0px 0px 20px;
 }
 
-.main-rows {
+.desktop .main-rows {
     margin-top: 106px !important;
 }
 
@@ -737,6 +737,10 @@ span.iPCuNV {
     width: 100%;
 }
 
+#r1814 {
+    padding: 8px;
+}
+
 @media screen and (min-width: 3000px) {
     /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {
@@ -754,7 +758,7 @@ span.iPCuNV {
     }
     */
 
-    .main-rows {
+    .desktop .main-rows {
         margin-top: 6em;
     }
 }
@@ -805,7 +809,7 @@ span.iPCuNV {
 
 
 @media screen and (max-width: 1800px) {
-    .main-rows {
+    .desktop .main-rows {
         margin-top: 4.5% !important;
     }
 
@@ -915,7 +919,7 @@ span.iPCuNV {
     }
     */
 
-    .main-rows {
+    .desktop .main-rows {
         margin-top: 5.5%;
     }
 
@@ -928,7 +932,7 @@ span.iPCuNV {
 }
 
 @media screen and (max-width: 1313px) {
-    .main-rows {
+    .desktop .main-rows {
         margin-top: 6.5%;
     }
 
@@ -973,7 +977,7 @@ span.iPCuNV {
 }
 
 @media screen and (max-width: 1158px) {
-    .main-rows {
+    .desktop .main-rows {
         margin-top: 7%;
     }
 

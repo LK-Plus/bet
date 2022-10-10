@@ -9,9 +9,11 @@ $(document).ready(function () {
         $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/betslip.png" width="24px" height="24px">');
         $('.mobile .eruTRg').on('click', function () {
             $('.close-widgets-container').addClass('hidden');
-            $('.mobile .cetaLz').on('click', function () {
-                $('.close-widgets-container').removeClass('hidden');
-            });
+            setTimeout(function () {
+                $('.mobile .cetaLz').on('click', function () {
+                    $('.close-widgets-container').removeClass('hidden');
+                });
+            }, 3000);
         });
     }, 3000);
     $('.promotion-filters').css('border-bottom', '1px solid #000!important');

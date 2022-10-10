@@ -737,6 +737,10 @@ span.iPCuNV {
     padding: 8px;
 }
 
+.mobile .ModuleSbSelectedSportGames>div {
+    height: auto !important;
+}
+
 @media screen and (min-width: 3000px) {
     /*
     .sportBookSlider .ModuleSlider .slider-wrapper .slider-container {

@@ -965,6 +965,11 @@ span.iPCuNV {
         padding: 8px;
         top: 4.3em;
     }
+
+    .prema>div:first-child>div:first-child>div:first-child>div:nth-child(2) {
+        width: 105%;
+    }
+    
 }
 
 @media screen and (max-width: 780px) {

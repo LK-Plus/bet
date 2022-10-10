@@ -750,8 +750,8 @@ span.iPCuNV {
     margin-bottom: 10px;
 }
 
-.mobile .bottom-navigation .v3-icon img{
-    width: 32px;
+.mobile .bottom-navigation .v3-icon>img{
+    width: 32px !important;
 }
 
 @media screen and (min-width: 3000px) {

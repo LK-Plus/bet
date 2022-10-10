@@ -3,6 +3,10 @@ html {
     overflow-x: hidden;
 }
 
+.hide {
+    display: none;
+}
+
 /*
 div.cRWLEv {
     width: 32.59vw!important;

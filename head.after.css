@@ -138,6 +138,8 @@ ul.nav-footer li a:hover {
     margin-right: auto;
     text-align: center;
     position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     top: -18px;
     visibility: hidden;
     cursor: pointer;
@@ -152,6 +154,8 @@ ul.nav-footer li a:hover {
     margin-right: auto;
     text-align: center;
     position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     top: -7px;
     cursor: pointer;
 }

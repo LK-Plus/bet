@@ -47,7 +47,9 @@ $(document).ready(function () {
             document.querySelector('.footercont').style.visibility = 'hidden';
         }
     });
-    document.querySelector('.footer').style.height = '10px';
+    if (document.querySelector('.footer')) {
+        document.querySelector('.footer').style.height = '10px';
+    }
     $('.style__RadioButton-sc-3ucvic-2,.style__MarketButton-sc-3h3jba-6').on('click', function() {
         $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
         $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
@@ -62,7 +64,6 @@ $(document).ready(function () {
         setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
         setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
         setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
-    
         /* Mobile */
         setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",500);
         setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",1000);

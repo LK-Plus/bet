@@ -736,8 +736,8 @@ span.iPCuNV {
     --container-height: none !important;
 }
 
-.statistics {
-    display: none;
+.style__Wrapper-sc-vig7k4-3 .statistics {
+    display: none !important;
 }
 
 @media screen and (min-width: 3000px) {

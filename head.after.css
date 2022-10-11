@@ -299,6 +299,14 @@ p.text-footer span {
     color: #FFF !important;
 }
 
+.kiDUFn {
+    height: 100% !important;
+}
+
+.fefpAh {
+    height: 150% !important;
+}
+
 .desktop #m3014 .article-item-image {
     position: fixed;
     max-width: 28vw;
@@ -600,7 +608,7 @@ body {
     height: 60px;
     margin-top: 45px;
     width: 100%;
-    z-index: 10;
+    z-index: 4;
     top: 0px !important;
     background-color: #212121 !important;
 }

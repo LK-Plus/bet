@@ -1,4 +1,19 @@
+.v3-btn-ghost {
+    background-color: #ac3cef !important;
+    border: 1px solid #ac3cef !important;
+}
 
+.v3-btn-ghost:hover {
+    background-color: #8f32c8 !important;
+}
+
+.v3-btn-ghost span {
+    color: #FFF !important;
+}
+
+.v3-btn-ghost span:hover {
+    color: #FFF !important;
+}
 
 .dpOJAN {
     color: #FFF !important;
@@ -285,14 +300,14 @@ p.text-footer span {
 }
 
 .kiDUFn {
-    height: 80% !important;
+    height: 100% !important;
 }
 
 .fefpAh {
     height: 150% !important;
 }
 
-.desktop .article-item-image {
+.desktop #m3014 .article-item-image {
     position: fixed;
     max-width: 28vw;
     padding: 5px;

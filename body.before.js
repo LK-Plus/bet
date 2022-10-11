@@ -27,9 +27,9 @@ function clickTop() {
 
 document.addEventListener('DOMContentLoaded', function() {
     //verificando se está na página de esportes
-    if($("#r1823").length > 0){
+    if(document.querySelector("#r1823")){
         setTimeout("clickTop()",500);
-    } else if($("#r1824").length > 0){
+    } else if(document.querySelector("#r1824")){
         setTimeout("clickTop()",500);
     }
 });

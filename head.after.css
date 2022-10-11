@@ -1,3 +1,11 @@
+.MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path {
+    fill: white;
+}
+
+.MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path:first-child {
+    fill: var(--acc-c1-text-color_light);
+}
+
 .mobile .evIVGu {
     margin-bottom: 15px !important;
 }

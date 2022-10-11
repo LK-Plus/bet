@@ -46,19 +46,24 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('.cassinoMobile div.slider-container'))
         document.querySelector('.cassinoMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
     // Page fix
-    document.querySelector('#column2463').style = '';
-    document.querySelector('.prema-100>div:first-child>div:first-child').style.top = '15em';
-    document.querySelector('.promotion-filters').style['border-bottom'] = '1px solid #000!important';
+    if (document.querySelector('#column2463'))
+        document.querySelector('#column2463').style = '';
+    if (document.querySelector('.prema-100>div:first-child>div:first-child'))
+        document.querySelector('.prema-100>div:first-child>div:first-child').style.top = '15em';
+    if (document.querySelector('.promotion-filters'))
+        document.querySelector('.promotion-filters').style['border-bottom'] = '1px solid #000!important';
     document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
-    document.querySelector('.prema>div:first-child>div:first-child').style.height = '1500px';
-    document.querySelector('.prema>div:first-child>div:first-child').style.overflow = 'scroll';
-    document.querySelector('.e-100>div:first-child>div:first-child').style.height = '250%';
-    document.querySelector('.virtual-100>div:first-child>div:first-child').style.height = '250%';
+    if (document.querySelector('.prema>div:first-child>div:first-child')) {
+        document.querySelector('.prema>div:first-child>div:first-child').style.height = '1500px';
+        document.querySelector('.prema>div:first-child>div:first-child').style.overflow = 'scroll';
+        document.querySelector('.e-100>div:first-child>div:first-child').style.height = '250%';
+    }
+    if (document.querySelector('.virtual-100>div:first-child>div:first-child'))
+        document.querySelector('.virtual-100>div:first-child>div:first-child').style.height = '250%';
     // Mobile nav fix
     if (document.querySelector('.gSnjmI:eq(2)').innerHTML !== 'Home') {
         document.querySelector('.eruTRg:eq(2) span svg,.eruTRg:eq(2) span img').remove();
         document.querySelector('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
-        //
     }
     // Footer
     document.querySelector('.footerbuttonup').addEventListener('click', function () {

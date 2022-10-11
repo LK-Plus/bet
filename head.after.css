@@ -1,4 +1,18 @@
+.v3-btn-ghost {
+    background-color: #ac3cef !important;
+}
 
+.v3-btn-ghost:hover {
+    background-color: #8f32c8 !important;
+}
+
+.v3-btn-ghost span {
+    color: #FFF !important;
+}
+
+.v3-btn-ghost span:hover {
+    color: #FFF !important;
+}
 
 .dpOJAN {
     color: #FFF !important;

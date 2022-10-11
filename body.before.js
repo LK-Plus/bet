@@ -1,10 +1,10 @@
 
 function updateAnimButtons () {
-    $('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').on('click', function() {
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+    document.querySelector('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').addEventListener('click', function() {
+        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '15'});
+        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '0'});
+        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '15'});
+        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '0'});
     });
 }
 
@@ -25,72 +25,71 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",3000);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
     //verificando se está na página de esportes
-    if($("#r1823").length > 0){		
-        setTimeout("clickTop()",500);		
-    } else if($("#r1824").length > 0){		
-        setTimeout("clickTop()",500);		
+    if(document.querySelector("#r1823")){
+        setTimeout("clickTop()",500);
+    } else if(document.querySelector("#r1824")){
+        setTimeout("clickTop()",500);
     }
-    updateAnimButtons();
 });
 
-$(document).ready(function () {
-    $('.prema-100>div:first-child>div:first-child').css('top', '15em');
-    setTimeout(function () {
-        $('.prema>div:first-child>div:first-child').css('height', '1500px', 'overflow', 'scroll ');
-        $('.e-100>div:first-child>div:first-child').css('height', '250%');
-        $('.virtual-100>div:first-child>div:first-child').css('height', '250%');
-        $('#column2463').removeAttr("style");
-        if ($('.gSnjmI:eq(2)').html() !== 'Home') {
-            $('.eruTRg:eq(2) span svg,.eruTRg:eq(2) span img').remove();
-            $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
-        }
-    }, 3000);
-    setTimeout(function () {
-        if ($('.gSnjmI:eq(2)').html() !== 'Home') {
-            $('.eruTRg:eq(2) span svg,.eruTRg:eq(2) span img').remove();
-            $('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
-        }
-        $('.mobile .eruTRg').on('click', function () {
-            $('.close-widgets-container').addClass('hidden');
-            setTimeout(function () {
-                $('.mobile .cetaLz').on('click', function () {
-                    $('.close-widgets-container').removeClass('hidden');
-                });
-            }, 1000);
-        });
-    }, 2000);
-    $('.promotion-filters').css('border-bottom', '1px solid #000!important');
-    $('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
-    $('#column2463').removeAttr('style');
+document.addEventListener('readystatechange', (event) => {
+    // Banner control
     const lang = JSON.parse(window.hrefLangRelations);
-    $('.sportsPC div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
-    $('.sportsMobile div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
-    $('.cassinoPC div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
-    $('.cassinoMobile div.slider-container').html(`<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`);
-    $('.footerbuttonup').on('click', function () {
-        if (document.querySelector('.footer').style.height = '10px') {
-            document.querySelector('.footer').style.height = '235px';
-            document.querySelector('.footerbuttondown').style.visibility = 'visible';
-            document.querySelector('.footerbuttonup').style.visibility = 'hidden';
-            document.querySelector('.footercont').style.opacity = '1';
-            document.querySelector('.footercont').style.visibility = 'visible';
-        }
-    });
-    $('.footerbuttondown').on('click', function () {
-        if (document.querySelector('.footer').style.height = '235px') {
-            document.querySelector('.footer').style.height = '10px';
-            document.querySelector('.footerbuttondown').style.visibility = 'hidden';
-            document.querySelector('.footerbuttonup').style.visibility = 'visible';
-            document.querySelector('.footercont').style.opacity = '0';
-            document.querySelector('.footercont').style.visibility = 'hidden';
-        }
-    });
-    if (document.querySelector('.footer')) {
-        document.querySelector('.footer').style.height = '10px';
+    if (document.querySelector('.sportsPC div.slider-container'))
+        document.querySelector('.sportsPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    if (document.querySelector('.sportsMobile div.slider-container'))
+        document.querySelector('.sportsMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    if (document.querySelector('.cassinoPC div.slider-container'))
+        document.querySelector('.cassinoPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    if (document.querySelector('.cassinoMobile div.slider-container'))
+        document.querySelector('.cassinoMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // Page fix
+    if (document.querySelector('#column2463'))
+        document.querySelector('#column2463').style = '';
+    if (document.querySelector('.prema-100>div:first-child>div:first-child'))
+        document.querySelector('.prema-100>div:first-child>div:first-child').style.top = '15em';
+    if (document.querySelector('.promotion-filters'))
+        document.querySelector('.promotion-filters').style['border-bottom'] = '1px solid #000!important';
+    if (document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button'))
+        document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
+    if (document.querySelector('.prema>div:first-child>div:first-child')) {
+        document.querySelector('.prema>div:first-child>div:first-child').style.height = '1500px';
+        document.querySelector('.prema>div:first-child>div:first-child').style.overflow = 'scroll';
+        document.querySelector('.e-100>div:first-child>div:first-child').style.height = '250%';
     }
-    $('.mobile .style__EventsWrapper-sc-1ww46zm-0 div div').bind("DOMSubtreeModified", function() {
-        updateAnimButtons();
-    });
+    if (document.querySelector('.virtual-100>div:first-child>div:first-child'))
+        document.querySelector('.virtual-100>div:first-child>div:first-child').style.height = '250%';
+    // Mobile nav fix
+    if (document.querySelector('.eruTRg')) {
+        if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
+            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
+                + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+        }
+    }
+    // Footer
+    if (document.querySelector('.footerbuttonup'))
+        document.querySelector('.footerbuttonup').addEventListener('click', function () {
+            if (document.querySelector('.footer').style.height = '10px') {
+                document.querySelector('.footer').style.height = '235px';
+                document.querySelector('.footerbuttondown').style.visibility = 'visible';
+                document.querySelector('.footerbuttonup').style.visibility = 'hidden';
+                document.querySelector('.footercont').style.opacity = '1';
+                document.querySelector('.footercont').style.visibility = 'visible';
+            }
+        });
+    if (document.querySelector('.footerbuttondown'))
+        document.querySelector('.footerbuttondown').addEventListener('click', function () {
+            if (document.querySelector('.footer').style.height = '235px') {
+                document.querySelector('.footer').style.height = '10px';
+                document.querySelector('.footerbuttondown').style.visibility = 'hidden';
+                document.querySelector('.footerbuttonup').style.visibility = 'visible';
+                document.querySelector('.footercont').style.opacity = '0';
+                document.querySelector('.footercont').style.visibility = 'hidden';
+            }
+        });
+    if (document.querySelector('.footer'))
+        document.querySelector('.footer').style.height = '10px';
 });

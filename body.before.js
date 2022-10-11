@@ -61,7 +61,7 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('.virtual-100>div:first-child>div:first-child'))
         document.querySelector('.virtual-100>div:first-child>div:first-child').style.height = '250%';
     // Mobile nav fix
-    if (document.querySelector('.gSnjmI:eq(2)').innerHTML !== 'Home') {
+    if (document.querySelector('.gSnjmI:eq(2)') && document.querySelector('.gSnjmI:eq(2)').innerHTML !== 'Home') {
         document.querySelector('.eruTRg:eq(2) span svg,.eruTRg:eq(2) span img').remove();
         document.querySelector('.eruTRg:eq(2) span').prepend('<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">');
     }

@@ -307,7 +307,7 @@ p.text-footer span {
     height: 150% !important;
 }
 
-.desktop .article-item-image {
+.desktop #m3014 .article-item-image {
     position: fixed;
     max-width: 28vw;
     padding: 5px;

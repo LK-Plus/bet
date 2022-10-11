@@ -52,7 +52,8 @@ document.addEventListener('readystatechange', (event) => {
         document.querySelector('.prema-100>div:first-child>div:first-child').style.top = '15em';
     if (document.querySelector('.promotion-filters'))
         document.querySelector('.promotion-filters').style['border-bottom'] = '1px solid #000!important';
-    document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
+    if (document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button'))
+        document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
     if (document.querySelector('.prema>div:first-child>div:first-child')) {
         document.querySelector('.prema>div:first-child>div:first-child').style.height = '1500px';
         document.querySelector('.prema>div:first-child>div:first-child').style.overflow = 'scroll';

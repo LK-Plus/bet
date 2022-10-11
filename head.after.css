@@ -1,3 +1,16 @@
+.searchBar-wrapper--result {
+    z-index: 9;
+    width: 100%;
+    left: 0;
+    background-color: var(--v3-black-0);
+    height: auto;
+    overflow: auto;
+    box-shadow: var(--v3-shadow-1-down);
+    padding-bottom: 1px!important;
+    padding-top: 0px;
+    border-radius: 4px !important;
+}
+
 .fcChHj:hover .style__ButtonsWrapper-sc-a9ikb3-0 {
     opacity: 1;
     width: 100% !important;

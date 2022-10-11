@@ -1,6 +1,6 @@
 .v3-btn-ghost {
     background-color: #ac3cef !important;
-    border: 1px solid #ac3cef;
+    border: 1px solid #ac3cef !important;
 }
 
 .v3-btn-ghost:hover {

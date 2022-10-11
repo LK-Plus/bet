@@ -68,25 +68,26 @@ document.addEventListener('readystatechange', (event) => {
         }
     }
     // Footer
-    document.querySelector('.footerbuttonup').addEventListener('click', function () {
-        if (document.querySelector('.footer').style.height = '10px') {
-            document.querySelector('.footer').style.height = '235px';
-            document.querySelector('.footerbuttondown').style.visibility = 'visible';
-            document.querySelector('.footerbuttonup').style.visibility = 'hidden';
-            document.querySelector('.footercont').style.opacity = '1';
-            document.querySelector('.footercont').style.visibility = 'visible';
-        }
-    });
-    document.querySelector('.footerbuttondown').addEventListener('click', function () {
-        if (document.querySelector('.footer').style.height = '235px') {
-            document.querySelector('.footer').style.height = '10px';
-            document.querySelector('.footerbuttondown').style.visibility = 'hidden';
-            document.querySelector('.footerbuttonup').style.visibility = 'visible';
-            document.querySelector('.footercont').style.opacity = '0';
-            document.querySelector('.footercont').style.visibility = 'hidden';
-        }
-    });
-    if (document.querySelector('.footer')) {
+    if (document.querySelector('.footerbuttonup'))
+        document.querySelector('.footerbuttonup').addEventListener('click', function () {
+            if (document.querySelector('.footer').style.height = '10px') {
+                document.querySelector('.footer').style.height = '235px';
+                document.querySelector('.footerbuttondown').style.visibility = 'visible';
+                document.querySelector('.footerbuttonup').style.visibility = 'hidden';
+                document.querySelector('.footercont').style.opacity = '1';
+                document.querySelector('.footercont').style.visibility = 'visible';
+            }
+        });
+    if (document.querySelector('.footerbuttondown'))
+        document.querySelector('.footerbuttondown').addEventListener('click', function () {
+            if (document.querySelector('.footer').style.height = '235px') {
+                document.querySelector('.footer').style.height = '10px';
+                document.querySelector('.footerbuttondown').style.visibility = 'hidden';
+                document.querySelector('.footerbuttonup').style.visibility = 'visible';
+                document.querySelector('.footercont').style.opacity = '0';
+                document.querySelector('.footercont').style.visibility = 'hidden';
+            }
+        });
+    if (document.querySelector('.footer'))
         document.querySelector('.footer').style.height = '10px';
-    }
 });

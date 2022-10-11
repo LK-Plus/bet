@@ -1,10 +1,10 @@
 
 function updateAnimButtons () {
-    $('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').on('click', function() {
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
-        $('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+    document.querySelector('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').addEventListener('click', function() {
+        document.querySelector('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        document.querySelector('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
+        document.querySelector('#bottom-navigation > div:nth-child(4)').animate({bottom: '15'});
+        document.querySelector('#bottom-navigation > div:nth-child(4)').animate({bottom: '0'});
     });
 }
 
@@ -25,7 +25,7 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",3000);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
     //verificando se está na página de esportes
     if($("#r1823").length > 0){
         setTimeout("clickTop()",500);
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.addEventListener("load", function() {
+document.addEventListener('readystatechange', (event) => {
     // Banner control
     const lang = JSON.parse(window.hrefLangRelations);
     document.querySelector('.sportsPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;

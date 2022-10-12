@@ -310,6 +310,16 @@ p.text-footer span {
     top: 2px;
 }
 
+.articlePromocoes .mainRow {
+    background-color: var(--acc-c2-text-color_light);
+    border-radius: 5px;
+    border: 3px solid var(--acc-c2-text-color);
+}
+
+.articlePromocoes {
+    margin-top: 70px;
+}
+
 .midiaMobileBet .nextEventsBet>div:first-child {
     min-height: initial !important;
 }

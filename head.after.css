@@ -925,10 +925,6 @@ span.iPCuNV {
     }
     */
 
-    .mediaDesk {
-        margin-top: 5.98% !important;
-    }
-
     .contentFilter {
         height: 48px !important;
     }
@@ -995,9 +991,6 @@ span.iPCuNV {
         width: calc(1000px + 1vh);
     }
 
-    .mediaDesk {
-        margin-top: 6.62% !important;
-    }
 }
 
 @media screen and (max-width: 1464px) {
@@ -1045,11 +1038,6 @@ span.iPCuNV {
 
     .contentFilter {
         height: 53px !important;
-    }
-
-    
-    .mediaDesk {
-        margin-top: 8.5% !important;
     }
 
     #r1814 {

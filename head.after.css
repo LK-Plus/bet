@@ -310,10 +310,6 @@ p.text-footer span {
     top: 2px;
 }
 
-.articlePromocoes {
-    margin-top: calc(110px + 1vw);
-}
-
 .midiaMobileBet .nextEventsBet>div:first-child {
     min-height: initial !important;
 }

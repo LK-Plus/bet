@@ -35,15 +35,15 @@
     padding: 1px 0px !important;
 }
 
-.style__CarouselWrapper-sc-1on20i7-0 .cbPYGK svg path , 
-.desktop .style__CarouselWrapper-sc-1on20i7-0 .faMrax svg path ,
-.MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path {
+.style__CarouselWrapper-sc-1on20i7-0 .cbPYGK svg path:not(:hover) , 
+.desktop .style__CarouselWrapper-sc-1on20i7-0 .faMrax svg path:not(:hover) ,
+.MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path:not(:hover) {
     fill: var(--acc-c1-text-color_light);
 }
 
-.style__CarouselWrapper-sc-1on20i7-0 .cbPYGK svg path:first-child , 
-.desktop .style__CarouselWrapper-sc-1on20i7-0 .faMrax svg path:first-child ,
-.MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path:first-child {
+.style__CarouselWrapper-sc-1on20i7-0 .cbPYGK svg path:first-child:not(:hover) , 
+.desktop .style__CarouselWrapper-sc-1on20i7-0 .faMrax svg path:first-child:not(:hover) ,
+.MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path:first-child:not(:hover) {
     fill: #9a9a9a;;
 }
 

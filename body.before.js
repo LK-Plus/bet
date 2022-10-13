@@ -67,6 +67,10 @@ document.addEventListener('readystatechange', (event) => {
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
             document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
                 + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+        } else {
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
+            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
+                + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
         }
     }
     // Footer

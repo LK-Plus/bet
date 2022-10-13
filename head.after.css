@@ -1,3 +1,11 @@
+.x-casinoGameSingleView__gameContainer__gameInfo__rightBlock {
+    z-index: 1;
+}
+
+.x-casinoGameSingleView__gameContainer__iframeContainer {
+    position: fixed !important;
+}
+
 .x-casinoGameSingleView__gameContainer__gameInfo {
     padding: 1px !important;
 }

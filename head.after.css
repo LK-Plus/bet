@@ -864,6 +864,8 @@ span.iPCuNV {
     text-align: center;
     color: #fff;
     text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
 }
 
 .jujKAS,

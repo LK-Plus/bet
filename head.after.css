@@ -1,28 +1,28 @@
-.x-casinoGameSingleView__gameContainer__gameInfo__rightBlock .v3-icon {
+.mobile .x-casinoGameSingleView__gameContainer__gameInfo__rightBlock .v3-icon {
     background-color: var(--acc-c1-text-color_lighter);
     padding: 5px;
     border-radius: 4px;
     font-size: 20px;
 }
 
-.x-casinoGameSingleView__gameContainer__gameInfo__centerBlock {
+.mobile .x-casinoGameSingleView__gameContainer__gameInfo__centerBlock {
     display: none !important;
 }
 
-.x-casinoGameSingleView__gameContainer__gameInfo__rightBlock {
+.mobile .x-casinoGameSingleView__gameContainer__gameInfo__rightBlock {
     z-index: 1;
 }
 
-.x-casinoGameSingleView__gameContainer__iframeContainer {
+.mobile .x-casinoGameSingleView__gameContainer__iframeContainer {
     position: fixed !important;
 }
 
-.x-casinoGameSingleView__gameContainer__gameInfo {
+.mobile .x-casinoGameSingleView__gameContainer__gameInfo {
     padding: 1px !important;
     z-index: 1;
 }
 
-.x-casinoGameSingleView__gameContainer {
+.mobile .x-casinoGameSingleView__gameContainer {
     padding: 1px 5px !important;
 }
 

@@ -211,15 +211,15 @@ button.eWvBFy span:nth-child(2) {
     min-height: unset !important;
 }
 
-.mobile #navigation-3039 li.page>a:hover {
+.mobile .navigation li.page>a:hover {
     color: #FFFFFF !important;
 }
 
-.mobile #navigation-3039 li.page>a {
+.mobile .navigation li.page>a {
     color: #959595 !important;
 }
 
-.mobile #navigation-3039 li.active>a {
+.mobile .navigation li.active>a {
     color: #FFFFFF !important;
 }
 

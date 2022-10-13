@@ -1,3 +1,7 @@
+.x-casinoGameSingleView__gameContainer__gameInfo__centerBlock {
+    display: none !important;
+}
+
 .x-casinoGameSingleView__gameContainer__gameInfo__rightBlock {
     z-index: 1;
 }

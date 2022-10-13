@@ -1,3 +1,11 @@
+.sportsList {
+    background-color: #484848 !important;
+}
+
+.sportsList__sport {
+    background-color: #494949 !important;
+}
+
 .mobile .loginMobile>div:first-child {
     display: flex;
     flex-wrap: nowrap;

@@ -65,15 +65,19 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('.eruTRg')) {
         setTimeout(() => {
             if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
-                document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-                document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
-                    + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+                setTimeout(() => {
+                    document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
+                    document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
+                        + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+                },1000)
             } else {
-                document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-                document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
-                    + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+                setTimeout(() => {
+                    document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
+                    document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
+                        + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+                },1000)
             }
-        },100)
+        },1000)
     }
     // Footer
     if (document.querySelector('.footerbuttonup'))

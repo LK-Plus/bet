@@ -50,12 +50,12 @@
     top: 28px;
 }
 
-.searchBar-wrapper--result {
+.desktop .searchBar-wrapper--result {
     z-index: 9;
     width: 100%;
     left: 0;
     background-color: var(--v3-black-0);
-    height: auto;
+    height: auto !important;
     overflow: auto;
     box-shadow: var(--v3-shadow-1-down);
     padding-bottom: 1px!important;

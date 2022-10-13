@@ -12,15 +12,13 @@
 
 .x-casinoGameSingleView__gameContainer__gameInfo {
     padding: 1px !important;
+    z-index: 1;
 }
 
 .x-casinoGameSingleView__gameContainer {
     padding: 1px 5px !important;
 }
 
-.x-casinoGameSingleView__gameContainer__gameInfo {
-    padding-bottom: 0px !important;
-}
 
 .MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path {
     fill: var(--acc-c1-text-color_light);

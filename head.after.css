@@ -1,3 +1,10 @@
+.x-casinoGameSingleView__gameContainer__gameInfo__rightBlock .v3-icon {
+    background-color: var(--acc-c1-text-color_lighter);
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
 .x-casinoGameSingleView__gameContainer__gameInfo__centerBlock {
     display: none !important;
 }

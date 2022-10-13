@@ -77,7 +77,7 @@ document.addEventListener('readystatechange', (event) => {
                         + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
                 },1000)
             }
-        },1000)
+        },3000)
     }
     // Footer
     if (document.querySelector('.footerbuttonup'))

@@ -25,6 +25,20 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(2)').click()",3000);
 }
 
+function fixMobileMenu() {
+    if (document.querySelector('.eruTRg')) {
+        if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
+            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
+                + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+        } else {
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
+            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
+                + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     //verificando se está na página de esportes
     if(document.querySelector("#r1823")){
@@ -62,23 +76,8 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('.virtual-100>div:first-child>div:first-child'))
         document.querySelector('.virtual-100>div:first-child>div:first-child').style.height = '250%';
     // Mobile nav fix
-    if (document.querySelector('.eruTRg')) {
-        setTimeout(() => {
-            if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
-                setTimeout(() => {
-                    document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-                    document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
-                        + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
-                },1000)
-            } else {
-                setTimeout(() => {
-                    document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-                    document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
-                        + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
-                },1000)
-            }
-        },3000)
-    }
+    fixMobileMenu();
+    setTimeout(fixMobileMenu,2000)
     // Footer
     if (document.querySelector('.footerbuttonup'))
         document.querySelector('.footerbuttonup').addEventListener('click', function () {

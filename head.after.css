@@ -35,11 +35,13 @@
     padding: 1px 0px !important;
 }
 
+.style__CarouselWrapper-sc-1on20i7-0 .cbPYGK svg path , 
 .desktop .style__CarouselWrapper-sc-1on20i7-0 .faMrax svg path ,
 .MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path {
     fill: var(--acc-c1-text-color_light);
 }
 
+.style__CarouselWrapper-sc-1on20i7-0 .cbPYGK svg path:first-child , 
 .desktop .style__CarouselWrapper-sc-1on20i7-0 .faMrax svg path:first-child ,
 .MobileSportsbook__Container-sc-1ma3g0p-0 .fWnuHQ svg path:first-child {
     fill: #9a9a9a;;

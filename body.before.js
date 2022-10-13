@@ -73,7 +73,7 @@ document.addEventListener('readystatechange', (event) => {
                 document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
                     + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
             }
-        },1000)
+        },100)
     }
     // Footer
     if (document.querySelector('.footerbuttonup'))

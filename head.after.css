@@ -1,3 +1,10 @@
+.mobile .loginMobile>div:first-child {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
 .mobile .x-casinoGameSingleView__gameContainer__gameInfo__rightBlock .v3-icon {
     background-color: var(--acc-c1-text-color_lighter);
     padding: 5px;

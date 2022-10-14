@@ -1,3 +1,6 @@
+/* Trocar R$ do Bonus por BO */
+document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO'
+
 var cliqueBtnCpf = true;
 
 function carregaCpf(){

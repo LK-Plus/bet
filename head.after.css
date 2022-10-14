@@ -206,11 +206,8 @@ html {
     opacity: 0;
 }
 
-
-div.v3-col > button.eWvBFy > div:nth-child(2) {
-    color : #ffe418 !important;
-}
-
+div.v3-col > button.eWvBFy > div:nth-child(2),
+.ivEUcZ span,
 button.eWvBFy span:nth-child(2) {
     color: #ffe418 !important;
 }

@@ -109,6 +109,10 @@
     top: 28px;
 }
 
+.czBYkq {
+    text-align: initial !important;
+}
+
 .desktop .searchBar-wrapper--result {
     z-index: 9;
     width: 100%;

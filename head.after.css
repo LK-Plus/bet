@@ -218,10 +218,6 @@ html {
     opacity: 0;
 }
 
-.contentBarMobile .mainRow div:first-child {
-    margin-top: 0px !important;
-}
-
 .contentBarMobile .categoriesHorizontalMobile__container {
     background: none !important;
 }

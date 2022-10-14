@@ -1,3 +1,13 @@
+.mainRow #column2696 #3449 {
+    margin: 0px !important;
+    margin-top: 10px !important;
+}
+
+.mainRow #column2696 .article-item .article-item-footer {
+    margin: 0px !important;
+    margin-bottom: 10px !important;
+}
+
 .mainRow #column2696 .article-item {
     padding: 0px !important;
     min-width: auto !important;

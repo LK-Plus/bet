@@ -59,13 +59,6 @@ function fixMobileMenu() {
     }
 }
 
-/* Trocar R$ do Bonus por BO */
-$(document.querySelector('.v3-modal-root .v3-modal-body button')).on("click", function(){
-        if (document.querySelector('.kzuCEF')) {
-            document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
-        }
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     //verificando se está na página de esportes
     if(document.querySelector("#r1823")){
@@ -128,4 +121,11 @@ document.addEventListener('readystatechange', (event) => {
         });
     if (document.querySelector('.footer'))
         document.querySelector('.footer').style.height = '10px';
+    // Trocar R$ do Bonus por BO
+    if (document.querySelector('.v3-modal-root .v3-modal-body button'))
+        document.querySelector('.v3-modal-root .v3-modal-body button').addEventListener("click", function(){
+            if (document.querySelector('.kzuCEF')) {
+                document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
+            }
+        });
 });

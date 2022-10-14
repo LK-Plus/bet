@@ -1,3 +1,23 @@
+var cliqueBtnCpf = true;
+
+function carregaCpf(){
+var cpf = "";
+
+$("#personal_id").on("keyup", function() {      
+    cpf = $("#personal_id").val().length;
+    
+    if(cpf==14){
+    if(cliqueBtnCpf){
+        $(".v3-input-suffix .x-button--cancel").click();          
+        
+        cliqueBtnCpf = false;
+    }  
+    }else{
+    cliqueBtnCpf = true;
+    }
+});
+}
+var timeoutCpf = setInterval("carregaCpf()",2000);
 
 function updateAnimButtons () {
     document.querySelector('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').addEventListener('click', function() {

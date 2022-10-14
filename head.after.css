@@ -104,6 +104,10 @@
     justify-content: center;
 }
 
+#column2346 {
+    margin-top: 0px !important;
+}
+
 .mobile .isNUXJ {
     position: absolute;
     top: 28px;

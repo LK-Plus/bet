@@ -122,7 +122,7 @@
     border-radius: 4px !important;
 }
 
-.fcChHj:hover .style__ButtonsWrapper-sc-a9ikb3-0 {
+.searchBar-container .fcChHj:hover .style__ButtonsWrapper-sc-a9ikb3-0 {
     opacity: 1;
     width: 100% !important;
     height: 100% !important;
@@ -204,6 +204,19 @@ html {
 
 .hidden {
     opacity: 0;
+}
+
+.contentBarMobile .mainRow div:first-child {
+    margin-top: 0px !important;
+}
+
+.contentBarMobile .categoriesHorizontalMobile__container {
+    background: none !important;
+}
+
+#column2818,
+#column2195 {
+    padding-top: 0 !important;
 }
 
 .gJFfSZ .dBHMOr,

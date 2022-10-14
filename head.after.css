@@ -481,9 +481,7 @@ button.czyrAX span:first-child {
 }
 
 .mobile .betslip-popup {
-    z-index: 11;
-    height: 93vh;
-    top: 53px;
+    top: 48px;
 }
 
 .mobile .sandwichMenu span.v3-icon {

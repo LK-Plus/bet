@@ -56,7 +56,7 @@ function fixMobileMenu() {
     }
 }
 
-document.getElementsByClassName("loginDesk").('DOMSubtreeModified', function () {
+document.getElementsByClassName("loginDesk").addEventListener('DOMSubtreeModified', function trocarcifrao () {
     if (document.querySelector('.kzuCEF')) {
          document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
         console.log("aquiiiiiiiiii")
@@ -103,6 +103,8 @@ document.addEventListener('readystatechange', (event) => {
     fixMobileMenu();
     setTimeout(fixMobileMenu,2000)
     // Trocar cifrao
+    trocarcifrao()
+    setTimeout(trocarcifrao,2000)
     // Footer
     if (document.querySelector('.footerbuttonup'))
         document.querySelector('.footerbuttonup').addEventListener('click', function () {

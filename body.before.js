@@ -63,7 +63,14 @@ function fixMobileMenu() {
 //     }
 //  }, false);
 
-document.addEventListener('DOMContentLoaded', function() {
+document.getElementsByClassName(".loginDesk").addEventListener("DOMSubtreeModified", function () {
+    if (document.querySelector('.kzuCEF')) {
+        document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
+        console.log("aquiiiiiiiiii");
+    }
+},  false );
+
+document.addEventListener('DOMContentLoaded', function () {
     //verificando se está na página de esportes
     if(document.querySelector("#r1823")){
         setTimeout("clickTop()",500);
@@ -101,10 +108,8 @@ document.addEventListener('readystatechange', (event) => {
         document.querySelector('.virtual-100>div:first-child>div:first-child').style.height = '250%';
     // Mobile nav fix
     fixMobileMenu();
-    setTimeout(fixMobileMenu,2000)
+    setTimeout(fixMobileMenu,2000);
     // Trocar cifrao
-    trocarcifrao()
-    setTimeout(trocarcifrao,2000)
     // Footer
     if (document.querySelector('.footerbuttonup'))
         document.querySelector('.footerbuttonup').addEventListener('click', function () {

@@ -55,13 +55,7 @@ function fixMobileMenu() {
         }
     }
 }
-var logindispositivo = ""
 document.addEventListener('DOMContentLoaded', function () {
-    if(document.querySelector(".loginDesk")){
-        logindispositivo = ".loginDesk"
-    } else if(document.querySelector(".loginMobile")){
-        logindispositivo = ".loginMobile"
-    }
     //verificando se está na página de esportes
     if(document.querySelector("#r1823")){
         setTimeout("clickTop()",500);

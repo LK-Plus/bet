@@ -56,7 +56,7 @@ function fixMobileMenu() {
     }
 }
 
-if (document.querySelector(".v3-modal-root"))
+if (document.querySelector(".loginDesk") || document.querySelector(".loginMobile"))
     document.querySelector(".v3-modal-root").addEventListener("DOMSubtreeModified", function () {
         if (document.querySelector('.kzuCEF') && document.querySelectorAll('.kzuCEF span')[1].innerHTML == '&nbsp;R$')
             document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';

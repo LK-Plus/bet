@@ -56,12 +56,12 @@ function fixMobileMenu() {
     }
 }
 
-document.getElementsByClassName("loginDesk").addEventListener('DOMSubtreeModified', function trocarcifrao () {
-    if (document.querySelector('.kzuCEF')) {
-         document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
-        console.log("aquiiiiiiiiii")
-    }
- }, false);
+// document.getElementsByClassName("loginDesk").addEventListener('DOMSubtreeModified', function trocarcifrao () {
+//     if (document.querySelector('.kzuCEF')) {
+//          document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
+//         console.log("aquiiiiiiiiii")
+//     }
+//  }, false);
 
 document.addEventListener('DOMContentLoaded', function() {
     //verificando se está na página de esportes

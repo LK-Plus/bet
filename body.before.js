@@ -52,6 +52,8 @@ function fixMobileMenu() {
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
             document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
                 + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+            document.querySelectorAll('.eruTRg')[2].innerHTML = '<a href="https://www.supremabet.com/">' 
+                + document.querySelectorAll('.eruTRg')[2].innerHTML + '</a>'
         }
     }
 }

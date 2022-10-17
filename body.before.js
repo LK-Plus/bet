@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-if (document.querySelector(logindispositivo))
-    document.querySelector(logindispositivo).addEventListener("DOMSubtreeModified", function () {
+if (document.querySelector('.loginDesk,.loginMobile'))
+document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function () {
         if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
             document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
     });

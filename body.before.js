@@ -56,11 +56,11 @@ function fixMobileMenu() {
     }
 }
 
-function trocarcifrao() {
+document.kzuCEF.addEventListener('DOMSubtreeModified', function () {
     if (document.querySelector('.kzuCEF')) {
         document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
     }
-}
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     //verificando se está na página de esportes
@@ -102,8 +102,6 @@ document.addEventListener('readystatechange', (event) => {
     fixMobileMenu();
     setTimeout(fixMobileMenu,2000)
     // Trocar cifrao
-    trocarcifrao();
-    setTimeout(trocarcifrao,2000)
     // Footer
     if (document.querySelector('.footerbuttonup'))
         document.querySelector('.footerbuttonup').addEventListener('click', function () {
@@ -127,10 +125,4 @@ document.addEventListener('readystatechange', (event) => {
         });
     if (document.querySelector('.footer'))
         document.querySelector('.footer').style.height = '10px';
-    // Trocar R$ do Bonus por BO
-    if (document.querySelector('.v3-modal-root .v3-modal-body button'))
-        document.querySelector('.v3-modal-root .v3-modal-body button').addEventListener("click", function(){
-            trocarcifrao();
-            setTimeout(trocarcifrao,2000)
-        });
 });

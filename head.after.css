@@ -87,10 +87,6 @@
     margin-top: 45px;
 }
 
-.mobile .x-casinoGameSingleView__gameContainer__iframeContainer {
-    position: fixed !important;
-}
-
 .mobile .x-casinoGameSingleView__gameContainer__gameInfo {
     padding: 1px !important;
     z-index: 1;

@@ -56,10 +56,10 @@ function fixMobileMenu() {
     }
 }
 
-if (document.querySelector(".loginDesk"))
-    document.querySelector(".loginDesk").addEventListener("DOMSubtreeModified", function () {
+if (document.querySelector(".v3-modal-root"))
+    document.querySelector(".v3-modal-root").addEventListener("DOMSubtreeModified", function () {
         if (document.querySelector('.kzuCEF') && document.querySelectorAll('.kzuCEF span')[1].innerHTML == '&nbsp;R$')
-                document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
+            document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
     });
 
 document.addEventListener('DOMContentLoaded', function () {

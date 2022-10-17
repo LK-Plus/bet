@@ -63,12 +63,12 @@ function fixMobileMenu() {
 //     }
 //  }, false);
 
-document.getElementsByClassName(".loginDesk").addEventListener("DOMSubtreeModified", function () {
+document.getElementsByClassName("loginDesk").addEventListener("DOMSubtreeModified", function () {
     if (document.querySelector('.kzuCEF')) {
         document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
         console.log("aquiiiiiiiiii");
     }
-},  false );
+}, false);
 
 document.addEventListener('DOMContentLoaded', function () {
     //verificando se está na página de esportes

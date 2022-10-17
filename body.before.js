@@ -55,14 +55,13 @@ function fixMobileMenu() {
         }
     }
 }
-
-if (document.querySelector(".loginDesk .v3-modal-root") || document.querySelector(".loginMobile .v3-modal-root"))
-    document.querySelector(".v3-modal-root").addEventListener("DOMSubtreeModified", function () {
-        if (document.querySelector('.kzuCEF') && document.querySelectorAll('.kzuCEF span')[1].innerHTML == '&nbsp;R$')
-            document.querySelectorAll('.kzuCEF span')[1].innerHTML = '&nbsp;BO';
-    });
-
+var logindispositivo = ""
 document.addEventListener('DOMContentLoaded', function () {
+    if(document.querySelector(".loginDesk")){
+        logindispositivo = ".loginDesk"
+    } else if(document.querySelector(".loginMobile")){
+        logindispositivo = ".loginMobile"
+    }
     //verificando se está na página de esportes
     if(document.querySelector("#r1823")){
         setTimeout("clickTop()",500);
@@ -70,6 +69,14 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout("clickTop()",500);
     }
 });
+
+if (document.querySelector(logindispositivo))
+    document.querySelector(logindispositivo).addEventListener("DOMSubtreeModified", function () {
+        if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
+            document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
+    });
+
+
 
 document.addEventListener('readystatechange', (event) => {
     // Banner control

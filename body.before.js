@@ -1,3 +1,14 @@
+const installApp = document.getElementById('installApp');
+
+installApp.addEventListener('click', async () => {
+    if (deferredPrompt !== null) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            deferredPrompt = null;
+        }
+    }
+});
 
 let cliqueBtnCpf = true;
 function carregaCpf() {
@@ -41,6 +52,8 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2500);
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
 }
+
+document.querySelector
 
 function fixMobileMenu() {
     if (document.querySelector('.eruTRg')) {

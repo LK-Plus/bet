@@ -41,6 +41,13 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
 }
 
+function fixBetCount() {
+    if (document.querySelectorAll('.eruTRg') && document.querySelectorAll('button[class*=style__MarketButton-sc]')) {
+        const totalBet = document.querySelectorAll('button[class*=style__MarketButton-sc].lprjrX').length;
+        document.querySelectorAll('.eruTRg')[2].querySelector('span div').innerText = totalBet;
+    }
+}
+
 function fixMobileMenu() {
     if (document.querySelector('.eruTRg')) {
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
@@ -48,6 +55,7 @@ function fixMobileMenu() {
             document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
                 + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
         } else {
+            document.querySelectorAll('.eruTRg')[2].querySelector('span div').remove();
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
             document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
                 + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
@@ -57,7 +65,7 @@ function fixMobileMenu() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     //verificando se está na página de esportes
     if(document.querySelector("#r1823")){
         setTimeout("clickTop()",500);
@@ -67,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 if (document.querySelector('.loginDesk,.loginMobile'))
-    document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function () {
+    document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function() {
         if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
             document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
     });
@@ -105,7 +113,7 @@ document.addEventListener('readystatechange', (event) => {
     // Trocar cifrao
     // Footer
     if (document.querySelector('.footerbuttonup'))
-        document.querySelector('.footerbuttonup').addEventListener('click', function () {
+        document.querySelector('.footerbuttonup').addEventListener('click', function() {
             if (document.querySelector('.footer').style.height = '10px') {
                 document.querySelector('.footer').style.height = '235px';
                 document.querySelector('.footerbuttondown').style.visibility = 'visible';
@@ -115,7 +123,7 @@ document.addEventListener('readystatechange', (event) => {
             }
         });
     if (document.querySelector('.footerbuttondown'))
-        document.querySelector('.footerbuttondown').addEventListener('click', function () {
+        document.querySelector('.footerbuttondown').addEventListener('click', function() {
             if (document.querySelector('.footer').style.height = '235px') {
                 document.querySelector('.footer').style.height = '10px';
                 document.querySelector('.footerbuttondown').style.visibility = 'hidden';
@@ -126,4 +134,8 @@ document.addEventListener('readystatechange', (event) => {
         });
     if (document.querySelector('.footer'))
         document.querySelector('.footer').style.height = '10px';
+    // Fix Bet Counter
+    if (document.querySelectorAll('button[class*=style__MarketButton-sc]')) {
+        [...document.querySelectorAll('button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){ setInterval(fixBetCount, 100) }))
+    }
 });

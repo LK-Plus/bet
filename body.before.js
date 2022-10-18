@@ -881,5 +881,3 @@ document.addEventListener('readystatechange', (event) => {
     window.addToHomescreen = ath;
     
     })(window, document);
-
-    addToHomescreen();

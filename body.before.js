@@ -73,22 +73,8 @@ function fixMobileMenu() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    //verificando se está na página de esportes
-    if(document.querySelector("#r1823")){
-        setTimeout("clickTop()",500);
-    } else if(document.querySelector("#r1824")){
-        setTimeout("clickTop()",500);
-    }
-});
-
-if (document.querySelector('.loginDesk,.loginMobile'))
-    document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function() {
-        if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
-            document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
-    });
-
 document.addEventListener('readystatechange', (event) => {
+    if (event.target.readyState !== 'complete') return;
     // Banner control
     const lang = JSON.parse(window.hrefLangRelations);
     if (document.querySelector('.sportsPC div.slider-container'))
@@ -142,17 +128,26 @@ document.addEventListener('readystatechange', (event) => {
         });
     if (document.querySelector('.footer'))
         document.querySelector('.footer').style.height = '10px';
+    // Fix login currency
+    if (document.querySelector('.loginDesk,.loginMobile'))
+        document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function() {
+            if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
+                document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
+        });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Verificando se está na página de esportes
+    if(document.querySelector("#r1823")){
+        setTimeout("clickTop()",500);
+    } else if(document.querySelector("#r1824")){
+        setTimeout("clickTop()",500);
+    }
     // Fix Bet Counter
     if (document.querySelectorAll('.mobile button[class*=style__RadioButton-sc],.mobile button[class*=style__MarketButton-sc]')) {
         [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
             setInterval(fixBetCount, 100);
             animBetCount();
         }));
-        //document.querySelector('[class*=style__SingleEventWrapper-sc]').addEventListener('change', function() {
-        //    [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
-        //        setInterval(fixBetCount, 100);
-        //        animBetCount();
-        //    }));
-        //});
     }
 });

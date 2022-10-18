@@ -15,7 +15,7 @@ function carregaCpf() {
 }
 setInterval('carregaCpf()', 2000);
 
-function updateAnimButtons () {
+function updateAnimButtons() {
     document.querySelector('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').addEventListener('click', function() {
         document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '15'});
         document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '0'});
@@ -41,8 +41,6 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
 }
 
-document.querySelector
-
 function fixMobileMenu() {
     if (document.querySelector('.eruTRg')) {
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
@@ -58,6 +56,7 @@ function fixMobileMenu() {
         }
     }
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     //verificando se está na página de esportes
     if(document.querySelector("#r1823")){
@@ -68,12 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 if (document.querySelector('.loginDesk,.loginMobile'))
-document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function () {
+    document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function () {
         if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
             document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
     });
-
-
 
 document.addEventListener('readystatechange', (event) => {
     // Banner control

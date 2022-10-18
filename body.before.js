@@ -148,11 +148,11 @@ document.addEventListener('readystatechange', (event) => {
             setInterval(fixBetCount, 100);
             animBetCount();
         }));
-        document.querySelector('[class*=style__SingleEventWrapper-sc]').addEventListener('change', function() {
-            [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
-                setInterval(fixBetCount, 100);
-                animBetCount();
-            }));
-        });
+        //document.querySelector('[class*=style__SingleEventWrapper-sc]').addEventListener('change', function() {
+        //    [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
+        //        setInterval(fixBetCount, 100);
+        //        animBetCount();
+        //    }));
+        //});
     }
 });

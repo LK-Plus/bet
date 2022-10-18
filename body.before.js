@@ -15,15 +15,6 @@ function carregaCpf() {
 }
 setInterval('carregaCpf()', 2000);
 
-function updateAnimButtons() {
-    document.querySelector('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').addEventListener('click', function() {
-        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '15'});
-        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '0'});
-        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '15'});
-        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '0'});
-    });
-}
-
 function clickTop() {
     /* Desktop */
     setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
@@ -39,6 +30,23 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2000);
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2500);
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
+}
+
+function animBetCount() {
+    const elementFrame = document.querySelectorAll('.eruTRg')[2].querySelector('span');
+    const keyframes = new KeyframeEffect(
+        elementFrame,
+        [
+            { transform: 'translateY(0%)' },
+            { transform: 'translateY(-20%)' },
+            { transform: 'translateY(10%)' },
+            { transform: 'translateY(-20%)' },
+            { transform: 'translateY(0%)' }
+        ],
+        { duration: 1000, fill: 'forwards' }
+    );
+    const elementAnimation = new Animation(keyframes, document.timeline);
+    elementAnimation.play();
 }
 
 function fixBetCount() {
@@ -135,7 +143,10 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('.footer'))
         document.querySelector('.footer').style.height = '10px';
     // Fix Bet Counter
-    if (document.querySelectorAll('button[class*=style__MarketButton-sc]')) {
-        [...document.querySelectorAll('button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){ setInterval(fixBetCount, 100) }))
+    if (document.querySelectorAll('.mobile button[class*=style__RadioButton-sc],.mobile button[class*=style__MarketButton-sc]')) {
+        [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
+            setInterval(fixBetCount, 100);
+            animBetCount();
+        }));
     }
 });

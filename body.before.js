@@ -49,8 +49,8 @@ function animBetCount() {
 }
 
 function fixBetCount() {
-    if (document.querySelectorAll('.eruTRg') && document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
-        const totalBet = [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].filter(e => e.attributes[0].nodeValue.match(/jujKAS|edOIQa|lprjrX/g)).length;
+    if (document.querySelectorAll('.eruTRg') && document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]') && document.querySelectorAll('div[class*=style__ScrollArea-sc]')) {
+        const totalBet = document.querySelectorAll('div[class*=style__ScrollArea-sc] div[class=betslipContainer]').length;
         document.querySelectorAll('.eruTRg')[2].querySelector('span div').innerText = totalBet;
     }
 }
@@ -149,7 +149,7 @@ document.addEventListener('readystatechange', (event) => {
         // Fix Bet Counter
         if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
             setInterval(function() {
-                [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
+                [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', function(){
                     setInterval(fixBetCount, 100);
                     animBetCount();
                 }));

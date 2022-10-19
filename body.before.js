@@ -36,10 +36,12 @@ function animBetCount() {
     const keyframes = new KeyframeEffect(
         elementFrame,
         [
-            { transform: 'translateY(0%)' },
-            { transform: 'translateY(-20%)' },
+            { transform: 'translateX(0%)' },
+            { transform: 'translateX(-20%)' },
             { transform: 'translateY(10%)' },
-            { transform: 'translateY(-20%)' },
+            { transform: 'translateX(-20%)' },
+            { transform: 'translateY(-10%)' },
+            { transform: 'translateX(0%)' },
             { transform: 'translateY(0%)' }
         ],
         { duration: 1000, fill: 'forwards' }
@@ -59,7 +61,6 @@ function fixBetCount() {
 }
 
 function fixMobileMenu() {
-    return;
     if (document.querySelector('.eruTRg')) {
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
@@ -141,8 +142,9 @@ document.addEventListener('readystatechange', (event) => {
     // Fix login currency
     if (document.querySelector('.loginDesk,.loginMobile')) {
         document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function() {
-            if (document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1] && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
+            if (document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1] && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$') {
                 document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
+            }
         });
     }
     // Mobile fixes

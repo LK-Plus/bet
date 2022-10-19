@@ -54,16 +54,13 @@ function animBetCount() {
 function fixMobileMenu() {
     if (document.querySelector('.eruTRg')) {
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
-            document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
-                + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg').innerHTML = '<image id="image0" width="100%" height="100%" x="0" y="0" href="https://bet-files.suprema.group/images/betslip.png"></image>';
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg').style.width = '1.4em';
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg').style.height = '1.4em';
         } else {
             document.querySelectorAll('.eruTRg')[2].querySelector('span div').remove();
-            document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/home.png" width="24px" height="24px">'
-                + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
-            document.querySelectorAll('.eruTRg')[2].innerHTML = '<a href="https://www.supremabet.com/">' 
-                + document.querySelectorAll('.eruTRg')[2].innerHTML + '</a>';
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg').innerHTML = '<image id="image0" width="100%" height="100%" x="0" y="0" href="https://bet-files.suprema.group/images/home.png"></image>';
+            document.querySelectorAll('.eruTRg')[2].innerHTML = '<a href="https://www.supremabet.com/">' + document.querySelectorAll('.eruTRg')[2].innerHTML + '</a>';
         }
     }
 }

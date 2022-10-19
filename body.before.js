@@ -99,10 +99,6 @@ document.addEventListener('readystatechange', (event) => {
     }
     if (document.querySelector('.virtual-100>div:first-child>div:first-child'))
         document.querySelector('.virtual-100>div:first-child>div:first-child').style.height = '250%';
-    // Mobile nav fix
-    fixMobileMenu();
-    setTimeout(fixMobileMenu,2000);
-    // Trocar cifrao
     // Footer
     if (document.querySelector('.footerbuttonup'))
         document.querySelector('.footerbuttonup').addEventListener('click', function() {
@@ -132,14 +128,20 @@ document.addEventListener('readystatechange', (event) => {
             if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
                 document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
         });
-    // Fix Bet Counter
-    if (document.querySelectorAll('.mobile button[class*=style__RadioButton-sc],.mobile button[class*=style__MarketButton-sc]')) {
-        setInterval(function() {
-            [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
-                setInterval(fixBetCount, 100);
-                animBetCount();
-            }));
-        }, 2000);
+    // Mobile fixes
+    if (document.querySelector('.mobile')) {
+        // Mobile nav fix
+        fixMobileMenu();
+        setTimeout(fixMobileMenu,2000);
+        // Fix Bet Counter
+        if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
+            setInterval(function() {
+                [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
+                    setInterval(fixBetCount, 100);
+                    animBetCount();
+                }));
+            }, 2000);
+        }
     }
     // Fix CPF check
     setInterval('carregaCpf()', 2000);

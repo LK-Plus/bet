@@ -16,19 +16,19 @@ function carregaCpf() {
 
 function clickTop() {
     /* Desktop */
-    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
-    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1000);
-    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1500);
-    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
-    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
-    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1000);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1500);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
+    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
     /* Mobile */
-    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",500);
-    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1000);
-    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1500);
-    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2000);
-    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2500);
-    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",500);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1000);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1500);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2000);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2500);
+    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
 }
 
 function animBetCount() {
@@ -142,12 +142,12 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('.mobile')) {
         // Mobile nav fix
         fixMobileMenu();
-        setInterval(fixMobileMenu, 500);
+        setTimeout(fixMobileMenu, 500);
         // Fix Bet Counter
         if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
-            setInterval(function() {
+            setTimeout(function() {
                 [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', function(){
-                    setInterval(animBetCount, 1000);
+                    setTimeout(animBetCount, 1000);
                 }));
             }, 2000);
         }
@@ -157,10 +157,10 @@ document.addEventListener('readystatechange', (event) => {
 document.addEventListener('DOMContentLoaded', function() {
     // Fix esportes page
     if(document.querySelector("#r1823")){
-        setInterval("clickTop()",500);
+        setTimeout("clickTop()",500);
     } else if(document.querySelector("#r1824")){
-        setInterval("clickTop()",500);
+        setTimeout("clickTop()",500);
     }
     // Fix CPF check
-    setInterval('carregaCpf()', 2000);
+    setTimeout('carregaCpf()', 2000);
 });

@@ -73,7 +73,6 @@ function fixMobileMenu() {
 }
 
 document.addEventListener('readystatechange', (event) => {
-    if (event.target.readyState !== 'complete') return;
     // Banner control
     const lang = JSON.parse(window.hrefLangRelations);
     if (document.querySelector('.sportsPC div.slider-container'))

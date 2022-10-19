@@ -93,7 +93,8 @@
 }
 
 .mobile .x-casinoGameSingleView__gameContainer {
-    padding: 1px 0px !important;
+    padding: 0px 8px !important;
+    height: calc(100vh - 80px) !important;
 }
 
 .style__SportMenuWrapper-sc-1ww46zm-1 .glCkhY:not(:hover) svg path,

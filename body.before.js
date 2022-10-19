@@ -54,17 +54,16 @@ function animBetCount() {
 function fixMobileMenu() {
     if (document.querySelector('.eruTRg')) {
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
-            document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
-                + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg').innerHTML = '<image id="image0" width="100%" height="100%" x="0" y="0" href="https://bet-files.suprema.group/images/betslip.png"></image>';
         } else {
-            document.querySelectorAll('.eruTRg')[2].querySelector('span div').remove();
-            document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home2.png?1666213986447" width="24px" height="24px">'
-                + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
-            document.querySelectorAll('.eruTRg')[2].innerHTML = '<a href="https://www.supremabet.com/">' 
-                + document.querySelectorAll('.eruTRg')[2].innerHTML + '</a>';
+            if (document.querySelectorAll('.eruTRg')[2].querySelector('span div')) {
+                document.querySelectorAll('.eruTRg')[2].querySelector('span div').remove();
+            }
+            document.querySelectorAll('.eruTRg')[2].querySelector('span svg').innerHTML = '<image id="image0" width="100%" height="100%" x="0" y="0" href="https://bet-files.suprema.group/images/home2.png"></image>';
+            document.querySelectorAll('.eruTRg')[2].innerHTML = '<a href="https://www.supremabet.com/">' + document.querySelectorAll('.eruTRg')[2].innerHTML + '</a>';
         }
+        document.querySelectorAll('.eruTRg')[2].querySelector('span svg').style.width = '1.4em';
+        document.querySelectorAll('.eruTRg')[2].querySelector('span svg').style.height = '1.4em';
     }
 }
 
@@ -142,13 +141,11 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('.mobile')) {
         // Mobile nav fix
         fixMobileMenu();
-        setTimeout(fixMobileMenu, 500);
+        setTimeout(fixMobileMenu, 2000);
         // Fix Bet Counter
         if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
-            setTimeout(function() {
-                [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', function(){
-                    setTimeout(animBetCount, 1000);
-                }));
+            setInterval(function() {
+                [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', animBetCount));
             }, 2000);
         }
     }
@@ -156,11 +153,9 @@ document.addEventListener('readystatechange', (event) => {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Fix esportes page
-    if(document.querySelector("#r1823")){
-        setTimeout("clickTop()",500);
-    } else if(document.querySelector("#r1824")){
-        setTimeout("clickTop()",500);
+    if(document.querySelector("#r1823,#r1824")){
+        setTimeout(clickTop, 500);
     }
     // Fix CPF check
-    setTimeout('carregaCpf()', 2000);
+    setInterval(carregaCpf, 2000);
 });

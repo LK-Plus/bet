@@ -96,6 +96,9 @@
     padding: 0px 8px !important;
     height: calc(100vh - 120px) !important;
 }
+.mobile .v3-modal-wrap {
+    overflow: initial;
+}
 
 .style__SportMenuWrapper-sc-1ww46zm-1 .glCkhY:not(:hover) svg path,
 .style__CarouselWrapper-sc-1on20i7-0 .cbPYGK:not(:hover) svg path , 

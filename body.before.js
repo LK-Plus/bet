@@ -50,7 +50,7 @@ function animBetCount() {
 
 function fixBetCount() {
     if (document.querySelectorAll('.eruTRg') && document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
-        const totalBet = document.querySelectorAll('button[class*=style__RadioButton-sc].gxnJvB,button[class*=style__MarketButton-sc].lprjrX').length;
+        const totalBet = [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].filter(e => e.attributes[0].nodeValue.match(/jujKAS|edOIQa|lprjrX/g)).length;
         document.querySelectorAll('.eruTRg')[2].querySelector('span div').innerText = totalBet;
     }
 }

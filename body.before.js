@@ -49,8 +49,8 @@ function animBetCount() {
 }
 
 function fixBetCount() {
-    if (document.querySelectorAll('.eruTRg') && document.querySelectorAll('button[class*=style__MarketButton-sc]')) {
-        const totalBet = document.querySelectorAll('button[class*=style__MarketButton-sc].lprjrX').length;
+    if (document.querySelectorAll('.eruTRg') && document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
+        const totalBet = document.querySelectorAll('button[class*=style__RadioButton-sc].gxnJvB,button[class*=style__MarketButton-sc].lprjrX').length;
         document.querySelectorAll('.eruTRg')[2].querySelector('span div').innerText = totalBet;
     }
 }

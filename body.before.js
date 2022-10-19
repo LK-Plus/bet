@@ -134,10 +134,12 @@ document.addEventListener('readystatechange', (event) => {
         });
     // Fix Bet Counter
     if (document.querySelectorAll('.mobile button[class*=style__RadioButton-sc],.mobile button[class*=style__MarketButton-sc]')) {
-        [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
-            setInterval(fixBetCount, 100);
-            animBetCount();
-        }));
+        setInterval(function() {
+            [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
+                setInterval(fixBetCount, 100);
+                animBetCount();
+            }));
+        }, 2000);
     }
     // Fix CPF check
     setInterval('carregaCpf()', 2000);

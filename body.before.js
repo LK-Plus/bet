@@ -13,7 +13,6 @@ function carregaCpf() {
         }
     });
 }
-setInterval('carregaCpf()', 2000);
 
 function clickTop() {
     /* Desktop */
@@ -134,6 +133,15 @@ document.addEventListener('readystatechange', (event) => {
             if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
                 document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
         });
+    // Fix Bet Counter
+    if (document.querySelectorAll('.mobile button[class*=style__RadioButton-sc],.mobile button[class*=style__MarketButton-sc]')) {
+        [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
+            setInterval(fixBetCount, 100);
+            animBetCount();
+        }));
+    }
+    // Fix CPF check
+    setInterval('carregaCpf()', 2000);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -142,12 +150,5 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout("clickTop()",500);
     } else if(document.querySelector("#r1824")){
         setTimeout("clickTop()",500);
-    }
-    // Fix Bet Counter
-    if (document.querySelectorAll('.mobile button[class*=style__RadioButton-sc],.mobile button[class*=style__MarketButton-sc]')) {
-        [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].map(e => e.addEventListener('click', function(){
-            setInterval(fixBetCount, 100);
-            animBetCount();
-        }));
     }
 });

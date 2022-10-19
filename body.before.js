@@ -56,7 +56,9 @@ function fixMobileMenu() {
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg').innerHTML = '<image id="image0" width="100%" height="100%" x="0" y="0" href="https://bet-files.suprema.group/images/betslip.png"></image>';
         } else {
-            document.querySelectorAll('.eruTRg')[2].querySelector('span div').remove();
+            if (document.querySelectorAll('.eruTRg')[2].querySelector('span div')) {
+                document.querySelectorAll('.eruTRg')[2].querySelector('span div').remove();
+            }
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg').innerHTML = '<image id="image0" width="100%" height="100%" x="0" y="0" href="https://bet-files.suprema.group/images/home.png"></image>';
             document.querySelectorAll('.eruTRg')[2].innerHTML = '<a href="https://www.supremabet.com/">' + document.querySelectorAll('.eruTRg')[2].innerHTML + '</a>';
         }

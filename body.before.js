@@ -16,19 +16,19 @@ function carregaCpf() {
 
 function clickTop() {
     /* Desktop */
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1000);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1500);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
+    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
+    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1000);
+    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1500);
+    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
+    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
+    setInterval("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
     /* Mobile */
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",500);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1000);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1500);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2000);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2500);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
+    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",500);
+    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1000);
+    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1500);
+    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2000);
+    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2500);
+    setInterval("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
 }
 
 function animBetCount() {
@@ -40,7 +40,8 @@ function animBetCount() {
             { transform: 'translateX(-20%)' },
             { transform: 'translateY(10%)' },
             { transform: 'translateX(-20%)' },
-            { transform: 'translateY(-10%)' },
+            { transform: 'translateY(-20%)' },
+            { transform: 'translateY(10%)' },
             { transform: 'translateX(0%)' },
             { transform: 'translateY(0%)' }
         ],
@@ -48,16 +49,6 @@ function animBetCount() {
     );
     const elementAnimation = new Animation(keyframes, document.timeline);
     elementAnimation.play();
-}
-
-function fixBetCount() {
-    if (document.querySelectorAll('.eruTRg') && document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]') && document.querySelectorAll('div[class*=style__ScrollArea-sc]')) {
-        let totalBet = document.querySelectorAll('div[class*=style__ScrollArea-sc] div[class=betslipContainer]').length;
-        if (totalBet === 0) {
-            totalBet = [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].filter(e => e.attributes[0].nodeValue.match(/jujKAS|lprjrX|gxnJvB/g)).length;
-        }
-        document.querySelectorAll('.eruTRg')[2].querySelector('span div').innerText = totalBet;
-    }
 }
 
 function fixMobileMenu() {
@@ -151,13 +142,12 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('.mobile')) {
         // Mobile nav fix
         fixMobileMenu();
-        setTimeout(fixMobileMenu,2000);
+        setInterval(fixMobileMenu, 500);
         // Fix Bet Counter
         if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
             setInterval(function() {
                 [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', function(){
-                    //setInterval(fixBetCount, 100);
-                    animBetCount();
+                    setInterval(animBetCount, 1000);
                 }));
             }, 2000);
         }
@@ -167,9 +157,9 @@ document.addEventListener('readystatechange', (event) => {
 document.addEventListener('DOMContentLoaded', function() {
     // Fix esportes page
     if(document.querySelector("#r1823")){
-        setTimeout("clickTop()",500);
+        setInterval("clickTop()",500);
     } else if(document.querySelector("#r1824")){
-        setTimeout("clickTop()",500);
+        setInterval("clickTop()",500);
     }
     // Fix CPF check
     setInterval('carregaCpf()', 2000);

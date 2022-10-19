@@ -60,7 +60,7 @@ function fixMobileMenu() {
         } else {
             document.querySelectorAll('.eruTRg')[2].querySelector('span div').remove();
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
-            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
+            document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/home.png" width="24px" height="24px">'
                 + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
             document.querySelectorAll('.eruTRg')[2].innerHTML = '<a href="https://www.supremabet.com/">' 
                 + document.querySelectorAll('.eruTRg')[2].innerHTML + '</a>';
@@ -140,27 +140,22 @@ document.addEventListener('readystatechange', (event) => {
     }
     // Mobile fixes
     if (document.querySelector('.mobile')) {
-        // Mobile nav fix
-        fixMobileMenu();
-        setTimeout(fixMobileMenu, 500);
         // Fix Bet Counter
         if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
-            setTimeout(function() {
-                [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', function(){
-                    setTimeout(animBetCount, 1000);
-                }));
+            setInterval(function() {
+                [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', animBetCount));
             }, 2000);
         }
     }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile nav fix
+    setTimeout(fixMobileMenu, 300);
     // Fix esportes page
-    if(document.querySelector("#r1823")){
-        setTimeout("clickTop()",500);
-    } else if(document.querySelector("#r1824")){
-        setTimeout("clickTop()",500);
+    if(document.querySelector("#r1823,#r1824")){
+        setTimeout(clickTop, 500);
     }
     // Fix CPF check
-    setTimeout('carregaCpf()', 2000);
+    setInterval(carregaCpf, 2000);
 });

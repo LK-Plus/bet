@@ -13,16 +13,6 @@ function carregaCpf() {
         }
     });
 }
-setInterval('carregaCpf()', 2000);
-
-function updateAnimButtons () {
-    document.querySelector('.mobile .style__RadioButton-sc-3ucvic-2,.mobile .style__MarketButton-sc-3h3jba-6').addEventListener('click', function() {
-        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '15'});
-        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '0'});
-        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '15'});
-        document.querySelectorAll('#bottom-navigation > div:nth-child')[4].animate({bottom: '0'});
-    });
-}
 
 function clickTop() {
     /* Desktop */
@@ -41,7 +31,34 @@ function clickTop() {
     setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
 }
 
-document.querySelector
+function animBetCount() {
+    const elementFrame = document.querySelectorAll('.eruTRg')[2].querySelector('span');
+    const keyframes = new KeyframeEffect(
+        elementFrame,
+        [
+            { transform: 'translateX(0%)' },
+            { transform: 'translateX(-20%)' },
+            { transform: 'translateY(10%)' },
+            { transform: 'translateX(-20%)' },
+            { transform: 'translateY(-10%)' },
+            { transform: 'translateX(0%)' },
+            { transform: 'translateY(0%)' }
+        ],
+        { duration: 1000, fill: 'forwards' }
+    );
+    const elementAnimation = new Animation(keyframes, document.timeline);
+    elementAnimation.play();
+}
+
+function fixBetCount() {
+    if (document.querySelectorAll('.eruTRg') && document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]') && document.querySelectorAll('div[class*=style__ScrollArea-sc]')) {
+        let totalBet = document.querySelectorAll('div[class*=style__ScrollArea-sc] div[class=betslipContainer]').length;
+        if (totalBet === 0) {
+            totalBet = [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')].filter(e => e.attributes[0].nodeValue.match(/jujKAS|lprjrX|gxnJvB/g)).length;
+        }
+        document.querySelectorAll('.eruTRg')[2].querySelector('span div').innerText = totalBet;
+    }
+}
 
 function fixMobileMenu() {
     if (document.querySelector('.eruTRg')) {
@@ -50,6 +67,7 @@ function fixMobileMenu() {
             document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://bet-files.suprema.group/images/betslip.png" width="24px" height="24px">'
                 + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
         } else {
+            document.querySelectorAll('.eruTRg')[2].querySelector('span div').remove();
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
             document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/home.png" width="24px" height="24px">'
                 + document.querySelectorAll('.eruTRg')[2].querySelector('span').innerHTML;
@@ -58,57 +76,46 @@ function fixMobileMenu() {
         }
     }
 }
-document.addEventListener('DOMContentLoaded', function () {
-    //verificando se está na página de esportes
-    if(document.querySelector("#r1823")){
-        setTimeout("clickTop()",500);
-    } else if(document.querySelector("#r1824")){
-        setTimeout("clickTop()",500);
-    }
-});
-
-if (document.querySelector('.loginDesk,.loginMobile'))
-document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function () {
-        if (document.querySelector('.style__Bonus-sc-1nhmslw-8') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$')
-            document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
-    });
-
-
 
 document.addEventListener('readystatechange', (event) => {
     // Banner control
     const lang = JSON.parse(window.hrefLangRelations);
-    if (document.querySelector('.sportsPC div.slider-container'))
+    if (document.querySelector('.sportsPC div.slider-container')) {
         document.querySelector('.sportsPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    if (document.querySelector('.sportsMobile div.slider-container'))
+    }
+    if (document.querySelector('.sportsMobile div.slider-container')) {
         document.querySelector('.sportsMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    if (document.querySelector('.cassinoPC div.slider-container'))
+    }
+    if (document.querySelector('.cassinoPC div.slider-container')) {
         document.querySelector('.cassinoPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    if (document.querySelector('.cassinoMobile div.slider-container'))
+    }
+    if (document.querySelector('.cassinoMobile div.slider-container')) {
         document.querySelector('.cassinoMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    }
     // Page fix
-    if (document.querySelector('#column2463'))
+    if (document.querySelector('#column2463')) {
         document.querySelector('#column2463').style = '';
-    if (document.querySelector('.prema-100>div:first-child>div:first-child'))
+    }
+    if (document.querySelector('.prema-100>div:first-child>div:first-child')) {
         document.querySelector('.prema-100>div:first-child>div:first-child').style.top = '15em';
-    if (document.querySelector('.promotion-filters'))
+    }
+    if (document.querySelector('.promotion-filters')) {
         document.querySelector('.promotion-filters').style['border-bottom'] = '1px solid #000!important';
-    if (document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button'))
+    }
+    if (document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button')) {
         document.querySelector('.header-rows .ModuleNavigation>.navigation-inner:not(.in-canvas)>.off-canvas-button').remove();
+    }
     if (document.querySelector('.prema>div:first-child>div:first-child')) {
         document.querySelector('.prema>div:first-child>div:first-child').style.height = '1500px';
         document.querySelector('.prema>div:first-child>div:first-child').style.overflow = 'scroll';
         document.querySelector('.e-100>div:first-child>div:first-child').style.height = '250%';
     }
-    if (document.querySelector('.virtual-100>div:first-child>div:first-child'))
+    if (document.querySelector('.virtual-100>div:first-child>div:first-child')) {
         document.querySelector('.virtual-100>div:first-child>div:first-child').style.height = '250%';
-    // Mobile nav fix
-    fixMobileMenu();
-    setTimeout(fixMobileMenu,2000);
-    // Trocar cifrao
+    }
     // Footer
-    if (document.querySelector('.footerbuttonup'))
-        document.querySelector('.footerbuttonup').addEventListener('click', function () {
+    if (document.querySelector('.footerbuttonup')) {
+        document.querySelector('.footerbuttonup').addEventListener('click', function() {
             if (document.querySelector('.footer').style.height = '10px') {
                 document.querySelector('.footer').style.height = '235px';
                 document.querySelector('.footerbuttondown').style.visibility = 'visible';
@@ -117,8 +124,9 @@ document.addEventListener('readystatechange', (event) => {
                 document.querySelector('.footercont').style.visibility = 'visible';
             }
         });
-    if (document.querySelector('.footerbuttondown'))
-        document.querySelector('.footerbuttondown').addEventListener('click', function () {
+    }
+    if (document.querySelector('.footerbuttondown')) {
+        document.querySelector('.footerbuttondown').addEventListener('click', function() {
             if (document.querySelector('.footer').style.height = '235px') {
                 document.querySelector('.footer').style.height = '10px';
                 document.querySelector('.footerbuttondown').style.visibility = 'hidden';
@@ -127,6 +135,42 @@ document.addEventListener('readystatechange', (event) => {
                 document.querySelector('.footercont').style.visibility = 'hidden';
             }
         });
-    if (document.querySelector('.footer'))
+    }
+    if (document.querySelector('.footer')) {
         document.querySelector('.footer').style.height = '10px';
+    }
+    // Fix login currency
+    if (document.querySelector('.loginDesk,.loginMobile')) {
+        document.querySelector('.loginDesk,.loginMobile').addEventListener("DOMSubtreeModified", function() {
+            if (document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span') && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1] && document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML == '&nbsp;R$') {
+                document.querySelectorAll('.style__Bonus-sc-1nhmslw-8 span')[1].innerHTML = '&nbsp;BO';
+            }
+        });
+    }
+    // Mobile fixes
+    if (document.querySelector('.mobile')) {
+        // Mobile nav fix
+        fixMobileMenu();
+        setTimeout(fixMobileMenu,2000);
+        // Fix Bet Counter
+        if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
+            setInterval(function() {
+                [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', function(){
+                    //setInterval(fixBetCount, 100);
+                    animBetCount();
+                }));
+            }, 2000);
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Fix esportes page
+    if(document.querySelector("#r1823")){
+        setTimeout("clickTop()",500);
+    } else if(document.querySelector("#r1824")){
+        setTimeout("clickTop()",500);
+    }
+    // Fix CPF check
+    setInterval('carregaCpf()', 2000);
 });

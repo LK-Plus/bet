@@ -59,6 +59,7 @@ function fixBetCount() {
 }
 
 function fixMobileMenu() {
+    return;
     if (document.querySelector('.eruTRg')) {
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg, span img').remove();
@@ -153,7 +154,7 @@ document.addEventListener('readystatechange', (event) => {
         if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
             setInterval(function() {
                 [...document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc],span[class*=style__CloseIcon-sc-1994fuq-1]')].map(e => e.addEventListener('click', function(){
-                    setInterval(fixBetCount, 100);
+                    //setInterval(fixBetCount, 100);
                     animBetCount();
                 }));
             }, 2000);

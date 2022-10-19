@@ -137,6 +137,8 @@ document.addEventListener('readystatechange', (event) => {
     }
     // Mobile fixes
     if (document.querySelector('.mobile')) {
+        // Mobile nav fix
+        setTimeout(fixMobileMenu, 300);
         // Fix Bet Counter
         if (document.querySelectorAll('button[class*=style__RadioButton-sc],button[class*=style__MarketButton-sc]')) {
             setInterval(function() {
@@ -147,8 +149,6 @@ document.addEventListener('readystatechange', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile nav fix
-    setTimeout(fixMobileMenu, 300);
     // Fix esportes page
     if(document.querySelector("#r1823,#r1824")){
         setTimeout(clickTop, 500);

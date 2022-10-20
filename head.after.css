@@ -661,6 +661,10 @@ body {
     border: 0px solid #d9d9d9;
 }
 
+.mobile .x-casinoProviders .x-select .v3-select-selector {
+    background-color: #585858 !important;
+}
+
 .contentFilterOnly {
     z-index: 1;
 }

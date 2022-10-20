@@ -655,7 +655,7 @@ body {
     padding: 5px;
     margin-bottom: 10px;
 }
-.mobile .main-rows .uc-row>.row-container>.row>[class*=col-sm-].column:last-child .column-container .module-container.last{
+.mobile .main-rows .contentBarMobile>.row-container>.row>[class*=col-sm-].column:last-child .column-container .module-container.last{
     padding: 0px 12px;
 }
 

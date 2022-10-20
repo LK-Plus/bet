@@ -655,6 +655,9 @@ body {
     padding: 5px;
     margin-bottom: 10px;
 }
+.mobile .main-rows .uc-row>.row-container>.row>[class*=col-sm-].column:last-child .column-container .module-container.last{
+    padding: 0px 12px;
+}
 
 .mobile .x-casinoGamesByCategories {
     border-radius: 4px;
@@ -785,9 +788,6 @@ body {
     border-radius: 4px !important;
     padding-bottom: 10px;
     padding-top: 10px;
-    margin-left: 12px;
-    width: 388px;
-    height: 42px;
     border: 0px solid #d9d9d9;
     background-color: #585858 !important;
 }

@@ -775,7 +775,7 @@ body {
     border: 1px solid var(--c6);
 }
 
-.desktop .searchCasino .searchBar-wrapper:first-child div:first-child {
+.desktop .searchCasino .searchBar-wrapper:first-child .style__Wrapper-sc-qbxr52-0 {
     border-radius: 4px !important;
     padding-bottom: 10px;
     height: 44px;

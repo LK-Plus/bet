@@ -658,6 +658,8 @@ body {
 
 .contentBarMobile .mainRow div:first-child {
     overflow-x: initial;
+    border: 0px solid #d9d9d9;
+    background-color: var(--v3-black-0) !important;
 }
 
 .contentFilterOnly {
@@ -1060,7 +1062,7 @@ span.iPCuNV {
     }
 }
 
-.contentSidebar .categoriesHorizontalMobile__container {
+.desktop .contentSidebar .categoriesHorizontalMobile__container {
     border-radius: 4px !important;
     border: 1px solid rgb(157, 157, 157) !important;
 }

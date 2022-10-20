@@ -662,7 +662,6 @@ body {
 .mobile .x-casinoGamesByCategories {
     border-radius: 4px;
     border: 0px solid var(--c12);
-    background-color: #585858 !important;
     padding: 5px;
     margin-bottom: 10px;
 }

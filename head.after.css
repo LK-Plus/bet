@@ -767,12 +767,15 @@ body {
     border-radius: 4px !important;
     padding-bottom: 10px;
     padding-top: 10px;
-    border: 1px solid rgb(157, 157, 157);
-    background-color: #494949 !important;
+    margin-left: 12px;
+    width: 388px;
+    height: 42px;
+    border: 0px solid rgb(157, 157, 157);
+    background-color: #585858 !important;
 }
 
 .searchCasino .searchBar-wrapper:first-child div:first-child input {
-    background-color: #494949 !important;
+    background-color: #585858 !important;
 }
 
 .filterButton {

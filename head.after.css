@@ -770,7 +770,7 @@ body {
     border-radius: 4px !important;
     padding-bottom: 10px;
     height: 42px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--v3-black-6);;
 }
 
 .mobile .searchCasino .searchBar-wrapper:first-child div:first-child {

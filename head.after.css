@@ -650,8 +650,8 @@ body {
 
 .x-casinoGamesByCategories {
     border-radius: 4px;
-    border: 1px solid var(--c12);
-    background-color: #494949 !important;
+    border: 0px solid var(--c12);
+    background-color: #585858 !important;
     padding: 5px;
     margin-bottom: 10px;
 }

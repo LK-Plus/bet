@@ -14,22 +14,18 @@ function carregaCpf() {
     });
 }
 
-function clickTop() {
-    /* Desktop */
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",500);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1000);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",1500);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2000);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",2500);
-    setTimeout("$('.style__MenuItem-sc-1uncf6a-4:nth-child(1)').click()",3000);
-    /* Mobile */
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",500);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1000);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",1500);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2000);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",2500);
-    setTimeout("$('.style__MenuItem-sc-18pd3lt-2:nth-child(3)').click()",3000);
+function carregaEsportesLink(){		
+    location.href='https://www.clubedasestrelas.com/pr-jogo/match/topLeague';
 }
+function alteraLinkEsportes(){		
+    $("#navigation-3236 > nav > ul > li:nth-child(2) > a").attr("href","https://www.supremabet.com/esportes/match/topLeague");			
+    $("#navigation-3624 > nav > ul > li:nth-child(2) > a").attr("href","https://www.supremabet.com/esportes/match/todayEvents");		
+
+    $(document).on("click","#bottom-navigation > div:nth-child(3)",function(){
+        setTimeout("carregaEsportesLink()",100);		    
+    });
+}
+setTimeout("alteraLinkEsportes()",1000); 
 
 function animBetCount() {
     const elementFrame = document.querySelectorAll('.eruTRg')[2].querySelector('span');
@@ -152,22 +148,14 @@ document.addEventListener('readystatechange', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Fix esportes page
-    if(document.querySelector("#r1823,#r1824")){
-        setTimeout(clickTop, 500);
-    }
     // Fix CPF check
     setInterval(carregaCpf, 2000);
 
     // Mudança de texto verificação de documento
     if (document.querySelector('.loginDesk,.loginMobile')) {
-        console.log('passei1')
         document.querySelector('body').addEventListener("DOMSubtreeModified", function() {
-            console.log('passei2')
             if(document.querySelector('.accountModal')) {
-                console.log('passei3')
                 if (document.querySelector('.uploadInfo__sectionItem').innerHTML == '<div>• A foto deve ser tirada do documento original, não é permitido fazer qualquer montagem de foto digital.</div><div>• A selfie deve ser tirada em local claro e estar nítida.</div><div>• A imagem do documento, dados pessoais, assinatura, selo e outras informações devem ser claramente legíveis. • Se necessário, a empresa poderá solicitar a apresentação de outros documentos. ***Obs: Caso haja qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu SUPORTE, na parte superior direita do site.</div> ') {
-                    console.log('passei4')
                     document.querySelector('.uploadInfo__sectionItem').innerHTML = '<div>• A foto deve ser tirada do documento original, não é permitido fazer qualquer montagem de foto digital.</div><div>• A selfie deve ser tirada em local claro e estar nítida.</div><div>• A imagem do documento, dados pessoais, assinatura, selo e outras informações devem ser claramente legíveis.</div><div>• Se necessário, a empresa poderá solicitar a apresentação de outros documentos.</div><div><b>Obs: Caso haja qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu SUPORTE, na parte superior direita do site.</b></div>'
                 };
             };

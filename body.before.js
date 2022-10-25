@@ -15,7 +15,7 @@ function carregaCpf() {
 }
 
 function carregaEsportesLink(){		
-    location.href='https://www.supremabet.com/esportes/match/topLeague';
+    location.href='https://www.supremabet.com/esportes/match/todayEvents';
 }
 function alteraLinkEsportes(){		
     $("#navigation-3236 > nav > ul > li:nth-child(1) > a").attr("href","https://www.supremabet.com/esportes/match/topLeague");

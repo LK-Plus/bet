@@ -18,7 +18,7 @@ function carregaEsportesLink(){
     location.href='https://www.clubedasestrelas.com/pr-jogo/match/topLeague';
 }
 function alteraLinkEsportes(){		
-    $("#navigation-3236 > nav > ul > li:nth-child(2) > a").attr("href","https://www.supremabet.com/esportes/match/topLeague");			
+    $("#navigation-3236 > nav > ul > li:nth-child(1) > a").attr("href","https://www.supremabet.com/esportes/match/topLeague");			
     $("#navigation-3624 > nav > ul > li:nth-child(2) > a").attr("href","https://www.supremabet.com/esportes/match/todayEvents");		
 
     $(document).on("click","#bottom-navigation > div:nth-child(3)",function(){

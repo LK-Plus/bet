@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mudança de texto verificação de documento
     if (document.querySelector('.loginDesk,.loginMobile')) {
         console.log('passei1')
-        document.querySelector('.accountModal').addEventListener("DOMSubtreeModified", function() {
+        document.querySelector('body').addEventListener("DOMSubtreeModified", function() {
             console.log('passei2')
             if(document.querySelector('.accountModal')) {
                 console.log('passei3')

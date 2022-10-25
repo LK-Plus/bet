@@ -23,7 +23,7 @@ function alteraLinkEsportes(){
     $("#navigation-3762 > nav > ul > li:nth-child(1) > a").attr("href","https://www.supremabet.com/esportes/match/topLeague");
     $("#navigation-3624 > nav > ul > li:nth-child(2) > a").attr("href","https://www.supremabet.com/esportes/match/todayEvents");		
 
-    $(document).on("click","#bottom-navigation > div:nth-child(3)",function(){
+    $(document).on("click","#bottom-navigation > div:nth-child(2)",function(){
         setTimeout("carregaEsportesLink()",100);		    
     });
 }

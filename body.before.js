@@ -162,16 +162,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mudança de texto verificação de documento
     if (document.querySelector('.loginDesk,.loginMobile')) {
         console.log('passei1')
-        if(document.querySelector('.accountModal')) {
+        document.querySelector('.accountModal').addEventListener("DOMSubtreeModified", function() {
             console.log('passei2')
-            document.querySelector('.accountModal').addEventListener("DOMSubtreeModified", function() {
+            if(document.querySelector('.accountModal')) {
                 console.log('passei3')
                 if (document.querySelector('.uploadInfo__sectionItem').innerHTML == '<div>• A foto deve ser tirada do documento original, não é permitido fazer qualquer montagem de foto digital.</div><div>• A selfie deve ser tirada em local claro e estar nítida.</div><div>• A imagem do documento, dados pessoais, assinatura, selo e outras informações devem ser claramente legíveis. • Se necessário, a empresa poderá solicitar a apresentação de outros documentos. ***Obs: Caso haja qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu SUPORTE, na parte superior direita do site.</div> ') {
                     console.log('passei4')
                     document.querySelector('.uploadInfo__sectionItem').innerHTML = '<div>• A foto deve ser tirada do documento original, não é permitido fazer qualquer montagem de foto digital.</div><div>• A selfie deve ser tirada em local claro e estar nítida.</div><div>• A imagem do documento, dados pessoais, assinatura, selo e outras informações devem ser claramente legíveis.</div><div>• Se necessário, a empresa poderá solicitar a apresentação de outros documentos.</div><div><b>Obs: Caso haja qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu SUPORTE, na parte superior direita do site.</b></div>'
                 };
-            });
-        };
+            };
+        });
     };
 });
 //alteração texto upload arquivos

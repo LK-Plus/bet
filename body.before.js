@@ -169,6 +169,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(document.querySelector('.accMenu .accMenu__item:nth-child(2)').innerText == 'Indicar um amigo'){
                     $('.accMenu .accMenu__item:nth-child(2)').remove()
                 };
+                //botão e verificar documento para saque
+                if($('.style__Container-sc-102jdln-0 div .accountModal__contentWrapper--paddingTop .v3-col:nth-child(1)').html() == '<div class="style__Title-sc-102jdln-1 cxuFBU">Sacar dinheiro</div><a href="https://www.supremabet.com/casino/slots/all?accounts=%2A&settings=%2A&documents=%2A">Valide sua conta, clique aqui!</a>'){
+                    $('.style__Container-sc-102jdln-0 div .accountModal__contentWrapper--paddingTop .v3-col:nth-child(1)').html('<div class="style__Title-sc-102jdln-1 cxuFBU">Sacar dinheiro</div><a href="https://www.supremabet.com/casino/slots/all?accounts=%2A&amp;settings=%2A&amp;documents=%2A" class="v3-btn v3-btn-primary v3-btn-lg x-button">Valide sua conta, clique aqui!</a>')
+                }
             };
         });
     };

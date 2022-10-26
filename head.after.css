@@ -1,3 +1,7 @@
+.accMenu .accMenu__item:nth-child(2) {
+    display: none !important;
+}
+
 .forgotPassword__container p {
     color: #fff;
 }

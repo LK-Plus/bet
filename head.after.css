@@ -1,4 +1,4 @@
-header .header-row {
+.desktop header .header-row {
     position: fixed !important;
     top: 0px !important;
     width: 100% !important;

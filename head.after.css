@@ -2,6 +2,15 @@
     display: none !important;
 } */
 
+.accountModal .v3-select-single{
+    border: var(--v3-black-6) solid 1px !important;
+    border-radius: 4px !important;
+}
+
+.accountModal .v3-select-single:hover{
+    border: var(--v3-primary-6) solid 1px !important;
+}
+
 .forgotPassword__container p {
     color: #fff;
 }

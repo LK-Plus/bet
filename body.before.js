@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // remoção de convidar um amigo
                 if(document.querySelector('.accMenu .accMenu__item:nth-child(2)')) {
                     if(document.querySelector('.accMenu .accMenu__item:nth-child(2)').innerText == 'Indicar um amigo'){
-                        $('.accMenu .accMenu__item:nth-child(2)').remove()
+                        $('.accMenu .accMenu__item:nth-child(2)').css("display", "none !important;");
                     };
                 };
                 //botão e verificar documento para saque

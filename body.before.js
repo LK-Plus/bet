@@ -20,8 +20,6 @@ function carregarimagemsuperodds() {
         $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')    
     }
 }
-carregarimagemsuperodds()
-setTimeout("carregarimagemsuperodds()", 1000);
 
 function carregaEsportesLink() {
     location.href = 'https://www.supremabet.com/esportes/match/todayEvents';
@@ -162,6 +160,9 @@ document.addEventListener('readystatechange', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    
+    carregarimagemsuperodds()
+    setTimeout("carregarimagemsuperodds()", 1000);
     // Fix CPF check
     setInterval(carregaCpf, 2000);
 

@@ -1,8 +1,8 @@
-/* .desktop .header-row[data-id="1746"] {
+.desktop .fixedElement {
     position: fixed !important;
     top: 0px !important;
     width: 100% !important;
-} */
+}
 
 .hideAll {
     display: none !important;

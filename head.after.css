@@ -1,3 +1,9 @@
+.mobile #r1891>.headerRow {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+
 .mobile #column2832 {
     max-width: none;
     width: 300%;

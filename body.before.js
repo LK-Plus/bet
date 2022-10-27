@@ -16,8 +16,9 @@ function carregaCpf() {
 
 function carregarimagemsuperodds() {
     //Imaagem superodds
-    $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-
+    if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span').DOCUMENT_NODE >= 1 && !document.querySelector('.style__Coeficient-sc-3ucvic-1 span').children[0].currentSrc == 'https://bet-files.suprema.group/images/SUPERODDS.png') {
+        document.querySelector('.style__Coeficient-sc-3ucvic-1 span').innerHTML = '<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">'
+    }
 }
 carregarimagemsuperodds()
 setTimeout("carregarimagemsuperodds()", 1000);

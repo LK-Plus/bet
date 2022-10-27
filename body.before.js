@@ -187,8 +187,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
     //fix header promotion
-    if ($('.desktop .headerFixDesk[data-id="1966"]')) {
+    if ($('.desktop #r1966')) {
         $('.desktop .header-row[data-id="1746"]').addClass("fixedElement");
+    } else {
+        $('.desktop .header-row[data-id="1746"]').removeClass("fixedElement");
     }
 });
 

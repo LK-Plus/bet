@@ -76,6 +76,7 @@ function fixMobileMenu() {
 }
 
 document.addEventListener('readystatechange', (event) => {
+    carregarimagemsuperodds()
     // Banner control
     const lang = JSON.parse(window.hrefLangRelations);
     if (document.querySelector('.sportsPC div.slider-container')) {
@@ -162,7 +163,7 @@ document.addEventListener('readystatechange', (event) => {
 document.addEventListener('DOMContentLoaded', function () {
     
     carregarimagemsuperodds()
-    setTimeout("carregarimagemsuperodds()", 1000);
+    setInterval(carregarimagemsuperodds, 1000);
     // Fix CPF check
     setInterval(carregaCpf, 2000);
 

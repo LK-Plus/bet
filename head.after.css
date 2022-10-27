@@ -1,3 +1,7 @@
+.mobile #column3033 {
+    right: -831px !important;
+}
+
 .desktop .fixedElement {
     position: fixed !important;
     top: 0px !important;

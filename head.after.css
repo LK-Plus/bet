@@ -1,8 +1,12 @@
-/* .desktop .header-row[data-id="1746"] {
+.mobile #column3033 {
+    right: -831px !important;
+}
+
+.desktop .fixedElement {
     position: fixed !important;
     top: 0px !important;
     width: 100% !important;
-} */
+}
 
 .hideAll {
     display: none !important;

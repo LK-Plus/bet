@@ -14,6 +14,14 @@ function carregaCpf() {
     });
 }
 
+function carregarimagemsuperodds() {
+    //Imaagem superodds
+    if($('.style__Coeficient-sc-3ucvic-1 span').length >= 1) {
+        $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    }
+}
+carregarimagemsuperodds()
+
 function carregaEsportesLink() {
     location.href = 'https://www.supremabet.com/esportes/match/todayEvents';
 }
@@ -185,10 +193,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     if ($('.accountModal__container .accountModal__header').text() == 'Mensagens') {
 
                     }
-                }
-                //Imaagem superodds
-                if($('.style__Coeficient-sc-3ucvic-1 span').length >= 1) {
-                    $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
                 }
             };
         });

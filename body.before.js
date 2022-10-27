@@ -195,6 +195,9 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         $('.desktop .header-row[data-id="1746"]').removeClass("fixedElement");
     }
+    if($('.style__Coeficient-sc-3ucvic-1 span')) {
+        $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    }
 });
 
 

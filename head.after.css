@@ -1,5 +1,6 @@
-.mobile #column3033 {
-    right: -791px !important;
+.mobile #column2832 {
+    max-width: none;
+    width: 300%;
 }
 
 .desktop .fixedElement {

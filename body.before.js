@@ -79,6 +79,8 @@ function fixMobileMenu() {
 }
 
 document.addEventListener('readystatechange', (event) => {    
+    //Imagem superodds
+    carregarimagemsuperodds()
     // Banner control
     const lang = JSON.parse(window.hrefLangRelations);
     if (document.querySelector('.sportsPC div.slider-container')) {

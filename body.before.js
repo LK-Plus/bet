@@ -83,9 +83,9 @@ document.addEventListener('readystatechange', (event) => {
     carregarimagemsuperodds()
     if (document.querySelector('#r1823')) {
         document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
-            carregarimagemsuperodds()
-            setTimeout(carregarimagemsuperodds,1000)
-            console.log('435345')
+            // carregarimagemsuperodds()
+            // setTimeout(carregarimagemsuperodds,1000)
+            // console.log('435345')
         });
     };
     

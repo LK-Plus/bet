@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     carregarimagemsuperodds()
     if (document.querySelector('#r1823')) {
         document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
-            setInterval(carregarimagemsuperodds,5000)
+            setInterval(carregarimagemsuperodds(),5000)
             imagesuperodds = 1
         });
     };

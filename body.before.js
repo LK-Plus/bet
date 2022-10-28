@@ -14,17 +14,17 @@ function carregaCpf() {
     });
 }
 //Imagem superodds
-var imagesuperodds = 0;
-function carregarimagemsuperodds() {
-    if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon') && imagesuperodds == 0) {
-        $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-    }
-    if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && imagesuperodds == 0) {
-        $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-    } else {
-        imagesuperodds = 0
-    }
-}
+// var imagesuperodds = 0;
+// function carregarimagemsuperodds() {
+//     if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon') && imagesuperodds == 0) {
+//         $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+//     }
+//     if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && imagesuperodds == 0) {
+//         $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+//     } else {
+//         imagesuperodds = 0
+//     }
+// }
 
 function carregaEsportesLink() {
     location.href = 'https://www.supremabet.com/esportes/match/todayEvents';

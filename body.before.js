@@ -169,16 +169,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fix CPF check
     setInterval(carregaCpf, 2000);
 
-    if (document.querySelector('#r1823')) {
-        document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
-            // if ($('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html() !== '<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">'
-            // || $('.style__Coeficient-sc-3ucvic-1 span').html() !== '<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">') {
-            //     carregarimagemsuperodds()
-            //     setTimeout(carregarimagemsuperodds,1000)
-            //     console.log('435345')
-            // }
-        });
-    };
+    // if (document.querySelector('#r1823')) {
+    //     document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
+             // if ($('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html() !== '<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">'
+             // || $('.style__Coeficient-sc-3ucvic-1 span').html() !== '<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">') {
+             //     carregarimagemsuperodds()
+             //     setTimeout(carregarimagemsuperodds,1000)
+             //     console.log('435345')
+             // }
+    //     });
+    // };
 
     // Modal info player
     if (document.querySelector('.loginDesk,.loginMobile')) {

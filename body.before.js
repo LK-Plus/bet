@@ -13,11 +13,11 @@ function carregaCpf() {
         }
     });
 }
-    //Imagem superodds
+//Imagem superodds
 var imagesuperodds = 0;
 function carregarimagemsuperodds() {
-    if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon')  && imagesuperodds == 0) {
-        $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')    
+    if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon') && imagesuperodds == 0) {
+        $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
     }
     if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && imagesuperodds == 0) {
         $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
@@ -80,7 +80,7 @@ function fixMobileMenu() {
     }
 }
 
-document.addEventListener('readystatechange', (event) => {    
+document.addEventListener('readystatechange', (event) => {
     //Imagem superodds
     carregarimagemsuperodds()
     // Banner control
@@ -208,6 +208,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     }
                 }
+                if (document.location.href == 'https://www.supremabet.com/?accounts=%2A&messages=%2A') {
+                    if (document.querySelector('.notificationMessage') == null) {
+                        $('body').append('<div style=" "><style> @keyfranes moveDown { top: 0px } .notificationMessage { position: fixed; top: -600px; width: 26%; height: 8% !important; z-index: 1000; border: 1px solid var(--v3-black-6); margin: 1% 37% 0% 37%; border-radius: 4px; animation: moveDown 2s; } </style> <div id="btn-webchat notificationMessage" class="v3-btn-primary" style=""> <div style="margin:10px"><div class="accountModal__header__title">Notificação</div><div class="accMenu__item" style="margin:5px">Para ser atendido mais rapidamente clique no botão do digisac</div></div></div><script> window._digisac = { id: "ac2d57a6-f77d-45ee-b26b-408c08afaabc", payload: { visibleButton: false } }; </script> <script src="https://webchat.digisac.app/embedded.js"></script></div>')
+                    }
+                }
             };
         });
     };
@@ -220,12 +225,33 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-//alteração texto upload arquivos
-{/* <div class="accountModal__header__title">Mensagens</div>
-<div class="custom-html-container">
-<button id="btn-webchat">Suporte</button>
-    </div>
-<span class="v3-icon accountModal__header__close"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><defs><clipPath><rect width="1em" height="1em" transform="translate(971 2389)"></rect></clipPath></defs><g transform="translate(-971 -2389)"><path d="M20.5,23.124l-8.834,8.834a1.852,1.852,0,1,1-2.618-2.619L17.887,20.5,9.053,11.671a1.851,1.851,0,1,1,2.618-2.618L20.5,17.887l8.834-8.834a1.852,1.852,0,1,1,2.619,2.618L23.124,20.5l8.834,8.834a1.852,1.852,0,1,1-2.619,2.619Z" transform="translate(962.495 2380.495)"></path></g></svg></span>'
+//
+{/* <div style="
+"><style>
+@keyfranes moveDown {
+    top: 0px
+}    
 
-
-$('.accountModal__container .accountModal__header').html('<div class="accountModal__header__title">Mensagens</div><button id="btn-webchat">Suporte</button> <script> window._digisac = { id: "ac2d57a6-f77d-45ee-b26b-408c08afaabc", payload: { visibleButton: false } };<span class="v3-icon accountModal__header__close"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><defs><clipPath><rect width="1em" height="1em" transform="translate(971 2389)"></rect></clipPath></defs><g transform="translate(-971 -2389)"><path d="M20.5,23.124l-8.834,8.834a1.852,1.852,0,1,1-2.618-2.619L17.887,20.5,9.053,11.671a1.851,1.851,0,1,1,2.618-2.618L20.5,17.887l8.834-8.834a1.852,1.852,0,1,1,2.619,2.618L23.124,20.5l8.834,8.834a1.852,1.852,0,1,1-2.619,2.619Z" transform="translate(962.495 2380.495)"></path></g></svg></span>') */}
+.notificationMessage {
+position: fixed;
+    top: -600px;
+    width: 26%;
+    height: 8% !important;
+    z-index: 1000;
+    border: 1px solid var(--v3-black-6);
+    margin: 1% 37% 0% 37%;
+    border-radius: 4px;
+    animation: moveDown 2s;
+    }
+</style>
+    
+    <div id="btn-webchat notificationMessage" class="v3-btn-primary" style="">
+    <div style="margin:10px"><div class="accountModal__header__title">Notificação</div><div class="accMenu__item" style="margin:5px">Para ser atendido mais rapidamente clique no botão do digisac</div></div></div><script>
+            window._digisac = {
+                id: "ac2d57a6-f77d-45ee-b26b-408c08afaabc",
+            payload: {
+                visibleButton: false
+            }
+        };
+        </script>
+        <script src="https://webchat.digisac.app/embedded.js"></script></div> */}

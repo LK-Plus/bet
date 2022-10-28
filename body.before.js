@@ -21,6 +21,8 @@ function carregarimagemsuperodds() {
     // }
     if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && imagesuperodds == 0) {
         $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    } else {
+        imagesuperodds = 0
     }
 }
 
@@ -171,8 +173,8 @@ document.addEventListener('DOMContentLoaded', function () {
     carregarimagemsuperodds()
     if (document.querySelector('#r1823')) {
         document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
-            setInterval(carregarimagemsuperodds(),5000)
-            imagesuperodds = 1
+            setTimeout(carregarimagemsuperodds, 5000);
+            imagesuperodds = 1;
         });
     };
 

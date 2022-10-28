@@ -58,9 +58,9 @@ function animBetCount() {
 
 function fixMobileMenu() {
     if (document.querySelector('.eruTRg')) {
-        if (document.querySelectorAll('.eruTRg')[3].innerText == 'Home') {
-            document.querySelectorAll('.eruTRg')[3].remove()
-        }
+        // if (document.querySelectorAll('.eruTRg')[3].innerText == 'Home') {
+        //     document.querySelectorAll('.eruTRg')[3].remove()
+        // }
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg').innerHTML = '<image id="image0" width="100%" height="100%" x="0" y="0" href="https://bet-files.suprema.group/images/BETSLIP2.png"></image>';
         } else {

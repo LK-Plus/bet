@@ -81,6 +81,12 @@ function fixMobileMenu() {
 document.addEventListener('readystatechange', (event) => {
     //Imagem superodds
     carregarimagemsuperodds()
+    if (document.querySelector('r1823')) {
+        document.querySelector('r1823').addEventListener("DOMSubtreeModified", function () {
+            carregarimagemsuperodds()
+        });
+    };
+    
     // Banner control
     const lang = JSON.parse(window.hrefLangRelations);
     if (document.querySelector('.sportsPC div.slider-container')) {

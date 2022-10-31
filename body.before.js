@@ -216,10 +216,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         // }, 10000);
                         document.getElementById('btn-webchat').click()
                     }
-                } else if (document.querySelector('.notificationMessage')){
-                    document.querySelector('.notificationMessage').remove()
-                    document.querySelector('.click-close').click()
                 } else {
+                    document.querySelector('.notificationMessage').remove()
                     document.querySelector('.click-close').click()
                 }
             };

@@ -219,6 +219,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else if (document.querySelector('.notificationMessage')){
                     document.querySelector('.notificationMessage').remove()
                     document.querySelector('.click-close').click()
+                } else {
+                    document.querySelector('.click-close').click()
                 }
             };
         });

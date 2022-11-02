@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (document.querySelector('.uploadInfo__sectionItem')) {
                         //alteração texto upload arquivos
                         if (document.querySelector('.uploadInfo__sectionItem').innerHTML == '<div>• A foto deve ser tirada do documento original, não é permitido fazer qualquer montagem de foto digital.</div><div>• A selfie deve ser tirada em local claro e estar nítida.</div><div>• A imagem do documento, dados pessoais, assinatura, selo e outras informações devem ser claramente legíveis. • Se necessário, a empresa poderá solicitar a apresentação de outros documentos. ***Obs: Caso haja qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu SUPORTE, na parte superior direita do site.</div> ') {
-                            document.querySelector('.uploadInfo__sectionItem').innerHTML = '<div>• A foto deve ser tirada do documento original, não é permitido fazer qualquer montagem de foto digital.</div><div>• A selfie deve ser tirada em local claro e estar nítida.</div><div>• A imagem do documento, dados pessoais, assinatura, selo e outras informações devem ser claramente legíveis.</div><div>• Se necessário, a empresa poderá solicitar a apresentação de outros documentos.</div><div><b>Obs: Caso haja qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu SUPORTE, na parte superior direita do site.</b></div>'
+                            document.querySelector('.uploadInfo__sectionItem').innerHTML = '<div class="uploadInfo__sectionItem"> <div>FOTO DOCUMENTO:</div> <div>• A foto deve ser tirada do documento original, com suas cores originais, não podendo ser em preto e branco;</div> <div>• Encaminhar fotos da frente e verso do documento;</div> <div>• O documento precisa estar dentro da validade;</div> <div>• Os dados deverão estar 100% legíveis;</div> <div>• O arquivo deve seguir o formato JPG, PNG, GIF ou PDF e não exceder 3 MB.</div> <div></div> <div>FOTO SELFIE:</div> <div>• Foto com o mesmo documento ao lado do rosto;</div> <div>• A selfie deve ser tirada em local claro e estar nítida.</div> <div>• O arquivo deve seguir o formato JPG, PNG, GIF ou PDF e não excede 3 MB.</div> <div></div> <div><b>Obs 1: Os documentos possuem um prazo de até 48hr para aprovação.</b></div> <div><b>Obs 2: Caso possua qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu “SUPORTE”, localizado no canto superior direito da página inicial.</b></div> </div>'
                         };
                     };
                 };
@@ -208,18 +208,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     }
                 }
-                // if (document.location.href == 'https://www.supremabet.com/?accounts=%2A&messages=%2A') {
-                //     if (document.querySelector('.notificationMessage') == null) {
-                //         $('body').append('<div style=" "><style> @keyfranes moveDown { top: 0px } .notificationMessage { position: fixed; top: -600px; width: 26%; height: 8% !important; z-index: 1000; border: 1px solid var(--v3-black-6); margin: 1% 37% 0% 37%; border-radius: 4px; animation: moveDown 2s; } </style> <div id="btn-webchat notificationMessage" class="v3-btn-primary" style=""> <div style="margin:10px"><div class="accountModal__header__title">Notificação</div><div class="accMenu__item" style="margin:5px">Para ser atendido mais rapidamente clique no botão do digisac</div></div></div><script> window._digisac = { id: "ac2d57a6-f77d-45ee-b26b-408c08afaabc", payload: { visibleButton: false } }; </script> <script src="https://webchat.digisac.app/embedded.js"></script></div>')
-                //     }
-                // }
+                if (document.location.href.match(/.*?accounts=%2A&messages=%2A/)) {
+                    if (document.querySelector('.notificationMessage') == null) {
+                        $('body').append('<div class="notificationMessage"> <div class="v3-btn-primary" style=" position: fixed; top: -300px; width: 33%; height: 8% !important; z-index: 1000; border: 1px solid var(--v3-black-6); margin: 1% 37% 0% 37%; border-radius: 4px; animation: displayNone 4s;"> <div style="margin:10px"><div class="accountModal__header__title">Aviso</div><div class="accMenu__item" style="margin: auto;display: flex;justify-content: center;">Para ser atendido mais rapidamente use o digisac logo abaixo!</div></div></div></div>')
+                        // setInterval(() => {
+                        //     document.querySelector('.notificationMessage').remove()                   
+                        // }, 10000);
+                        document.getElementById('btn-webchat').click()
+                    }
+                } else {
+                    document.querySelector('.notificationMessage').remove()
+                    document.getElementById('btn-webchat').click()
+                }
             };
         });
     };
     //fix header promotion
     if ($('.desktop #r1966').length == 1) {
         $('.desktop .header-row[data-id="1746"]').addClass("fixedElement");
-    } else {
+    } else if (document.querySelector('.notificationMessage')) {
         $('.desktop .header-row[data-id="1746"]').removeClass("fixedElement");
     }
 });

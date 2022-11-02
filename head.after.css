@@ -1,3 +1,10 @@
+@keyframes displayNone {
+    0% {top: -300px;}
+    10% {top: 0px;}
+    90% {top: 0px;}
+    100% {top: -300px !important;}
+}
+
 .style__Coeficient-sc-3ucvic-1 span.v3-icon {
     background-image: url("https://bet-files.suprema.group/images/SUPERODDS.png") !important;
 }

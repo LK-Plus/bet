@@ -84,19 +84,19 @@ document.addEventListener('readystatechange', (event) => {
     //Imagem superodds
     // carregarimagemsuperodds()
     // Banner control
-    const lang = JSON.parse(window.hrefLangRelations);
-    if (document.querySelector('.sportsPC div.slider-container')) {
-        document.querySelector('.sportsPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    }
-    if (document.querySelector('.sportsMobile div.slider-container')) {
-        document.querySelector('.sportsMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    }
-    if (document.querySelector('.cassinoPC div.slider-container')) {
-        document.querySelector('.cassinoPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    }
-    if (document.querySelector('.cassinoMobile div.slider-container')) {
-        document.querySelector('.cassinoMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    }
+    // const lang = JSON.parse(window.hrefLangRelations);
+    // if (document.querySelector('.sportsPC div.slider-container')) {
+    //     document.querySelector('.sportsPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // }
+    // if (document.querySelector('.sportsMobile div.slider-container')) {
+    //     document.querySelector('.sportsMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // }
+    // if (document.querySelector('.cassinoPC div.slider-container')) {
+    //     document.querySelector('.cassinoPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // }
+    // if (document.querySelector('.cassinoMobile div.slider-container')) {
+    //     document.querySelector('.cassinoMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // }
     // Page fix
     if (document.querySelector('#column2463')) {
         document.querySelector('#column2463').style = '';

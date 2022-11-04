@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 }
                 // //foto de identidade
-                if ($('.desktop')) {
+                if ($('.desktop').length != 0) {
                     if (document.querySelectorAll('.uploadInfo__secondSection .uploadInfo__sectionItem')[2].innerHTML != '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/identidade-final.png?1667603660447" style=" width: 250px; margin: 5px; "><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/selfie-final.png?1667603641230" style=" width: 250px; margin: 5px; ">') {
                         document.querySelectorAll('.uploadInfo__secondSection .uploadInfo__sectionItem')[2].innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/identidade-final.png?1667603660447" style=" width: 250px; margin: 5px; "><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/selfie-final.png?1667603641230" style=" width: 250px; margin: 5px; ">'
                     }

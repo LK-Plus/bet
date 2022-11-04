@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (document.querySelectorAll('.uploadInfo__secondSection .uploadInfo__sectionItem')[2].innerHTML != '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/identidade-final.png?1667603660447" style=" width: 250px; margin: 5px; "><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/selfie-final.png?1667603641230" style=" width: 250px; margin: 5px; ">') {
                         document.querySelectorAll('.uploadInfo__secondSection .uploadInfo__sectionItem')[2].innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/identidade-final.png?1667603660447" style=" width: 250px; margin: 5px; "><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/selfie-final.png?1667603641230" style=" width: 250px; margin: 5px; ">'
                     }
-                } else if ($('.mobile')) {
+                } else {
                     if ($('.uploadInfo .uploadInfo__thirdSection').length == 0) {
                         $('.uploadInfo').append('<div class="uploadInfo__thirdSection"><div class="uploadInfo__sectionItem"><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/identidade-final.png?1667603660447" style=" width: 250px; margin: 5px; "><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/selfie-final.png?1667603641230" style=" width: 250px; margin: 5px; "></div></div>')
                     }

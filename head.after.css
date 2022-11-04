@@ -1,3 +1,7 @@
+.images_promotion_home button:hover {
+    background: #9b45e6;
+}
+
 @keyframes displayNone {
     0% {top: -300px;}
     10% {top: 0px;}

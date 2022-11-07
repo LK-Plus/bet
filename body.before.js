@@ -169,7 +169,7 @@ document.addEventListener('readystatechange', (event) => {
     if (document.querySelector('#r1823')) {
         document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
             if ($('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
-                setTimeout(carregarimagemsuperodds, 2000);
+                carregarimagemsuperodds();
             }
         });
     };

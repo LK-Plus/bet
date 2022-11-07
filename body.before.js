@@ -167,6 +167,17 @@ document.addEventListener('readystatechange', (event) => {
             }, 2000);
         }
     }
+    
+    //Imagem superodds
+    carregarimagemsuperodds();
+    if (document.querySelector('#r1823')) {
+        document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
+            if (imagesuperodds == 0) {
+                setTimeout(carregarimagemsuperodds, 2000);
+                imagesuperodds = 1;
+            }
+        });
+    };
 });
 
 document.addEventListener('load', (event) => {

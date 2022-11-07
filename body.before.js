@@ -15,7 +15,7 @@ function carregaCpf() {
 }
 //Imagem superodds
 function carregarimagemsuperodds() {
-    if (document.querySelector('.style__RadioButton-sc-3ucvic-2 span.v3-icon svg') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
+    if ($('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
         $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')}
     // } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
     //     $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')

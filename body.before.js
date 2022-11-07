@@ -15,9 +15,9 @@ function carregaCpf() {
 }
 //Imagem superodds
 function carregarimagemsuperodds() {
-    if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon')) {
+    if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
         $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-    } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span')) {
+    } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
         $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
     }
 }
@@ -168,9 +168,7 @@ document.addEventListener('readystatechange', (event) => {
     carregarimagemsuperodds();
     if (document.querySelector('#r1823')) {
         document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
-            if ($('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
-                carregarimagemsuperodds();
-            }
+            carregarimagemsuperodds();
         });
     };
 });

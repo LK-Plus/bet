@@ -174,7 +174,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fix CPF check
     setInterval(carregaCpf, 2000);
     //Imagem superodds
-    carregarimagemsuperodds()
     if (document.querySelector('#r1823')) {
         document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
             setTimeout(carregarimagemsuperodds, 2000);

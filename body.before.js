@@ -86,7 +86,6 @@ function fixMobileMenu() {
 
 document.addEventListener('readystatechange', (event) => {
     //Imagem superodds
-    carregarimagemsuperodds()
     // Banner control
     // const lang = JSON.parse(window.hrefLangRelations);
     // if (document.querySelector('.sportsPC div.slider-container')) {
@@ -170,10 +169,9 @@ document.addEventListener('readystatechange', (event) => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Fix CPF check
-    setInterval(carregaCpf, 2000);
+document.addEventListener('load', (event) => {
     //Imagem superodds
+    carregarimagemsuperodds();
     if (document.querySelector('#r1823')) {
         document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
             if (imagesuperodds == 0) {
@@ -182,7 +180,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     };
+});
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Fix CPF check
+    setInterval(carregaCpf, 2000);
+  
     // Modal info player
     if (document.querySelector('.loginDesk,.loginMobile')) {
         document.querySelector('body').addEventListener("DOMSubtreeModified", function () {

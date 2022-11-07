@@ -163,13 +163,10 @@ document.addEventListener('readystatechange', (event) => {
             }, 2000);
         }
     }
-});
-
-document.addEventListener('load', (event) => {
     //Imagem superodds
     carregarimagemsuperodds();
-    if (document.querySelector('#r1823')) {
-        document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
+    if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
+        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
             carregarimagemsuperodds();
         });
     };

@@ -163,7 +163,9 @@ document.addEventListener('readystatechange', (event) => {
             }, 2000);
         }
     }
-    
+});
+
+document.addEventListener('load', (event) => {
     //Imagem superodds
     carregarimagemsuperodds();
     if (document.querySelector('#r1823')) {
@@ -171,10 +173,6 @@ document.addEventListener('readystatechange', (event) => {
             carregarimagemsuperodds();
         });
     };
-});
-
-document.addEventListener('load', (event) => {
-
 });
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -14,17 +14,17 @@ function carregaCpf() {
     });
 }
 //Imagem superodds
-// var imagesuperodds = 0;
-// function carregarimagemsuperodds() {
-//     if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon') && imagesuperodds == 0) {
-//         $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-//     }
-//     if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && imagesuperodds == 0) {
-//         $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-//     } else {
-//         imagesuperodds = 0
-//     }
-// }
+var imagesuperodds = 0;
+function carregarimagemsuperodds() {
+    if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon') && imagesuperodds == 0) {
+        $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    }
+    if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && imagesuperodds == 0) {
+        $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    } else {
+        imagesuperodds = 0
+    }
+}
 
 function close_promotion_home() {
     $('body .images_promotion_home').css('display','none')
@@ -86,7 +86,7 @@ function fixMobileMenu() {
 
 document.addEventListener('readystatechange', (event) => {
     //Imagem superodds
-    // carregarimagemsuperodds()
+    carregarimagemsuperodds()
     // Banner control
     // const lang = JSON.parse(window.hrefLangRelations);
     // if (document.querySelector('.sportsPC div.slider-container')) {
@@ -174,13 +174,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fix CPF check
     setInterval(carregaCpf, 2000);
     //Imagem superodds
-    // carregarimagemsuperodds()
-    // if (document.querySelector('#r1823')) {
-    //     document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
-    //         setTimeout(carregarimagemsuperodds, 2000);
-    //         imagesuperodds = 1;
-    //     });
-    // };
+    carregarimagemsuperodds()
+    if (document.querySelector('#r1823')) {
+        document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
+            setTimeout(carregarimagemsuperodds, 2000);
+            imagesuperodds = 1;
+        });
+    };
 
     // Modal info player
     if (document.querySelector('.loginDesk,.loginMobile')) {

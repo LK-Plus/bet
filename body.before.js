@@ -176,8 +176,10 @@ document.addEventListener('DOMContentLoaded', function () {
     //Imagem superodds
     if (document.querySelector('#r1823')) {
         document.querySelector('#r1823').addEventListener("DOMSubtreeModified", function () {
-            setTimeout(carregarimagemsuperodds, 2000);
-            imagesuperodds = 1;
+            if (imagesuperodds == 0) {
+                setTimeout(carregarimagemsuperodds, 2000);
+                imagesuperodds = 1;
+            }
         });
     };
 

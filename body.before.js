@@ -15,11 +15,11 @@ function carregaCpf() {
 }
 //Imagem superodds
 function carregarimagemsuperodds() {
-    if (document.querySelector('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
-        $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-    } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
-        $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-    }
+    if (document.querySelector('.style__RadioButton-sc-3ucvic-2 span.v3-icon svg') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
+        $('.style__SBCol-sc-19dmv8n-0 .style__Coeficient-sc-3ucvic-1 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')}
+    // } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
+    //     $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    // }
 }
 
 function close_promotion_home() {
@@ -175,6 +175,13 @@ document.addEventListener('readystatechange', (event) => {
 document.addEventListener('DOMContentLoaded', function () {
     // Fix CPF check
     setInterval(carregaCpf, 2000);
+
+    //Imagem superodds
+    if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
+        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
+            carregarimagemsuperodds();
+        });
+    };
   
     // Modal info player
     if (document.querySelector('.loginDesk,.loginMobile')) {

@@ -1,3 +1,6 @@
+.mobile .sandwichNavigator {
+    top: 55px !important;
+}
 .multipleCard__header .multipleCard__header__btn:hover {
     background: #9b45e6 !important;
 }

@@ -13,6 +13,18 @@ function carregaCpf() {
         }
     });
 }
+//Imagem superodds
+function carregarimagemsuperodds() {
+    if ($('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
+        $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')}
+    // } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
+    //     $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    // }
+}
+
+function close_promotion_home() {
+    $('body .images_promotion_home').css('display','none')
+}
 
 function carregaEsportesLink() {
     location.href = 'https://www.supremabet.com/esportes/match/todayEvents';
@@ -53,6 +65,9 @@ function animBetCount() {
 
 function fixMobileMenu() {
     if (document.querySelector('.eruTRg')) {
+        // if (document.querySelectorAll('.eruTRg')[3].innerText == 'Home') {
+        //     document.querySelectorAll('.eruTRg')[3].remove()
+        // }
         if (!document.querySelectorAll('.gSnjmI') || document.querySelectorAll('.gSnjmI')[2].innerHTML !== 'Home') {
             document.querySelectorAll('.eruTRg')[2].querySelector('span svg').innerHTML = '<image id="image0" width="100%" height="100%" x="0" y="0" href="https://bet-files.suprema.group/images/BETSLIP2.png"></image>';
         } else {
@@ -68,20 +83,21 @@ function fixMobileMenu() {
 }
 
 document.addEventListener('readystatechange', (event) => {
+    //Imagem superodds
     // Banner control
-    const lang = JSON.parse(window.hrefLangRelations);
-    if (document.querySelector('.sportsPC div.slider-container')) {
-        document.querySelector('.sportsPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    }
-    if (document.querySelector('.sportsMobile div.slider-container')) {
-        document.querySelector('.sportsMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    }
-    if (document.querySelector('.cassinoPC div.slider-container')) {
-        document.querySelector('.cassinoPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    }
-    if (document.querySelector('.cassinoMobile div.slider-container')) {
-        document.querySelector('.cassinoMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    }
+    // const lang = JSON.parse(window.hrefLangRelations);
+    // if (document.querySelector('.sportsPC div.slider-container')) {
+    //     document.querySelector('.sportsPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // }
+    // if (document.querySelector('.sportsMobile div.slider-container')) {
+    //     document.querySelector('.sportsMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // }
+    // if (document.querySelector('.cassinoPC div.slider-container')) {
+    //     document.querySelector('.cassinoPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // }
+    // if (document.querySelector('.cassinoMobile div.slider-container')) {
+    //     document.querySelector('.cassinoMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
+    // }
     // Page fix
     if (document.querySelector('#column2463')) {
         document.querySelector('#column2463').style = '';
@@ -149,12 +165,26 @@ document.addEventListener('readystatechange', (event) => {
             }, 2000);
         }
     }
+    //Imagem superodds
+    carregarimagemsuperodds();
+    if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
+        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
+            carregarimagemsuperodds();
+        });
+    };
 });
 
 document.addEventListener('DOMContentLoaded', function () {
     // Fix CPF check
     setInterval(carregaCpf, 2000);
 
+    //Imagem superodds
+    if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
+        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
+            carregarimagemsuperodds();
+        });
+    };
+  
     // Modal info player
     if (document.querySelector('.loginDesk,.loginMobile')) {
         document.querySelector('body').addEventListener("DOMSubtreeModified", function () {
@@ -162,8 +192,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (document.querySelector('.uploadInfo__sectionItem')) {
                     if (document.querySelector('.uploadInfo__sectionItem')) {
                         //alteração texto upload arquivos
-                        if (document.querySelector('.uploadInfo__sectionItem').innerHTML == '<div>• A foto deve ser tirada do documento original, não é permitido fazer qualquer montagem de foto digital.</div><div>• A selfie deve ser tirada em local claro e estar nítida.</div><div>• A imagem do documento, dados pessoais, assinatura, selo e outras informações devem ser claramente legíveis. • Se necessário, a empresa poderá solicitar a apresentação de outros documentos. ***Obs: Caso haja qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu SUPORTE, na parte superior direita do site.</div> ') {
-                            document.querySelector('.uploadInfo__sectionItem').innerHTML = '<div>• A foto deve ser tirada do documento original, não é permitido fazer qualquer montagem de foto digital.</div><div>• A selfie deve ser tirada em local claro e estar nítida.</div><div>• A imagem do documento, dados pessoais, assinatura, selo e outras informações devem ser claramente legíveis.</div><div>• Se necessário, a empresa poderá solicitar a apresentação de outros documentos.</div><div><b>Obs: Caso haja qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu SUPORTE, na parte superior direita do site.</b></div>'
+                        if (document.querySelector('.uploadInfo__sectionItem').innerHTML != '<div class="uploadInfo__sectionItem"> <div>FOTO DOCUMENTO:</div> <div>• A foto deve ser tirada do documento original, com suas cores originais, não podendo ser em preto e branco;</div> <div>• Encaminhar fotos da frente e verso do documento;</div> <div>• O documento precisa estar dentro da validade;</div> <div>• Os dados deverão estar 100% legíveis;</div> <div>• O arquivo deve seguir o formato JPG, PNG, GIF ou PDF e não exceder 3 MB.</div> <br> <div>FOTO SELFIE:</div> <div>• Foto com o mesmo documento ao lado do rosto;</div> <div>• A selfie deve ser tirada em local claro e estar nítida.</div> <div>• O arquivo deve seguir o formato JPG, PNG, GIF ou PDF e não excede 3 MB.</div> <div></div> <br> <div><b>Obs 1: Os documentos possuem um prazo de até 48hr para aprovação.</b></div> <br> <div><b>Obs 2: Caso possua qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu “SUPORTE”, localizado no canto superior direito da página inicial.</b></div> </div>') {
+                            document.querySelector('.uploadInfo__sectionItem').innerHTML = '<div class="uploadInfo__sectionItem"> <div>FOTO DOCUMENTO:</div> <div>• A foto deve ser tirada do documento original, com suas cores originais, não podendo ser em preto e branco;</div> <div>• Encaminhar fotos da frente e verso do documento;</div> <div>• O documento precisa estar dentro da validade;</div> <div>• Os dados deverão estar 100% legíveis;</div> <div>• O arquivo deve seguir o formato JPG, PNG, GIF ou PDF e não exceder 3 MB.</div> <br> <div>FOTO SELFIE:</div> <div>• Foto com o mesmo documento ao lado do rosto;</div> <div>• A selfie deve ser tirada em local claro e estar nítida.</div> <div>• O arquivo deve seguir o formato JPG, PNG, GIF ou PDF e não excede 3 MB.</div> <div></div> <br> <div><b>Obs 1: Os documentos possuem um prazo de até 48hr para aprovação.</b></div> <br> <div><b>Obs 2: Caso possua qualquer dúvida no processo, entre em contato com nosso suporte, clicando no menu “SUPORTE”, localizado no canto superior direito da página inicial.</b></div> </div>'
                         };
                     };
                 };
@@ -180,27 +210,44 @@ document.addEventListener('DOMContentLoaded', function () {
                     };
                 };
                 //Digisac em Mensagem
-                if ($('.accountModal__container .accountModal__header')) {
-                    if ($('.accountModal__container .accountModal__header').text() == 'Mensagens') {
+                if (document.location.href.match(/.*?accounts=%2A&messages=%2A/)) {
+                    if (document.querySelector('.notificationMessage') == null) {
+                        $('body').append('<div class="notificationMessage"> <div class="v3-btn-primary" style=" position: fixed; top: -300px; width: 33%; height: 8% !important; z-index: 1000; border: 1px solid var(--v3-black-6); margin: 1% 37% 0% 37%; border-radius: 4px; animation: displayNone 4s;"> <div style="margin:10px"><div class="accountModal__header__title">Aviso</div><div class="accMenu__item" style="margin: auto;display: flex;justify-content: center;">Para ser atendido mais rapidamente use o digisac logo abaixo!</div></div></div></div>')
+                        document.getElementById('btn-webchat').click()
+                    }
+                } else {
+                    if (document.querySelector('.notificationMessage')) {
+                        document.querySelector('.notificationMessage').remove()
+                        document.getElementById('btn-webchat').click()
+                    }
 
+                }
+                // //foto de identidade
+                if ($('.desktop').length != 0) {
+                    if (document.querySelectorAll('.uploadInfo__secondSection .uploadInfo__sectionItem')[2].innerHTML != '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/identidade-final.png?1667603660447" style=" width: 250px; margin: 5px; "><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/selfie-final.png?1667603641230" style=" width: 250px; margin: 5px; ">') {
+                        document.querySelectorAll('.uploadInfo__secondSection .uploadInfo__sectionItem')[2].innerHTML = '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/identidade-final.png?1667603660447" style=" width: 250px; margin: 5px; "><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/selfie-final.png?1667603641230" style=" width: 250px; margin: 5px; ">'
+                    }
+                } else {
+                    if ($('.uploadInfo .uploadInfo__thirdSection').length == 0) {
+                        $('.uploadInfo').append('<div class="uploadInfo__thirdSection"><div class="uploadInfo__sectionItem"><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/identidade-final.png?1667603660447" style=" width: 250px; margin: 5px; "><img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/selfie-final.png?1667603641230" style=" width: 250px; margin: 5px; "></div></div>')
                     }
                 }
+
             };
         });
     };
-    //fix header promotion
-    if ($('.desktop .headerFixDesk[data-id="1966"]')) {
-        $('.desktop .header-row[data-id="1746"]').addClass("fixedElement");
+    // promotion home page
+    if ($('.desktop #r1814').length == 1) {
+        $('body').append('<div style="top: 0px; left: 0px; position: fixed; background-color: rgba(0, 0, 0, 0.3); z-index: 10; width: 100%; height: 100%; display: flex; place-content: center; align-items: center;" class="images_promotion_home"><div style=" width: 30vw; display: flex; flex-wrap: wrap; flex-direction: row-reverse; "><button style=" border: 0px; color: RGB(255,255,255,0.7) !important; background: #803BBC; z-index: 1; cursor: pointer; position: fixed; margin: 5px; " class="v3-btn v3-btn-primary" onclick="close_promotion_home()">X</button><a href="https://www.supremabet.com/cabines-duplas"><img style=" margin: auto; width: 30vw; border-radius: 5px; cursor: pointer; " src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/popupaposte50.png?1667569588536"></a></div></div>')
+    } else if ($('.mobile #r1780').length == 1) {
+        $('body').append('<div style="top: 0px; left: 0px; position: fixed; background-color: rgba(0, 0, 0, 0.3); z-index: 10; width: 100%; height: 100%; display: flex; place-content: center; align-items: center;" class="images_promotion_home"><div style="width: 96vw;display: flex;flex-wrap: wrap;flex-direction: row-reverse;"><button style=" border: 0px; color: RGB(255,255,255,0.7) !important; background: #803BBC; z-index: 1; cursor: pointer; position: fixed; margin: 5px; " class="v3-btn v3-btn-primary" onclick="close_promotion_home()">X</button><a href="https://www.supremabet.com/cabines-duplas"><img style="margin: auto;width: 100vw;border-radius: 5px;cursor: pointer;" src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/popupaposte50.png?1667569588536"></a></div></div>')
     }
+
+    //fix header promotion
+    if ($('.desktop #r1966').length == 1) {
+        $('.desktop .header-row[data-id="1746"]').addClass("fixedElement");
+    } else if (document.querySelector('.notificationMessage')) {
+        $('.desktop .header-row[data-id="1746"]').removeClass("fixedElement");
+    }
+
 });
-
-
-//alteração texto upload arquivos
-{/* <div class="accountModal__header__title">Mensagens</div>
-<div class="custom-html-container">
-<button id="btn-webchat">Suporte</button>
-    </div>
-<span class="v3-icon accountModal__header__close"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><defs><clipPath><rect width="1em" height="1em" transform="translate(971 2389)"></rect></clipPath></defs><g transform="translate(-971 -2389)"><path d="M20.5,23.124l-8.834,8.834a1.852,1.852,0,1,1-2.618-2.619L17.887,20.5,9.053,11.671a1.851,1.851,0,1,1,2.618-2.618L20.5,17.887l8.834-8.834a1.852,1.852,0,1,1,2.619,2.618L23.124,20.5l8.834,8.834a1.852,1.852,0,1,1-2.619,2.619Z" transform="translate(962.495 2380.495)"></path></g></svg></span>'
-
-
-$('.accountModal__container .accountModal__header').html('<div class="accountModal__header__title">Mensagens</div><button id="btn-webchat">Suporte</button> <script> window._digisac = { id: "ac2d57a6-f77d-45ee-b26b-408c08afaabc", payload: { visibleButton: false } };<span class="v3-icon accountModal__header__close"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><defs><clipPath><rect width="1em" height="1em" transform="translate(971 2389)"></rect></clipPath></defs><g transform="translate(-971 -2389)"><path d="M20.5,23.124l-8.834,8.834a1.852,1.852,0,1,1-2.618-2.619L17.887,20.5,9.053,11.671a1.851,1.851,0,1,1,2.618-2.618L20.5,17.887l8.834-8.834a1.852,1.852,0,1,1,2.619,2.618L23.124,20.5l8.834,8.834a1.852,1.852,0,1,1-2.619,2.619Z" transform="translate(962.495 2380.495)"></path></g></svg></span>') */}

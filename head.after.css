@@ -1,5 +1,40 @@
-.mobile #column3033 {
-    right: -791px !important;
+.mobile .sandwichNavigator {
+    top: 54px !important;
+    position: fixed;
+}
+.multipleCard__header .multipleCard__header__btn:hover {
+    background: #9b45e6 !important;
+}
+
+.multipleCard__header .multipleCard__header__btn {
+    background: #803BBC !important;
+    color: white !important;
+}
+
+.images_promotion_home button:hover {
+    background: #9b45e6 !important;
+}
+
+@keyframes displayNone {
+    0% {top: -300px;}
+    10% {top: 0px;}
+    90% {top: 0px;}
+    100% {top: -300px !important;}
+}
+
+.style__Coeficient-sc-3ucvic-1 span.v3-icon {
+    background-image: url("https://bet-files.suprema.group/images/SUPERODDS.png") !important;
+}
+
+.mobile #r1891>.headerRow {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+
+.mobile #column2832 {
+    max-width: none;
+    width: 300%;
 }
 
 .desktop .fixedElement {

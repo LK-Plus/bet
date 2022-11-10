@@ -26,14 +26,14 @@ function close_promotion_home() {
     $('body .images_promotion_home').css('display','none')
 }
 
-/*
+
 function carregaEsportesLink() {
     location.href = 'https://www.supremabet.com/esportes/match/todayEvents';
 }
 function alteraLinkEsportes() {
-    $("#navigation-3236 > nav > ul > li:nth-child(1) > a").attr("href", "https://www.supremabet.com/esportes/match/topLeague");
-    $("#navigation-3708 > nav > ul > li:nth-child(1) > a").attr("href", "https://www.supremabet.com/esportes/match/topLeague");
-    $("#navigation-3762 > nav > ul > li:nth-child(1) > a").attr("href", "https://www.supremabet.com/esportes/match/topLeague");
+    $("#navigation-3236 > nav > ul > li:nth-child(1) > a").attr("href", "https://www.supremabet.com/esportes/match/todayEvents");
+    $("#navigation-3708 > nav > ul > li:nth-child(1) > a").attr("href", "https://www.supremabet.com/esportes/match/todayEvents");
+    $("#navigation-3762 > nav > ul > li:nth-child(1) > a").attr("href", "https://www.supremabet.com/esportes/match/todayEvents");
     $("#navigation-3624 > nav > ul > li:nth-child(2) > a").attr("href", "https://www.supremabet.com/esportes/match/todayEvents");
 
     $(document).on("click", "#bottom-navigation > div:nth-child(2)", function () {
@@ -41,7 +41,7 @@ function alteraLinkEsportes() {
     });
 }
 setTimeout("alteraLinkEsportes()", 1000);
-*/
+
 
 function animBetCount() {
     const elementFrame = document.querySelectorAll('.eruTRg')[2].querySelector('span');

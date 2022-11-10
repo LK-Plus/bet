@@ -26,7 +26,7 @@ function close_promotion_home() {
     $('body .images_promotion_home').css('display','none')
 }
 
-
+/*
 function carregaEsportesLink() {
     location.href = 'https://www.supremabet.com/esportes/match/todayEvents';
 }
@@ -41,7 +41,7 @@ function alteraLinkEsportes() {
     });
 }
 setTimeout("alteraLinkEsportes()", 1000);
-
+*/
 
 function animBetCount() {
     const elementFrame = document.querySelectorAll('.eruTRg')[2].querySelector('span');

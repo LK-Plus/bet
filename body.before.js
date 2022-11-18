@@ -18,6 +18,39 @@ function close_promotion_home() {
     $('body .images_promotion_home').css('display','none')
 }
 
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+waitForElm(".style__MenuItem-sc-1uncf6a-4.dcVwvX > span.v3-icon.text-color").then((elm) => {
+    if (typeof(elm) != 'undefined' && elm != null){
+        carregaMenuFixosDesk()
+    }
+}); 
+
+function carregaMenuFixosDesk(){
+    // //icone da copa
+    if($('#m3453') || $('#r1272')) {
+        $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969/19637364'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668804388906" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
+    }
+}
+
 /*
 function carregaEsportesLink() {
     location.href = 'https://www.supremabet.com/esportes/match/todayEvents';
@@ -165,10 +198,6 @@ document.addEventListener('readystatechange', (event) => {
         });
     };
 
-    // //icone da copa
-    // if($('#m3453') || $('#r1272')) {
-    //     $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969/19637364'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668804388906" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
-    // }
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -249,13 +278,6 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.desktop .header-row[data-id="1746"]').removeClass("fixedElement");
     }
 
-});
-
-window.addEventListener('load', (event) => {
-    // //icone da copa
-    if($('#m3453') || $('#r1272')) {
-        $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969/19637364'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668804388906" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
-    }
 });
 
 //Imagem superodds

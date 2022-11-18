@@ -198,11 +198,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     };
                 };
                 // remoção de convidar um amigo
-                if (document.querySelector('.accMenu .accMenu__item:nth-child(2)')) {
-                    if (document.querySelector('.accMenu .accMenu__item:nth-child(2)').innerText == 'Indicar um amigo') {
-                        $('.accMenu .accMenu__item:nth-child(2)').addClass("hideAll");
-                    };
-                };
+                // if (document.querySelector('.accMenu .accMenu__item:nth-child(2)')) {
+                //     if (document.querySelector('.accMenu .accMenu__item:nth-child(2)').innerText == 'Indicar um amigo') {
+                //         $('.accMenu .accMenu__item:nth-child(2)').addClass("hideAll");
+                //     };
+                // };
                 //botão e verificar documento para saque
                 if ($('.style__Container-sc-102jdln-0 div .accountModal__contentWrapper--paddingTop .v3-col:nth-child(1)')) {
                     if ($('.style__Container-sc-102jdln-0 div .accountModal__contentWrapper--paddingTop .v3-col:nth-child(1)').html() == '<div class="style__Title-sc-102jdln-1 cxuFBU">Sacar dinheiro</div>' || !$('.userInfoAndBalance__info__checkedIcon')) {

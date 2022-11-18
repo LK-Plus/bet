@@ -13,14 +13,6 @@ function carregaCpf() {
         }
     });
 }
-//Imagem superodds
-function carregarimagemsuperodds() {
-    if ($('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
-        $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')}
-    // } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
-    //     $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-    // }
-}
 
 function close_promotion_home() {
     $('body .images_promotion_home').css('display','none')
@@ -180,10 +172,7 @@ document.addEventListener('readystatechange', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    // //icone da copa
-    if($('#m3453') || $('#r1272')) {
-        $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969/19637364'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668804388906" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
-    }
+
 
     // Fix CPF check
     setInterval(carregaCpf, 2000);
@@ -261,3 +250,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+window.addEventListener('load', (event) => {
+    // //icone da copa
+    if($('#m3453') || $('#r1272')) {
+        $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969/19637364'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668804388906" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
+    }
+});
+
+//Imagem superodds
+function carregarimagemsuperodds() {
+    if ($('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
+        $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    }
+    // } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
+    //     $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    // }
+}

@@ -41,7 +41,13 @@ function waitForElm(selector) {
 waitForElm(".style__MenuItem-sc-1uncf6a-4.dcVwvX > span.v3-icon.text-color").then((elm) => {
     if (typeof(elm) != 'undefined' && elm != null){
         carregaMenuFixosDesk()
-    }
+        document.querySelector('.style__MenuItem-sc-1uncf6a-4.dcVwvX > span.v3-icon.text-color').addEventListener("DOMSubtreeModified", function () {
+            waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
+                if (typeof(elm) != 'undefined' && elm != null){
+                    carregarimagemsuperodds()
+                }
+            }); 
+        });    }
 }); 
 
 waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
@@ -198,17 +204,6 @@ document.addEventListener('readystatechange', (event) => {
             }, 2000);
         }
     }
-    //Imagem superodds
-    if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
-        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
-            waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
-                if (typeof(elm) != 'undefined' && elm != null){
-                    carregarimagemsuperodds()
-                }
-            }); 
-        });
-    };
-
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -217,16 +212,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fix CPF check
     setInterval(carregaCpf, 2000);
 
-    //Imagem superodds
-    if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
-        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
-            waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
-                if (typeof(elm) != 'undefined' && elm != null){
-                    carregarimagemsuperodds()
-                }
-            }); 
-        });
-    };
+    // //Imagem superodds
+    // if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
+    //     document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
+    //         waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
+    //             if (typeof(elm) != 'undefined' && elm != null){
+    //                 carregarimagemsuperodds()
+    //             }
+    //         }); 
+    //     });
+    // };
   
     // Modal info player
     if (document.querySelector('.loginDesk,.loginMobile')) {
@@ -297,5 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //Imagem superodds
 function carregarimagemsuperodds() {
+    if ($('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html() == '<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">') {
         $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    }
 }

@@ -38,7 +38,7 @@ function waitForElm(selector) {
     });
 }
 //icone da copa mobile
-waitForElm(".style__Menu-sc-18pd3lt-1").then((elm) => {
+waitForElm(".mobile .style__Menu-sc-18pd3lt-1 .dbqPJQ").then((elm) => {
     if (typeof(elm) != 'undefined' && elm != null){
         carregaMenuFixosMobile()
     }

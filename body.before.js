@@ -44,7 +44,7 @@ waitForElm(".style__MenuItem-sc-1uncf6a-4.dcVwvX > span.v3-icon.text-color").the
     }
 }); 
 
-waitForElm('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').then((elm) => {
+waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
     if (typeof(elm) != 'undefined' && elm != null){
         carregarimagemsuperodds()
     }

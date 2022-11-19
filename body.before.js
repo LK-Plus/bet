@@ -199,10 +199,13 @@ document.addEventListener('readystatechange', (event) => {
         }
     }
     //Imagem superodds
-    carregarimagemsuperodds();
     if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
         document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
-            carregarimagemsuperodds();
+            waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
+                if (typeof(elm) != 'undefined' && elm != null){
+                    carregarimagemsuperodds()
+                }
+            }); 
         });
     };
 
@@ -217,7 +220,11 @@ document.addEventListener('DOMContentLoaded', function () {
     //Imagem superodds
     if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
         document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
-            carregarimagemsuperodds();
+            waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
+                if (typeof(elm) != 'undefined' && elm != null){
+                    carregarimagemsuperodds()
+                }
+            }); 
         });
     };
   

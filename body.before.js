@@ -37,7 +37,13 @@ function waitForElm(selector) {
         });
     });
 }
-// //icone da copa
+//icone da copa mobile
+waitForElm(".style__MenuItem-sc-1uncf6a-4.dcVwvX > span.v3-icon.text-color").then((elm) => {
+    if (typeof(elm) != 'undefined' && elm != null){
+        carregaMenuFixosMobile()
+    }
+}); 
+//icone da copa desk
 waitForElm(".style__MenuItem-sc-1uncf6a-4.dcVwvX > span.v3-icon.text-color").then((elm) => {
     if (typeof(elm) != 'undefined' && elm != null){
         carregaMenuFixosDesk()
@@ -47,9 +53,10 @@ waitForElm(".style__MenuItem-sc-1uncf6a-4.dcVwvX > span.v3-icon.text-color").the
                     carregarimagemsuperodds()
                 }
             }); 
-        });    }
+        });    
+    }
 }); 
-
+//icone superodds
 waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
     if (typeof(elm) != 'undefined' && elm != null){
         carregarimagemsuperodds()
@@ -59,9 +66,16 @@ waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) =
 
 
 function carregaMenuFixosDesk(){
-    // //icone da copa
+    // //icone da copa desk
     if($('#m3453') || $('#r1272')) {
         $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969/19637364'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668804388906" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
+    }
+}
+
+function carregaMenuFixosMobile(){
+    // //icone da copa mobile
+    if($('#r1501') || $('#r1824')) {
+        $('.mobile .style__Menu-sc-18pd3lt-1').prepend(`<div class="style__MenuItem-sc-18pd3lt-2 fWnuHQ" onclick="document.location.href='/esportes/match/topLeague/World/2969'"> <div class="style__IconWrapper-sc-18pd3lt-4 Eeieh"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668804388906" style=" width: 24px; height: 24px;"> </div> <div class="style__MenuLabel-sc-18pd3lt-3 eaXTKo">Copa do Mundo</div> </div>`)
     }
 }
 

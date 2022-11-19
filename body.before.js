@@ -63,13 +63,13 @@ waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) =
     }
 }); 
 
-if (document.location.href === 'https://www.supremabet.com/') {
-    if (document.querySelectorAll(".mobile").length <= 0) {
-        document.location.href='/esportes/match/topLeague/World/2969/19637364' 
-    } else {
-        document.location.href='/esportes/match/topLeague/World/2969'
-    }
-}
+// if (document.location.href === 'https://www.supremabet.com/') {
+//     if (document.querySelectorAll(".mobile").length <= 0) {
+//         document.location.href='/esportes/match/topLeague/World/2969/19637364' 
+//     } else {
+//         document.location.href='/esportes/match/topLeague/World/2969'
+//     }
+// }
 
 function carregaMenuFixosDesk(){
     // //icone da copa desk

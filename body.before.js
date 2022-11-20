@@ -74,7 +74,7 @@ waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) =
 function carregaMenuFixosDesk(){
     // //icone da copa desk
     if($('#m3453') || $('#r1272')) {
-        $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969/19637364'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668889893567" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
+        $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668889893567" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
     }
 }
 

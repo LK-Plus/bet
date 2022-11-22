@@ -13,17 +13,76 @@ function carregaCpf() {
         }
     });
 }
-//Imagem superodds
-function carregarimagemsuperodds() {
-    if ($('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
-        $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')}
-    // } else if (document.querySelector('.style__Coeficient-sc-3ucvic-1 span') && $('.style__RadioButton-sc-3ucvic-2 .style__Coeficient-sc-3ucvic-1 span svg').length != 0) {
-    //     $('.style__Coeficient-sc-3ucvic-1 span').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
-    // }
-}
 
 function close_promotion_home() {
     $('body .images_promotion_home').css('display','none')
+}
+
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+//icone da copa mobile
+waitForElm(".mobile .style__Menu-sc-18pd3lt-1 .dbqPJQ").then((elm) => {
+    if (typeof(elm) != 'undefined' && elm != null){
+        carregaMenuFixosMobile()
+    }
+}); 
+//icone da copa desk
+waitForElm(".style__MenuItem-sc-1uncf6a-4.dcVwvX > span.v3-icon.text-color").then((elm) => {
+    if (typeof(elm) != 'undefined' && elm != null){
+        carregaMenuFixosDesk()
+        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
+            waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
+                if (typeof(elm) != 'undefined' && elm != null){
+                    carregarimagemsuperodds()
+                }
+            }); 
+        });    
+    }
+}); 
+//icone superodds
+waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
+    if (typeof(elm) != 'undefined' && elm != null){
+        carregarimagemsuperodds()
+    }
+}); 
+
+// if (document.location.href === 'https://www.supremabet.com/') {
+//     if (document.querySelectorAll(".mobile").length <= 0) {
+//         document.location.href='/esportes/match/topLeague/World/2969/19637364' 
+//     } else {
+//         document.location.href='/esportes/match/topLeague/World/2969'
+//     }
+// }
+
+function carregaMenuFixosDesk(){
+    // //icone da copa desk
+    if($('#m3453') || $('#r1272')) {
+        $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668889893567" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
+    }
+}
+
+function carregaMenuFixosMobile(){
+    // //icone da copa mobile
+    if($('#r1501') || $('#r1824')) {
+        $('.mobile .style__Menu-sc-18pd3lt-1').prepend(`<div class="style__MenuItem-sc-18pd3lt-2 fWnuHQ" onclick="document.location.href='/esportes/match/topLeague/World/2969'"> <div class="style__IconWrapper-sc-18pd3lt-4 Eeieh"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668889893567" style=" width: 24px; height: 24px;"> </div> <div class="style__MenuLabel-sc-18pd3lt-3 eaXTKo">Copa do Mundo</div> </div>`)
+    }
 }
 
 /*
@@ -165,30 +224,24 @@ document.addEventListener('readystatechange', (event) => {
             }, 2000);
         }
     }
-    //Imagem superodds
-    carregarimagemsuperodds();
-    if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
-        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
-            carregarimagemsuperodds();
-        });
-    };
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    //icone da copa
-    if($('.desktop .style__CarouselWrapper-sc-1on20i7-0').length == 1) {
-        $('.desktop .style__CarouselWrapper-sc-1on20i7-0').prepend(`<div class="style__MenuItem-sc-1uncf6a-4 faMrax" style="position: relative;" onclick="document.location.href='/esportes/match/topLeague/World/2969/19637364'"> <span class="v3-icon text-color" style="font-size: 32px; position: relative;"> <img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/copa.png?1668804388906" style=" width: 32px; height: 32px;"> </span> <span class="style__Name-sc-1uncf6a-3 bZJTtw">Copa do Mundo</span> </div>`)
-    }
+
 
     // Fix CPF check
     setInterval(carregaCpf, 2000);
 
-    //Imagem superodds
-    if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
-        document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
-            carregarimagemsuperodds();
-        });
-    };
+    // //Imagem superodds
+    // if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
+    //     document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
+    //         waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
+    //             if (typeof(elm) != 'undefined' && elm != null){
+    //                 carregarimagemsuperodds()
+    //             }
+    //         }); 
+    //     });
+    // };
   
     // Modal info player
     if (document.querySelector('.loginDesk,.loginMobile')) {
@@ -256,3 +309,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+//Imagem superodds
+function carregarimagemsuperodds() {
+    if ($('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html() != '<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">') {
+        $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
+    }
+}

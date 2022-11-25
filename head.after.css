@@ -3,7 +3,7 @@
 }
 
 .mobile .sandwichNavigator {
-    top: 53px !important;
+    top: 52px !important;
     position: fixed;
     width: 100%;
 }
@@ -619,8 +619,8 @@ button.czyrAX span:first-child {
 }
 
 .mobile .betslip-popup {
-    height: calc(100% - 53px) !important;
-    margin-top: 53px !important;
+    height: calc(100% - 52px) !important;
+    margin-top: 52px !important;
     z-index: 13;
 }
 

@@ -312,16 +312,3 @@ function carregarimagemsuperodds() {
         $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
     }
 }
-
-$(document).ready(function() {
-    if ($('.v3-login-btn').length === 0) {
-        $.each($('script:empty[src*="widgets-x"]'), function(i, el) {
-            var oldSrc = $(el).attr('src');
-            var t = +new Date();
-            var newSrc = oldSrc.split('?')[0] + '?v=' + t;
-            console.log(oldSrc, ' to ', newSrc);
-            $(el).remove();
-            $('<script/>').attr('src', newSrc).appendTo('head');
-        });
-    }
-});

@@ -138,21 +138,6 @@ function fixMobileMenu() {
 }
 
 document.addEventListener('readystatechange', (event) => {
-    //Imagem superodds
-    // Banner control
-    // const lang = JSON.parse(window.hrefLangRelations);
-    // if (document.querySelector('.sportsPC div.slider-container')) {
-    //     document.querySelector('.sportsPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=sports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    // }
-    // if (document.querySelector('.sportsMobile div.slider-container')) {
-    //     document.querySelector('.sportsMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=msports&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    // }
-    // if (document.querySelector('.cassinoPC div.slider-container')) {
-    //     document.querySelector('.cassinoPC div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=casino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    // }
-    // if (document.querySelector('.cassinoMobile div.slider-container')) {
-    //     document.querySelector('.cassinoMobile div.slider-container').innerHTML = `<iframe src="https://pokerbyte.com.br/bet/banner?t=mcasino&l=${lang.currentPrefix}" width="100%" height="100%" scrolling="no" style="border:none;"></iframe>`;
-    // }
     // Page fix
     if (document.querySelector('#column2463')) {
         document.querySelector('#column2463').style = '';
@@ -221,7 +206,7 @@ document.addEventListener('readystatechange', (event) => {
         }
     }
     // Fix load files
-    if (!document.querySelector('.v3-login-btn')) {
+    if (document.querySelectorAll('.v3-login-btn,.profileInfo__circleButton__icon').length === 0) {
         for (const element of document.querySelectorAll('script:empty[src*="widgets-x"]')) {
             const oldSrc = element.src;
             const t = +new Date();
@@ -234,22 +219,8 @@ document.addEventListener('readystatechange', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-
-
     // Fix CPF check
     setInterval(carregaCpf, 2000);
-
-    // //Imagem superodds
-    // if (document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1')) {
-    //     document.querySelector('#r1823 .style__Wrapper-sc-1uncf6a-1').addEventListener("DOMSubtreeModified", function () {
-    //         waitForElm('.style__SBRow-sc-19dmv8n-1 .style__SBRow-sc-19dmv8n-1').then((elm) => {
-    //             if (typeof(elm) != 'undefined' && elm != null){
-    //                 carregarimagemsuperodds()
-    //             }
-    //         }); 
-    //     });
-    // };
-  
     // Modal info player
     if (document.querySelector('.loginDesk,.loginMobile')) {
         document.querySelector('body').addEventListener("DOMSubtreeModified", function () {
@@ -262,12 +233,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         };
                     };
                 };
-                // remoção de convidar um amigo
-                // if (document.querySelector('.accMenu .accMenu__item:nth-child(2)')) {
-                //     if (document.querySelector('.accMenu .accMenu__item:nth-child(2)').innerText == 'Indicar um amigo') {
-                //         $('.accMenu .accMenu__item:nth-child(2)').addClass("hideAll");
-                //     };
-                // };
                 //botão e verificar documento para saque
                 if ($('.style__Container-sc-102jdln-0 div .accountModal__contentWrapper--paddingTop .v3-col:nth-child(1)')) {
                     if ($('.style__Container-sc-102jdln-0 div .accountModal__contentWrapper--paddingTop .v3-col:nth-child(1)').html() == '<div class="style__Title-sc-102jdln-1 cxuFBU">Sacar dinheiro</div>' || !$('.userInfoAndBalance__info__checkedIcon')) {
@@ -285,7 +250,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.querySelector('.notificationMessage').remove()
                         document.getElementById('btn-webchat').click()
                     }
-
                 }
                 // //foto de identidade
                 if ($('.desktop').length != 0) {
@@ -301,13 +265,6 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         });
     };
-    // // promotion home page
-    // if ($('.desktop #r1814').length == 1) {
-    //     $('body').append('<div style="top: 0px; left: 0px; position: fixed; background-color: rgba(0, 0, 0, 0.3); z-index: 10; width: 100%; height: 100%; display: flex; place-content: center; align-items: center;" class="images_promotion_home"><div style=" width: 30vw; display: flex; flex-wrap: wrap; flex-direction: row-reverse; "><button style=" border: 0px; color: RGB(255,255,255,0.7) !important; background: #803BBC; z-index: 1; cursor: pointer; position: fixed; margin: 5px; " class="v3-btn v3-btn-primary" onclick="close_promotion_home()">X</button><a href="https://www.supremabet.com/cabines-duplas"><img style=" margin: auto; width: 30vw; border-radius: 5px; cursor: pointer; " src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/popupaposte50.png?1667569588536"></a></div></div>')
-    // } else if ($('.mobile #r1780').length == 1) {
-    //     $('body').append('<div style="top: 0px; left: 0px; position: fixed; background-color: rgba(0, 0, 0, 0.3); z-index: 10; width: 100%; height: 100%; display: flex; place-content: center; align-items: center;" class="images_promotion_home"><div style="width: 96vw;display: flex;flex-wrap: wrap;flex-direction: row-reverse;"><button style=" border: 0px; color: RGB(255,255,255,0.7) !important; background: #803BBC; z-index: 1; cursor: pointer; position: fixed; margin: 5px; " class="v3-btn v3-btn-primary" onclick="close_promotion_home()">X</button><a href="https://www.supremabet.com/cabines-duplas"><img style="margin: auto;width: 100vw;border-radius: 5px;cursor: pointer;" src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/popupaposte50.png?1667569588536"></a></div></div>')
-    // }
-
     //fix header promotion
     if ($('.desktop #r1966').length == 1) {
         $('.desktop .header-row[data-id="1746"]').addClass("fixedElement");

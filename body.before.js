@@ -220,6 +220,17 @@ document.addEventListener('readystatechange', (event) => {
             }, 2000);
         }
     }
+    // Fix load files
+    if (!document.querySelector('.v3-login-btn')) {
+        for (const element of document.querySelectorAll('script:empty[src*="widgets-x"]')) {
+            const oldSrc = element.src;
+            const t = +new Date();
+            const newSrc = oldSrc.split('?')[0] + '?v=' + t;
+            console.log(oldSrc, ' to ', newSrc);
+            element.remove();
+            document.querySelector('head').appendChild(document.createElement('script')).src = newSrc;
+        }
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -110,8 +110,9 @@
     padding: 0px !important;
 }
 
-#r1814 .events-time-filter {
-    display: none !important;
+.eWAnVw {
+    display: flex;
+    align-items: center;
 }
 
 #r1814 #m3434 {

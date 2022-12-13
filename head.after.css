@@ -785,7 +785,7 @@ body {
 }
 
 .contentFilter {
-    z-index: 1;
+    z-index: 3;
     margin-left: auto;
     margin-right: auto;
     left: 133px;

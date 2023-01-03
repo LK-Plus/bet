@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // }
 
     // promotion home page
-    if ($('.desktop').length == 1) {
+    if ($('.desktop').length > 0) {
         waitForElm('#r2210').then((elm) => {
             if ($('.desktop #r2210').length == 1) {
                 $('body').append('<div style="top: 0px; left: 0px; position: fixed; background-color: rgba(0, 0, 0, 0.3); z-index: 10; width: 100%; height: 100%; display: flex; place-content: center; align-items: center;" class="images_promotion_home"><div style=" width: 30vw; display: flex; flex-wrap: wrap; flex-direction: row-reverse; "><button style=" border: 0px; color: RGB(255,255,255,0.7) !important; background: #803BBC; z-index: 1; cursor: pointer; position: fixed; margin: 5px; " class="v3-btn v3-btn-primary" onclick="close_promotion_home()">X</button><img style=" margin: auto; width: 30vw; border-radius: 5px; cursor: pointer; " src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/media/popupatenc%CC%A7a%CC%83o-16727013433373.png?1672704209853"></a></div></div>')

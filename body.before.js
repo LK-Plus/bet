@@ -302,3 +302,34 @@ function carregarimagemsuperodds() {
         $('.style__RadioButton-sc-3ucvic-2 span.v3-icon').html('<img src="https://bet-files.suprema.group/images/SUPERODDS.png" style="width: 14px;height: 14px;min-width: 14px;min-height: 14px;">')
     }
 }
+
+//função de polimorfismo
+class FormHandler {
+    constructor(form) {
+        this.form = form;
+        this.form.addEventListener('submit', this.handleFormSubmit.bind(this));
+    }
+
+    handleFormSubmit(event) {
+        event.preventDefault();
+        console.log('teste 1');
+    }
+}
+
+class RegistrationFormHandler extends FormHandler {
+    constructor(form) {
+        super(form);
+    }
+
+handleFormSubmit(event) {
+    super.handleFormSubmit(event);
+
+        console.log('teste 2');
+    }
+}
+
+const registrationForms = document.querySelectorAll('.entrance-form-bc');
+
+registrationForms.forEach((form) => {
+    new RegistrationFormHandler(form);
+});

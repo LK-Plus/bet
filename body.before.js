@@ -97,8 +97,6 @@ const registrationForms = document.querySelectorAll('.entrance-form-bc');
 registrationForms.forEach((form) => {
     new RegistrationFormHandler(form);
 });
-<<<<<<< HEAD
-
 
 //inject
 
@@ -114,6 +112,3 @@ if (submitButton) {
   console.error('Elemento não encontrado.');
 }
 
-=======
-//Fim função de murilo
->>>>>>> 04b1f9d2f9040990b1155d5d1ba82ad92b2825a9

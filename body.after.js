@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Código a ser executado quando o botão principal for clicado
 
         // Encontrar o elemento do outro botão
-        var outroBotao = document.getElementById('v3-register-btn'); // Substitua 'v3-register-btn' pelo ID real do outro botão
+        var outroBotao = document.querySelector('[data-testid="submit-btn"]'); // Substitua 'v3-register-btn' pelo ID real do outro botão
 
         // Verificar se o elemento foi encontrado antes de prosseguir
         if (outroBotao) {
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    var submitButton = document.querySelector('[data-testid="submit-btn"]');
+    var submitButton = document.getElementById('v3-register-btn');
 
     if (submitButton) {
         submitButton.addEventListener('click', handleButtonClick);

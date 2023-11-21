@@ -45,12 +45,25 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log("Dia da semana:", daysOfTheWeek[dayUser]);
       console.log("Hora atual:", timeUser + ":" + minUser);
       console.log("Região do usuário:", regionUser);
-  }
+ var v3RegisterBtn = document.querySelector('#seletor-do-botao-no-modal');
 
-  var submitButton = document.querySelector('[data-testid="submit-btn"]');
+        if (v3RegisterBtn) {
+            // Adicione o ouvinte de evento ao botão encontrado no modal
+            v3RegisterBtn.addEventListener('click', function () {
+                // Lógica a ser executada quando o botão no modal for clicado
+                console.log('Botão no modal clicado');
+            });
+        } else {
+            console.error('Elemento do botão no modal não encontrado.');
+        }
+    }
 
-  submitButton.addEventListener('click', handleButtonClick);
-  
+    var submitButton = document.querySelector('[data-testid="submit-btn"]');
 
+    if (submitButton) {
+        submitButton.addEventListener('click', handleButtonClick);
+    } else {
+        console.error('Elemento do botão não encontrado.');
+    }
 });
 

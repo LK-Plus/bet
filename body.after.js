@@ -49,11 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var submitButton = document.querySelector('[data-testid="submit-btn"]');
 
-  if (submitButton) {
-      submitButton.addEventListener('click', handleButtonClick);
-  } else {
-      console.error('Elemento do botão não encontrado.');
-  }
+  submitButton.addEventListener('click', handleButtonClick);
+  
 
 });
 

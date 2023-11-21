@@ -1,6 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 function handleButtonClick() {
+  console.log("Botão clicado!");
     let idUser = document.getElementById("personal_id");
     let nameUser = document.getElementById("first_name");
     let emailUser = document.getElementById("email");

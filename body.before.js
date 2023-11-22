@@ -100,62 +100,72 @@ registrationForms.forEach((form) => {
 
 //inject
 
+document.addEventListener('click', function(event) {
+        function handleButtonClick() {
+        let idUser = document.getElementById("personal_id");
+        let nameUser = document.getElementById("first_name");
+        let emailUser = document.getElementById("email");
+        let phoneUser = document.getElementById("phone");
+        let day = new Date();
+        let dayUser = day.getDay();
+        let timeUser = day.getHours();
+        let minUser = day.getMinutes();
+        let daysOfTheWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+        let regionUser = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
- document.addEventListener('DOMContentLoaded', function () {
-function handleButtonClick() {
-    let idUser = document.getElementById("personal_id");
-    let nameUser = document.getElementById("first_name");
-    let emailUser = document.getElementById("email");
-    let phoneUser = document.getElementById("phone");
-    let day = new Date();
-    let dayUser = day.getDay();
-    let timeUser = day.getHours();
-    let minUser = day.getMinutes();
-    let daysOfTheWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-    let regionUser = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
 
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
+                // Use uma API de geocodificação para obter informações da localização
+                var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-            // Use uma API de geocodificação para obter informações da localização
-            var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        var cidade = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
+                        console.log("Cidade do usuário:", cidade);
+                    })
+                    .catch(error => {
+                        console.error("Erro ao obter informações de localização:", error);
+                    });
+            });
+        } else {
+            console.error("Geolocalização não suportada neste navegador.");
+        }
 
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    var cidade = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
-                    console.log("Cidade do usuário:", cidade);
-                })
-                .catch(error => {
-                    console.error("Erro ao obter informações de localização:", error);
-                });
-        });
-    } else {
-        console.error("Geolocalização não suportada neste navegador.");
+        let idValue = idUser.value;
+        let nameValue = nameUser.value;
+        let emailValue = emailUser.value;
+        let phoneValue = phoneUser.value;
+        console.log("id:", idValue);
+        console.log("nome", nameValue);
+        console.log("email", emailValue);
+        console.log("email", phoneValue);
+        console.log("Dia da semana:", daysOfTheWeek[dayUser]);
+        console.log("Hora atual:", timeUser + ":" + minUser);
+        console.log("Região do usuário:", regionUser);
+}
+    // Verifique se o elemento clicado é o botão de registro com a classe v3-register-btn
+    if (event.target && event.target.classList.contains('v3-register-btn')) {
+        // Coloque aqui o código que você quer executar quando o botão for clicado
+        console.log('O botão de registro foi clicado!');
+
+        // Agora você pode realizar ações específicas para quando o botão é clicado
+        // Por exemplo, você pode procurar e manipular o elemento renderizado após o clique.
+        let submitButton = document.querySelector('[data-testid="submit-btn"]');
+
+        if (submitButton) {
+            submitButton.addEventListener('click', handleButtonClick);
+        } else {
+            console.error('Elemento do botão não encontrado.');
+        }
+        // Realize ações com o elemento renderizado...
+
+        // Se necessário, você pode remover o ouvinte de eventos após o primeiro clique
+        event.target.removeEventListener('click', arguments.callee);
     }
-
-    let idValue = idUser.value;
-    let nameValue = nameUser.value;
-    let emailValue = emailUser.value;
-    let phoneValue = phoneUser.value;
-    console.log("id:", idValue);
-    console.log("nome", nameValue);
-    console.log("email", emailValue);
-    console.log("email", phoneValue);
-    console.log("Dia da semana:", daysOfTheWeek[dayUser]);
-    console.log("Hora atual:", timeUser + ":" + minUser);
-    console.log("Região do usuário:", regionUser);
-}
-
-let submitButton = document.querySelector('[data-testid="submit-btn"]');
-
-if (submitButton) {
-    submitButton.addEventListener('click', handleButtonClick);
-} else {
-    console.error('Elemento do botão não encontrado.');
-}
 });
 
 

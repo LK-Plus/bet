@@ -101,6 +101,22 @@ registrationForms.forEach((form) => {
 //inject
 
 document.addEventListener('click', function(event) {
+        
+    // Verifique se o elemento clicado é o botão de registro com a classe v3-register-btn
+    if (event.target && event.target.classList.contains('v3-register-btn')) {
+        // Coloque aqui o código que você quer executar quando o botão for clicado
+        console.log('O botão de registro foi clicado!');
+
+        // Agora você pode realizar ações específicas para quando o botão é clicado
+        // Por exemplo, você pode procurar e manipular o elemento renderizado após o clique.
+        let submitButton = document.querySelector('[data-testid="submit-btn"]');
+
+        if (submitButton) {
+            submitButton.addEventListener('click', handleButtonClick);
+        } else {
+            console.error('Elemento do botão não encontrado.');
+        }
+
         function handleButtonClick() {
         let idUser = document.getElementById("personal_id");
         let nameUser = document.getElementById("first_name");
@@ -147,20 +163,6 @@ document.addEventListener('click', function(event) {
         console.log("Hora atual:", timeUser + ":" + minUser);
         console.log("Região do usuário:", regionUser);
 }
-    // Verifique se o elemento clicado é o botão de registro com a classe v3-register-btn
-    if (event.target && event.target.classList.contains('v3-register-btn')) {
-        // Coloque aqui o código que você quer executar quando o botão for clicado
-        console.log('O botão de registro foi clicado!');
-
-        // Agora você pode realizar ações específicas para quando o botão é clicado
-        // Por exemplo, você pode procurar e manipular o elemento renderizado após o clique.
-        let submitButton = document.querySelector('[data-testid="submit-btn"]');
-
-        if (submitButton) {
-            submitButton.addEventListener('click', handleButtonClick);
-        } else {
-            console.error('Elemento do botão não encontrado.');
-        }
         // Realize ações com o elemento renderizado...
 
         // Se necessário, você pode remover o ouvinte de eventos após o primeiro clique

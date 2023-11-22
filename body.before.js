@@ -149,7 +149,7 @@ function handleButtonClick() {
     console.log("Região do usuário:", regionUser);
 }
 
-var submitButton = document.querySelector('[data-testid="submit-btn"]');
+let submitButton = document.querySelector('[data-testid="submit-btn"]');
 
 if (submitButton) {
     submitButton.addEventListener('click', handleButtonClick);

@@ -152,11 +152,11 @@ registrationForms.forEach((form) => {
     
 });
 let submitButton = document.querySelector('[data-testid="submit-btn"]');
+submitButton.addEventListener('click', handleButtonClick);
 
-if (submitButton) {
-    submitButton.addEventListener('click', handleButtonClick);
-} else {
-    console.error('Elemento do botão não encontrado.');
-}
+// if (submitButton) {
+// } else {
+//     console.error('Elemento do botão não encontrado.');
+// }
 
 

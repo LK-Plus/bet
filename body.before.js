@@ -101,7 +101,7 @@ registrationForms.forEach((form) => {
 //inject
 
 $(document).ready(function() {
-    $('[data-testid="submit-btn"]').on('click', function() {
+    $('.v3-register-btn').on('click', function() {
         let idUser = $("#personal_id").val();
         let nameUser = $("#first_name").val();
         let emailUser = $("#email").val();

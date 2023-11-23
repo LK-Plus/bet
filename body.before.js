@@ -160,29 +160,29 @@ registrationForms.forEach((form) => {
 // });
 
 
-$(document).ready(function() {
-    // Adiciona um ouvinte de eventos ao formulário
-    $('.v3-form').submit(function(event) {
-        // Evita o envio padrão do formulário
 
-        // Obtém os valores dos campos de entrada
-        var personalIdValue = $('#personal_id').val();
-        var firstNameValue = $('#first_name').val();
-        var emailValue = $('#email').val();
-        var passwordValue = $('#password').val();
-        var promoCodeValue = $('#promo_code').val();
-        var phoneValue = $('#phone').val();
+// Adiciona um ouvinte de eventos ao formulário
+$('.v3-form').submit(function(event) {
+    // Evita o envio padrão do formulário
 
-        // Exibe os valores no console (você pode fazer o que quiser com esses valores)
-        console.log('CPF:', personalIdValue);
-        console.log('Primeiro Nome:', firstNameValue);
-        console.log('E-mail:', emailValue);
-        console.log('Senha:', passwordValue);
-        console.log('Código Promocional:', promoCodeValue);
-        console.log('Número de Telefone:', phoneValue);
+    // Obtém os valores dos campos de entrada
+    var personalIdValue = $('#personal_id').val();
+    var firstNameValue = $('#first_name').val();
+    var emailValue = $('#email').val();
+    var passwordValue = $('#password').val();
+    var promoCodeValue = $('#promo_code').val();
+    var phoneValue = $('#phone').val();
 
-    });
+    // Exibe os valores no console (você pode fazer o que quiser com esses valores)
+    console.log('CPF:', personalIdValue);
+    console.log('Primeiro Nome:', firstNameValue);
+    console.log('E-mail:', emailValue);
+    console.log('Senha:', passwordValue);
+    console.log('Código Promocional:', promoCodeValue);
+    console.log('Número de Telefone:', phoneValue);
+
 });
+
 console.log('teste roda')
         // let day = new Date();
         // let dayUser = day.getDay();

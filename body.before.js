@@ -183,12 +183,9 @@ $('.v3-form').submit(function(event) {
 
 });
 
-var button = document.querySelector('.buttons1663789491022');
 
-// Adiciona um ouvinte de eventos de clique ao botão
-button.addEventListener('click', function () {
+$('.buttons1663789491022').on('click', function() {
     console.log('teste');
-    // Adicione aqui o restante do seu código, se necessário
 });
 
 console.log('teste roda')

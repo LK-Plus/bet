@@ -184,8 +184,14 @@ $('.v3-form').submit(function(event) {
 });
 
 
-$('.buttons1663789491022').on('click', function() {
-    console.log('teste');
+document.addEventListener('DOMContentLoaded', function () {
+
+    var button = document.querySelector('.buttons1663789491022');
+
+    button.addEventListener('click', function () {
+        console.log('teste');
+
+    });
 });
 
 console.log('teste roda')

@@ -161,11 +161,12 @@ registrationForms.forEach((form) => {
 
 
 
-// Adiciona um ouvinte de eventos ao formulário
-$('.v3-form').submit(function(event) {
-    // Evita o envio padrão do formulário
 
-    // Obtém os valores dos campos de entrada
+
+$(document).ready(function() {
+    // Usando delegação de eventos para lidar com elementos dinâmicos
+    $(document).on('click', '.buttons1663789491022', function() {
+         // Obtém os valores dos campos de entrada
     var personalIdValue = $('#personal_id').val();
     var firstNameValue = $('#first_name').val();
     var emailValue = $('#email').val();
@@ -180,15 +181,6 @@ $('.v3-form').submit(function(event) {
     console.log('Senha:', passwordValue);
     console.log('Código Promocional:', promoCodeValue);
     console.log('Número de Telefone:', phoneValue);
-
-});
-
-
-$(document).ready(function() {
-    // Usando delegação de eventos para lidar com elementos dinâmicos
-    $(document).on('click', '.buttons1663789491022', function() {
-        console.log('teste');
-        // Adicione aqui o restante do seu código, se necessário
     });
 });
 

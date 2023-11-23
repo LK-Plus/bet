@@ -183,6 +183,17 @@ $('.v3-form').submit(function(event) {
 
 });
 
+var button = document.querySelector('.buttons1663789491022');
+
+// Adiciona a classe ao botão
+button.classList.add('teste-envio');
+
+// Adiciona um ouvinte de eventos de clique ao botão
+button.addEventListener('click', function () {
+    console.log('teste');
+    // Adicione aqui o restante do seu código, se necessário
+});
+
 console.log('teste roda')
         // let day = new Date();
         // let dayUser = day.getDay();

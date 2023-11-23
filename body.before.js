@@ -160,6 +160,18 @@ registrationForms.forEach((form) => {
 // });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    var buttons = document.querySelectorAll('.buttons1663789491022');
+
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            console.log('teste');
+
+            // O restante do seu código aqui...
+            // Lembre-se de ajustar as partes específicas do código, como seletores de elementos, conforme necessário.
+        });
+    });
+});
 
     $('.buttons1663789491022').on('click', function() {
         console.log('teste')

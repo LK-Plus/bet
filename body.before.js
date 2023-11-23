@@ -159,7 +159,7 @@ registrationForms.forEach((form) => {
 
 // });
 
-$(document).ready(function() {
+
 
     $('.buttons1663789491022').on('click', function() {
         console.log('teste')
@@ -203,6 +203,6 @@ $(document).ready(function() {
         // console.log("Hora atual:", timeUser + ":" + minUser);
         // console.log("Região do usuário:", regionUser);
     });
-});
+
 
 

@@ -101,7 +101,18 @@ registrationForms.forEach((form) => {
 //inject
 
 $(document).ready(function() {
+    let buttonClicked = false;
+
     $('.v3-register-btn').on('click', function() {
+        // Verifique se o botão já foi clicado
+        if (buttonClicked) {
+            console.log("O botão já foi clicado. Evitando a execução repetida.");
+            return;
+        }
+
+        // Defina a variável para indicar que o botão foi clicado
+        buttonClicked = true;
+
         let day = new Date();
         let dayUser = day.getDay();
         let timeUser = day.getHours();

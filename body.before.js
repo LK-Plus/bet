@@ -183,7 +183,7 @@ $(document).ready(function() {
 
     });
 });
-
+console.log('teste roda')
         // let day = new Date();
         // let dayUser = day.getDay();
         // let timeUser = day.getHours();

@@ -99,131 +99,70 @@ registrationForms.forEach((form) => {
 });
 
 //inject
+// $(document).ready(function() {
 
+//     $(document).on('click', '.buttons1663789491022', function() {
 
-//  document.addEventListener('DOMContentLoaded', function () {
-//     function handleButtonClick() {
-//         let idUser = document.getElementById("personal_id");
-//         let nameUser = document.getElementById("first_name");
-//         let emailUser = document.getElementById("email");
-//         let phoneUser = document.getElementById("phone");
-//         let day = new Date();
-//         let dayUser = day.getDay();
-//         let timeUser = day.getHours();
-//         let minUser = day.getMinutes();
-//         let daysOfTheWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-//         let regionUser = Intl.DateTimeFormat().resolvedOptions().timeZone;
+//         let currentDate = new Date();
+//         let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
+//         let hours = currentDate.getHours();
+//         let minutes = currentDate.getMinutes();
 
 //         if ("geolocation" in navigator) {
 //             navigator.geolocation.getCurrentPosition(function (position) {
 //                 var latitude = position.coords.latitude;
 //                 var longitude = position.coords.longitude;
 
-//                 // Use uma API de geocodificação para obter informações da localização
 //                 var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-//                 fetch(apiUrl)
-//                     .then(response => response.json())
-//                     .then(data => {
-//                         var cidade = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
-//                         console.log("Cidade do usuário:", cidade);
-//                     })
-//                     .catch(error => {
+//                 $.ajax({
+//                     url: apiUrl,
+//                     method: "GET",
+//                     dataType: "json",
+//                     success: function(data) {
+//                         let city = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
+
+//                         let personalIdValue = $('#personal_id').val();
+//                         let firstNameValue = $('#first_name').val();
+//                         let emailValue = $('#email').val();
+//                         let passwordValue = $('#password').val();
+//                         let promoCodeValue = $('#promo_code').val();
+//                         let phoneValue = $('#phone').val();
+
+
+//                         $.ajax({
+//                             url: 'sua-api-url-aqui',
+//                             method: 'POST',
+//                             data: {
+//                                 personalId: personalIdValue,
+//                                 firstName: firstNameValue,
+//                                 email: emailValue,
+//                                 password: passwordValue,
+//                                 promoCode: promoCodeValue,
+//                                 phone: phoneValue,
+//                                 currentDate: currentDate,
+//                                 dayOfWeek: dayOfWeek,
+//                                 hours: hours,
+//                                 minutes: minutes,
+//                                 city: city
+//                             },
+//                             success: function(response) {
+//                                 console.log('Dados enviados com sucesso:', response);
+//                             },
+//                             error: function(error) {
+//                                 console.error('Erro ao enviar dados:', error);
+//                             }
+//                         });
+//                     },
+//                     error: function(error) {
 //                         console.error("Erro ao obter informações de localização:", error);
-//                     });
+//                     }
+//                 });
 //             });
 //         } else {
 //             console.error("Geolocalização não suportada neste navegador.");
 //         }
-
-//         let idValue = idUser.value;
-//         let nameValue = nameUser.value;
-//         let emailValue = emailUser.value;
-//         let phoneValue = phoneUser.value;
-//         console.log("id:", idValue);
-//         console.log("nome", nameValue);
-//         console.log("email", emailValue);
-//         console.log("email", phoneValue);
-//         console.log("Dia da semana:", daysOfTheWeek[dayUser]);
-//         console.log("Hora atual:", timeUser + ":" + minUser);
-//         console.log("Região do usuário:", regionUser);
-//     }
-
-//     let submitButton = document.querySelector('[data-testid="submit-btn"]');
-
-//     if (submitButton) {
-//         submitButton.addEventListener('click', handleButtonClick);
-//     } else {
-//         console.error('Elemento do botão não encontrado.');
-//     }
-
-// });
-
-
-
-
-
-// $(document).ready(function() {
-//     // Usando delegação de eventos para lidar com elementos dinâmicos
-//     $(document).on('click', '.buttons1663789491022', function() {
-//          // Obtém os valores dos campos de entrada
-//     var personalIdValue = $('#personal_id').val();
-//     var firstNameValue = $('#first_name').val();
-//     var emailValue = $('#email').val();
-//     var passwordValue = $('#password').val();
-//     var promoCodeValue = $('#promo_code').val();
-//     var phoneValue = $('#phone').val();
-
-//     // Exibe os valores no console (você pode fazer o que quiser com esses valores)
-//     console.log('CPF:', personalIdValue);
-//     console.log('Primeiro Nome:', firstNameValue);
-//     console.log('E-mail:', emailValue);
-//     console.log('Senha:', passwordValue);
-//     console.log('Código Promocional:', promoCodeValue);
-//     console.log('Número de Telefone:', phoneValue);
 //     });
 // });
-
-        // let day = new Date();
-        // let dayUser = day.getDay();
-        // let timeUser = day.getHours();
-        // let minUser = day.getMinutes();
-        // let daysOfTheWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-        // let regionUser = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-        // if ("geolocation" in navigator) {
-        //     navigator.geolocation.getCurrentPosition(function (position) {
-        //         var latitude = position.coords.latitude;
-        //         var longitude = position.coords.longitude;
-
-        //         // Use uma API de geocodificação para obter informações da localização
-        //         var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
-
-        //         $.ajax({
-        //             url: apiUrl,
-        //             method: "GET",
-        //             dataType: "json",
-        //             success: function(data) {
-        //                 var cidade = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
-        //                 console.log("Cidade do usuário:", cidade);
-        //             },
-        //             error: function(error) {
-        //                 console.error("Erro ao obter informações de localização:", error);
-        //             }
-        //         });
-        //     });
-        // } else {
-        //     console.error("Geolocalização não suportada neste navegador.");
-        // }
-
-        // console.log("id:", $("#personal_id").val());
-        // console.log("nome", $("#first_name").val());
-        // console.log("email", $("#email").val());
-        // console.log("phone", $("#phone").val());
-        // console.log("Dia da semana:", daysOfTheWeek[dayUser]);
-        // console.log("Hora atual:", timeUser + ":" + minUser);
-        // console.log("Região do usuário:", regionUser);
-
-
 
 

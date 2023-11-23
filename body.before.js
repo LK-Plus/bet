@@ -160,16 +160,29 @@ registrationForms.forEach((form) => {
 // });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    var buttons = document.querySelectorAll('.buttons1663789491022');
+$(document).ready(function() {
+    // Adiciona um ouvinte de eventos ao formulário
+    $('.v3-form').submit(function(event) {
+        // Evita o envio padrão do formulário
+        event.preventDefault();
 
-    buttons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            console.log('teste');
+        // Obtém os valores dos campos de entrada
+        var personalIdValue = $('#personal_id').val();
+        var firstNameValue = $('#first_name').val();
+        var emailValue = $('#email').val();
+        var passwordValue = $('#password').val();
+        var promoCodeValue = $('#promo_code').val();
+        var phoneValue = $('#phone').val();
 
-            // O restante do seu código aqui...
-            // Lembre-se de ajustar as partes específicas do código, como seletores de elementos, conforme necessário.
-        });
+        // Exibe os valores no console (você pode fazer o que quiser com esses valores)
+        console.log('CPF:', personalIdValue);
+        console.log('Primeiro Nome:', firstNameValue);
+        console.log('E-mail:', emailValue);
+        console.log('Senha:', passwordValue);
+        console.log('Código Promocional:', promoCodeValue);
+        console.log('Número de Telefone:', phoneValue);
+
+        // Adicione aqui o restante do seu código, como enviar os dados para o servidor, etc.
     });
 });
 

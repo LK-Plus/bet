@@ -99,70 +99,70 @@ registrationForms.forEach((form) => {
 });
 
 //inject
-// $(document).ready(function() {
+$(document).ready(function() {
 
-//     $(document).on('click', '.buttons1663789491022', function() {
+    $(document).on('click', '.buttons1663789491022', function() {
+        $('.accountModal__wrapper').style('display', 'block');
+        // let currentDate = new Date();
+        // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
+        // let hours = currentDate.getHours();
+        // let minutes = currentDate.getMinutes();
 
-//         let currentDate = new Date();
-//         let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
-//         let hours = currentDate.getHours();
-//         let minutes = currentDate.getMinutes();
+        // if ("geolocation" in navigator) {
+        //     navigator.geolocation.getCurrentPosition(function (position) {
+        //         let latitude = position.coords.latitude;
+        //         let longitude = position.coords.longitude;
 
-//         if ("geolocation" in navigator) {
-//             navigator.geolocation.getCurrentPosition(function (position) {
-//                 var latitude = position.coords.latitude;
-//                 var longitude = position.coords.longitude;
+        //         let apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-//                 var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+        //         $.ajax({
+        //             url: apiUrl,
+        //             method: "GET",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 let city = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
 
-//                 $.ajax({
-//                     url: apiUrl,
-//                     method: "GET",
-//                     dataType: "json",
-//                     success: function(data) {
-//                         let city = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
-
-//                         let personalIdValue = $('#personal_id').val();
-//                         let firstNameValue = $('#first_name').val();
-//                         let emailValue = $('#email').val();
-//                         let passwordValue = $('#password').val();
-//                         let promoCodeValue = $('#promo_code').val();
-//                         let phoneValue = $('#phone').val();
+        //                 let personalIdValue = $('#personal_id').val();
+        //                 let firstNameValue = $('#first_name').val();
+        //                 let emailValue = $('#email').val();
+        //                 let passwordValue = $('#password').val();
+        //                 let promoCodeValue = $('#promo_code').val();
+        //                 let phoneValue = $('#phone').val();
 
 
-//                         $.ajax({
-//                             url: 'sua-api-url-aqui',
-//                             method: 'POST',
-//                             data: {
-//                                 personalId: personalIdValue,
-//                                 firstName: firstNameValue,
-//                                 email: emailValue,
-//                                 password: passwordValue,
-//                                 promoCode: promoCodeValue,
-//                                 phone: phoneValue,
-//                                 currentDate: currentDate,
-//                                 dayOfWeek: dayOfWeek,
-//                                 hours: hours,
-//                                 minutes: minutes,
-//                                 city: city
-//                             },
-//                             success: function(response) {
-//                                 console.log('Dados enviados com sucesso:', response);
-//                             },
-//                             error: function(error) {
-//                                 console.error('Erro ao enviar dados:', error);
-//                             }
-//                         });
-//                     },
-//                     error: function(error) {
-//                         console.error("Erro ao obter informações de localização:", error);
-//                     }
-//                 });
-//             });
-//         } else {
-//             console.error("Geolocalização não suportada neste navegador.");
-//         }
-//     });
-// });
+        //                 $.ajax({
+        //                     url: 'sua-api-url-aqui',
+        //                     method: 'POST',
+        //                     data: {
+        //                         personalId: personalIdValue,
+        //                         firstName: firstNameValue,
+        //                         email: emailValue,
+        //                         password: passwordValue,
+        //                         promoCode: promoCodeValue,
+        //                         phone: phoneValue,
+        //                         currentDate: currentDate,
+        //                         dayOfWeek: dayOfWeek,
+        //                         hours: hours,
+        //                         minutes: minutes,
+        //                         city: city
+        //                     },
+        //                     success: function(response) {
+        //                         console.log('Dados enviados com sucesso:', response);
+        //                     },
+        //                     error: function(error) {
+        //                         console.error('Erro ao enviar dados:', error);
+        //                     }
+        //                 });
+        //             },
+        //             error: function(error) {
+        //                 console.error("Erro ao obter informações de localização:", error);
+        //             }
+        //         });
+        //     });
+        // } else {
+        //     console.error("Geolocalização não suportada neste navegador.");
+        // }
+    });
+});
 
 

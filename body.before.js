@@ -184,13 +184,11 @@ $('.v3-form').submit(function(event) {
 });
 
 
-document.addEventListener('DOMContentLoaded', function () {
-
-    var button = document.querySelector('.buttons1663789491022');
-
-    button.addEventListener('click', function () {
+$(document).ready(function() {
+    // Usando delegação de eventos para lidar com elementos dinâmicos
+    $(document).on('click', '.buttons1663789491022', function() {
         console.log('teste');
-
+        // Adicione aqui o restante do seu código, se necessário
     });
 });
 

@@ -101,57 +101,59 @@ registrationForms.forEach((form) => {
 //inject
 
 $(document).ready(function() {
-    let buttonClicked = false;
+    // let buttonClicked = false;
 
     $('.v3-register-btn').on('click', function() {
+
+        console.log('teste')
         // Verifique se o botão já foi clicado
-        if (buttonClicked) {
-            console.log("O botão já foi clicado. Evitando a execução repetida.");
-            return;
-        }
+        // if (buttonClicked) {
+        //     console.log("O botão já foi clicado. Evitando a execução repetida.");
+        //     return;
+        // }
 
-        // Defina a variável para indicar que o botão foi clicado
-        buttonClicked = true;
+        // // Defina a variável para indicar que o botão foi clicado
+        // buttonClicked = true;
 
-        let day = new Date();
-        let dayUser = day.getDay();
-        let timeUser = day.getHours();
-        let minUser = day.getMinutes();
-        let daysOfTheWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-        let regionUser = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        // let day = new Date();
+        // let dayUser = day.getDay();
+        // let timeUser = day.getHours();
+        // let minUser = day.getMinutes();
+        // let daysOfTheWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+        // let regionUser = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
+        // if ("geolocation" in navigator) {
+        //     navigator.geolocation.getCurrentPosition(function (position) {
+        //         var latitude = position.coords.latitude;
+        //         var longitude = position.coords.longitude;
 
-                // Use uma API de geocodificação para obter informações da localização
-                var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+        //         // Use uma API de geocodificação para obter informações da localização
+        //         var apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
 
-                $.ajax({
-                    url: apiUrl,
-                    method: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        var cidade = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
-                        console.log("Cidade do usuário:", cidade);
-                    },
-                    error: function(error) {
-                        console.error("Erro ao obter informações de localização:", error);
-                    }
-                });
-            });
-        } else {
-            console.error("Geolocalização não suportada neste navegador.");
-        }
+        //         $.ajax({
+        //             url: apiUrl,
+        //             method: "GET",
+        //             dataType: "json",
+        //             success: function(data) {
+        //                 var cidade = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
+        //                 console.log("Cidade do usuário:", cidade);
+        //             },
+        //             error: function(error) {
+        //                 console.error("Erro ao obter informações de localização:", error);
+        //             }
+        //         });
+        //     });
+        // } else {
+        //     console.error("Geolocalização não suportada neste navegador.");
+        // }
 
-        console.log("id:", $("#personal_id").val());
-        console.log("nome", $("#first_name").val());
-        console.log("email", $("#email").val());
-        console.log("phone", $("#phone").val());
-        console.log("Dia da semana:", daysOfTheWeek[dayUser]);
-        console.log("Hora atual:", timeUser + ":" + minUser);
-        console.log("Região do usuário:", regionUser);
+        // console.log("id:", $("#personal_id").val());
+        // console.log("nome", $("#first_name").val());
+        // console.log("email", $("#email").val());
+        // console.log("phone", $("#phone").val());
+        // console.log("Dia da semana:", daysOfTheWeek[dayUser]);
+        // console.log("Hora atual:", timeUser + ":" + minUser);
+        // console.log("Região do usuário:", regionUser);
     });
 });
 

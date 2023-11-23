@@ -102,10 +102,6 @@ registrationForms.forEach((form) => {
 
 $(document).ready(function() {
     $('.v3-register-btn').on('click', function() {
-        let idUser = $("#personal_id").val();
-        let nameUser = $("#first_name").val();
-        let emailUser = $("#email").val();
-        let phoneUser = $("#phone").val();
         let day = new Date();
         let dayUser = day.getDay();
         let timeUser = day.getHours();
@@ -138,14 +134,10 @@ $(document).ready(function() {
             console.error("Geolocalização não suportada neste navegador.");
         }
 
-        let idValue = idUser;
-        let nameValue = nameUser;
-        let emailValue = emailUser;
-        let phoneValue = phoneUser;
-        console.log("id:", idValue);
-        console.log("nome", nameValue);
-        console.log("email", emailValue);
-        console.log("email", phoneValue);
+        console.log("id:", $("#personal_id").val());
+        console.log("nome", $("#first_name").val());
+        console.log("email", $("#email").val());
+        console.log("phone", $("#phone").val());
         console.log("Dia da semana:", daysOfTheWeek[dayUser]);
         console.log("Hora atual:", timeUser + ":" + minUser);
         console.log("Região do usuário:", regionUser);

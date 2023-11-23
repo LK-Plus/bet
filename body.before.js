@@ -102,7 +102,7 @@ registrationForms.forEach((form) => {
 $(document).ready(function() {
 
     $(document).on('click', '.buttons1663789491022', function() {
-        $('.accountModal__wrapper').style('display', 'block');
+        $('.accountModal__wrapper').css('display', 'block');
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
         // let hours = currentDate.getHours();

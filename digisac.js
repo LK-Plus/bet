@@ -91,9 +91,29 @@
                 }
                 return e
             }({}, window._digisac.payload), r)
-        }, window.addEventListener("message", (function (e) {
-            var t = JSON.parse(e.data).c;
-            "close-widgets-container" == t ? (a.classList.remove("open-widgets-container"), window.document.querySelector("body").classList.remove("chatParent"), a.classList.add("close-widgets-container")) : "open-widgets-container" == t && (a.classList.remove("close-widgets-container"), window.document.querySelector("body").classList.add("chatParent"), a.classList.add("open-widgets-container"))
-        })), a.appendChild(i), document.body.appendChild(a)
+        },window.addEventListener("message", function (e) {
+            try {
+                var jsonData = JSON.parse(e.data);
+
+                if (jsonData && jsonData.c) {
+                    var t = jsonData.c;
+
+                    if ("close-widgets-container" === t) {
+                        a.classList.remove("open-widgets-container");
+                        document.body.classList.remove("chatParent");
+                        a.classList.add("close-widgets-container");
+                    } else if ("open-widgets-container" === t) {
+                        a.classList.remove("close-widgets-container");
+                        document.body.classList.add("chatParent");
+                        a.classList.add("open-widgets-container");
+                    }
+                }
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+            }
+        });
+
+        a.appendChild(i);
+        document.body.appendChild(a);
     }
 });

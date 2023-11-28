@@ -22,11 +22,12 @@ button.close {
     justify-content: space-between;
     align-items: center;
     height: 650px;
-    background-image: url(images/moedas.png);
+    background-image: url(images/bg-modal.png);
     background-position: center center;
     background-repeat:  no-repeat;
     background-size:  cover;
     width: 100%;
+    margin-bottom: 2em;
 }
 
 figure.games-img {

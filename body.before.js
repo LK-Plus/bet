@@ -73,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function() {
 
     $(document).on('click', '.buttons1663789491022', function() {
+        if (window.matchMedia("(min-width: 768px)").matches) {
+            $("#modalBonus").modal("show");
+        }
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
         // let hours = currentDate.getHours();

@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function() {
 
     $(document).on('click', 'button[data-testid="submit-btn"]', function(e) {
+        console.log('clicou')
         // let personalIdValue = $('#personal_id').val();
         // let firstNameValue = $('#first_name').val();
         // let emailValue = $('#email').val();

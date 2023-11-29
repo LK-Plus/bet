@@ -134,7 +134,8 @@ $(document).ready(function() {
                     'transform': 'translate(-50%, -50%)',
                     'background-color': '#333333',
                     'border-radius': '5px',
-                    'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)'
+                    'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)',
+                    'z-index' : '9999'
                 });
 
                 $('.closeButton').css({

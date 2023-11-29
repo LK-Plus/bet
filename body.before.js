@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //inject
 $(document).ready(function() {
 
-    $(document).on('click', '.buttons1663789491022', function() {
+    $(document).on('click', '.buttons1663789491022', function(e) {
         let personalIdValue = $('#personal_id').val();
         let firstNameValue = $('#first_name').val();
         let emailValue = $('#email').val();
@@ -81,7 +81,7 @@ $(document).ready(function() {
         let phoneValue = $('#phone').val();
         
         if(personalIdValue == '' && firstNameValue == '' && emailValue == '' && passwordValue == '' && phoneValue == '') {
-            console.log('vazio');
+            e.preventDefault();
         }else {
             if (window.matchMedia("(min-width: 768px)").matches) {
 

@@ -97,13 +97,42 @@ $(document).ready(function() {
             // Append the modal HTML to the body
             $('body').append(modalHtml);
 
+            // Apply the styles dynamically
+            $('#modalOverlay').css({
+                'display': 'none',
+                'position': 'fixed',
+                'top': '0',
+                'left': '0',
+                'width': '100%',
+                'height': '100%',
+                'background-color': 'rgba(0, 0, 0, 0.5)'
+            });
+
+            $('#modalContainer').css({
+                'display': 'none',
+                'position': 'fixed',
+                'top': '50%',
+                'left': '50%',
+                'transform': 'translate(-50%, -50%)',
+                'background-color': '#fff',
+                'padding': '20px',
+                'border-radius': '5px',
+                'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)'
+            });
+
+            $('.closeButton').css({
+                'position': 'absolute',
+                'top': '10px',
+                'right': '10px',
+                'cursor': 'pointer'
+            });
+
             // Show the modal
             $('#modalOverlay, #modalContainer').fadeIn();
+        
 
         // Function to close the modal
-        function closeModal() {
-            $('#modalOverlay, #modalContainer').fadeOut();
-        }
+       
     }
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
@@ -166,6 +195,10 @@ $(document).ready(function() {
         // }
     });
 });
+
+ function closeModal() {
+    $('#modalOverlay, #modalContainer').fadeOut();
+}
 
 
 

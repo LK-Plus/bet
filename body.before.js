@@ -80,8 +80,10 @@ $(document).ready(function() {
                                 '<figure class="img-container">' +
                                     '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620" alt="">' +
                                 '</figure>' +
-                                '<div class="content-modal">' +
-                                    '<!-- Add your modal content here -->' +
+                                '<div class="modal-body">' +
+                                    '<div class="content-modal">' +
+                                        '<!-- Add your modal content here -->' +
+                                    '</div>' +
                                 '</div>' +
                                 '<div class="modal-footer">' +
                                     '<div class="promo-content">' +

@@ -80,10 +80,15 @@ $(document).ready(function() {
         let promoCodeValue = $('#promo_code').val();
         let phoneValue = $('#phone').val();
         
-        if(personalIdValue == '') {
+        if(personalIdValue == '' && firstNameValue == '' && emailValue == '' && passwordValue == '' && phoneValue == '') {
             console.log('vazio');
         }else {
             console.log(personalIdValue)
+            console.log(firstNameValue)
+            console.log(emailValue)
+            console.log(passwordValue)
+            console.log(phoneValue)
+
         }
         if (window.matchMedia("(min-width: 768px)").matches) {
 
@@ -118,7 +123,7 @@ $(document).ready(function() {
                 'padding' : '20px'
             });
 
-             $('#modalOverlay').css({
+            $('#modalOverlay').css({
                 'display': 'none',
                 'position': 'fixed',
                 'top': '0',
@@ -146,7 +151,6 @@ $(document).ready(function() {
                 'cursor': 'pointer',
             });
 
-            // Additional styles
             $('.img-container').css({
                 'width': '150px'
             });
@@ -246,13 +250,9 @@ $(document).ready(function() {
                 'color': '#dcdcdc'
             });
 
-            // Show the modal
             $('#modalOverlay, #modalContainer').fadeIn();
-        
-
-        // Function to close the modal
        
-    }
+        }
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
         // let hours = currentDate.getHours();

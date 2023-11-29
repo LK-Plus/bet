@@ -73,184 +73,183 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function() {
 
     $(document).on('click', 'button[data-testid="submit-btn"]', function(e) {
-        console.log('clicou')
-        // let personalIdValue = $('#personal_id').val();
-        // let firstNameValue = $('#first_name').val();
-        // let emailValue = $('#email').val();
-        // let passwordValue = $('#password').val();
-        // let promoCodeValue = $('#promo_code').val();
-        // let phoneValue = $('#phone').val();
+        let personalIdValue = $('#personal_id').val();
+        let firstNameValue = $('#first_name').val();
+        let emailValue = $('#email').val();
+        let passwordValue = $('#password').val();
+        let promoCodeValue = $('#promo_code').val();
+        let phoneValue = $('#phone').val();
         
-        // // if(!personalIdValue == '' && !firstNameValue == '' && !emailValue == '' && !phoneValue == '') {
-        //     if (window.matchMedia("(min-width: 768px)").matches) {
-        //         setTimeout(() => { 
-        //             $('body').append(`${
-        //                 `<div id="modalOverlay"></div>
-        //                     <div id="modalContainer">
-        //                         <div class="header-modal">
-        //                             <span class="closeButton" onclick="closeModal()">&times;</span>
-        //                             <figure class="img-container">'
-        //                                 <img src=${"https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620"} alt="">
-        //                             </figure>
-        //                         </div>
-        //                         <div class="modal-body">
-        //                             <div class="content-modal">
+        if(!personalIdValue == '' && !firstNameValue == '' && !emailValue == '' && !phoneValue == '') {
+            if (window.matchMedia("(min-width: 768px)").matches) {
+                setTimeout(() => { 
+                    $('body').append(`${
+                        `<div id="modalOverlay"></div>
+                            <div id="modalContainer">
+                                <div class="header-modal">
+                                    <span class="closeButton" onclick="closeModal()">&times;</span>
+                                    <figure class="img-container">'
+                                        <img src=${"https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620"} alt="">
+                                    </figure>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="content-modal">
                                     
-        //                             </div>
-        //                         </div>
-        //                         <div class="modal-footer">
-        //                             <div class="promo-content">
-        //                                 <a class="btn" href=${"https://www.supremabet.com/promocoes"}>PROMOÇÕES</a>
-        //                                 <a class="btn" href=${"https://www.supremabet.com/?accounts=%2A&bonuses=%2A&bonus=%2A&bonusType=2"}>ATIVE SEU BÔNUS</a>
-        //                             </div>
-        //                             <div class="depo-content">
-        //                                 <a class="btn" href=${"https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit=%2A"}>DEPOSITAR AGORA</a>
-        //                             </div>
-        //                         </div>
-        //                     </div>
-        //                 </div>`
-        //             }`);
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="promo-content">
+                                        <a class="btn" href=${"https://www.supremabet.com/promocoes"}>PROMOÇÕES</a>
+                                        <a class="btn" href=${"https://www.supremabet.com/?accounts=%2A&bonuses=%2A&bonus=%2A&bonusType=2"}>ATIVE SEU BÔNUS</a>
+                                    </div>
+                                    <div class="depo-content">
+                                        <a class="btn" href=${"https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit=%2A"}>DEPOSITAR AGORA</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                    }`);
     
-        //             $('.header-modal').css({
-        //                 'padding' : '20px'
-        //             });
+                    $('.header-modal').css({
+                        'padding' : '20px'
+                    });
     
-        //             $('#modalOverlay').css({
-        //                 'display': 'none',
-        //                 'position': 'fixed',
-        //                 'top': '0',
-        //                 'left': '0',
-        //                 'width': '100%',
-        //                 'height': '100%',
-        //                 'background-color': 'rgba(0, 0, 0, 0.5)',
-        //                 'z-index' : '9998'
-        //             });
+                    $('#modalOverlay').css({
+                        'display': 'none',
+                        'position': 'fixed',
+                        'top': '0',
+                        'left': '0',
+                        'width': '100%',
+                        'height': '100%',
+                        'background-color': 'rgba(0, 0, 0, 0.5)',
+                        'z-index' : '9998'
+                    });
     
-        //             $('#modalContainer').css({
-        //                 'display': 'none',
-        //                 'position': 'fixed',
-        //                 'top': '50%',
-        //                 'left': '50%',
-        //                 'transform': 'translate(-50%, -50%)',
-        //                 'background-color': '#333333',
-        //                 'border-radius': '5px',
-        //                 'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)',
-        //                 'z-index' : '9999'
-        //             });
+                    $('#modalContainer').css({
+                        'display': 'none',
+                        'position': 'fixed',
+                        'top': '50%',
+                        'left': '50%',
+                        'transform': 'translate(-50%, -50%)',
+                        'background-color': '#333333',
+                        'border-radius': '5px',
+                        'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)',
+                        'z-index' : '9999'
+                    });
     
-        //             $('.closeButton').css({
-        //                 'position': 'absolute',
-        //                 'top': '10px',
-        //                 'right': '10px',
-        //                 'cursor': 'pointer',
-        //             });
+                    $('.closeButton').css({
+                        'position': 'absolute',
+                        'top': '10px',
+                        'right': '10px',
+                        'cursor': 'pointer',
+                    });
     
-        //             $('.img-container').css({
-        //                 'width': '150px'
-        //             });
+                    $('.img-container').css({
+                        'width': '150px'
+                    });
     
-        //             $('.img-container img').css({
-        //                 'width': '100%'
-        //             });
+                    $('.img-container img').css({
+                        'width': '100%'
+                    });
     
-        //             $('.modal-content').css({
-        //                 'background-color': '#333333',
-        //                 'border-radius': '15px'
-        //             });
+                    $('.modal-content').css({
+                        'background-color': '#333333',
+                        'border-radius': '15px'
+                    });
     
-        //             $('.modal-body').css({
-        //                 'display': 'flex',
-        //                 'flex-direction': 'column',
-        //                 'justify-content': 'space-between',
-        //                 'align-items': 'center',
-        //                 'height': '650px',
-        //                 'background-image': 'url(https://bet-files.suprema.group/images/bg-modal.png)',
-        //                 'background-position': 'center center',
-        //                 'background-repeat': 'no-repeat',
-        //                 'background-size': 'cover',
-        //                 'width': '553px',
-        //                 'margin-bottom': '2em'
-        //             });
+                    $('.modal-body').css({
+                        'display': 'flex',
+                        'flex-direction': 'column',
+                        'justify-content': 'space-between',
+                        'align-items': 'center',
+                        'height': '650px',
+                        'background-image': 'url(https://bet-files.suprema.group/images/bg-modal.png)',
+                        'background-position': 'center center',
+                        'background-repeat': 'no-repeat',
+                        'background-size': 'cover',
+                        'width': '553px',
+                        'margin-bottom': '2em'
+                    });
     
-        //             $('.games-img').css({
-        //                 'width': '495px',
-        //                 'position': 'relative',
-        //                 'bottom': '1.1em'
-        //             });
+                    $('.games-img').css({
+                        'width': '495px',
+                        'position': 'relative',
+                        'bottom': '1.1em'
+                    });
     
-        //             $('.games-img img').css({
-        //                 'width': '100%'
-        //             });
+                    $('.games-img img').css({
+                        'width': '100%'
+                    });
     
-        //             $('.title').css({
-        //                 'text-align': 'center',
-        //                 'position': 'relative',
-        //                 'bottom': '5.5em',
-        //                 'color': '#fff',
-        //                 'font-weight': '600'
-        //             });
+                    $('.title').css({
+                        'text-align': 'center',
+                        'position': 'relative',
+                        'bottom': '5.5em',
+                        'color': '#fff',
+                        'font-weight': '600'
+                    });
     
-        //             $('.content-modal').css({
-        //                 'text-align': 'center',
-        //                 'color': '#fff',
-        //                 'padding': '.8em',
-        //                 'position': 'relative',
-        //                 'bottom': '6em',
-        //                 'height': '650px',
-        //             });
+                    $('.content-modal').css({
+                        'text-align': 'center',
+                        'color': '#fff',
+                        'padding': '.8em',
+                        'position': 'relative',
+                        'bottom': '6em',
+                        'height': '650px',
+                    });
     
-        //             $('.content-modal p').css({
-        //                 'font-size': '18px',
-        //                 'font-weight': '700'
-        //             });
+                    $('.content-modal p').css({
+                        'font-size': '18px',
+                        'font-weight': '700'
+                    });
     
-        //             $('.modal-footer').css({
-        //                 'display': '-ms-flexbox',
-        //                 'display': 'flex',
-        //                 '-ms-flex-align': 'center',
-        //                 'align-items': 'center',
-        //                 '-ms-flex-pack': 'end',
-        //                 'justify-content': 'center',
-        //                 'padding': '1rem',
-        //                 'border-top': '1px solid #dee2e6',
-        //                 'border-bottom-right-radius': '0.3rem',
-        //                 'border-bottom-left-radius': '0.3rem',
-        //                 'flex-direction': 'column',
-        //                 'gap': '1em'
-        //             });
+                    $('.modal-footer').css({
+                        'display': '-ms-flexbox',
+                        'display': 'flex',
+                        '-ms-flex-align': 'center',
+                        'align-items': 'center',
+                        '-ms-flex-pack': 'end',
+                        'justify-content': 'center',
+                        'padding': '1rem',
+                        'border-top': '1px solid #dee2e6',
+                        'border-bottom-right-radius': '0.3rem',
+                        'border-bottom-left-radius': '0.3rem',
+                        'flex-direction': 'column',
+                        'gap': '1em'
+                    });
     
-        //             $('.depo-content').css({
-        //                 'width': '100%'
-        //             });
+                    $('.depo-content').css({
+                        'width': '100%'
+                    });
     
-        //             $('.promo-content').css({
-        //                 'display': 'flex',
-        //                 'width': '100%',
-        //                 'gap': '1em'
-        //             });
+                    $('.promo-content').css({
+                        'display': 'flex',
+                        'width': '100%',
+                        'gap': '1em'
+                    });
     
-        //             $('a.btn').css({
-        //                 'background': '#41c12a',
-        //                 'padding': '0.5em',
-        //                 'border-radius': '5px',
-        //                 'width': '100%',
-        //                 'text-align': 'center',
-        //                 'font-weight': '700',
-        //                 'color': '#fff'
-        //             });
+                    $('a.btn').css({
+                        'background': '#41c12a',
+                        'padding': '0.5em',
+                        'border-radius': '5px',
+                        'width': '100%',
+                        'text-align': 'center',
+                        'font-weight': '700',
+                        'color': '#fff'
+                    });
     
-        //             $('a.btn:hover').css({
-        //                 'background': '#59e740',
-        //                 'color': '#dcdcdc'
-        //             });
+                    $('a.btn:hover').css({
+                        'background': '#59e740',
+                        'color': '#dcdcdc'
+                    });
     
-        //             $('#modalOverlay, #modalContainer').fadeIn();
-        //         }, 5000);
+                    $('#modalOverlay, #modalContainer').fadeIn();
+                }, 5000);
         
-        //     }
-        // }else {
-        //     e.preventDefault();
-        // }
+            }
+        }else {
+            e.preventDefault();
+        }
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
         // let hours = currentDate.getHours();

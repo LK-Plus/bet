@@ -114,7 +114,7 @@ $(document).ready(function() {
                 'top': '50%',
                 'left': '50%',
                 'transform': 'translate(-50%, -50%)',
-                'background-color': '#fff',
+                'background-color': '#333333',
                 'padding': '20px',
                 'border-radius': '5px',
                 'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)'
@@ -147,7 +147,7 @@ $(document).ready(function() {
                 'justify-content': 'space-between',
                 'align-items': 'center',
                 'height': '650px',
-                'background-image': 'url(images/bg-modal.png)',
+                'background-image': 'url(https://bet-files.suprema.group/images/bg-modal.png)',
                 'background-position': 'center center',
                 'background-repeat': 'no-repeat',
                 'background-size': 'cover',
@@ -178,7 +178,8 @@ $(document).ready(function() {
                 'color': '#fff',
                 'padding': '.8em',
                 'position': 'relative',
-                'bottom': '6em'
+                'bottom': '6em',
+                'height': '650px',
             });
 
             $('.content-modal p').css({

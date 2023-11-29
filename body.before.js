@@ -80,16 +80,14 @@ $(document).ready(function() {
         let promoCodeValue = $('#promo_code').val();
         let phoneValue = $('#phone').val();
         
-        if(personalIdValue == '' && firstNameValue == '' && emailValue == '' && passwordValue == '' && phoneValue == '') {
-            e.preventDefault();
-        }else {
+        if(!personalIdValue == '' && !firstNameValue == '' && !emailValue == '' && !passwordValue == '' && !phoneValue == '') {
             if (window.matchMedia("(min-width: 768px)").matches) {
 
                 $('body').append(`${
                     `<div id="modalOverlay"></div>
                         <div id="modalContainer">
                             <div class="header-modal">
-                                <span class="closeButton" onclick="${closeModal()}">&times;</span>
+                                <span class="closeButton" onclick="closeModal()">&times;</span>
                                 <figure class="img-container">'
                                     <img src=${"https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620"} alt="">
                                 </figure>
@@ -247,7 +245,8 @@ $(document).ready(function() {
                 $('#modalOverlay, #modalContainer').fadeIn();
         
             }
-
+        }else {
+            e.preventDefault();
         }
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });

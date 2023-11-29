@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //inject
 $(document).ready(function() {
-
+    $('[data-testid="submit-btn"]').attr('data-sub', 'submit');
     $(document).on('click', '.buttons1663789491022', function(e) {
         // let personalIdValue = $('#personal_id').val();
         // let firstNameValue = $('#first_name').val();

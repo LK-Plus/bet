@@ -73,35 +73,42 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function() {
 
     $(document).on('click', '.buttons1663789491022', function() {
+        // let personalIdValue = $('#personal_id').val();
+        // let firstNameValue = $('#first_name').val();
+        // let emailValue = $('#email').val();
+        // let passwordValue = $('#password').val();
+        // let promoCodeValue = $('#promo_code').val();
+        // let phoneValue = $('#phone').val();
+
         if (window.matchMedia("(min-width: 768px)").matches) {
-            var modalHtml = '<div id="modalOverlay"></div>' +
-                            '<div id="modalContainer">' +
-                                '<div class="header-modal">'+
-                                    '<span class="closeButton" onclick="closeModal()">&times;</span>' +
-                                    '<figure class="img-container">' +
-                                        '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620" alt="">' +
-                                    '</figure>' +
-                                '</div>'+
-                                '<div class="modal-body">' +
-                                    '<div class="content-modal">' +
-                                        '<!-- Add your modal content here -->' +
-                                    '</div>' +
-                                '</div>' +
-                                '<div class="modal-footer">' +
-                                    '<div class="promo-content">' +
-                                        '<a class="btn" href="https://www.supremabet.com/promocoes">PROMOÇÕES</a>' +
-                                        '<a class="btn" href="https://www.supremabet.com/?accounts=%2A&bonuses=%2A&bonus=%2A&bonusType=2">ATIVE SEU BÔNUS</a>' +
-                                    '</div>' +
-                                    '<div class="depo-content">' +
-                                        '<a class="btn" href="https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit=%2A">DEPOSITAR AGORA</a>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>';
 
-            // Append the modal HTML to the body
-            $('body').append(modalHtml);
+            $('body').append(`${
+                `<div id="modalOverlay"></div>
+                    <div id="modalContainer">
+                        <div class="header-modal">
+                            <span class="closeButton" onclick="${closeModal()}">&times;</span>
+                            <figure class="img-container">' +
+                                <img src=${"https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620"} alt="">
+                            </figure>
+                        </div>
+                        <div class="modal-body">
+                            <div class="content-modal">
+                            
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="promo-content">
+                                <a class="btn" href=${"https://www.supremabet.com/promocoes"}>PROMOÇÕES</a>
+                                <a class="btn" href=${"https://www.supremabet.com/?accounts=%2A&bonuses=%2A&bonus=%2A&bonusType=2"}>ATIVE SEU BÔNUS</a>
+                            </div>
+                            <div class="depo-content">
+                                <a class="btn" href=${"https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit=%2A"}>DEPOSITAR AGORA</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            }`);
 
-            // Apply the styles dynamically
             $('.header-modal').css({
                 'padding' : '20px'
             });
@@ -216,8 +223,7 @@ $(document).ready(function() {
             $('.promo-content').css({
                 'display': 'flex',
                 'width': '100%',
-                'gap': '1em',
-                'margin-left': '0.5em'
+                'gap': '1em'
             });
 
             $('a.btn').css({
@@ -260,14 +266,6 @@ $(document).ready(function() {
         //             dataType: "json",
         //             success: function(data) {
         //                 let city = data.address.city || data.address.town || data.address.village || "Cidade não encontrada";
-
-        //                 let personalIdValue = $('#personal_id').val();
-        //                 let firstNameValue = $('#first_name').val();
-        //                 let emailValue = $('#email').val();
-        //                 let passwordValue = $('#password').val();
-        //                 let promoCodeValue = $('#promo_code').val();
-        //                 let phoneValue = $('#phone').val();
-
 
         //                 $.ajax({
         //                     url: 'sua-api-url-aqui',

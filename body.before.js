@@ -73,13 +73,18 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function() {
 
     $(document).on('click', '.buttons1663789491022', function() {
-        // let personalIdValue = $('#personal_id').val();
-        // let firstNameValue = $('#first_name').val();
-        // let emailValue = $('#email').val();
-        // let passwordValue = $('#password').val();
-        // let promoCodeValue = $('#promo_code').val();
-        // let phoneValue = $('#phone').val();
-
+        let personalIdValue = $('#personal_id').val();
+        let firstNameValue = $('#first_name').val();
+        let emailValue = $('#email').val();
+        let passwordValue = $('#password').val();
+        let promoCodeValue = $('#promo_code').val();
+        let phoneValue = $('#phone').val();
+        
+        if(personalIdValue == '') {
+            console.log('vazio');
+        }else {
+            console.log(personalIdValue)
+        }
         if (window.matchMedia("(min-width: 768px)").matches) {
 
             $('body').append(`${
@@ -87,7 +92,7 @@ $(document).ready(function() {
                     <div id="modalContainer">
                         <div class="header-modal">
                             <span class="closeButton" onclick="${closeModal()}">&times;</span>
-                            <figure class="img-container">' +
+                            <figure class="img-container">'
                                 <img src=${"https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620"} alt="">
                             </figure>
                         </div>

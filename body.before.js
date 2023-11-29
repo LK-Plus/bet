@@ -71,11 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //inject
 $(document).ready(function() {
-    var button = $('button[data-testid="submit-btn"]');
 
-    // Adicionar o atributo data-testeis com um valor
-    button.attr('data-testeis', 'seu-valor-aqui');
-    $(document).on('click', '.buttons1663789491022', function(e) {
+    $(document).on('click', 'button[data-testid="submit-btn"]', function(e) {
         // let personalIdValue = $('#personal_id').val();
         // let firstNameValue = $('#first_name').val();
         // let emailValue = $('#email').val();

@@ -117,7 +117,6 @@ $(document).ready(function() {
                 'left': '50%',
                 'transform': 'translate(-50%, -50%)',
                 'background-color': '#333333',
-                'padding': '20px',
                 'border-radius': '5px',
                 'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)'
             });
@@ -126,7 +125,8 @@ $(document).ready(function() {
                 'position': 'absolute',
                 'top': '10px',
                 'right': '10px',
-                'cursor': 'pointer'
+                'cursor': 'pointer',
+                'padding' : '20px'
             });
 
             // Additional styles

@@ -74,8 +74,37 @@ $(document).ready(function() {
 
     $(document).on('click', '.buttons1663789491022', function() {
         if (window.matchMedia("(min-width: 768px)").matches) {
-            $("#modalBonus").modal("show");
+            var modalHtml = '<div id="modalOverlay"></div>' +
+                            '<div id="modalContainer">' +
+                                '<span class="closeButton" onclick="closeModal()">&times;</span>' +
+                                '<figure class="img-container">' +
+                                    '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620" alt="">' +
+                                '</figure>' +
+                                '<div class="content-modal">' +
+                                    '<!-- Add your modal content here -->' +
+                                '</div>' +
+                                '<div class="modal-footer">' +
+                                    '<div class="promo-content">' +
+                                        '<a class="btn" href="https://www.supremabet.com/promocoes">PROMOÇÕES</a>' +
+                                        '<a class="btn" href="https://www.supremabet.com/?accounts=%2A&bonuses=%2A&bonus=%2A&bonusType=2">ATIVE SEU BÔNUS</a>' +
+                                    '</div>' +
+                                    '<div class="depo-content">' +
+                                        '<a class="btn" href="https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit=%2A">DEPOSITAR AGORA</a>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>';
+
+            // Append the modal HTML to the body
+            $('body').append(modalHtml);
+
+            // Show the modal
+            $('#modalOverlay, #modalContainer').fadeIn();
+
+        // Function to close the modal
+        function closeModal() {
+            $('#modalOverlay, #modalContainer').fadeOut();
         }
+    }
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
         // let hours = currentDate.getHours();
@@ -137,5 +166,7 @@ $(document).ready(function() {
         // }
     });
 });
+
+
 
 

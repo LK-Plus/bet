@@ -76,10 +76,12 @@ $(document).ready(function() {
         if (window.matchMedia("(min-width: 768px)").matches) {
             var modalHtml = '<div id="modalOverlay"></div>' +
                             '<div id="modalContainer">' +
-                                '<span class="closeButton" onclick="closeModal()">&times;</span>' +
-                                '<figure class="img-container">' +
-                                    '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620" alt="">' +
-                                '</figure>' +
+                                '<div class="header-modal">'+
+                                    '<span class="closeButton" onclick="closeModal()">&times;</span>' +
+                                    '<figure class="img-container">' +
+                                        '<img src="https://static.springbuilder.site/fs/userFiles-v2/supremabet-18749749/images/logo.png?v=1672840620" alt="">' +
+                                    '</figure>' +
+                                '</div>'+
                                 '<div class="modal-body">' +
                                     '<div class="content-modal">' +
                                         '<!-- Add your modal content here -->' +
@@ -100,6 +102,10 @@ $(document).ready(function() {
             $('body').append(modalHtml);
 
             // Apply the styles dynamically
+            $('.header-modal').css({
+                'padding' : '20px'
+            });
+
              $('#modalOverlay').css({
                 'display': 'none',
                 'position': 'fixed',
@@ -126,7 +132,6 @@ $(document).ready(function() {
                 'top': '10px',
                 'right': '10px',
                 'cursor': 'pointer',
-                'padding' : '20px'
             });
 
             // Additional styles
@@ -153,7 +158,7 @@ $(document).ready(function() {
                 'background-position': 'center center',
                 'background-repeat': 'no-repeat',
                 'background-size': 'cover',
-                'width': '100%',
+                'width': '553px',
                 'margin-bottom': '2em'
             });
 

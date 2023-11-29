@@ -98,7 +98,7 @@ $(document).ready(function() {
             $('body').append(modalHtml);
 
             // Apply the styles dynamically
-            $('#modalOverlay').css({
+             $('#modalOverlay').css({
                 'display': 'none',
                 'position': 'fixed',
                 'top': '0',
@@ -125,6 +125,106 @@ $(document).ready(function() {
                 'top': '10px',
                 'right': '10px',
                 'cursor': 'pointer'
+            });
+
+            // Additional styles
+            $('.img-container').css({
+                'width': '150px'
+            });
+
+            $('.img-container img').css({
+                'width': '100%'
+            });
+
+            $('.modal-content').css({
+                'background-color': '#333333',
+                'border-radius': '15px'
+            });
+
+            $('.modal-body').css({
+                'display': 'flex',
+                'flex-direction': 'column',
+                'justify-content': 'space-between',
+                'align-items': 'center',
+                'height': '650px',
+                'background-image': 'url(images/bg-modal.png)',
+                'background-position': 'center center',
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover',
+                'width': '100%',
+                'margin-bottom': '2em'
+            });
+
+            $('.games-img').css({
+                'width': '495px',
+                'position': 'relative',
+                'bottom': '1.1em'
+            });
+
+            $('.games-img img').css({
+                'width': '100%'
+            });
+
+            $('.title').css({
+                'text-align': 'center',
+                'position': 'relative',
+                'bottom': '5.5em',
+                'color': '#fff',
+                'font-weight': '600'
+            });
+
+            $('.content-modal').css({
+                'text-align': 'center',
+                'color': '#fff',
+                'padding': '.8em',
+                'position': 'relative',
+                'bottom': '6em'
+            });
+
+            $('.content-modal p').css({
+                'font-size': '18px',
+                'font-weight': '700'
+            });
+
+            $('.modal-footer').css({
+                'display': '-ms-flexbox',
+                'display': 'flex',
+                '-ms-flex-align': 'center',
+                'align-items': 'center',
+                '-ms-flex-pack': 'end',
+                'justify-content': 'center',
+                'padding': '1rem',
+                'border-top': '1px solid #dee2e6',
+                'border-bottom-right-radius': '0.3rem',
+                'border-bottom-left-radius': '0.3rem',
+                'flex-direction': 'column',
+                'gap': '1em'
+            });
+
+            $('.depo-content').css({
+                'width': '100%'
+            });
+
+            $('.promo-content').css({
+                'display': 'flex',
+                'width': '100%',
+                'gap': '1em',
+                'margin-left': '0.5em'
+            });
+
+            $('a.btn').css({
+                'background': '#41c12a',
+                'padding': '0.5em',
+                'border-radius': '5px',
+                'width': '100%',
+                'text-align': 'center',
+                'font-weight': '700',
+                'color': '#fff'
+            });
+
+            $('a.btn:hover').css({
+                'background': '#59e740',
+                'color': '#dcdcdc'
             });
 
             // Show the modal

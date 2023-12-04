@@ -70,7 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
  
 
 //inject
-// $(document).ready(function() {
+$(document).ready(function() {
+    $('.paymentMethods__listLayout').after('<div class="novoElemento">Novo Elemento</div>');
 
 //     $(document).on('click', 'button[data-testid="submit-btn"]', function(e) {
 //         let personalIdValue = $('#personal_id').val();
@@ -302,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //         //     console.error("Geolocalização não suportada neste navegador.");
 //         // }
 //     });
-// });
+});
 
 //  function closeModal() {
 //     $('#modalOverlay, #modalContainer').fadeOut();

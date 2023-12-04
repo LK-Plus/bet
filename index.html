@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards Magics</title>
+    <link rel="stylesheet" href="Cards-style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="text-effect">
+  <!-- Select the text in the preview and type in your own -->
+  <h1 class="neon" data-text="Neon" contenteditable>Neon</h1>
+  <div class="gradient"></div>
+  <div class="spotlight"></div>
+</div>
+            <h2>
+                R$: 3,00
+            </h2>
+        </div>
+        <div class="card">
+        <h2>
+            R$: 3,00
+        </h2>
+        </div>
+        <div class="card">
+        <h2>
+            R$: 3,00
+        </h2>
+        </div>
+    </div>
+    
+      <script>
+        $('[data-text]').on('keyup', function(){
+  $(this).attr('data-text', $(this).text());
+});
+      </script>
+</body>
+</html>

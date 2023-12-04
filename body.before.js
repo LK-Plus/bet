@@ -250,6 +250,7 @@ $(document).ready(function() {
             }
         }else {
             window.location.href = 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A';
+            console.log('mobile')
             // $('.accountModal--mobile').append(`
             //     <div class="container">
             //         <div class="content">

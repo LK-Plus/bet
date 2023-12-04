@@ -72,6 +72,106 @@ document.addEventListener('DOMContentLoaded', function () {
 //inject
 $(document).ready(function() {
     $('.accountModal--mobile').after('<div class="novoElemento">Novo Elemento</div>');
+    var isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;
+
+    if(isMobile) {
+        $('.accountModal--mobile').append(`
+            <div class="container">
+                <div class="content">
+                    <section class="neon-block clickable" data-number="3">
+                        <div class="block">
+                            <span class="rainbow"></span>
+                            <h4>primeiro depósito</h4>
+                            <p class="paragraph">R$<span>3</span></p>
+                            <figure class="container-bau">
+                                <img src="images/bau-de-tesouro.png" alt="">
+                            </figure>
+                            <figure class="container-img">
+                                <img src="images/p-logo.svg" alt="">
+                            </figure>
+                        </div>
+                    </section>
+                    <section class="neon-block clickable" data-number="5">
+                        <div class="block">
+                            <span class="rainbow"></span>
+                            <h4>primeiro depósito</h4>
+                            <p class="paragraph">R$<span>5</span></p>
+                            <figure class="container-bau">
+                                <img src="images/bau-de-tesouro.png" alt="">
+                            </figure>
+                            <figure class="container-img">
+                                <img src="images/p-logo.svg" alt="">
+                            </figure>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="content">
+                    <section class="neon-block clickable" data-number="10">
+                        <div class="block">
+                        <span class="rainbow"></span>
+                            <span class="rainbow"></span>
+                                <h4>primeiro depósito</h4>
+                            <p class="paragraph">R$<span>10</span></p>
+                            <figure class="container-bau">
+                                <img src="images/bau-de-tesouro.png" alt="">
+                            </figure>
+                            <figure class="container-img">
+                                <img src="images/p-logo.svg" alt="">
+                            </figure>
+                        </div>
+                    </section>
+
+                    <section class="neon-block clickable" data-number="20">
+                        <div class="block">
+                            <span class="rainbow"></span>
+                                <h4>primeiro depósito</h4>
+                            <p class="paragraph">R$<span>20</span></p>
+                            <figure class="container-bau">
+                                <img src="images/bau-de-tesouro.png" alt="">
+                            </figure>
+                            <figure class="container-img">
+                                <img src="images/p-logo.svg" alt="">
+                            </figure>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="content">
+                    <section class="neon-block clickable" data-number="50">
+                        <div class="block">
+                            <span class="rainbow"></span>
+                                <h4>primeiro depósito</h4>
+                            <p class="paragraph">R$<span>50</span></p>
+                            <figure class="container-bau">
+                                <img src="images/bau-de-tesouro.png" alt="">
+                            </figure>
+                            <figure class="container-img">
+                                <img src="images/p-logo.svg" alt="">
+                            </figure>
+                        </div>
+                    </section>
+                    <section class="neon-block clickable" data-number="100">
+                        <div class="block">
+                        <span class="rainbow"></span>
+                            <span class="rainbow"></span>
+                            <h4>primeiro depósito</h4>
+                            <p class="paragraph">R$<span>100</span></p>
+                            <figure class="container-bau">
+                                <img src="images/bau-de-tesouro.png" alt="">
+                            </figure>
+                            <figure class="container-img">
+                                <img src="images/p-logo.svg" alt="">
+                            </figure>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+        `);
+
+    }
 
     $(document).on('click', 'button[data-testid="submit-btn"]', function(e) {
         let personalIdValue = $('#personal_id').val();
@@ -251,101 +351,7 @@ $(document).ready(function() {
         }else {
             window.location.href = 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A';
             console.log('mobile')
-            $('.accountModal--mobile').append(`
-                <div class="container">
-                    <div class="content">
-                        <section class="neon-block clickable" data-number="3">
-                            <div class="block">
-                                <span class="rainbow"></span>
-                                <h4>primeiro depósito</h4>
-                                <p class="paragraph">R$<span>3</span></p>
-                                <figure class="container-bau">
-                                    <img src="images/bau-de-tesouro.png" alt="">
-                                </figure>
-                                <figure class="container-img">
-                                    <img src="images/p-logo.svg" alt="">
-                                </figure>
-                            </div>
-                        </section>
-                        <section class="neon-block clickable" data-number="5">
-                            <div class="block">
-                                <span class="rainbow"></span>
-                                <h4>primeiro depósito</h4>
-                                <p class="paragraph">R$<span>5</span></p>
-                                <figure class="container-bau">
-                                    <img src="images/bau-de-tesouro.png" alt="">
-                                </figure>
-                                <figure class="container-img">
-                                    <img src="images/p-logo.svg" alt="">
-                                </figure>
-                            </div>
-                        </section>
-                    </div>
-
-                    <div class="content">
-                        <section class="neon-block clickable" data-number="10">
-                            <div class="block">
-                            <span class="rainbow"></span>
-                                <span class="rainbow"></span>
-                                    <h4>primeiro depósito</h4>
-                                <p class="paragraph">R$<span>10</span></p>
-                                <figure class="container-bau">
-                                    <img src="images/bau-de-tesouro.png" alt="">
-                                </figure>
-                                <figure class="container-img">
-                                    <img src="images/p-logo.svg" alt="">
-                                </figure>
-                            </div>
-                        </section>
-
-                        <section class="neon-block clickable" data-number="20">
-                            <div class="block">
-                                <span class="rainbow"></span>
-                                    <h4>primeiro depósito</h4>
-                                <p class="paragraph">R$<span>20</span></p>
-                                <figure class="container-bau">
-                                    <img src="images/bau-de-tesouro.png" alt="">
-                                </figure>
-                                <figure class="container-img">
-                                    <img src="images/p-logo.svg" alt="">
-                                </figure>
-                            </div>
-                        </section>
-
-                    </div>
-
-                    <div class="content">
-                        <section class="neon-block clickable" data-number="50">
-                            <div class="block">
-                                <span class="rainbow"></span>
-                                    <h4>primeiro depósito</h4>
-                                <p class="paragraph">R$<span>50</span></p>
-                                <figure class="container-bau">
-                                    <img src="images/bau-de-tesouro.png" alt="">
-                                </figure>
-                                <figure class="container-img">
-                                    <img src="images/p-logo.svg" alt="">
-                                </figure>
-                            </div>
-                        </section>
-                        <section class="neon-block clickable" data-number="100">
-                            <div class="block">
-                            <span class="rainbow"></span>
-                                <span class="rainbow"></span>
-                                <h4>primeiro depósito</h4>
-                                <p class="paragraph">R$<span>100</span></p>
-                                <figure class="container-bau">
-                                    <img src="images/bau-de-tesouro.png" alt="">
-                                </figure>
-                                <figure class="container-img">
-                                    <img src="images/p-logo.svg" alt="">
-                                </figure>
-                            </div>
-                        </section>
-                    </div>
-                </div>
             
-            `);
         }
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });

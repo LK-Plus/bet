@@ -74,10 +74,11 @@ $(document).ready(function() {
     var isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;
     
 
-    $('.accountModal').on('shown.bs.modal', function () {
-      // Seleciona o elemento dentro do modal e adiciona a classe desejada
-      $('.carousel__wrapper > :nth-child(2)').addClass('payment__item-box-active');
-    });
+    if(window.location.href == 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A'){
+        // Seleciona o elemento dentro do modal e adiciona a classe desejada
+        $('.carousel__wrapper > :nth-child(2)').addClass('payment__item-box-active');
+    }
+
 
     
 

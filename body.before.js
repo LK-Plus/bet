@@ -72,7 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
 //inject
 $(document).ready(function() {
     var isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;
-    $('.carousel__wrapper > :nth-child(2)').addClass('payment__item-box-active');
+    
+
+    $('.accountModal').on('shown.bs.modal', function () {
+      // Seleciona o elemento dentro do modal e adiciona a classe desejada
+      $('.carousel__wrapper > :nth-child(2)').addClass('payment__item-box-active');
+    });
 
     
 

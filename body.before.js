@@ -75,7 +75,8 @@ $(document).ready(function() {
 
     if (window.location.href === 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A') {
     // Adiciona elementos HTML à sua div
-        $('.accountModal--mobile').append('<p>Seu conteúdo HTML aqui</p>');
+        // $('.accountModal--mobile').append('<p>Seu conteúdo HTML aqui</p>');
+        console.log('page mobile modal')
     }
 
     if(isMobile) {

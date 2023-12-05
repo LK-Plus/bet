@@ -73,6 +73,11 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function() {
     var isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;
 
+    if (window.location.href === 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A') {
+    // Adiciona elementos HTML à sua div
+        $('#suaDiv').html('<p>Seu conteúdo HTML aqui</p>');
+    }
+
     if(isMobile) {
         $('.accountModal--mobile').append(`
             <div class="container">

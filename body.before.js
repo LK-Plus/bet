@@ -76,6 +76,7 @@ $(document).ready(function() {
 
     if(window.location.href == 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A'){
         // Seleciona o elemento dentro do modal e adiciona a classe desejada
+        console.log('achou')
         $('.carousel__wrapper > :nth-child(2)').addClass('payment__item-box-active');
     }
 

@@ -353,18 +353,22 @@ $(document).ready(function() {
             }
         }else {
             window.location.href = 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A';
-            if (window.location.href == 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A') {
-            // Adiciona elementos HTML à sua div
-                // $('.accountModal--mobile').append('<p>Seu conteúdo HTML aqui</p>')
-                var checkForActiveElement = setInterval(function() {
-                    var activeElement = $('.accountModal .accountModal--mobile');
 
-                    if (activeElement.length > 0) {
-                        clearInterval(checkForActiveElement); 
-                        $('.accountModal--mobile').append('<p>Teste</p>');
-                    }
-                }, 1);
-                console.log('page mobile modal')
+            // Verifica se a URL foi carregada
+            if (window.location.href === 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A') {
+                // Espera o documento estar pronto antes de manipular o DOM
+                $(document).ready(function() {
+                    // Verifica periodicamente se a classe 'accountModal--mobile' está presente
+                    var checkForActiveElement = setInterval(function() {
+                        var activeElement = $('.accountModal .accountModal--mobile');
+
+                        if (activeElement.length > 0) {
+                            clearInterval(checkForActiveElement); // Para de verificar
+                            $('.accountModal--mobile').append('<p>Teste</p>'); // Adiciona conteúdo HTML
+                            console.log('Página com modal mobile detectada');
+                        }
+                    }, 100); // Intervalo de verificação em milissegundos
+                });
             }
         }
         // let currentDate = new Date();

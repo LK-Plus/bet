@@ -366,6 +366,8 @@ $(document).ready(function() {
                             clearInterval(checkForActiveElement); // Para de verificar
                             $('.accountModal--mobile').append('<p>Teste</p>'); // Adiciona conteúdo HTML
                             console.log('Página com modal mobile detectada');
+                        }else {
+                            console.log('não encontrado')
                         }
                     }, 100); // Intervalo de verificação em milissegundos
                 });

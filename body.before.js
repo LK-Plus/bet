@@ -67,28 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 });
- 
 
 //inject
 $(document).ready(function() {
-    var isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;
-    
-    function simularClique() {
-    var paymentItemBox = $('.carousel__wrapper > .payment__item-box');
-    if (paymentItemBox.hasClass('payment__item-box-active')) {
-      // Simula o clique no botão
-      $('.payment__item-box-active').click();
-    }
-  }
-
-  // Adiciona um ouvinte de evento ao botão com a classe profileInfo__add
-  $('.profileInfo__add').on('click', function() {
-    setTimeout(() => {
-      // Adiciona a lógica original do clique
-      $('.carousel__wrapper > :nth-child(1)').removeClass('payment__item-box-active');
-      $('.carousel__wrapper > :nth-child(2)').addClass('payment__item-box-active');
-    }, 1);
-  });
+    var isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;;
 
   // Simula o clique no botão se o elemento tiver a classe payment__item-box-active
   simularClique();
@@ -191,6 +173,8 @@ $(document).ready(function() {
         `);
         console.log('teste')
     }
+
+    
 
     $(document).on('click', 'button[data-testid="submit-btn"]', function(e) {
         let personalIdValue = $('#personal_id').val();
@@ -372,6 +356,14 @@ $(document).ready(function() {
             if (window.location.href == 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A') {
             // Adiciona elementos HTML à sua div
                 // $('.accountModal--mobile').append('<p>Seu conteúdo HTML aqui</p>')
+                var checkForActiveElement = setInterval(function() {
+                    var activeElement = $('.accountModal .accountModal--mobile');
+
+                    if (activeElement.length > 0) {
+                        clearInterval(checkForActiveElement); 
+                        $('.accountModal--mobile').append('<p>Teste</p>');
+                    }
+                }, 1);
                 console.log('page mobile modal')
             }
         }

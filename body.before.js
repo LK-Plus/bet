@@ -355,23 +355,23 @@ $(document).ready(function() {
             window.location.href = 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A';
 
             // Verifica se a URL foi carregada
-            if (window.location.href === 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A') {
-                // Espera o documento estar pronto antes de manipular o DOM
-                $(document).ready(function() {
-                    // Verifica periodicamente se a classe 'accountModal--mobile' está presente
-                    var checkForActiveElement = setInterval(function() {
-                        var activeElement = $('.accountModal .accountModal--mobile');
+            $(document).ready(function() {
+                // Verifica periodicamente se a classe 'accountModal--mobile' está presente
+                var checkForActiveElement = setInterval(function() {
+                    var activeElement = $('.accountModal .accountModal--mobile');
 
-                        if (activeElement.length > 0) {
-                            clearInterval(checkForActiveElement); // Para de verificar
-                            $('.accountModal--mobile').append('<p>Teste</p>'); // Adiciona conteúdo HTML
-                            console.log('Página com modal mobile detectada');
-                        }else {
-                            console.log('não encontrado')
-                        }
-                    }, 100); // Intervalo de verificação em milissegundos
-                });
-            }
+                    if (activeElement.length > 0) {
+                        clearInterval(checkForActiveElement); // Para de verificar
+                        $('.accountModal--mobile').append('<p>Teste</p>'); // Adiciona conteúdo HTML
+                        console.log('Página com modal mobile detectada');
+                    }else {
+                        console.log('não encontrado')
+                    }
+                }, 100); // Intervalo de verificação em milissegundos
+            });
+            // if (window.location.href === 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A') {
+            //     // Espera o documento estar pronto antes de manipular o DOM
+            // }
         }
         // let currentDate = new Date();
         // let dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });

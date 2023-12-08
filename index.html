@@ -25,3 +25,15 @@
 </script>
 </body>
 </html>
+<script>
+$(document).ready(function () {
+        var checkForActiveElement = setInterval(function() {
+        var activeElement = $('.accountModal .accountModal--mobile');
+
+        if (activeElement.length > 0) {
+            clearInterval(checkForActiveElement); 
+            console.log('teste-01')
+        }
+    }, 1);
+})
+</script>

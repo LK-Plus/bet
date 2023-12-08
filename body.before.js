@@ -352,10 +352,7 @@ $(document).ready(function() {
         
             }
         }else {
-            $('.v3-icon.profileInfo__add').on('click', function() {
-                // Lógica a ser executada quando o elemento é clicado
-                console.log('Clique simulado ou real na classe profileInfo__add.');
-            });
+            $('.v3-icon.profileInfo__add').click();
             // window.location.href = 'https://www.supremabet.com/?accounts=%2A&wallet=%2A&deposit-methods=%2A';
 
             // // Verifica se a URL foi carregada
